@@ -1,0 +1,13 @@
+---
+import Root from '~/layouts/Root.astro';
+
+const hello_world = ['hello', ',', ' ', 'world'];
+---
+
+<Root title="homepage">
+	{
+		hello_world.map((word) => {
+			return <span class="border-gray-200 p-6">{word}</span>;
+		})
+	}
+</Root>

@@ -1,0 +1,19 @@
+---
+import 'virtual:windi.css';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html class="h-full w-full">
+	<head>
+		<title>Page - {title}</title>
+	</head>
+	<body class="dark:bg-gray-900 h-full">
+		<slot />
+	</body>
+</html>
