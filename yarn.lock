@@ -25,10 +25,10 @@
   resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-0.29.13.tgz#86910920301f90bc9eadaae65a88e2903e575fa1"
   integrity sha512-C9+91vsWiJspj/VkVp6UtSIrJGuj/Aia1KCEDzg2Ge27uSDCOl1QlUQuAAnAbGpFBF71uaYOUZOPCbptQeGbdQ==
 
-"@astrojs/image@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/image/-/image-0.10.0.tgz#aa07f097bfd563126a6d971e6f1fcb53cda3ef7b"
-  integrity sha512-/lkQ8YbqwHEA3bU6W7igEHqqQs6V6sx4rMbhkur4qWQP61kAOnvacSSKN7GJ+YswZOiUhPGY9DTtyLRqLFLv5g==
+"@astrojs/image@^0.11.6":
+  version "0.11.6"
+  resolved "https://registry.yarnpkg.com/@astrojs/image/-/image-0.11.6.tgz#5eaa8091bcd4cce9afa7432e0b14b8a308926dac"
+  integrity sha512-/awb4CWvOdoBv896XZcXw+oYEYLezWiaX5Oyk2g4PQ6rEHtZVROj56CFdUbS9ldmIqp3ni7rXNf1XK3dlP5d1A==
   dependencies:
     "@altano/tiny-async-pool" "^1.0.2"
     http-cache-semantics "^4.1.0"
@@ -37,6 +37,7 @@
     magic-string "^0.25.9"
     mime "^3.0.0"
     slash "^4.0.0"
+    web-streams-polyfill "^3.2.1"
 
 "@astrojs/language-server@^0.28.3":
   version "0.28.3"
@@ -7261,7 +7262,7 @@ web-namespaces@^2.0.0:
   resolved "https://registry.yarnpkg.com/web-namespaces/-/web-namespaces-2.0.1.tgz#1010ff7c650eccb2592cebeeaf9a1b253fd40692"
   integrity sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ==
 
-web-streams-polyfill@^3.0.3:
+web-streams-polyfill@^3.0.3, web-streams-polyfill@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.2.1.tgz#71c2718c52b45fd49dbeee88634b3a60ceab42a6"
   integrity sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==
