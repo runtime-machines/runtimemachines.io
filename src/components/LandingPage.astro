@@ -1,0 +1,35 @@
+---
+export interface WebsiteAssets {
+	homepage: {
+		main_logo: string;
+	};
+}
+
+export interface Props {
+	css_attributes_parent: string[] | undefined;
+	css_attributes_child: string[] | undefined;
+	id: string;
+	websiteAssets: WebsiteAssets;
+}
+const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets } = Astro.props;
+---
+
+<div
+	class={'absolute w-full overflow-hidden ' +
+		css_attributes_parent.map((attribute) => {
+			return attribute + ' ';
+		})}
+	id={id}
+>
+	<div
+		class={'relative bg-green-100 dark:bg-red-100 overflow-hidden ' +
+			css_attributes_child.map((attribute) => {
+				return attribute + ' ';
+			})}
+		id={id + '-child'}
+	>
+		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sed illum quod quaerat fugiat quisquam qui deleniti vitae! Dolore repellat ad rem quaerat cum nihil magni beatae ducimus molestiae ab!
+
+        <img src={websiteAssets.homepage.main_logo}/>
+	</div>
+</div>
