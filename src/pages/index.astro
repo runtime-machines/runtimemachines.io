@@ -1,13 +1,102 @@
 ---
 import Root from '~/layouts/Root.astro';
-
-const hello_world = ['hello', ',', ' ', 'world'];
+import LandingPage, { WebsiteAssets } from '~/components/LandingPage.astro';
+var websiteAssets: WebsiteAssets[] = [
+	{
+		homepage: {
+			main_logo: '../src/assets/images/Logo_Main_Mono.svg',
+		},
+	},
+	{
+		homepage: {
+			main_logo: '../src/assets/images/Logo_Main_Light.svg',
+		},
+	},
+];
 ---
 
-<Root title="homepage">
-	{
-		hello_world.map((word) => {
-			return <span class="border-gray-200 p-6">{word}</span>;
-		})
-	}
+<Root title="Homepage">
+	<div class="h-full">
+		<LandingPage css_attributes_parent={['z-5']} css_attributes_child={[]} id="left" websiteAssets={websiteAssets[0]} />
+		<div id="middle" class="left-[500px] bg-gray-500 min-h-full w-2 cursor-ew-resize absolute z-20"></div>
+		<LandingPage
+			css_attributes_parent={['dark z-15 ml-[500px]']}
+			css_attributes_child={['left-[-500px]']}
+			id="right"
+			websiteAssets={websiteAssets[1]}
+		/>
+	</div>
 </Root>
+
+<style></style>
+
+<script>
+	// Query the element
+	const resizer = document.getElementById('middle');
+	const leftSide = document.getElementById('left');
+	const rightSide = document.getElementById('right');
+	const rightSideChild = document.getElementById('right-child');
+
+	// The current position of mouse
+	let x = 0;
+
+	// Width of left and right sides
+	let rightMargin: number | undefined = 0;
+
+	// Handle the mousedown event
+	// that's triggered when user drags the resizer
+	const mouseDownHandler = function (e: any) {
+		// Get the current mouse position
+		x = e.clientX;
+		rightMargin = rightSide?.getBoundingClientRect().left;
+
+		// Attach the listeners to `document`
+		document.addEventListener('mousemove', mouseMoveHandler);
+		document.addEventListener('mouseup', mouseUpHandler);
+	};
+
+	// Attach the handler
+	resizer?.addEventListener('mousedown', mouseDownHandler);
+
+	const mouseMoveHandler = function (e: any) {
+		// How far the mouse has been moved
+		const dx = e.clientX - x;
+
+		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
+			console.log('resizer null');
+			return;
+		}
+
+		let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
+		const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
+		rightSide.style.marginLeft = `${newRightLeft}%`;
+		resizer.style.left = `${newRightLeft}%`;
+		rightSideChild.style.left = `${-newRightLeft}%`;
+
+		document.body.style.cursor = 'col-resize';
+		leftSide.style.userSelect = 'none';
+		leftSide.style.pointerEvents = 'none';
+
+		rightSide.style.userSelect = 'none';
+		rightSide.style.pointerEvents = 'none';
+	};
+
+	const mouseUpHandler = function () {
+		if (resizer == null || rightSide == null || leftSide == null) {
+			console.log('resizer null');
+			return;
+		}
+		resizer.style.removeProperty('cursor');
+		document.body.style.removeProperty('cursor');
+
+		leftSide.style.removeProperty('user-select');
+		leftSide.style.removeProperty('pointer-events');
+
+		rightSide.style.removeProperty('user-select');
+		rightSide.style.removeProperty('pointer-events');
+
+		// Remove the handlers of `mousemove` and `mouseup`
+		document.removeEventListener('mousemove', mouseMoveHandler);
+		document.removeEventListener('mouseup', mouseUpHandler);
+	};
+</script>

@@ -6,7 +6,11 @@ export default defineConfig({
 		container: false,
 	},
 	theme: {
-		extend: {},
+		extend: {
+			cursor: {
+				'ew-resize': 'ew-resize',
+			},
+		},
 	},
 	extract: {
 		include: ['./src/**/*.{vue,html,jsx,tsx,astro}'],
