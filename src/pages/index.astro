@@ -3,7 +3,7 @@ import Root from '~/layouts/Root.astro';
 ---
 
 <Root title="Homepage">
-	<div style="display: flex; height: 100%;">
+	<div class="main-container">
 		<div id="left" class="section seriuos">
 			<div class="logo">
 				<a href="/">
@@ -13,7 +13,12 @@ import Root from '~/layouts/Root.astro';
 			<div class='container'>
 				<div class='img background-img'></div>
 				<div id="foreImg" class='img foreground-img'></div>
-			  </div>
+			</div>
+			<div class="separator" />
+			<diV class="paragraph">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus vestibulum dolor, sed pharetra risus cursus sit amet. Duis non mauris mauris. Etiam eget urna pellentesque, lacinia ligula in, aliquam enim. Nunc molestie bibendum cursus. Praesent eget dui arcu. Integer vestibulum rutrum nulla non dictum. Sed non erat tincidunt odio condimentum vehicula.
+				Sed eget nisl eu diam interdum fermentum. Phasellus et purus sit amet augue tempus commodo. Quisque porta dui erat, nec pretium augue ultricies at. Pellentesque viverra vitae odio et lacinia. Donec dapibus porttitor justo, a venenatis sapien scelerisque at. Aenean hendrerit non erat finibus tincidunt. Proin eu volutpat odio, eu condimentum augue. In vel lacus ut nisi maximus finibus et interdum odio. Aenean semper consequat justo, vitae rhoncus nunc mollis in. Curabitur ac ipsum lectus. Vestibulum sem sapien, luctus nec sapien eu, porta congue enim. Donec egestas orci sed odio luctus feugiat. Cras eget eros accumsan urna blandit posuere. Sed rutrum gravida tempus. 
+			</diV>
 		</div>
 		<div id="middle"/>
 		<div id="right" class="section playful">
@@ -22,12 +27,21 @@ import Root from '~/layouts/Root.astro';
 					<img src="/img/Logo_Main.png"/>
 				</a>
 			</div>
+			<div class="separator" />
+			<diV class="paragraph">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus vestibulum dolor, sed pharetra risus cursus sit amet. Duis non mauris mauris. Etiam eget urna pellentesque, lacinia ligula in, aliquam enim. Nunc molestie bibendum cursus. Praesent eget dui arcu. Integer vestibulum rutrum nulla non dictum. Sed non erat tincidunt odio condimentum vehicula.
+				Sed eget nisl eu diam interdum fermentum. Phasellus et purus sit amet augue tempus commodo. Quisque porta dui erat, nec pretium augue ultricies at. Pellentesque viverra vitae odio et lacinia. Donec dapibus porttitor justo, a venenatis sapien scelerisque at. Aenean hendrerit non erat finibus tincidunt. Proin eu volutpat odio, eu condimentum augue. In vel lacus ut nisi maximus finibus et interdum odio. Aenean semper consequat justo, vitae rhoncus nunc mollis in. Curabitur ac ipsum lectus. Vestibulum sem sapien, luctus nec sapien eu, porta congue enim. Donec egestas orci sed odio luctus feugiat. Cras eget eros accumsan urna blandit posuere. Sed rutrum gravida tempus. 
+			</diV>
 		</div>
 	</div>
 </Root>
 
 
 <style>
+
+	.main-container{
+		display: flex; 
+	}
 
 	.section {
 		text-align: center;
@@ -81,16 +95,20 @@ import Root from '~/layouts/Root.astro';
 
 	#middle{
 		background-color:#4A4A4A;
-		height: 100%;
+		min-height: 100%;
 		width: 0.4%;
 		cursor: ew-resize;
 		position: relative;
 	}
 
+	.separator{
+		width: 1px;
+		height: 300px;
+	}
 	
 	.container {
 		position: absolute;
-		width: 100%;
+		width: 99%;
 		height: 300px;
 		border: 2px solid white;
 		.img {
@@ -107,8 +125,16 @@ import Root from '~/layouts/Root.astro';
 		}
 		.foreground-img {
 			background-image: url("img/Logo_BW.png");
-			width: 24.3%;
+			width: 25%;
 		}
+	}
+
+	.paragraph{
+		padding: 6px;
+		margin: 15px 50% 0 10%;
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+		border-radius: 10px;
+		width: 500px;
 	}
 </style>
 
@@ -124,7 +150,7 @@ let x = 0;
 let y = 0;
 
 // Width of left and right sides
-let leftWidth = 0;
+let leftWidth: number|undefined = 0;
 let rightWidth = 0;
 
 let fore_imgWidth = 0;
@@ -135,7 +161,7 @@ const mouseDownHandler = function (e) {
     // Get the current mouse position
     x = e.clientX;
     y = e.clientY;
-    leftWidth = leftSide.getBoundingClientRect().width;
+    leftWidth = leftSide?.getBoundingClientRect().width;
 	rightWidth = rightSide.getBoundingClientRect().width;
 	fore_imgWidth = fore_img.getBoundingClientRect().width;
 
@@ -157,7 +183,7 @@ const mouseMoveHandler = function (e) {
 	const newRightWidth = ((rightWidth - dx) * 99.6) / resizer.parentNode.getBoundingClientRect().width;
     rightSide.style.width = `${newRightWidth}%`;
 
-	const newFore_imgWidth = ((fore_imgWidth + dx) * 99.6) / resizer.parentNode.getBoundingClientRect().width;
+	const newFore_imgWidth = ((fore_imgWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
     fore_img.style.width = `${newFore_imgWidth}%`;
 
 	document.body.style.cursor = 'col-resize';
