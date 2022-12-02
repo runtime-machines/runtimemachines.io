@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "clean": "yarn format && yarn lint",
     "format": "prettier -w .",
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .js,.ts,.astro",
