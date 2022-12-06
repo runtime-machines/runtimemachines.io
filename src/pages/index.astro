@@ -17,14 +17,22 @@ var websiteAssets: WebsiteAssets[] = [
 
 <Root title="Homepage">
 	<div class="h-full">
-		<LandingPage css_attributes_parent={['z-5']} css_attributes_child={[]} id="left" websiteAssets={websiteAssets[0]} />
-		<div id="middle" class="left-[500px] bg-gray-500 min-h-full w-2 cursor-ew-resize absolute z-20"></div>
 		<LandingPage
-			css_attributes_parent={['dark z-15 ml-[500px]']}
-			css_attributes_child={['left-[-500px]']}
+			css_attributes_parent={['z-5 h-full']}
+			css_attributes_child={['h-full']}
+			id="left"
+			websiteAssets={websiteAssets[0]}
+		/>
+		<div id="middle" class="left-[50%] bg-gray-500 min-h-full w-2 cursor-ew-resize absolute z-20 <lg:hidden"></div>
+		<LandingPage
+			css_attributes_parent={['dark z-15 ml-[50%] h-full <lg:ml-0']}
+			css_attributes_child={['-left-1/2 h-full <lg:left-0']}
 			id="right"
 			websiteAssets={websiteAssets[1]}
 		/>
+		<div class="absolute right-[10px] bottom-[10px] hidden <lg:block button-div z-25">
+			<button id="switch-button" class="w-100px h-12 rounded-2xl bg-orange">switch</button>
+		</div>
 	</div>
 </Root>
 
@@ -36,6 +44,7 @@ var websiteAssets: WebsiteAssets[] = [
 	const leftSide = document.getElementById('left');
 	const rightSide = document.getElementById('right');
 	const rightSideChild = document.getElementById('right-child');
+	const switchButton = document.getElementById('switch-button');
 
 	// The current position of mouse
 	let x = 0;
@@ -99,4 +108,27 @@ var websiteAssets: WebsiteAssets[] = [
 		document.removeEventListener('mousemove', mouseMoveHandler);
 		document.removeEventListener('mouseup', mouseUpHandler);
 	};
+
+	//Mobile section button switchMode handler
+	let stylePage = true;
+	const switchClickHandler = function () {
+		if (rightSide == null || leftSide == null || switchButton == null) {
+			console.log('resizer null');
+			return;
+		}
+		//TRUE -> going from play to serious
+		//FALSE -> going from serious to play
+		if (stylePage) {
+			leftSide.style.zIndex = '15';
+			rightSide.style.zIndex = '5';
+			switchButton.style.backgroundColor = '#4A4A4A';
+			stylePage = false;
+		} else {
+			rightSide.style.zIndex = '15';
+			leftSide.style.zIndex = '5';
+			switchButton.style.backgroundColor = '#FF8855';
+			stylePage = true;
+		}
+	};
+	switchButton?.addEventListener('click', switchClickHandler);
 </script>
