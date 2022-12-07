@@ -73,145 +73,145 @@ var websiteAssets: WebsiteAssets[] = [
 	</div>
 
 	<style></style>
-
-	<script>
-		// Query the element
-		const resizer = document.getElementById('middle');
-		const leftSide = document.getElementById('left');
-		const rightSide = document.getElementById('right');
-		const rightSideChild = document.getElementById('right-child');
-		const switchButton = document.getElementById('switch-button');
-
-		// The current position of mouse
-		let x = 0;
-
-		// Width of left and right sides
-		let rightMargin: number | undefined = 0;
-
-		// Handle the mousedown event
-		// that's triggered when user drags the resizer
-		const mouseDownHandler = function (e: any) {
-			// Get the current mouse position
-			x = e.clientX;
-			rightMargin = rightSide?.getBoundingClientRect().left;
-
-			// Attach the listeners to `document`
-			document.addEventListener('mousemove', mouseMoveHandler);
-			document.addEventListener('mouseup', mouseUpHandler);
-		};
-
-		// Attach the handler
-		resizer?.addEventListener('mousedown', mouseDownHandler);
-
-		// Handle mouse movement
-		const mouseMoveHandler = function (e: any) {
-			// How far the mouse has been moved
-			const dx = e.clientX - x;
-
-			if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
-				console.log('resizer null');
-				return;
-			}
-
-			let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
-			const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
-			rightSide.style.marginLeft = `${newRightLeft}%`;
-			resizer.style.left = `${newRightLeft}%`;
-			rightSideChild.style.left = `${-newRightLeft}%`;
-
-			document.body.style.cursor = 'col-resize';
-			leftSide.style.userSelect = 'none';
-			leftSide.style.pointerEvents = 'none';
-
-			rightSide.style.userSelect = 'none';
-			rightSide.style.pointerEvents = 'none';
-		};
-
-		// Hanlde mouse UP
-		const mouseUpHandler = function () {
-			if (resizer == null || rightSide == null || leftSide == null) {
-				console.log('resizer null');
-				return;
-			}
-			resizer.style.removeProperty('cursor');
-			document.body.style.removeProperty('cursor');
-
-			leftSide.style.removeProperty('user-select');
-			leftSide.style.removeProperty('pointer-events');
-
-			rightSide.style.removeProperty('user-select');
-			rightSide.style.removeProperty('pointer-events');
-
-			// Remove the handlers of `mousemove` and `mouseup`
-			document.removeEventListener('mousemove', mouseMoveHandler);
-			document.removeEventListener('mouseup', mouseUpHandler);
-		};
-
-		// Handle the touchstart event
-		// that's triggered when user touch the resizer
-		// FIXME: it seems to resize the window, needs to be tried on a real tablet or ipad
-		const touchStartHandler = function (e: any) {
-			// Get the current mouse position
-			x = e.touches[0].clientX;
-			rightMargin = rightSide?.getBoundingClientRect().left;
-
-			// Attach the listeners to `document`
-			document.addEventListener('touchmove', touchMoveHandler);
-			document.addEventListener('touchend', touchEndHandler);
-		};
-
-		resizer?.addEventListener('touchstart', touchStartHandler);
-
-		// Handle finger movement
-		const touchMoveHandler = function (e: any) {
-			// How far the mouse has been moved
-			const dx = e.touches[0].clientX - x;
-
-			if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
-				console.log('resizer null');
-				return;
-			}
-
-			let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
-			const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
-			rightSide.style.marginLeft = `${newRightLeft}%`;
-			resizer.style.left = `${newRightLeft}%`;
-			rightSideChild.style.left = `${-newRightLeft}%`;
-		};
-
-		// Handle finger UP
-		const touchEndHandler = function () {
-			if (resizer == null || rightSide == null || leftSide == null) {
-				console.log('resizer null');
-				return;
-			}
-
-			// Remove the handlers of `mousemove` and `mouseup`
-			document.removeEventListener('touchmove', touchMoveHandler);
-			document.removeEventListener('touchend', touchEndHandler);
-		};
-
-		// Mobile section button switchMode handler
-		let stylePage = true;
-		const switchClickHandler = function () {
-			if (rightSide == null || leftSide == null || switchButton == null) {
-				console.log('resizer null');
-				return;
-			}
-			// TRUE -> going from play to serious
-			// FALSE -> going from serious to play
-			if (stylePage) {
-				leftSide.style.display = 'block';
-				rightSide.style.display = 'none';
-				switchButton.style.backgroundColor = '#4A4A4A';
-				stylePage = false;
-			} else {
-				rightSide.style.display = 'block';
-				leftSide.style.display = 'none';
-				switchButton.style.backgroundColor = '#FF8855';
-				stylePage = true;
-			}
-		};
-		switchButton?.addEventListener('click', switchClickHandler);
-	</script>
 </Root>
+
+<script>
+	// Query the element
+	const resizer = document.getElementById('middle');
+	const leftSide = document.getElementById('left');
+	const rightSide = document.getElementById('right');
+	const rightSideChild = document.getElementById('right-child');
+	const switchButton = document.getElementById('switch-button');
+
+	// The current position of mouse
+	let x = 0;
+
+	// Width of left and right sides
+	let rightMargin: number | undefined = 0;
+
+	// Handle the mousedown event
+	// that's triggered when user drags the resizer
+	const mouseDownHandler = function (e: any) {
+		// Get the current mouse position
+		x = e.clientX;
+		rightMargin = rightSide?.getBoundingClientRect().left;
+
+		// Attach the listeners to `document`
+		document.addEventListener('mousemove', mouseMoveHandler);
+		document.addEventListener('mouseup', mouseUpHandler);
+	};
+
+	// Attach the handler
+	resizer?.addEventListener('mousedown', mouseDownHandler);
+
+	// Handle mouse movement
+	const mouseMoveHandler = function (e: any) {
+		// How far the mouse has been moved
+		const dx = e.clientX - x;
+
+		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
+			console.log('resizer null');
+			return;
+		}
+
+		let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
+		const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
+		rightSide.style.marginLeft = `${newRightLeft}%`;
+		resizer.style.left = `${newRightLeft}%`;
+		rightSideChild.style.left = `${-newRightLeft}%`;
+
+		document.body.style.cursor = 'col-resize';
+		leftSide.style.userSelect = 'none';
+		leftSide.style.pointerEvents = 'none';
+
+		rightSide.style.userSelect = 'none';
+		rightSide.style.pointerEvents = 'none';
+	};
+
+	// Hanlde mouse UP
+	const mouseUpHandler = function () {
+		if (resizer == null || rightSide == null || leftSide == null) {
+			console.log('resizer null');
+			return;
+		}
+		resizer.style.removeProperty('cursor');
+		document.body.style.removeProperty('cursor');
+
+		leftSide.style.removeProperty('user-select');
+		leftSide.style.removeProperty('pointer-events');
+
+		rightSide.style.removeProperty('user-select');
+		rightSide.style.removeProperty('pointer-events');
+
+		// Remove the handlers of `mousemove` and `mouseup`
+		document.removeEventListener('mousemove', mouseMoveHandler);
+		document.removeEventListener('mouseup', mouseUpHandler);
+	};
+
+	// Handle the touchstart event
+	// that's triggered when user touch the resizer
+	// FIXME: it seems to resize the window, needs to be tried on a real tablet or ipad
+	const touchStartHandler = function (e: any) {
+		// Get the current mouse position
+		x = e.touches[0].clientX;
+		rightMargin = rightSide?.getBoundingClientRect().left;
+
+		// Attach the listeners to `document`
+		document.addEventListener('touchmove', touchMoveHandler);
+		document.addEventListener('touchend', touchEndHandler);
+	};
+
+	resizer?.addEventListener('touchstart', touchStartHandler);
+
+	// Handle finger movement
+	const touchMoveHandler = function (e: any) {
+		// How far the mouse has been moved
+		const dx = e.touches[0].clientX - x;
+
+		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
+			console.log('resizer null');
+			return;
+		}
+
+		let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
+		const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
+		rightSide.style.marginLeft = `${newRightLeft}%`;
+		resizer.style.left = `${newRightLeft}%`;
+		rightSideChild.style.left = `${-newRightLeft}%`;
+	};
+
+	// Handle finger UP
+	const touchEndHandler = function () {
+		if (resizer == null || rightSide == null || leftSide == null) {
+			console.log('resizer null');
+			return;
+		}
+
+		// Remove the handlers of `mousemove` and `mouseup`
+		document.removeEventListener('touchmove', touchMoveHandler);
+		document.removeEventListener('touchend', touchEndHandler);
+	};
+
+	// Mobile section button switchMode handler
+	let stylePage = true;
+	const switchClickHandler = function () {
+		if (rightSide == null || leftSide == null || switchButton == null) {
+			console.log('resizer null');
+			return;
+		}
+		// TRUE -> going from play to serious
+		// FALSE -> going from serious to play
+		if (stylePage) {
+			leftSide.style.display = 'block';
+			rightSide.style.display = 'none';
+			switchButton.style.backgroundColor = '#4A4A4A';
+			stylePage = false;
+		} else {
+			rightSide.style.display = 'block';
+			leftSide.style.display = 'none';
+			switchButton.style.backgroundColor = '#FF8855';
+			stylePage = true;
+		}
+	};
+	switchButton?.addEventListener('click', switchClickHandler);
+</script>
