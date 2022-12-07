@@ -3,8 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/runtime-machines/runtimemachines.io.svg)](https://github.com/runtime-machines/runtimemachines.io/issues)
 [![GitHub last commit](https://img.shields.io/github/last-commit/runtime-machines/runtimemachines.io.svg)](https://github.com/runtime-machines/runtimemachines.io/commits/master)
 [![Build Status](https://github.com/runtime-machines/runtimemachines.io/actions/workflows/main.yml/badge.svg)](https://github.com/runtime-machines/runtimemachines.io/actions)
-
-<!-- no token yet [![codecov](https://codecov.io/github/runtime-machines/runtimemachines.io/branch/master/graph/badge.svg?token=ML6UOZQGV7)](https://codecov.io/github/runtime-machines/runtimemachines.io) -->
+[![codecov](https://codecov.io/github/runtime-machines/sql2vm/branch/main/graph/badge.svg?token=9LTKZEM0LR)](https://codecov.io/github/runtime-machines/sql2vm)
 
 ## Description and scope of the project
 
