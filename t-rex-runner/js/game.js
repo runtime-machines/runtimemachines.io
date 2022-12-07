@@ -33,6 +33,7 @@ function Runner(outerContainerId, opt_config) {
 
   this.distanceMeter = null;
   this.distanceRan = 0;
+  this.distanceTimer = 100;
 
   this.highestScore = 0;
 
@@ -550,6 +551,12 @@ Runner.prototype = {
 
       if (playAcheivementSound) {
         this.playSound(this.soundFx.SCORE);
+      }
+
+      if (this.distanceMeter >= this.distanceTimer){
+        //hurray the game is finished!
+        //create new function like this.gameOver()
+        //but for WINNING
       }
     }
 
