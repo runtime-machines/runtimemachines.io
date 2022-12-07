@@ -1,4 +1,6 @@
 ---
+import ButtonMainPage from './ButtonMainPage.astro';
+
 export interface WebsiteAssets {
 	homepage: {
 		main_logo: string;
@@ -22,17 +24,34 @@ const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets
 	id={id}
 >
 	<div
-		class={'relative bg-green-100 dark:bg-red-100 overflow-hidden ' +
+		class={'relative dark:bg-[#FAF2E4] overflow-hidden ' +
 			css_attributes_child.map((attribute) => {
 				return attribute + ' ';
 			})}
 		id={id + '-child'}
 	>
-		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sed illum quod quaerat fugiat quisquam qui deleniti
-		vitae! Dolore repellat ad rem quaerat cum nihil magni beatae ducimus molestiae ab!
-
-		<img src={websiteAssets.homepage.main_logo} />
+		<div class="grid grid-rows-[1fr_3fr] lg:grid-rows-[1fr_1fr] h-full">
+			<div class="grid lg:grid-cols-[1fr_1fr_1fr] grid-cols-[1fr]">
+				<div class="hidden lg:block"></div>
+				<div class="m-auto">
+					<div class="text-4xl mr-0 ml-auto inline-block pl-5 font-bold">We Are</div><img
+						src={websiteAssets.homepage.main_logo}
+					/>
+				</div>
+				<div class="hidden lg:block"></div>
+			</div>
+			<div
+				class="ml-auto mr-auto mb-auto max-w-7xl grid lg:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr 1fr] gap-10"
+			>
+				<div class="m-auto text-xl font-bold lg:col-start-1 row-start-1">We think</div>
+				<ButtonMainPage text="ciao" />
+				<ButtonMainPage text="ciao" />
+				<div class="m-auto text-xl font-bold lg:col-start-2 lg:row-start-1">We Build & Deliver</div>
+				<ButtonMainPage text="ciao" />
+				<ButtonMainPage text="ciao" />
+			</div>
+		</div>
 	</div>
-</div>
 
-<style></style>
+	<style></style>
+</div>
