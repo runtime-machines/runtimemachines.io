@@ -1,0 +1,78 @@
+---
+---
+
+<div class={'absolute w-full  h-full overflow-hidden text-white z-25 bg-black'} id="serious-riddle">
+	<div class="ml-8 mt-8">
+		<div id="title"></div>
+		<ul id="alternatives">
+			<li class="alternative cursor-pointer"></li>
+			<li class="alternative cursor-pointer"></li>
+			<li class="alternative cursor-pointer"></li>
+			<li class="alternative cursor-pointer"></li>
+		</ul>
+		<div id="result" class="hidden"></div>
+		<button id="continue" class="hidden cursor-pointer bg-green-500 rounded-lg mt-2 p-2">Continue</button>
+	</div>
+</div>
+
+<script>
+	interface Quiz {
+		question: string;
+		answers: string[];
+		correctAnswer: number;
+	}
+	const quiz: Quiz[] = [
+		{
+			question: 'The five elements of blockchain are distribution, encryption, immutability, tokenization and:',
+			answers: ['Transparency', 'Authorization', 'Efficiency', 'Decentralization'],
+			correctAnswer: 3,
+		},
+		{
+			question: 'True or false: Smart contracts are legally binding contracts.',
+			answers: ['True', 'False', "I don't know"],
+			correctAnswer: 1,
+		},
+	];
+	// Code to display a question
+	const riddle = document.getElementById('serious-riddle');
+	function showQuestion(q: Quiz, i: number) {
+		let titleDiv = document.getElementById('title');
+		let alternatives = document.getElementById('alternatives');
+		let resultDiv = document.getElementById('result');
+		let continueButton = document.getElementById('continue');
+
+		if (titleDiv == null) return;
+		// Fill the question
+		titleDiv.textContent = q.question;
+		let alts = document.querySelectorAll('.alternative');
+
+		// Fill the alternatives
+		alts.forEach(function (element, index) {
+			element.textContent = q.answers[index];
+			element.addEventListener('click', function () {
+				if (resultDiv == null || continueButton == null || alternatives == null) return;
+
+				if (q.correctAnswer == index) {
+					resultDiv.textContent = 'Correct Answer! ';
+				} else {
+					resultDiv.textContent = 'Wrong Answer! ';
+				}
+				alternatives.style.display = 'none';
+				resultDiv.style.display = 'block';
+				continueButton.style.display = 'block';
+			});
+		});
+
+		if (continueButton == null) return;
+		continueButton.addEventListener('click', function () {
+			if (resultDiv == null || continueButton == null || alternatives == null) return;
+			alternatives.style.display = 'block';
+			resultDiv.style.display = 'none';
+			continueButton.style.display = 'none';
+
+			if (i + 2 > quiz.length && riddle != null) riddle.style.display = 'none';
+			else showQuestion(quiz[i + 1], i + 1);
+		});
+	}
+	showQuestion(quiz[0], 0);
+</script>
