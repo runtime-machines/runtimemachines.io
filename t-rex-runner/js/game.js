@@ -23,6 +23,7 @@ function Runner(outerContainerId, opt_config) {
   // this.detailsButton = this.outerContainerEl.querySelector('#details-button');
 
   this.config = opt_config || Runner.config;
+  this.isRiddle = true;
 
   this.dimensions = Runner.defaultDimensions;
 
@@ -48,6 +49,7 @@ function Runner(outerContainerId, opt_config) {
   this.activated = false;
   this.crashed = false;
   this.paused = false;
+  this.freeze = false;
 
   this.resizeTimerId_ = null;
 
@@ -553,7 +555,7 @@ Runner.prototype = {
         this.playSound(this.soundFx.SCORE);
       }
 
-     if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer){
+     if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer && this.isRiddle){
         this.riddleOver();
       }
     }
@@ -787,44 +789,6 @@ Runner.prototype = {
     this.time = getTimeStamp();
   },
 
-  stop: function() {
-    this.activated = false;
-    this.paused = true;
-    cancelAnimationFrame(this.raqId);
-    this.raqId = 0;
-  },
-
-  play: function() {
-    if (!this.crashed) {
-      this.activated = true;
-      this.paused = false;
-      this.tRex.update(0, Trex.status.RUNNING);
-      this.time = getTimeStamp();
-      this.update();
-    }
-  },
-
-  restart: function() {
-    if (!this.raqId) {
-      this.playCount++;
-      this.runningTime = 0;
-      this.activated = true;
-      this.crashed = false;
-      this.distanceRan = 0;
-      this.setSpeed(this.config.SPEED);
-
-      this.time = getTimeStamp();
-      this.containerEl.classList.remove(Runner.classes.CRASHED);
-      this.clearCanvas();
-      this.distanceMeter.reset(this.highestScore);
-      this.horizon.reset();
-      this.tRex.reset();
-      this.playSound(this.soundFx.BUTTON_PRESS);
-
-      this.update();
-    }
-  },
-
   /**
    * Riddle Over state.
    */
@@ -835,18 +799,12 @@ Runner.prototype = {
 
     this.stop();
     this.crashed = true;
+    this.freeze = true;
+    this.gameOverPanel = false;
     this.distanceMeter.acheivement = false;
 
+    //todo sprite for winning
     this.tRex.update(100, Trex.status.CRASHED);
-
-    // Game over panel.
-    if (!this.gameOverPanel) {
-      this.gameOverPanel = new GameOverPanel(this.canvas,
-          this.spriteDef.TEXT_SPRITE, this.spriteDef.RESTART,
-          this.dimensions);
-    } else {
-      this.gameOverPanel.draw();
-    }
 
     // Update the high score.
     if (this.distanceRan > this.highestScore) {
@@ -876,7 +834,7 @@ Runner.prototype = {
   },
 
   restart: function() {
-    if (!this.raqId) {
+    if (!this.raqId && !this.freeze) {
       this.playCount++;
       this.runningTime = 0;
       this.activated = true;
