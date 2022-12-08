@@ -34,7 +34,7 @@ function Runner(outerContainerId, opt_config) {
 
   this.distanceMeter = null;
   this.distanceRan = 0;
-  this.distanceTimer = 100;
+  this.distanceTimer = 10;
 
   this.highestScore = 0;
 
@@ -50,6 +50,7 @@ function Runner(outerContainerId, opt_config) {
   this.crashed = false;
   this.paused = false;
   this.freeze = false;
+  this.ended = false;
 
   this.resizeTimerId_ = null;
 
@@ -474,6 +475,24 @@ Runner.prototype = {
     }
   },
 
+  /**
+   * Play the game outro.
+   * to be defined ....
+   */
+  playOutro: function() {
+    if (this.started && this.crashed && this.freeze && !this.ended) {
+      
+      this.playingOutro = true;
+      //this.tRex.playingIntro = true;
+
+      /*
+      play outro animation
+      */
+     
+     this.ended = true;
+    }
+  },
+
 
   /**
    * Update the game status to started.
@@ -481,6 +500,7 @@ Runner.prototype = {
   startGame: function() {
     this.runningTime = 0;
     this.playingIntro = false;
+    this.playingOutro = false;
     this.tRex.playingIntro = false;
     this.containerEl.style.webkitAnimation = '';
     this.playCount++;
@@ -814,6 +834,7 @@ Runner.prototype = {
 
     // Reset the time clock.
     this.time = getTimeStamp();
+    this.playOutro();
   },
 
   stop: function() {
