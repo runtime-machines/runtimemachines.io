@@ -553,10 +553,8 @@ Runner.prototype = {
         this.playSound(this.soundFx.SCORE);
       }
 
-      if (this.distanceMeter >= this.distanceTimer){
-        //hurray the game is finished!
-        //create new function like this.gameOver()
-        //but for WINNING
+     if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer){
+        this.riddleOver();
       }
     }
 
@@ -762,6 +760,77 @@ Runner.prototype = {
    */
   gameOver: function() {
     this.playSound(this.soundFx.HIT);
+    vibrate(200);
+
+    this.stop();
+    this.crashed = true;
+    this.distanceMeter.acheivement = false;
+
+    this.tRex.update(100, Trex.status.CRASHED);
+
+    // Game over panel.
+    if (!this.gameOverPanel) {
+      this.gameOverPanel = new GameOverPanel(this.canvas,
+          this.spriteDef.TEXT_SPRITE, this.spriteDef.RESTART,
+          this.dimensions);
+    } else {
+      this.gameOverPanel.draw();
+    }
+
+    // Update the high score.
+    if (this.distanceRan > this.highestScore) {
+      this.highestScore = Math.ceil(this.distanceRan);
+      this.distanceMeter.setHighScore(this.highestScore);
+    }
+
+    // Reset the time clock.
+    this.time = getTimeStamp();
+  },
+
+  stop: function() {
+    this.activated = false;
+    this.paused = true;
+    cancelAnimationFrame(this.raqId);
+    this.raqId = 0;
+  },
+
+  play: function() {
+    if (!this.crashed) {
+      this.activated = true;
+      this.paused = false;
+      this.tRex.update(0, Trex.status.RUNNING);
+      this.time = getTimeStamp();
+      this.update();
+    }
+  },
+
+  restart: function() {
+    if (!this.raqId) {
+      this.playCount++;
+      this.runningTime = 0;
+      this.activated = true;
+      this.crashed = false;
+      this.distanceRan = 0;
+      this.setSpeed(this.config.SPEED);
+
+      this.time = getTimeStamp();
+      this.containerEl.classList.remove(Runner.classes.CRASHED);
+      this.clearCanvas();
+      this.distanceMeter.reset(this.highestScore);
+      this.horizon.reset();
+      this.tRex.reset();
+      this.playSound(this.soundFx.BUTTON_PRESS);
+
+      this.update();
+    }
+  },
+
+  /**
+   * Riddle Over state.
+   */
+  riddleOver: function() {
+    //play sound for ending riddle
+    this.playSound(this.soundFx.SCORE);
     vibrate(200);
 
     this.stop();
