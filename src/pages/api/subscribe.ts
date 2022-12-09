@@ -1,4 +1,4 @@
-import mailchimp, { AddListMemberBody, MemberErrorResponse } from '@mailchimp/mailchimp_marketing';
+import mailchimp, { AddListMemberBody } from '@mailchimp/mailchimp_marketing';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -38,7 +38,7 @@ export const post: APIRoute = async ({ request }) => {
 			}
 			const jsonData: AddListMemberBody = {
 				email_address: email,
-				status: 'pending',
+				status: 'subscribed',
 			};
 			try {
 				const response = await mailchimp.lists.addListMember(listId, jsonData);
