@@ -1,4 +1,4 @@
-import mailchimp, { AddListMemberBody } from '@mailchimp/mailchimp_marketing';
+import mailchimp, { AddListMemberBody, MemberErrorResponse } from '@mailchimp/mailchimp_marketing';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -16,42 +16,51 @@ export const get: APIRoute = () => {
 	};
 };
 
+interface MailChimpErrorResponse {
+	status: number;
+	response: {
+		req: Request;
+		status: number;
+		text: string;
+	};
+}
+
 export const post: APIRoute = async ({ request }) => {
-	let _error: unknown;
-	let status = '1'; //wow that's bad
 	if (request.headers.get('content-type')?.includes('application/json')) {
 		try {
-			status = '2';
 			const body = await request.json();
 			const email = body.email;
 			const validEmail = validateEmail(email);
-			status = '4';
 			if (!validEmail) {
-				return new Response(null, {
+				return new Response('Email Invalid', {
 					status: 400,
-					statusText: 'Email Invalid',
 				});
 			}
 			const jsonData: AddListMemberBody = {
 				email_address: email,
+				status: 'pending',
 			};
 			try {
 				const response = await mailchimp.lists.addListMember(listId, jsonData);
-				if (response.status != 'subscribed') {
-					return new Response(null, {
+				if (response.status != 'subscribed' && response.status != 'pending') {
+					return new Response('MailChimp error', {
 						status: 400,
-						statusText: 'MailChimp error',
 					});
 				}
-				status = '5';
-			} catch (error) {
-				_error = error;
-				return new Response(null, {
-					status: 500,
-					statusText: 'MailChimp errored with error\n' + error,
-				});
+			} catch (error: unknown) {
+				try {
+					const x = error as MailChimpErrorResponse;
+					return new Response(x.response.text, {
+						status: 400,
+					});
+				} catch (error) {
+					console.log(error);
+					return new Response('internal server error', {
+						status: 500,
+					});
+				}
 			}
-			status = '6';
+			console.log('Subscribed user ', email);
 			return new Response(
 				JSON.stringify({
 					message: 'email subscribed',
@@ -60,12 +69,11 @@ export const post: APIRoute = async ({ request }) => {
 					status: 200,
 				}
 			);
-			status = '7';
 		} catch (error) {
-			_error = error;
+			console.log(error);
 		}
 	}
-	return new Response(JSON.stringify({ request: request, error: _error, status: status }), { status: 400 });
+	return new Response(null, { status: 400 });
 };
 
 const validateEmail = (email: string) => {
