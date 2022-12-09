@@ -1,16 +1,18 @@
 ---
 import Root from '~/layouts/Root.astro';
 import LandingPage, { WebsiteAssets } from '~/components/LandingPage.astro';
+import Logo_Main_Mono from '~/assets/images/Logo_Main_Mono.svg';
+import Logo_Main_Light from '~/assets/images/Logo_Main_Light.svg';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
 		homepage: {
-			main_logo: '../src/assets/images/Logo_Main_Mono.svg',
+			main_logo: Logo_Main_Mono,
 		},
 	},
 	{
 		homepage: {
-			main_logo: '../src/assets/images/Logo_Main_Light.svg',
+			main_logo: Logo_Main_Light,
 		},
 	},
 ];

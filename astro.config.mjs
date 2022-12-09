@@ -8,6 +8,7 @@ import partytown from '@astrojs/partytown';
 import WindiCSS from 'vite-plugin-windicss';
 import { SITE } from './src/config.mjs';
 import vercel from '@astrojs/vercel/serverless';
+import { astroImageTools } from 'astro-imagetools';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
@@ -19,6 +20,7 @@ export default defineConfig({
 	base: SITE.basePathname,
 	output: 'server',
 	integrations: [
+		astroImageTools,
 		sitemap(),
 		image({
 			serviceEntryPoint: '@astrojs/image/sharp',
