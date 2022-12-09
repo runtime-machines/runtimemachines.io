@@ -43,12 +43,16 @@
 
 		if (titleDiv == null) return;
 		// Fill the question
-		titleDiv.textContent = q.question;
+		let arrayHTML = [titleDiv];
+		let arrayStr = [q.question];
 		let alts = document.querySelectorAll('.alternative');
+		q.answers.forEach(function (element) {
+			arrayStr.push(element);
+		});
 
 		// Fill the alternatives
 		alts.forEach(function (element, index) {
-			element.textContent = q.answers[index];
+			arrayHTML.push(element as HTMLElement);
 			element.addEventListener('click', function () {
 				if (resultDiv == null || continueButton == null || alternatives == null) return;
 
@@ -63,6 +67,8 @@
 			});
 		});
 
+		typeWriter(arrayHTML, arrayStr);
+
 		if (continueButton == null) return;
 		continueButton.addEventListener('click', function () {
 			if (resultDiv == null || continueButton == null || alternatives == null) return;
@@ -73,6 +79,30 @@
 			if (i + 2 > quiz.length && riddle != null) riddle.style.display = 'none';
 			else showQuestion(quiz[i + 1], i + 1);
 		});
+	}
+
+	function typeWriter(elements: HTMLElement[], texts: string[]) {
+		let f = 0;
+		let j = 0;
+		elements.forEach(function (element: HTMLElement) {
+			element.textContent = '';
+		});
+		function type() {
+			if (f < texts.length) {
+				const text = texts[f];
+				if (j < text.length) {
+					elements[f].innerHTML += text.charAt(j);
+					j++;
+					setTimeout(type, 30);
+				} else {
+					f++;
+					j = 0;
+					setTimeout(type, 30);
+				}
+			}
+		}
+
+		type();
 	}
 	showQuestion(quiz[0], 0);
 </script>
