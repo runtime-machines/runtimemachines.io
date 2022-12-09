@@ -3,8 +3,7 @@ name: Github Pages Astro CI
 on:
   # Trigger the workflow every time you push to the `main` branch
   # Using a different branch name? Replace `main` with your branch’s name
-  push:
-    branches: [ main ]
+  # push: main
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
   
@@ -29,7 +28,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev' #for now let's deploy from dev
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
