@@ -17,6 +17,7 @@ export const get: APIRoute = () => {
 };
 
 export const post: APIRoute = async ({ request }) => {
+	let _error: unknown;
 	if (request.headers.get('content-type')?.includes('application/json')) {
 		try {
 			const body = await request.json();
@@ -40,7 +41,7 @@ export const post: APIRoute = async ({ request }) => {
 					});
 				}
 			} catch (error) {
-				console.log(error);
+				_error = error;
 				return new Response(null, {
 					status: 500,
 					statusText: 'MailChimp errored with error\n' + error,
@@ -55,10 +56,10 @@ export const post: APIRoute = async ({ request }) => {
 				}
 			);
 		} catch (error) {
-			console.log(error);
+			_error = error;
 		}
 	}
-	return new Response(null, { status: 400 });
+	return new Response(JSON.stringify({ request: request, error: _error }), { status: 400 });
 };
 
 const validateEmail = (email: string) => {
