@@ -24,6 +24,7 @@
     "@astrolib/analytics": "^0.2.4",
     "@astrolib/seo": "^0.2.1",
     "@fontsource/inter": "^4.5.14",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
     "astro": "^1.6.5",
@@ -59,6 +60,8 @@
     ]
   },
   "dependencies": {
-    "@astrojs/vercel": "^2.3.5"
+    "@astrojs/vercel": "^2.3.5",
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "dotenv": "^16.0.3"
   }
 }

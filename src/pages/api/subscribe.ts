@@ -1,3 +1,13 @@
+import mailchimp, { AddListMemberBody } from '@mailchimp/mailchimp_marketing';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+mailchimp.setConfig({
+	apiKey: process.env.SECRET_KEY,
+	server: process.env.SERVER,
+});
+const listId = process.env.LISTID || '0';
+
 import { APIRoute } from 'astro';
 
 export const get: APIRoute = () => {
@@ -18,9 +28,27 @@ export const post: APIRoute = async ({ request }) => {
 					statusText: 'Email Invalid',
 				});
 			}
+			const jsonData: AddListMemberBody = {
+				email_address: email,
+			};
+			try {
+				const response = await mailchimp.lists.addListMember(listId, jsonData);
+				if (response.status != 'subscribed') {
+					return new Response(null, {
+						status: 400,
+						statusText: 'MailChimp error',
+					});
+				}
+			} catch (error) {
+				console.log(error);
+				return new Response(null, {
+					status: 500,
+					statusText: 'MailChimp errored with error\n' + error,
+				});
+			}
 			return new Response(
 				JSON.stringify({
-					message: 'Your email is' + email,
+					message: 'email subscribed',
 				}),
 				{
 					status: 200,
