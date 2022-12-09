@@ -34,7 +34,7 @@ function Runner(outerContainerId, opt_config) {
 
   this.distanceMeter = null;
   this.distanceRan = 0;
-  this.distanceTimer = 10;
+  this.distanceTimer = 100;
 
   this.highestScore = 0;
 
@@ -488,7 +488,7 @@ Runner.prototype = {
       /*
       play outro animation
       */
-     
+
      this.ended = true;
     }
   },
@@ -824,7 +824,7 @@ Runner.prototype = {
     this.distanceMeter.acheivement = false;
 
     //todo sprite for winning
-    this.tRex.update(100, Trex.status.CRASHED);
+    this.tRex.update(100, Trex.status.RUNNING);
 
     // Update the high score.
     if (this.distanceRan > this.highestScore) {
@@ -2256,7 +2256,7 @@ function HorizonLine(canvas, spritePos) {
  * @enum {number}
  */
 HorizonLine.dimensions = {
-  WIDTH: 600,
+  WIDTH: 1200,
   HEIGHT: 12,
   YPOS: 127
 };
