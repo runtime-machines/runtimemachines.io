@@ -29,7 +29,38 @@
     this.speedDrop = false;
     this.jumpCount = 0;
     this.jumpspotX = 0;
-  
+
+    /////////////////////////////////////////////
+    //// dynamically set sprite positions
+    /////////////////////////////////////////////
+
+    this.spriteWidth = Trex.config["WIDTH"];
+    this.xoffset = 0;
+    //update idle animation frames
+    array = [];
+    for (let i = 0+this.xoffset; i < 9; i++) {
+      array.push(i*this.spriteWidth);
+    }
+    Trex.animFrames['WAITING']["frames"] = [array, 5];
+
+    //update running animation frames
+    array = [];
+    column = 2;
+    for (let i = 0+this.xoffset; i < 8; i++) {
+      array.push(i*this.spriteWidth);
+    }
+    Trex.animFrames['RUNNING']["frames"] = [array, 180];
+
+    //update jumping animation frames
+    array = [];
+    column = 1;
+    for (let i = 0+this.xoffset; i < 2; i++) {
+      array.push(i*this.spriteWidth);
+    }
+    Trex.animFrames['JUMPING']["frames"] = [array, 90];
+
+    ////////////////////////////////////////////////////////////////////
+
     this.init();
   };
   
@@ -41,7 +72,7 @@
   Trex.config = {
     DROP_VELOCITY: -5,
     GRAVITY: 0.6,
-    HEIGHT: 47,
+    HEIGHT: 73,
     HEIGHT_DUCK: 25,
     INIITAL_JUMP_VELOCITY: -10,
     INTRO_DURATION: 1500,
@@ -50,7 +81,7 @@
     SPEED_DROP_COEFFICIENT: 3,
     SPRITE_WIDTH: 262,
     START_X_POS: 50,
-    WIDTH: 44,
+    WIDTH: 48,
     WIDTH_DUCK: 59
   };
   
@@ -64,12 +95,7 @@
       new CollisionBox(1, 18, 55, 25)
     ],
     RUNNING: [
-      new CollisionBox(22, 0, 17, 16),
-      new CollisionBox(1, 18, 30, 9),
-      new CollisionBox(10, 35, 14, 8),
-      new CollisionBox(1, 24, 29, 5),
-      new CollisionBox(5, 30, 21, 4),
-      new CollisionBox(9, 34, 15, 4)
+      new CollisionBox(22, 0, 17, 70)
     ]
   };
   
@@ -95,11 +121,12 @@
   
   /**
    * Animation config for different states.
+   * ***** deprecated *******
    * @enum {Object}
    */
   Trex.animFrames = {
     WAITING: {
-      frames: [44, 0],
+      frames: [0, 0],
       msPerFrame: 1000 / 3
     },
     RUNNING: {
@@ -111,8 +138,8 @@
       msPerFrame: 1000 / 60
     },
     JUMPING: {
-      frames: [0],
-      msPerFrame: 1000 / 60
+      frames: [0, 30],
+      msPerFrame: 1000 / 3
     },
     DUCKING: {
       frames: [262, 321],
@@ -127,13 +154,12 @@
      * Sets the t-rex to blink at random intervals.
      */
     init: function() {
-      this.blinkDelay = this.setBlinkDelay();
       this.groundYPos = Runner.defaultDimensions.HEIGHT - this.config.HEIGHT -
           Runner.config.BOTTOM_PAD;
       this.yPos = this.groundYPos;
       this.minJumpHeight = this.groundYPos - this.config.MIN_JUMP_HEIGHT;
   
-      this.draw(0, 0);
+      this.draw(Trex.animFrames[Trex.status.WAITING]["frames"][0], Trex.animFrames[Trex.status.WAITING]["frames"][1]);
       this.update(0, Trex.status.WAITING);
     },
   
@@ -161,10 +187,10 @@
         this.msPerFrame = Trex.animFrames[opt_status].msPerFrame;
         this.currentAnimFrames = Trex.animFrames[opt_status].frames;
   
-        if (opt_status == Trex.status.WAITING) {
+        /*if (opt_status == Trex.status.WAITING) {
           this.animStartTime = getTimeStamp();
           this.setBlinkDelay();
-        }
+        }*/
       }
   
       // Game intro animation, T-rex moves in from the left.
@@ -172,17 +198,13 @@
         this.xPos += Math.round((this.config.START_X_POS /
             this.config.INTRO_DURATION) * deltaTime);
       }
-  
-      if (this.status == Trex.status.WAITING) {
-        this.blink(getTimeStamp());
-      } else {
-        this.draw(this.currentAnimFrames[this.currentFrame], 0);
-      }
+
+      this.draw(this.currentAnimFrames[0][this.currentFrame], this.currentAnimFrames[1]);
   
       // Update the frame position.
       if (this.timer >= this.msPerFrame) {
         this.currentFrame = this.currentFrame ==
-            this.currentAnimFrames.length - 1 ? 0 : this.currentFrame + 1;
+            this.currentAnimFrames[0].length - 1 ? 0 : this.currentFrame + 1;
         this.timer = 0;
       }
   
@@ -228,16 +250,17 @@
           this.xPos++;
         }
         // Standing / running
-        this.canvasCtx.drawImage(Runner.imageSprite, sourceX, sourceY,
+        this.canvasCtx.drawImage(Runner.imageSpriteTrex, sourceX, sourceY,
             sourceWidth, sourceHeight,
             this.xPos, this.yPos,
             this.config.WIDTH, this.config.HEIGHT);
       }
     },
   
+    /*
     /**
      * Sets a random time for the blink to happen.
-     */
+    
     setBlinkDelay: function() {
       this.blinkDelay = Math.ceil(Math.random() * Trex.BLINK_TIMING);
     },
@@ -245,12 +268,12 @@
     /**
      * Make t-rex blink at random intervals.
      * @param {number} time Current time in milliseconds.
-     */
+    
     blink: function(time) {
       var deltaTime = time - this.animStartTime;
   
       if (deltaTime >= this.blinkDelay) {
-        this.draw(this.currentAnimFrames[this.currentFrame], 0);
+        this.draw(this.currentAnimFrames[0][this.currentFrame], this.currentAnimFrames[1]);
   
         if (this.currentFrame == 1) {
           // Set new random delay to blink.
@@ -259,6 +282,7 @@
         }
       }
     },
+    */
   
     /**
      * Initialise a jump.
@@ -291,7 +315,8 @@
      * @param {number} speed
      */
     updateJump: function(deltaTime, speed) {
-      var msPerFrame = Trex.animFrames[this.status].msPerFrame;
+      //var msPerFrame = Trex.animFrames[this.status].msPerFrame;
+      var msPerFrame = 1000/60;
       var framesElapsed = deltaTime / msPerFrame;
   
       // Speed drop makes Trex fall faster.

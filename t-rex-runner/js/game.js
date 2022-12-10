@@ -141,7 +141,7 @@ Runner.classes = {
       PTERODACTYL:{x:134,y:2},
       RESTART:{x:2,y:2},
       TEXT_SPRITE:{x:484,y:2},
-      TREX:{x:677,y:2}
+      TREX:{x:0,y:15} //custom file
   },
   HDPI: {
       CACTUS_LARGE:{x:652,y:2},
@@ -151,7 +151,7 @@ Runner.classes = {
       PTERODACTYL:{x:260,y:2},
       RESTART:{x:2,y:2},
       TEXT_SPRITE:{x:954,y:2},
-      TREX:{x:1338,y:2}
+      TREX:{x:0,y:15} //custom file
   }
 };
 
@@ -260,6 +260,10 @@ Runner.prototype = {
     if (IS_HIDPI) {
       Runner.imageSprite = document.getElementById('hidpi-sprites');
       this.spriteDef = Runner.spriteDefinition.HDPI;
+
+      //load main character sprites
+      Runner.imageSpriteTrex = document.getElementById('hidpi-trex');
+
     } else {
       Runner.imageSprite = document.getElementById('ldpi-sprites');
       this.spriteDef = Runner.spriteDefinition.LDPI;
@@ -529,8 +533,9 @@ Runner.prototype = {
       }
 
       // Check for collisions.
+      ///remove context to remove collision debug show blablabla its too late to programming
       var collision = hasObstacles &&
-          checkForCollision(this.horizon.obstacles[0], this.tRex);
+          checkForCollision(this.horizon.obstacles[0], this.tRex, this.canvasCtx);
 
       if (!collision) {
         this.distanceRan += this.currentSpeed * deltaTime / this.msPerFrame;
