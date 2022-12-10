@@ -509,8 +509,9 @@ Runner.prototype = {
     var deltaTime = now - (this.time || now);
     this.time = now;
 
+    this.clearCanvas();
+
     if (this.activated) {
-      this.clearCanvas();
 
       if (this.tRex.jumping) {
         this.tRex.updateJump(deltaTime);
@@ -557,6 +558,11 @@ Runner.prototype = {
      if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer && this.isRiddle){
         this.riddleOver();
       }
+    } else
+    {
+      //draw static background
+      this.horizon = new Horizon(this.canvas, this.spriteDef, this.dimensions,
+        this.config.GAP_COEFFICIENT);
     }
 
     if (!this.crashed) {
