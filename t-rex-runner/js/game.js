@@ -35,7 +35,6 @@ function Runner(outerContainerId, opt_config) {
   this.distanceMeter = null;
   this.distanceRan = 0;
   this.distanceTimer = 100;
-
   this.highestScore = 0;
 
   this.time = 0;
@@ -141,6 +140,7 @@ Runner.classes = {
       HORIZON:{x:2,y:54},
       PTERODACTYL:{x:134,y:2},
       RESTART:{x:2,y:2},
+      SKIP:{x:1054, y: 2}, //to check
       TEXT_SPRITE:{x:484,y:2},
       TREX:{x:0,y:15} //custom file
   },
@@ -151,6 +151,7 @@ Runner.classes = {
       HORIZON:{x:2,y:104},
       PTERODACTYL:{x:260,y:2},
       RESTART:{x:2,y:2},
+      SKIP:{x:2108, y: 4}, //todo
       TEXT_SPRITE:{x:954,y:2},
       TREX:{x:0,y:30} //custom file
   }
@@ -778,12 +779,15 @@ Runner.prototype = {
     this.crashed = true;
     this.distanceMeter.acheivement = false;
 
-    this.tRex.update(100, Trex.status.CRASHED);
+
+    this.clearCanvas();
+    this.horizon.update(0, this.currentSpeed, true);
+    this.tRex.update(0, Trex.status.CRASHED);
 
     // Game over panel.
     if (!this.gameOverPanel) {
       this.gameOverPanel = new GameOverPanel(this.canvas,
-          this.spriteDef.TEXT_SPRITE, this.spriteDef.RESTART,
+          this.spriteDef.TEXT_SPRITE, this.spriteDef.RESTART, this.spriteDef.SKIP,
           this.dimensions);
     } else {
       this.gameOverPanel.draw();
@@ -814,7 +818,9 @@ Runner.prototype = {
     this.distanceMeter.acheivement = false;
 
     //todo sprite for winning
-    this.tRex.update(100, Trex.status.RUNNING);
+    this.clearCanvas();
+    this.horizon.update(0, this.currentSpeed, true);
+    this.tRex.update(0, Trex.status.WAITING);
 
     // Update the high score.
     if (this.distanceRan > this.highestScore) {

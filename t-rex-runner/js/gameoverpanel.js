@@ -6,12 +6,13 @@
  * @param {!Object} dimensions Canvas dimensions.
  * @constructor
  */
- function GameOverPanel(canvas, textImgPos, restartImgPos, dimensions) {
+ function GameOverPanel(canvas, textImgPos, restartImgPos, skipImgPos, dimensions) {
     this.canvas = canvas;
     this.canvasCtx = canvas.getContext('2d');
     this.canvasDimensions = dimensions;
     this.textImgPos = textImgPos;
     this.restartImgPos = restartImgPos;
+    this.skipImgPos = skipImgPos;
     this.draw();
   };
   
@@ -26,7 +27,9 @@
     TEXT_WIDTH: 191,
     TEXT_HEIGHT: 11,
     RESTART_WIDTH: 36,
-    RESTART_HEIGHT: 32
+    RESTART_HEIGHT: 32,
+    SKIP_WIDTH: 36,
+    SKIP_HEIGHT: 32
   };
   
   
@@ -64,8 +67,13 @@
   
       var restartSourceWidth = dimensions.RESTART_WIDTH;
       var restartSourceHeight = dimensions.RESTART_HEIGHT;
-      var restartTargetX = centerX - (dimensions.RESTART_WIDTH / 2);
+      var restartTargetX = centerX - (dimensions.RESTART_WIDTH / 2) - 40;
       var restartTargetY = this.canvasDimensions.HEIGHT / 2;
+
+      var skipSourceWidth = dimensions.SKIP_WIDTH;
+      var skipSourceHeight = dimensions.SKIP_HEIGHT;
+      var skipTargetX = centerX - (dimensions.SKIP_WIDTH / 2) + 40;
+      var skipTargetY = this.canvasDimensions.HEIGHT / 2;
   
       if (IS_HIDPI) {
         textSourceY *= 2;
@@ -74,6 +82,8 @@
         textSourceHeight *= 2;
         restartSourceWidth *= 2;
         restartSourceHeight *= 2;
+        skipSourceWidth *= 2;
+        skipSourceHeight *= 2;
       }
   
       textSourceX += this.textImgPos.x;
@@ -90,5 +100,12 @@
           restartSourceWidth, restartSourceHeight,
           restartTargetX, restartTargetY, dimensions.RESTART_WIDTH,
           dimensions.RESTART_HEIGHT);
+
+      // skip button.
+      this.canvasCtx.drawImage(Runner.imageSprite,
+        this.skipImgPos.x, this.skipImgPos.y,
+        restartSourceWidth, skipSourceHeight,
+        skipTargetX, skipTargetY, dimensions.SKIP_WIDTH,
+        dimensions.SKIP_HEIGHT);
     }
   };
