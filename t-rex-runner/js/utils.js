@@ -67,11 +67,11 @@
 
 
 function getEventPos(canvas, e){
-  if(e.type == 'touchstart'){
+  if(e.type == Runner.events.TOUCHSTART){
     var rect = canvas.getBoundingClientRect();
     var touch = e.touches[0];
     return { x: touch.pageX - rect.left, y: touch.pageY - rect.top } ;
-} else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
+} else if (e.type == Runner.events.CLICK) {
     var rect = canvas.getBoundingClientRect();
     return { x: e.clientX - rect.left, y: e.clientY - rect.top};
 }
