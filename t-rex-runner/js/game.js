@@ -151,7 +151,7 @@ Runner.classes = {
       PTERODACTYL:{x:260,y:2},
       RESTART:{x:2,y:2},
       TEXT_SPRITE:{x:954,y:2},
-      TREX:{x:0,y:15} //custom file
+      TREX:{x:0,y:30} //custom file
   }
 };
 
@@ -267,6 +267,10 @@ Runner.prototype = {
     } else {
       Runner.imageSprite = document.getElementById('ldpi-sprites');
       this.spriteDef = Runner.spriteDefinition.LDPI;
+
+      //load main character sprites
+      Runner.imageSpriteTrex = document.getElementById('ldpi-trex');
+
     }
 
     this.init();

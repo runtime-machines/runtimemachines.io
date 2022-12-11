@@ -41,7 +41,7 @@
     for (let i = 0+this.xoffset; i < 9; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['WAITING']["frames"] = [array, 5];
+    Trex.animFrames['WAITING']["frames"] = [array, -5];
 
     //update running animation frames
     array = [];
@@ -49,7 +49,7 @@
     for (let i = 0+this.xoffset; i < 8; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['RUNNING']["frames"] = [array, 180];
+    Trex.animFrames['RUNNING']["frames"] = [array, 175];
 
     //update jumping animation frames
     array = [];
@@ -57,7 +57,7 @@
     for (let i = 0+this.xoffset; i < 2; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['JUMPING']["frames"] = [array, 90];
+    Trex.animFrames['JUMPING']["frames"] = [array, 85];
 
     ////////////////////////////////////////////////////////////////////
 
@@ -72,7 +72,7 @@
   Trex.config = {
     DROP_VELOCITY: -5,
     GRAVITY: 0.6,
-    HEIGHT: 73,
+    HEIGHT: 80,
     HEIGHT_DUCK: 25,
     INIITAL_JUMP_VELOCITY: -10,
     INTRO_DURATION: 1500,
@@ -95,7 +95,8 @@
       new CollisionBox(1, 18, 55, 25)
     ],
     RUNNING: [
-      new CollisionBox(22, 0, 17, 70)
+      new CollisionBox(22, 5, 15, 55),
+      new CollisionBox(24, 60, 10, 10)
     ]
   };
   
@@ -126,11 +127,11 @@
    */
   Trex.animFrames = {
     WAITING: {
-      frames: [0, 0],
+      frames: [], //setted in init
       msPerFrame: 1000 / 3
     },
     RUNNING: {
-      frames: [88, 132],
+      frames: [], //setted in init
       msPerFrame: 1000 / 12
     },
     CRASHED: {
@@ -138,7 +139,7 @@
       msPerFrame: 1000 / 60
     },
     JUMPING: {
-      frames: [0, 30],
+      frames: [], //setted in init
       msPerFrame: 1000 / 3
     },
     DUCKING: {
