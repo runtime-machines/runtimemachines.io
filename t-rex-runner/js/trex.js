@@ -45,7 +45,6 @@
 
     //update running animation frames
     array = [];
-    column = 2;
     for (let i = 0+this.xoffset; i < 8; i++) {
       array.push(i*this.spriteWidth);
     }
@@ -53,11 +52,17 @@
 
     //update jumping animation frames
     array = [];
-    column = 1;
     for (let i = 0+this.xoffset; i < 2; i++) {
       array.push(i*this.spriteWidth);
     }
     Trex.animFrames['JUMPING']["frames"] = [array, 85];
+
+    //update crashed animation frames
+    array = [];
+    for (let i = 0+this.xoffset; i < 1; i++) {
+      array.push(i*this.spriteWidth);
+    }
+    Trex.animFrames['CRASHED']["frames"] = [array, 262];
 
     ////////////////////////////////////////////////////////////////////
 
