@@ -48,7 +48,7 @@
     for (let i = 0+this.xoffset; i < 8; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['RUNNING']["frames"] = [array, 175];
+    Trex.animFrames['RUNNING']["frames"] = [array, 172];
 
     //update jumping animation frames
     array = [];
