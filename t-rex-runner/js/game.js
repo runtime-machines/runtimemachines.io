@@ -85,7 +85,8 @@ Runner.config = {
   ACCELERATION: 0.001,
   BG_CLOUD_SPEED: 0.2,
   BOTTOM_PAD: 10,
-  CLEAR_TIME: 3000,
+  CLEAR_TIME: 3000, //time after first obstacle will spawn
+  PICKUP_TIME: 2500, //time after first pickup will spwan
   CLOUD_FREQUENCY: 0.5,
   GAMEOVER_CLEAR_TIME: 750,
   GAP_COEFFICIENT: 0.6,
@@ -144,7 +145,8 @@ Runner.classes = {
       RESTART:{x:2,y:2},
       SKIP:{x:1054, y: 2}, //to check
       TEXT_SPRITE:{x:484,y:2},
-      TREX:{x:0,y:15} //custom file
+      TREX:{x:0,y:15}, //custom file
+      COIN: {x:1111, y: 4} //to check
   },
   HDPI: {
       CACTUS_LARGE:{x:652,y:2},
@@ -155,7 +157,8 @@ Runner.classes = {
       RESTART:{x:2,y:2},
       SKIP:{x:2108, y: 4}, //todo
       TEXT_SPRITE:{x:954,y:2},
-      TREX:{x:0,y:30} //custom file
+      TREX:{x:0,y:30}, //custom file
+      COIN: {x:2222, y: 8}
   }
 };
 
@@ -558,6 +561,7 @@ Runner.prototype = {
 
       this.runningTime += deltaTime;
       var hasObstacles = this.runningTime > this.config.CLEAR_TIME;
+      var hasPickups = this.runningTime > this.config.PICKUP_TIME;
 
       // First jump triggers the intro.
       if (this.tRex.jumpCount == 1 && !this.playingIntro) {
@@ -566,16 +570,19 @@ Runner.prototype = {
 
       // The horizon doesn't move until the intro is over.
       if (this.playingIntro) {
-        this.horizon.update(0, this.currentSpeed, hasObstacles);
+        this.horizon.update(0, this.currentSpeed, hasObstacles, hasPickups);
       } else {
         deltaTime = !this.started ? 0 : deltaTime;
-        this.horizon.update(deltaTime, this.currentSpeed, hasObstacles);
+        this.horizon.update(deltaTime, this.currentSpeed, hasObstacles, hasPickups);
       }
 
       // Check for collisions.
       ///remove context to remove collision debug show blablabla its too late to programming
       var collision = hasObstacles &&
           checkForCollision(this.horizon.obstacles[0], this.tRex, this.canvasCtx);
+
+      //check for pickups
+      //todo
 
       if (!collision) {
         this.distanceRan += this.currentSpeed * deltaTime / this.msPerFrame;

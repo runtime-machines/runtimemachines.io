@@ -11,16 +11,23 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
     this.canvasCtx = this.canvas.getContext('2d');
     this.config = Horizon.config;
     this.dimensions = dimensions;
-    this.gapCoefficient = gapCoefficient;
+    this.horizonOffsets = [0, 0];
+    this.spritePos = spritePos;
+
+    // Obstacle
     this.obstacles = [];
     this.obstacleHistory = [];
-    this.horizonOffsets = [0, 0];
-    this.cloudFrequency = this.config.CLOUD_FREQUENCY;
-    this.spritePos = spritePos;
+    this.gapCoefficient = gapCoefficient;
   
     // Cloud
     this.clouds = [];
     this.cloudSpeed = this.config.BG_CLOUD_SPEED;
+    this.cloudFrequency = this.config.CLOUD_FREQUENCY;
+    
+    // Pickup
+    this.pickups = []
+    this.pickupHistory = [];
+    this.pickupSpeed = this.config.PICKUP_SPEED;
   
     // Horizon
     this.horizonLine = null;
@@ -33,6 +40,9 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
  * @enum {number}
  */
 Horizon.config = {
+    PICKUP_SPEED: 0.2,
+    PICKUP_FREQUENCY: .5,
+    MAX_PICKUPS: 2,
     BG_CLOUD_SPEED: 0.2,
     BUMPY_THRESHOLD: .3,
     CLOUD_FREQUENCY: .5,
@@ -56,13 +66,17 @@ init: function() {
  *     the obstacles from being updated / added. This happens in the
  *     ease in section.
  */
-update: function(deltaTime, currentSpeed, updateObstacles) {
+update: function(deltaTime, currentSpeed, updateObstacles, updatePickups) {
     this.runningTime += deltaTime;
     this.horizonLine.update(deltaTime, currentSpeed);
     this.updateClouds(deltaTime, currentSpeed);
 
     if (updateObstacles) {
-    this.updateObstacles(deltaTime, currentSpeed);
+        this.updateObstacles(deltaTime, currentSpeed);
+    }
+
+    if (updatePickups) {
+        this.updatePickups(deltaTime, currentSpeed);
     }
 },
 
@@ -117,15 +131,15 @@ updateObstacles: function(deltaTime, currentSpeed) {
     this.obstacles = updatedObstacles;
 
     if (this.obstacles.length > 0) {
-    var lastObstacle = this.obstacles[this.obstacles.length - 1];
+        var lastObstacle = this.obstacles[this.obstacles.length - 1];
 
-    if (lastObstacle && !lastObstacle.followingObstacleCreated &&
-        lastObstacle.isVisible() &&
-        (lastObstacle.xPos + lastObstacle.width + lastObstacle.gap) <
-        this.dimensions.WIDTH) {
-        this.addNewObstacle(currentSpeed);
-        lastObstacle.followingObstacleCreated = true;
-    }
+        /*if (lastObstacle && !lastObstacle.followingObstacleCreated &&
+            lastObstacle.isVisible() &&
+            (lastObstacle.xPos + lastObstacle.width + lastObstacle.gap) <
+            this.dimensions.WIDTH) {
+            this.addNewObstacle(currentSpeed);
+            lastObstacle.followingObstacleCreated = true;
+        }*/
     } else {
     // Create new obstacles.
     this.addNewObstacle(currentSpeed);
@@ -136,7 +150,7 @@ updateObstacles: function(deltaTime, currentSpeed) {
  * Add a new obstacle.
  * @param {number} currentSpeed
  */
-addNewObstacle: function(currentSpeed) {
+ addNewObstacle: function(currentSpeed) {
     var obstacleTypeIndex = getRandomNum(0, Obstacle.types.length - 1);
     var obstacleType = Obstacle.types[obstacleTypeIndex];
 
@@ -176,6 +190,69 @@ duplicateObstacleCheck: function(nextObstacleType) {
 },
 
 /**
+ * Update the pickup positions.
+ * @param {number} deltaTime
+ * @param {number} currentSpeed
+ */
+updatePickups: function(deltaTime, currentSpeed) {
+    // pickups, move to Horizon layer.
+    var updatedPickups = this.pickups.slice(0);
+
+    for (var i = 0; i < this.pickups.length; i++) {
+    var pickup = this.pickups[i];
+    pickup.update(deltaTime, currentSpeed);
+
+    // Clean up existing obstacles.
+    if (pickup.remove) {
+        updatedPickups.shift();
+    }
+    }
+    this.pickups = updatedPickups;
+
+    if (this.pickups.length > 0) {
+    var lastpickup = this.pickups[this.pickups.length - 1];
+
+    if (lastpickup && !lastpickup.followingPickupCreated &&
+        lastpickup.isVisible() &&
+        (lastpickup.xPos + lastpickup.width + lastpickup.gap) <
+        this.dimensions.WIDTH) {
+        this.addNewPickup(currentSpeed);
+        lastpickup.followingPickupCreated = true;
+    }
+    } else {
+        // Create new pickup.
+        this.addNewPickup(currentSpeed);
+    }
+},
+
+/**
+ * Add a new pickup.
+ * @param {number} currentSpeed
+ */
+addNewPickup: function(currentSpeed) {
+    var pickupTypeIndex = getRandomNum(0, Pickup.types.length - 1);
+    var pickupType = Pickup.types[pickupTypeIndex];
+    
+    // Check for multiples of the same type of pickup.
+    // Also check pickup is available at current speed.
+    if (currentSpeed < pickupType.minSpeed) {
+        this.addNewPickup(currentSpeed);
+    } else {
+        var pickupSpritePos = this.spritePos[pickupType.type];
+
+        this.pickups.push(new Pickup(this.canvasCtx, pickupType,
+            pickupSpritePos, this.dimensions,
+            this.gapCoefficient, currentSpeed));
+
+        this.pickupHistory.unshift(pickupType.type);
+
+        if (this.pickupHistory.length > 1) {
+            this.pickupHistory.splice(Runner.config.MAX_OBSTACLE_DUPLICATION);
+        }
+    }
+},
+
+/**
  * Reset the horizon layer.
  * Remove existing obstacles and reposition the horizon line.
  */
@@ -199,6 +276,14 @@ resize: function(width, height) {
  */
 addCloud: function() {
     this.clouds.push(new Cloud(this.canvas, this.spritePos.CLOUD,
+        this.dimensions.WIDTH));
+},
+
+/**
+ * Add a new pickup to the horizon.
+ */
+ addPickup: function() {
+    this.pickups.push(new Pickup(this.canvas, this.spritePos.SKIP,
         this.dimensions.WIDTH));
 }
 };
