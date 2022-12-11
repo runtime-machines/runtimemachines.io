@@ -378,14 +378,11 @@ Runner.prototype = {
         var mousePos = getEventPos(canvas, evt);
         if (isInside(mousePos,GameOverPanel.restartButton)) {
             canvas.removeEventListener(type, foo, false);
-            console.log("restart");
             runner.restart();
         }else if (isInside(mousePos,GameOverPanel.skipButton)){
             canvas.removeEventListener(type, foo, false);
-            console.log("reset");
             runner.playOutro();
         } else {
-            console.log("out");
         } 
       };
     };
@@ -503,10 +500,10 @@ Runner.prototype = {
    */
   playOutro: function() {
     this.playingOutro = true;
-    //this.tRex.playingIntro = true;
 
-    console.log("playing outro...");
+    //this.tRex.playingIntro = true;
     /*
+        TODO
     play outro animation
     */
 
@@ -711,6 +708,7 @@ Runner.prototype = {
     }
 
     // if (e.target != this.detailsButton) {
+      //KEYCODE JUMP
       if (!this.crashed && (Runner.keycodes.JUMP[e.keyCode] ||
            e.type == Runner.events.TOUCHSTART || e.type == Runner.events.GAMEPADCONNECTED)) {
         if (!this.activated) {
@@ -735,6 +733,8 @@ Runner.prototype = {
       }
     // }
 
+    //KEYCODE DUCK
+    /*
     if (this.activated && !this.crashed && Runner.keycodes.DUCK[e.keyCode]) {
       e.preventDefault();
       if (this.tRex.jumping) {
@@ -745,6 +745,7 @@ Runner.prototype = {
         this.tRex.setDuck(true);
       }
     }
+    */
   },
 
 
