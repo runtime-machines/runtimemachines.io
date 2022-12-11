@@ -31,7 +31,30 @@
     SKIP_WIDTH: 36,
     SKIP_HEIGHT: 32
   };
-  
+
+  /*
+  *
+  * restart button on the screen
+  * 
+  * x
+  * y
+  * width
+  * height
+  * 
+  */
+  GameOverPanel.restartButton = {}
+
+  /*
+  *
+  * skip button on the screen
+  * 
+  * x
+  * y
+  * width
+  * height
+  * 
+  */
+  GameOverPanel.skipButton = {}
   
   GameOverPanel.prototype = {
     /**
@@ -53,6 +76,12 @@
       var dimensions = GameOverPanel.dimensions;
   
       var centerX = this.canvasDimensions.WIDTH / 2;
+
+      var button_off = 0;
+      if(Runner.isRiddle)
+      {
+        button_off = 40;
+      }
   
       // Game over text.
       var textSourceX = dimensions.TEXT_X;
@@ -67,12 +96,12 @@
   
       var restartSourceWidth = dimensions.RESTART_WIDTH;
       var restartSourceHeight = dimensions.RESTART_HEIGHT;
-      var restartTargetX = centerX - (dimensions.RESTART_WIDTH / 2) - 40;
+      var restartTargetX = centerX - (dimensions.RESTART_WIDTH / 2) - button_off;
       var restartTargetY = this.canvasDimensions.HEIGHT / 2;
 
       var skipSourceWidth = dimensions.SKIP_WIDTH;
       var skipSourceHeight = dimensions.SKIP_HEIGHT;
-      var skipTargetX = centerX - (dimensions.SKIP_WIDTH / 2) + 40;
+      var skipTargetX = centerX - (dimensions.SKIP_WIDTH / 2) + button_off;
       var skipTargetY = this.canvasDimensions.HEIGHT / 2;
   
       if (IS_HIDPI) {
@@ -101,11 +130,16 @@
           restartTargetX, restartTargetY, dimensions.RESTART_WIDTH,
           dimensions.RESTART_HEIGHT);
 
+      GameOverPanel.restartButton = {x: restartTargetX, y: restartTargetY,  width: dimensions.RESTART_WIDTH, height: dimensions.RESTART_HEIGHT};
+
       // skip button.
-      this.canvasCtx.drawImage(Runner.imageSprite,
-        this.skipImgPos.x, this.skipImgPos.y,
-        restartSourceWidth, skipSourceHeight,
-        skipTargetX, skipTargetY, dimensions.SKIP_WIDTH,
-        dimensions.SKIP_HEIGHT);
+      if(Runner.isRiddle){
+        this.canvasCtx.drawImage(Runner.imageSprite,
+          this.skipImgPos.x, this.skipImgPos.y,
+          restartSourceWidth, skipSourceHeight,
+          skipTargetX, skipTargetY, dimensions.SKIP_WIDTH,
+          dimensions.SKIP_HEIGHT);
+          GameOverPanel.skipButton = {x: skipTargetX, y: skipTargetY, width: dimensions.SKIP_WIDTH, height: dimensions.SKIP_HEIGHT};
+      }
     }
   };

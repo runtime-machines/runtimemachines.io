@@ -64,3 +64,32 @@
   function getTimeStamp() {
     return IS_IOS ? new Date().getTime() : performance.now();
   }
+
+
+function getEventPos(canvas, e){
+  if(e.type == 'touchstart'){
+    var rect = canvas.getBoundingClientRect();
+    var touch = e.touches[0];
+    return { x: touch.pageX - rect.left, y: touch.pageY - rect.top } ;
+} else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
+    var rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top};
+}
+
+}
+
+//Function to check whether a point is inside a rectangle
+/*
+*
+*   pos = mouse position {x:, y:}
+*
+*    var rect =
+*        x:250,
+*        y:350,
+*        width:200,
+*        height:100
+*
+*/
+function isInside(pos, rect){
+  return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.height && pos.y > rect.y
+}

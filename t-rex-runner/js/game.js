@@ -23,7 +23,6 @@ function Runner(outerContainerId, opt_config) {
   // this.detailsButton = this.outerContainerEl.querySelector('#details-button');
 
   this.config = opt_config || Runner.config;
-  this.isRiddle = true;
 
   this.dimensions = Runner.defaultDimensions;
 
@@ -76,6 +75,8 @@ function Runner(outerContainerId, opt_config) {
 }
 window['Runner'] = Runner;
 
+Runner.isRiddle = true;
+
 /**
  * Default game configuration.
  * @enum {number}
@@ -124,7 +125,8 @@ Runner.classes = {
   ICON: 'icon-offline',
   SNACKBAR: 'snackbar',
   SNACKBAR_SHOW: 'snackbar-show',
-  TOUCH_CONTROLLER: 'controller'
+  TOUCH_CONTROLLER: 'touch-controller',
+  PLAYER: "main_canvas"
 };
 
 
@@ -367,6 +369,42 @@ Runner.prototype = {
   },
 
   /**
+   * Create button handler
+   */
+  createButtonHandler: function() {
+    //event listener for mouse click onto game over buttons
+    var handler_builder = function (canvas, runner, type) {
+      return function foo(evt) {
+        var mousePos = getEventPos(canvas, evt);
+        if (isInside(mousePos,GameOverPanel.restartButton)) {
+            canvas.removeEventListener(type, foo, false);
+            console.log("restart");
+            runner.restart();
+        }else if (isInside(mousePos,GameOverPanel.skipButton)){
+            canvas.removeEventListener(type, foo, false);
+            console.log("reset");
+            runner.playOutro();
+        } else {
+            console.log("out");
+        } 
+      };
+    };
+
+
+    if (IS_MOBILE) {
+      this.canvas.addEventListener(
+          Runner.events.TOUCHSTART, 
+          handler_builder(this.canvas, this, Runner.events.TOUCHSTART), false);
+    } else {
+      this.canvas.addEventListener(
+        Runner.events.CLICK, 
+        handler_builder(this.canvas, this, Runner.events.CLICK), false);
+    }
+
+    
+  },
+
+  /**
    * Create the touch controller. A div that covers whole screen.
    */
   createTouchController: function() {
@@ -464,17 +502,15 @@ Runner.prototype = {
    * to be defined ....
    */
   playOutro: function() {
-    if (this.started && this.crashed && this.freeze && !this.ended) {
-      
-      this.playingOutro = true;
-      //this.tRex.playingIntro = true;
+    this.playingOutro = true;
+    //this.tRex.playingIntro = true;
 
-      /*
-      play outro animation
-      */
+    console.log("playing outro...");
+    /*
+    play outro animation
+    */
 
-     this.ended = true;
-    }
+    this.ended = true;
   },
 
 
@@ -561,7 +597,7 @@ Runner.prototype = {
         this.playSound(this.soundFx.SCORE);
       }
 
-     if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer && this.isRiddle){
+     if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer && Runner.isRiddle){
         this.riddleOver();
       }
     } else
@@ -691,7 +727,11 @@ Runner.prototype = {
 
       if (this.crashed && e.type == Runner.events.TOUCHSTART &&
           e.currentTarget == this.containerEl) {
-        this.restart();
+            if(Runner.isRiddle){
+              // let button handler to handle it
+            } else {
+              this.restart();
+            }
       }
     // }
 
@@ -723,14 +763,19 @@ Runner.prototype = {
     } else if (Runner.keycodes.DUCK[keyCode]) {
       this.tRex.speedDrop = false;
       this.tRex.setDuck(false);
-    } else if (this.crashed) {
+    } else if (this.crashed) { //todo
       // Check that enough time has elapsed before allowing jump key to restart.
       var deltaTime = getTimeStamp() - this.time;
 
       if (Runner.keycodes.RESTART[keyCode] || this.isLeftClickOnCanvas(e) ||
           (deltaTime >= this.config.GAMEOVER_CLEAR_TIME &&
           Runner.keycodes.JUMP[keyCode])) {
-        this.restart();
+          if(Runner.isRiddle){
+            // let button handler to handle it
+          } else {
+            this.restart();
+          }
+        
       }
     } else if (this.paused && isjumpKey) {
       // Reset the jump state
@@ -781,7 +826,7 @@ Runner.prototype = {
 
 
     this.clearCanvas();
-    this.horizon.update(0, this.currentSpeed, true);
+    this.horizon.update(0, 0, true);
     this.tRex.update(0, Trex.status.CRASHED);
 
     // Game over panel.
@@ -791,6 +836,10 @@ Runner.prototype = {
           this.dimensions);
     } else {
       this.gameOverPanel.draw();
+    }
+
+    if(Runner.isRiddle){
+      this.createButtonHandler();
     }
 
     // Update the high score.
@@ -819,7 +868,7 @@ Runner.prototype = {
 
     //todo sprite for winning
     this.clearCanvas();
-    this.horizon.update(0, this.currentSpeed, true);
+    this.horizon.update(0, 0, true);
     this.tRex.update(0, Trex.status.WAITING);
 
     // Update the high score.
