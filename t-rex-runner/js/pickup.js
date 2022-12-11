@@ -37,7 +37,8 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
      * @param {number} speed
      */
     init: function(speed) {
-  
+      this.cloneCollisionBoxes();
+
       // Only allow sizing if we're at the right speed.
       if (this.size > 1 && this.typeConfig.multipleSpeed > speed) {
         this.size = 1;
@@ -140,7 +141,21 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
     isVisible: function() {
       return this.xPos + this.width > 0;
     },
-  };
+
+  /**
+   * Make a copy of the collision boxes, since these will change based on
+   * obstacle type and size.
+   */
+  cloneCollisionBoxes: function() {
+    var collisionBoxes = this.typeConfig.collisionBoxes;
+
+    for (var i = collisionBoxes.length - 1; i >= 0; i--) {
+      this.collisionBoxes[i] = new CollisionBox(collisionBoxes[i].x,
+          collisionBoxes[i].y, collisionBoxes[i].width,
+          collisionBoxes[i].height);
+    }
+  }
+};
   
   /**
    * pickup definitions.
@@ -149,19 +164,19 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
    * speedOffset: speed faster / slower than the horizon.
    * minSpeed: Minimum speed which the pickup can make an appearance.
    */
-  Pickup.types = [
-    {
-      type: 'COIN',
-      width: 64,
-      height: 64,
-      yPos: 100,
-      multipleSpeed: 4,
-      minGap: 120,
-      minSpeed: 0,
-      collisionBoxes: [
-        new CollisionBox(0, 7, 5, 27)
-      ],
-      numFrames: 1,
-      frameRate: 1000/6
-    }
-  ];
+Pickup.types = [
+  {
+    type: 'COIN',
+    width: 32,
+    height: 32,
+    yPos: 50,
+    multipleSpeed: 4,
+    minGap: 120,
+    minSpeed: 0,
+    collisionBoxes: [
+      new CollisionBox(0, 0, 30, 30)
+    ],
+    numFrames: 1,
+    frameRate: 1000/6
+  }
+];

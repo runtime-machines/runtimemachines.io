@@ -132,14 +132,13 @@ updateObstacles: function(deltaTime, currentSpeed) {
 
     if (this.obstacles.length > 0) {
         var lastObstacle = this.obstacles[this.obstacles.length - 1];
-
-        /*if (lastObstacle && !lastObstacle.followingObstacleCreated &&
-            lastObstacle.isVisible() &&
-            (lastObstacle.xPos + lastObstacle.width + lastObstacle.gap) <
-            this.dimensions.WIDTH) {
+ 
+        if (lastObstacle && lastObstacle.isVisible() 
+                && (lastObstacle.xPos + lastObstacle.width + lastObstacle.gap) < this.dimensions.WIDTH
+                && lastObstacle.followingObstacleCreated) {
             this.addNewObstacle(currentSpeed);
             lastObstacle.followingObstacleCreated = true;
-        }*/
+        }
     } else {
     // Create new obstacles.
     this.addNewObstacle(currentSpeed);
@@ -199,26 +198,25 @@ updatePickups: function(deltaTime, currentSpeed) {
     var updatedPickups = this.pickups.slice(0);
 
     for (var i = 0; i < this.pickups.length; i++) {
-    var pickup = this.pickups[i];
-    pickup.update(deltaTime, currentSpeed);
+        var pickup = this.pickups[i];
+        pickup.update(deltaTime, currentSpeed);
 
-    // Clean up existing obstacles.
-    if (pickup.remove) {
-        updatedPickups.shift();
-    }
+        // Clean up existing pickup.
+        if (pickup.remove) {
+            updatedPickups.shift();
+        }
     }
     this.pickups = updatedPickups;
 
     if (this.pickups.length > 0) {
-    var lastpickup = this.pickups[this.pickups.length - 1];
+        var lastpickup = this.pickups[this.pickups.length - 1];
 
-    if (lastpickup && !lastpickup.followingPickupCreated &&
-        lastpickup.isVisible() &&
-        (lastpickup.xPos + lastpickup.width + lastpickup.gap) <
-        this.dimensions.WIDTH) {
-        this.addNewPickup(currentSpeed);
-        lastpickup.followingPickupCreated = true;
-    }
+        if (lastpickup && !lastpickup.followingPickupCreated 
+                && lastpickup.isVisible()
+                && (lastpickup.xPos + lastpickup.width + lastpickup.gap) < this.dimensions.WIDTH) {
+            this.addNewPickup(currentSpeed);
+            lastpickup.followingPickupCreated = true;
+        }
     } else {
         // Create new pickup.
         this.addNewPickup(currentSpeed);
@@ -232,7 +230,7 @@ updatePickups: function(deltaTime, currentSpeed) {
 addNewPickup: function(currentSpeed) {
     var pickupTypeIndex = getRandomNum(0, Pickup.types.length - 1);
     var pickupType = Pickup.types[pickupTypeIndex];
-    
+
     // Check for multiples of the same type of pickup.
     // Also check pickup is available at current speed.
     if (currentSpeed < pickupType.minSpeed) {

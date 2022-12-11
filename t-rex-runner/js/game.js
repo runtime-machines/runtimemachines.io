@@ -582,7 +582,12 @@ Runner.prototype = {
           checkForCollision(this.horizon.obstacles[0], this.tRex, this.canvasCtx);
 
       //check for pickups
-      //todo
+      var pickedup = hasPickups &&
+      checkForCollision(this.horizon.pickups[0], this.tRex, this.canvasCtx);
+      
+      if(pickedup){
+        //score todo
+      }
 
       if (!collision) {
         this.distanceRan += this.currentSpeed * deltaTime / this.msPerFrame;
