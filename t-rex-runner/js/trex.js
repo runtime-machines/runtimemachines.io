@@ -62,7 +62,7 @@
     for (let i = 0+this.xoffset; i < 1; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['CRASHED']["frames"] = [array, 262];
+    Trex.animFrames['CRASHED']["frames"] = [array, 260];
 
     ////////////////////////////////////////////////////////////////////
 
