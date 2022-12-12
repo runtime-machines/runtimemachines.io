@@ -1,5 +1,5 @@
 ---
-import ButtonMainPage from './ButtonMainPage.astro';
+import MainSite from './MainSite.astro';
 
 export interface WebsiteAssets {
 	homepage: {
@@ -16,42 +16,24 @@ export interface Props {
 const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets } = Astro.props;
 ---
 
-<div
-	class={'absolute w-full overflow-hidden ' +
-		css_attributes_parent.map((attribute) => {
-			return attribute + ' ';
-		})}
-	id={id}
->
+<div>
 	<div
-		class={'relative dark:bg-[#FAF2E4] overflow-hidden ' +
-			css_attributes_child.map((attribute) => {
+		class={'absolute w-full overflow-hidden ' +
+			css_attributes_parent.map((attribute) => {
 				return attribute + ' ';
 			})}
-		id={id + '-child'}
+		id={id}
 	>
-		<div class="grid grid-rows-[1fr_3fr] lg:grid-rows-[1fr_1fr] h-full">
-			<div class="grid lg:grid-cols-[1fr_1fr_1fr] grid-cols-[1fr]">
-				<div class="hidden lg:block"></div>
-				<div class="m-auto">
-					<div class="text-4xl mr-0 ml-auto inline-block pl-5 font-bold">We Are</div><img
-						src={websiteAssets.homepage.main_logo}
-					/>
-				</div>
-				<div class="hidden lg:block"></div>
-			</div>
-			<div
-				class="ml-auto mr-auto mb-auto max-w-7xl grid lg:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr 1fr] gap-10"
-			>
-				<div class="m-auto text-xl font-bold lg:col-start-1 row-start-1">We think</div>
-				<ButtonMainPage text="ciao" />
-				<ButtonMainPage text="ciao" />
-				<div class="m-auto text-xl font-bold lg:col-start-2 lg:row-start-1">We Build & Deliver</div>
-				<ButtonMainPage text="ciao" />
-				<ButtonMainPage text="ciao" />
-			</div>
+		<div
+			class={'relative dark:bg-[#FAF2E4] overflow-hidden ' +
+				css_attributes_child.map((attribute) => {
+					return attribute + ' ';
+				})}
+			id={id + '-child'}
+		>
+			<MainSite websiteAssets={websiteAssets} id={id} />
 		</div>
-	</div>
 
-	<style></style>
+		<style></style>
+	</div>
 </div>

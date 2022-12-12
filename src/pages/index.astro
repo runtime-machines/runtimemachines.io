@@ -16,20 +16,19 @@ var websiteAssets: WebsiteAssets[] = [
 		},
 	},
 ];
+
+const sides_id = ['left', 'right'];
 ---
 
 <Root title="Homepage">
-	<div class="h-full">
+	<div>
 		<LandingPage
-			css_attributes_parent={['z-5 h-full']}
-			css_attributes_child={['h-full']}
-			id="left"
+			css_attributes_parent={['z-5']}
+			css_attributes_child={[]}
+			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
 		/>
-		<div
-			id="middle"
-			class="left-[50%] bg-[#FFAD8A] min-h-full w-[1px] cursor-ew-resize absolute z-20 !<lg:left-0 !<lg:hidden !lg:block"
-		>
+		<div id="middle" class="left-[50%] h-full min-h-full cursor-ew-resize absolute z-20">
 			<!-- class -translate-x-1/2 has issues I don't know why -->
 			<div
 				style="transform: translateX(-50%);"
@@ -64,9 +63,9 @@ var websiteAssets: WebsiteAssets[] = [
 			</div>
 		</div>
 		<LandingPage
-			css_attributes_parent={['dark z-15 ml-[50%] h-full !<lg:ml-0 !lg:block']}
-			css_attributes_child={['-left-1/2 h-full !<lg:left-0']}
-			id="right"
+			css_attributes_parent={['dark z-15 ml-[50%] !<lg:ml-0 !lg:block border-l-1 border-[#FFAD8A] border-solid']}
+			css_attributes_child={['-left-1/2 !<lg:left-0']}
+			id={sides_id[1]}
 			websiteAssets={websiteAssets[1]}
 		/>
 		<div class="absolute right-[10px] bottom-[10px] lg:hidden button-div z-25">
@@ -217,3 +216,79 @@ var websiteAssets: WebsiteAssets[] = [
 	};
 	switchButton?.addEventListener('click', switchClickHandler);
 </script>
+
+<!-- COMPONENTS JAVASCRIPT -->
+<script define:vars={{ sides_id }}>
+	const emailSubmit = function (event) {
+		const id = event.currentTarget.id;
+		console.log('sending email address');
+		var myHeaders = new Headers();
+		myHeaders.append('Content-Type', 'application/json');
+
+		var raw = JSON.stringify({
+			email: document.getElementById('email-' + id).value,
+		});
+
+		console.log(raw);
+
+		var requestOptions = {
+			method: 'POST',
+			headers: myHeaders,
+			body: raw,
+		};
+
+		fetch('/api/subscribe', requestOptions)
+			.then((response) => response.text())
+			.then((result) => console.log(result))
+			.catch((error) => console.log('error', error));
+	};
+	function handleForm(event) {
+		event.preventDefault();
+	}
+	for (let e = 0; e < sides_id.length; e++) {
+		const id = sides_id[e];
+		const submitButton = document.getElementById('submitform-' + id);
+		submitButton.id = id;
+		const form = document.getElementById('emailform-' + id);
+		submitButton?.addEventListener('click', emailSubmit);
+		form?.addEventListener('submit', handleForm);
+	}
+</script>
+
+<!-- COMPONENTS SCRIPTS 
+<script>
+	var forms = document.getElementsByClassName('emailforms');
+	function handleForm(event: { preventDefault: () => void }) {
+		event.preventDefault();
+	}
+	for (let e = 0; e < forms.length; e++) {
+		forms[e].addEventListener('submit', handleForm);
+	}
+
+	var formSubmitButtons = document.getElementsByClassName('formSubmitButton');
+	function handleFormSubmitButton(event) {
+		console.log('subscribe on, ', document.getElementById('email_field').value);
+		document.getElementById('stayintouch').style.cursor = 'progress';
+		var myHeaders = new Headers();
+		myHeaders.append('Content-Type', 'application/json');
+
+		var raw = JSON.stringify({
+			email: document.getElementById('email_field').value,
+		});
+
+		var requestOptions = {
+			method: 'POST',
+			headers: myHeaders,
+			body: raw,
+		};
+
+		fetch('/api/subscribe', requestOptions)
+			.then((response) => response.text())
+			.then((result) => console.log(result))
+			.catch((error) => console.log('error', error));
+	}
+	for (let e = 0; e < formSubmitButtons.length; e++) {
+		formSubmitButtons[e].addEventListener('click', handleFormSubmitButton);
+	}
+</script>
+-->
