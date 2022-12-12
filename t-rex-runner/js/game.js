@@ -563,7 +563,6 @@ Runner.prototype = {
 
       this.runningTime += deltaTime;
       var hasObstacles = this.runningTime > this.config.CLEAR_TIME;
-      var hasPickups = this.runningTime > this.config.PICKUP_TIME;
 
       // First jump triggers the intro.
       if (this.tRex.jumpCount == 1 && !this.playingIntro) {
@@ -572,10 +571,10 @@ Runner.prototype = {
 
       // The horizon doesn't move until the intro is over.
       if (this.playingIntro) {
-        this.horizon.update(0, this.currentSpeed, hasObstacles, hasPickups);
+        this.horizon.update(0, this.currentSpeed, hasObstacles, this.runningTime > this.config.PICKUP_TIME);
       } else {
         deltaTime = !this.started ? 0 : deltaTime;
-        this.horizon.update(deltaTime, this.currentSpeed, hasObstacles, hasPickups);
+        this.horizon.update(deltaTime, this.currentSpeed, hasObstacles, this.runningTime > this.config.PICKUP_TIME);
       }
 
       // Check for collisions.
@@ -584,7 +583,7 @@ Runner.prototype = {
           checkForCollision(this.horizon.obstacles[0], this.tRex, this.canvasCtx);
 
       //check for pickups
-      var pickedup = hasPickups &&
+      var pickedup = this.horizon.hasPickups() &&
       checkForCollision(this.horizon.pickups[0], this.tRex, this.canvasCtx);
       
       if(pickedup){
@@ -845,7 +844,7 @@ Runner.prototype = {
 
 
     this.clearCanvas();
-    this.horizon.update(0, 0, true);
+    this.horizon.update(0, 0, true, true);
     this.tRex.update(0, Trex.status.CRASHED);
 
     this.updateScore();
@@ -862,8 +861,6 @@ Runner.prototype = {
     if(Runner.isRiddle){
       this.createButtonHandler();
     }
-
-
 
     // Reset the time clock.
     this.time = getTimeStamp();

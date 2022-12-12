@@ -1,3 +1,5 @@
+//todo
+
 /**
  * Pickup.
  * @param {HTMLCanvasCtx} canvasCtx
@@ -8,7 +10,7 @@
  * @param {number} speed
  */
 function Pickup(canvasCtx, type, spriteImgPos, dimensions,
-    gapCoefficient, speed) {
+    gapCoefficient, speed) {   
 
   this.canvasCtx = canvasCtx;
   this.spritePos = spriteImgPos;
@@ -21,8 +23,6 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
   this.yPos = 0;
   this.width = 0;
   this.collisionBoxes = [];
-  this.gap = 0;
-  this.speedOffset = 0;
 
   // For animated pickups.
   this.currentFrame = 0;
@@ -30,6 +30,12 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
 
   this.init(speed);
   }
+
+  /**
+ * Coefficient for calculating the maximum gap.
+ * @const
+ */
+  Pickup.MAX_TIMER = 5000;
 
   Pickup.prototype = {
     /**
@@ -57,8 +63,6 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
       }
   
       this.draw();
-  
-      this.gap = this.getGap(this.gapCoefficient, speed);
     },
   
     /**
@@ -121,20 +125,6 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
     },
   
     /**
-     * Calculate a random gap size.
-     * - Minimum gap gets wider as speed increses
-     * @param {number} gapCoefficient
-     * @param {number} speed
-     * @return {number} The gap size.
-     */
-    getGap: function(gapCoefficient, speed) {
-      var minGap = Math.round(this.width * speed +
-            this.typeConfig.minGap * gapCoefficient);
-      var maxGap = Math.round(minGap * Pickup.MAX_GAP_COEFFICIENT);
-      return getRandomNum(minGap, maxGap);
-    },
-  
-    /**
      * Check if pickup is visible.
      * @return {boolean} Whether the pickup is in the game area.
      */
@@ -175,7 +165,7 @@ Pickup.types = [
     height: 32,
     yPos: 25,
     multipleSpeed: 4,
-    minGap: 120,
+    minGap: 42,
     minSpeed: 0,
     collisionBoxes: [
       new CollisionBox(0, 0, 30, 30)
