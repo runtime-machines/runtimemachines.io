@@ -2,7 +2,7 @@
  * Default game width.
  * @const
  */
- var DEFAULT_WIDTH = 1200; //changing this will affect game speed
+ var DEFAULT_WIDTH = 600; //changing this will affect game speed
 
  /**
   * Frames per second.
