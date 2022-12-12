@@ -33,15 +33,13 @@ function Runner(outerContainerId, opt_config) {
 
   this.distanceMeter = null;
   this.distanceRan = 0;
-  this.distanceTimer = 100;
+  this.distanceTimer = 2000;
   this.highestScore = 0;
 
   this.time = 0;
   this.runningTime = 0;
   this.msPerFrame = 1000 / FPS;
   this.currentSpeed = this.config.SPEED;
-
-  this.obstacles = [];
 
   this.started = false;
   this.activated = false;
@@ -53,6 +51,10 @@ function Runner(outerContainerId, opt_config) {
   this.resizeTimerId_ = null;
 
   this.playCount = 0;
+
+  // Score of pickups.
+  this.pickupScore = 0;
+  this.noPickupCollected = 0;
 
   // Sound FX.
   this.audioBuffer = null;
@@ -586,7 +588,9 @@ Runner.prototype = {
       checkForCollision(this.horizon.pickups[0], this.tRex, this.canvasCtx);
       
       if(pickedup){
-        //score todo
+        pickedup[2].collect();
+        this.pickupScore += pickedup[3];
+        this.noPickupCollected += 1;
       }
 
       if (!collision) {
@@ -600,12 +604,13 @@ Runner.prototype = {
       }
 
       var playAcheivementSound = this.distanceMeter.update(deltaTime,
-          Math.ceil(this.distanceRan));
+          Math.ceil(this.getScore()));
 
       if (playAcheivementSound) {
         this.playSound(this.soundFx.SCORE);
       }
 
+    //todo
      if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer && Runner.isRiddle){
         this.riddleOver();
       }
@@ -842,6 +847,8 @@ Runner.prototype = {
     this.horizon.update(0, 0, true);
     this.tRex.update(0, Trex.status.CRASHED);
 
+    this.updateScore();
+
     // Game over panel.
     if (!this.gameOverPanel) {
       this.gameOverPanel = new GameOverPanel(this.canvas,
@@ -855,11 +862,7 @@ Runner.prototype = {
       this.createButtonHandler();
     }
 
-    // Update the high score.
-    if (this.distanceRan > this.highestScore) {
-      this.highestScore = Math.ceil(this.distanceRan);
-      this.distanceMeter.setHighScore(this.highestScore);
-    }
+
 
     // Reset the time clock.
     this.time = getTimeStamp();
@@ -884,11 +887,7 @@ Runner.prototype = {
     this.horizon.update(0, 0, true);
     this.tRex.update(0, Trex.status.WAITING);
 
-    // Update the high score.
-    if (this.distanceRan > this.highestScore) {
-      this.highestScore = Math.ceil(this.distanceRan);
-      this.distanceMeter.setHighScore(this.highestScore);
-    }
+    this.updateScore();
 
     // Reset the time clock.
     this.time = getTimeStamp();
@@ -919,6 +918,8 @@ Runner.prototype = {
       this.activated = true;
       this.crashed = false;
       this.distanceRan = 0;
+      this.pickupScore = 0;
+      this.noPickupCollected = 0;
       this.setSpeed(this.config.SPEED);
 
       this.time = getTimeStamp();
@@ -930,6 +931,16 @@ Runner.prototype = {
       this.playSound(this.soundFx.BUTTON_PRESS);
 
       this.update();
+    }
+  },
+
+  /**
+   * Update the high score.
+   */
+  updateScore: function(){
+    if (this.getScore() > this.highestScore) {
+      this.highestScore = Math.ceil(this.getScore());
+      this.distanceMeter.setHighScore(this.highestScore);
     }
   },
 
@@ -956,6 +967,13 @@ Runner.prototype = {
       sourceNode.connect(this.audioContext.destination);
       sourceNode.start(0);
     }
+  },
+
+  /**
+   * Calculate Score
+   */
+  getScore: function() {
+    return this.distanceRan + this.pickupScore;
   }
 };
 

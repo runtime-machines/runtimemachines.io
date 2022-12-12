@@ -50,7 +50,8 @@
           }
   
           if (crashed) {
-            return [adjTrexBox, adjObstacleBox];
+            var score = obstacle.typeConfig.score ? obstacle.typeConfig.score : 0;
+            return [adjTrexBox, adjObstacleBox, obstacle, score];
           }
         }
       }

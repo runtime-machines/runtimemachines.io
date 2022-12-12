@@ -154,6 +154,10 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
           collisionBoxes[i].y, collisionBoxes[i].width,
           collisionBoxes[i].height);
     }
+  },
+
+  collect: function(){
+    this.remove = true;
   }
 };
   
@@ -177,6 +181,7 @@ Pickup.types = [
       new CollisionBox(0, 0, 30, 30)
     ],
     numFrames: 1,
-    frameRate: 1000/6
+    frameRate: 1000/6,
+    score: 375.4073879913347 * 5 // (the first number is 10 points)
   }
 ];
