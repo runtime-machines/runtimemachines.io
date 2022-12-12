@@ -226,7 +226,7 @@ const sides_id = ['left', 'right'];
 		myHeaders.append('Content-Type', 'application/json');
 
 		var raw = JSON.stringify({
-			email: document.getElementById('email-' + id).value,
+			email: document.getElementById('email_form_text-' + id).value,
 		});
 
 		console.log(raw);
@@ -247,48 +247,10 @@ const sides_id = ['left', 'right'];
 	}
 	for (let e = 0; e < sides_id.length; e++) {
 		const id = sides_id[e];
-		const submitButton = document.getElementById('submitform-' + id);
+		const submitButton = document.getElementById('email_form_submit-' + id);
 		submitButton.id = id;
-		const form = document.getElementById('emailform-' + id);
+		const form = document.getElementById('email_form-' + id);
 		submitButton?.addEventListener('click', emailSubmit);
 		form?.addEventListener('submit', handleForm);
 	}
 </script>
-
-<!-- COMPONENTS SCRIPTS 
-<script>
-	var forms = document.getElementsByClassName('emailforms');
-	function handleForm(event: { preventDefault: () => void }) {
-		event.preventDefault();
-	}
-	for (let e = 0; e < forms.length; e++) {
-		forms[e].addEventListener('submit', handleForm);
-	}
-
-	var formSubmitButtons = document.getElementsByClassName('formSubmitButton');
-	function handleFormSubmitButton(event) {
-		console.log('subscribe on, ', document.getElementById('email_field').value);
-		document.getElementById('stayintouch').style.cursor = 'progress';
-		var myHeaders = new Headers();
-		myHeaders.append('Content-Type', 'application/json');
-
-		var raw = JSON.stringify({
-			email: document.getElementById('email_field').value,
-		});
-
-		var requestOptions = {
-			method: 'POST',
-			headers: myHeaders,
-			body: raw,
-		};
-
-		fetch('/api/subscribe', requestOptions)
-			.then((response) => response.text())
-			.then((result) => console.log(result))
-			.catch((error) => console.log('error', error));
-	}
-	for (let e = 0; e < formSubmitButtons.length; e++) {
-		formSubmitButtons[e].addEventListener('click', handleFormSubmitButton);
-	}
-</script>
--->

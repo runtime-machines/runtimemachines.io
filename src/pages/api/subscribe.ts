@@ -26,6 +26,8 @@ interface MailChimpErrorResponse {
 }
 
 export const post: APIRoute = async ({ request }) => {
+	const headers = new Headers();
+	headers.set('Access-Control-Allow-Origin', '*');
 	if (request.headers.get('content-type')?.includes('application/json')) {
 		try {
 			const body = await request.json();
@@ -34,6 +36,7 @@ export const post: APIRoute = async ({ request }) => {
 			if (!validEmail) {
 				return new Response('Email Invalid', {
 					status: 400,
+					headers: headers,
 				});
 			}
 			const jsonData: AddListMemberBody = {
@@ -45,6 +48,7 @@ export const post: APIRoute = async ({ request }) => {
 				if (response.status != 'subscribed' && response.status != 'pending') {
 					return new Response('MailChimp error', {
 						status: 400,
+						headers: headers,
 					});
 				}
 			} catch (error: unknown) {
@@ -52,11 +56,13 @@ export const post: APIRoute = async ({ request }) => {
 					const x = error as MailChimpErrorResponse;
 					return new Response(x.response.text, {
 						status: 400,
+						headers: headers,
 					});
 				} catch (error) {
 					console.log(error);
 					return new Response('internal server error', {
 						status: 500,
+						headers: headers,
 					});
 				}
 			}
@@ -67,13 +73,14 @@ export const post: APIRoute = async ({ request }) => {
 				}),
 				{
 					status: 200,
+					headers: headers,
 				}
 			);
 		} catch (error) {
 			console.log(error);
 		}
 	}
-	return new Response(null, { status: 400 });
+	return new Response(null, { status: 400, headers: headers });
 };
 
 const validateEmail = (email: string) => {
