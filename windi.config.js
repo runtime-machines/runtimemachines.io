@@ -10,6 +10,9 @@ export default defineConfig({
 			cursor: {
 				'ew-resize': 'ew-resize',
 			},
+			width: {
+				fit: 'fit-content',
+			},
 		},
 	},
 	extract: {
