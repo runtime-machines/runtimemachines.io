@@ -1,4 +1,6 @@
 ---
+import MainSite from './MainSite.astro';
+
 export interface WebsiteAssets {
 	homepage: {
 		main_logo: string;
@@ -14,23 +16,24 @@ export interface Props {
 const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets } = Astro.props;
 ---
 
-<div
-	class={'absolute w-full overflow-hidden ' +
-		css_attributes_parent.map((attribute) => {
-			return attribute + ' ';
-		})}
-	id={id}
->
+<div>
 	<div
-		class={'relative bg-green-100 dark:bg-red-100 overflow-hidden ' +
-			css_attributes_child.map((attribute) => {
+		class={'absolute w-full overflow-hidden ' +
+			css_attributes_parent.map((attribute) => {
 				return attribute + ' ';
 			})}
-		id={id + '-child'}
+		id={id}
 	>
-		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sed illum quod quaerat fugiat quisquam qui deleniti
-		vitae! Dolore repellat ad rem quaerat cum nihil magni beatae ducimus molestiae ab!
+		<div
+			class={'relative dark:bg-[#FAF2E4] overflow-hidden ' +
+				css_attributes_child.map((attribute) => {
+					return attribute + ' ';
+				})}
+			id={id + '-child'}
+		>
+			<MainSite websiteAssets={websiteAssets} id={id} />
+		</div>
 
-		<img src={websiteAssets.homepage.main_logo} />
+		<style></style>
 	</div>
 </div>

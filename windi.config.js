@@ -10,6 +10,10 @@ export default defineConfig({
 			cursor: {
 				'ew-resize': 'ew-resize',
 			},
+			backgroundColor: (theme) => ({
+				...theme('colors'),
+				orange: '#FF8855',
+			}),
 		},
 	},
 	extract: {

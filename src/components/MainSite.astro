@@ -1,0 +1,48 @@
+---
+import ButtonMainPage from './ButtonMainPage.astro';
+import { WebsiteAssets } from './LandingPage.astro';
+
+export interface Props {
+	websiteAssets: WebsiteAssets;
+	id: string;
+}
+const { websiteAssets, id } = Astro.props;
+---
+
+<div class="max-w-8xl m-auto">
+	<div class="grid grid-rows-[1fr_3fr] lg:grid-rows-[1fr_1fr]">
+		<div class="grid lg:grid-cols-[1fr_1fr_1fr] grid-cols-[1fr]">
+			<div class="hidden lg:block"></div>
+			<div class="m-auto">
+				<div class="text-4xl mr-0 ml-auto inline-block pl-5 font-bold">We Are</div><img
+					src={websiteAssets.homepage.main_logo}
+				/>
+			</div>
+			<div class="hidden lg:block"></div>
+		</div>
+		<div class="grid max-w-4xl m-auto">
+			<div class="ml-auto mr-auto mb-auto grid lg:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr 1fr] gap-10 pb-20">
+				<div class="m-auto text-xl font-bold lg:col-start-1 row-start-1">We think</div>
+				<ButtonMainPage text="ciao" />
+				<ButtonMainPage text="ciao" />
+				<div class="m-auto text-xl font-bold lg:col-start-2 lg:row-start-1">We Build & Deliver</div>
+				<ButtonMainPage text="ciao" />
+				<ButtonMainPage text="ciao" />
+			</div>
+
+			<form class="pb-20" id={'email_form-' + id}>
+				<div class="mb-6">
+					<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+					<input
+						type="email"
+						id={'email_form_text-' + id}
+						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						placeholder="name@runtimemachines.com"
+						required
+					/>
+				</div>
+				<button id={'email_form_submit-' + id}>Submit Form</button>
+			</form>
+		</div>
+	</div>
+</div>
