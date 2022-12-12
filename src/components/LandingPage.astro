@@ -22,15 +22,13 @@ const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets
 			css_attributes_parent.map((attribute) => {
 				return attribute + ' ';
 			})}
-		id={id}
-	>
+		id={id}>
 		<div
 			class={'relative dark:bg-[#FAF2E4] overflow-hidden ' +
 				css_attributes_child.map((attribute) => {
 					return attribute + ' ';
 				})}
-			id={id + '-child'}
-		>
+			id={id + '-child'}>
 			<MainSite websiteAssets={websiteAssets} id={id} />
 		</div>
 

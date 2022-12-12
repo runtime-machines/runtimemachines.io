@@ -3,6 +3,7 @@ import Root from '~/layouts/Root.astro';
 import LandingPage, { WebsiteAssets } from '~/components/LandingPage.astro';
 import Logo_Main_Mono from '~/assets/images/Logo_Main_Mono.svg';
 import Logo_Main_Light from '~/assets/images/Logo_Main_Light.svg';
+import SeriousRiddle from '~/components/SeriousRiddle.astro';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
@@ -21,7 +22,19 @@ const sides_id = ['left', 'right'];
 ---
 
 <Root title="Homepage">
-	<div>
+	<div id="riddle-selector-hidden">
+		<div class="grid grid-cols-[1fr_1fr]">
+			<button id="serious-button" class="w-100px h-12 rounded-2xl bg-orange">serious button</button>
+			<button id="playful-button" class="w-100px h-12 rounded-2xl bg-black text-white">playful button</button>
+		</div>
+	</div>
+	<div class="hidden" id="riddle-riddles-hidden">
+		<div class="block" id="riddle-serious-hidden">
+			<SeriousRiddle />
+		</div>
+		<div class="hidden" id="riddle-playful-hidden">Playful Riddle</div>
+	</div>
+	<div class="hidden" id="riddle-website-hidden">
 		<LandingPage
 			css_attributes_parent={['z-5']}
 			css_attributes_child={[]}
@@ -32,8 +45,7 @@ const sides_id = ['left', 'right'];
 			<!-- class -translate-x-1/2 has issues I don't know why -->
 			<div
 				style="transform: translateX(-50%);"
-				class="w-15 h-5 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-1/4 grid grid-cols-[1fr_1fr]"
-			>
+				class="w-15 h-5 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-1/4 grid grid-cols-[1fr_1fr]">
 				<svg
 					class="max-w-5 max-h-5 m-auto"
 					width="15"
@@ -75,6 +87,75 @@ const sides_id = ['left', 'right'];
 
 	<style></style>
 </Root>
+
+<!-- Riddle selector and website management -->
+<script>
+	enum WebsiteState {
+		Selection = 'selection',
+		Playful = 'playful',
+		Serious = 'serious',
+		Website = 'website',
+	}
+	function reEvaluateState() {
+		const localStorageValue = localStorage.getItem('websiteState');
+		const previousState = localStorageValue != null ? (localStorageValue as WebsiteState) : undefined;
+		let state: WebsiteState = WebsiteState.Selection;
+		if (previousState != null && Object.values(WebsiteState).includes(previousState)) {
+			state = previousState;
+		}
+		const selector = document.getElementById('riddle-selector-hidden');
+		const riddles = document.getElementById('riddle-riddles-hidden');
+		const playful = document.getElementById('riddle-playful-hidden');
+		const serious = document.getElementById('riddle-serious-hidden');
+		const website = document.getElementById('riddle-website-hidden');
+		if (selector == null || riddles == null || playful == null || serious == null || website == null) {
+			console.log("Can't access riddle block elements!");
+			return;
+		}
+		switch (state) {
+			case WebsiteState.Playful:
+				{
+					selector.style.display = 'none';
+					riddles.style.display = 'block';
+					playful.style.display = 'block';
+					serious.style.display = 'none';
+					website.style.display = 'none';
+				}
+				break;
+			case WebsiteState.Selection:
+				{
+					selector.style.display = 'grid';
+					riddles.style.display = 'none';
+					playful.style.display = 'none';
+					serious.style.display = 'none';
+					website.style.display = 'none';
+				}
+				break;
+			case WebsiteState.Serious:
+				{
+					selector.style.display = 'none';
+					riddles.style.display = 'block';
+					playful.style.display = 'none';
+					serious.style.display = 'block';
+					website.style.display = 'none';
+				}
+				break;
+			case WebsiteState.Website:
+				{
+					selector.style.display = 'none';
+					riddles.style.display = 'none';
+					playful.style.display = 'none';
+					serious.style.display = 'none';
+					website.style.display = 'block';
+				}
+				break;
+			default:
+				break;
+		}
+		localStorage.setItem('websiteState', state);
+	}
+	reEvaluateState();
+</script>
 
 <script>
 	// Query the element
