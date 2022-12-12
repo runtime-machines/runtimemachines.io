@@ -1,0 +1,136 @@
+---
+---
+
+<div class="absolute w-full h-full overflow-hidden text-white z-25 bg-black font-mono <lg:text-3xl" id="serious-riddle">
+	<div class="ml-8 mt-8">
+		<div id="title"></div>
+		<ul id="alternatives" class="mt-2 <lg:mt-8">
+			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+		</ul>
+		<div id="result" class="hidden float-left mt-4 mr-3 <lg:mt-8"></div>
+		<button
+			id="continue"
+			class="hidden cursor-pointer rounded-lg mt-2 <lg:mt-6 p-2 pb-3 border-white border-2 border-dashed hover:bg-white <lg:bg-white hover:text-black <lg:text-black"
+			>Continue</button
+		>
+	</div>
+</div>
+
+<style>
+	.alternative {
+		position: relative;
+	}
+	.alternative::before {
+		position: absolute;
+		content: '';
+		width: 100%;
+		height: 2px;
+		border-radius: 4px;
+		background-color: #fff;
+		bottom: 0;
+		left: 0;
+		transform-origin: right;
+		transform: scaleX(0);
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.alternative:hover::before {
+		transform-origin: left;
+		transform: scaleX(1);
+	}
+</style>
+
+<script>
+	interface Quiz {
+		question: string;
+		answers: string[];
+		correctAnswer: number;
+	}
+	const quiz: Quiz[] = [
+		{
+			question: 'The five elements of blockchain are distribution, encryption, immutability, tokenization and:',
+			answers: ['Transparency', 'Authorization', 'Efficiency', 'Decentralization'],
+			correctAnswer: 3,
+		},
+		{
+			question: 'True or false: Smart contracts are legally binding contracts.',
+			answers: ['True', 'False', "I don't know"],
+			correctAnswer: 1,
+		},
+	];
+	// Code to display a question
+	const riddle = document.getElementById('serious-riddle');
+	function showQuestion(q: Quiz, i: number) {
+		let titleDiv = document.getElementById('title');
+		let alternatives = document.getElementById('alternatives');
+		let resultDiv = document.getElementById('result');
+		let continueButton = document.getElementById('continue');
+
+		if (titleDiv == null) return;
+		// Fill the question
+		let arrayHTML = [titleDiv];
+		let arrayStr = [q.question];
+		let alts = document.querySelectorAll('.alternative');
+		q.answers.forEach(function (element) {
+			arrayStr.push(element);
+		});
+
+		// Fill the alternatives
+		alts.forEach(function (element, index) {
+			arrayHTML.push(element as HTMLElement);
+			element.addEventListener('click', function () {
+				if (resultDiv == null || continueButton == null || alternatives == null) return;
+
+				if (q.correctAnswer == index) {
+					resultDiv.textContent = 'Correct Answer! ';
+				} else {
+					resultDiv.textContent = 'Wrong Answer! ';
+				}
+				alternatives.style.display = 'none';
+				resultDiv.style.display = 'block';
+				continueButton.style.display = 'block';
+			});
+		});
+
+		typeWriter(arrayHTML, arrayStr);
+
+		if (continueButton == null) return;
+		continueButton.addEventListener('click', function () {
+			if (resultDiv == null || continueButton == null || alternatives == null) return;
+			alternatives.style.display = 'block';
+			resultDiv.style.display = 'none';
+			continueButton.style.display = 'none';
+
+			if (i + 2 > quiz.length && riddle != null) riddle.style.display = 'none';
+			else showQuestion(quiz[i + 1], i + 1);
+		});
+	}
+
+	function typeWriter(elements: HTMLElement[], texts: string[]) {
+		let f = 0;
+		let j = 0;
+		elements.forEach(function (element: HTMLElement) {
+			element.textContent = '';
+		});
+		function type() {
+			if (f < texts.length) {
+				const text = texts[f];
+				if (j < text.length) {
+					elements[f].innerHTML += text.charAt(j);
+					j++;
+					setTimeout(type, 30);
+				} else {
+					f++;
+					j = 0;
+					setTimeout(type, 30);
+				}
+			}
+		}
+
+		type();
+	}
+	showQuestion(quiz[0], 0);
+</script>
