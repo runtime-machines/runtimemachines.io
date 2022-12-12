@@ -17,9 +17,6 @@ export default defineConfig({
 				...theme('colors'),
 				orange: '#FF8855',
 			}),
-			width: {
-				fit: 'fit-content',
-			},
 		},
 	},
 	extract: {
