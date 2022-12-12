@@ -15,6 +15,8 @@ module.exports = {
       files: ['*.js'],
       rules: {
         'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': 'error',
       },
     },
     {
