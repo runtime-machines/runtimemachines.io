@@ -88,19 +88,19 @@ Runner.config = {
   BG_CLOUD_SPEED: 0.2,
   BOTTOM_PAD: 10,
   CLEAR_TIME: 3000, //time after first obstacle will spawn
-  PICKUP_TIME: 7000, //time after first pickup will spwan
+  PICKUP_TIME: 3000, //time after first pickup will spwan
   CLOUD_FREQUENCY: 0.5,
   GAMEOVER_CLEAR_TIME: 750,
   GAP_COEFFICIENT: 0.6,
   GRAVITY: 0.6,
   INITIAL_JUMP_VELOCITY: 12,
+  MAX_PICKUP: 10,
   MAX_CLOUDS: 6,
   MAX_OBSTACLE_LENGTH: 3,
   MAX_OBSTACLE_DUPLICATION: 2,
   MAX_SPEED: 13,
   MIN_JUMP_HEIGHT: 35,
-  // msc = 1.2 -> width = 600
-  MOBILE_SPEED_COEFFICIENT: 2.4,
+  MOBILE_SPEED_COEFFICIENT: 1.2, // msc = 1.2 -> width = 600
   RESOURCE_TEMPLATE_ID: 'audio-resources',
   SPEED: 6,
   SPEED_DROP_COEFFICIENT: 3
@@ -610,8 +610,9 @@ Runner.prototype = {
         this.playSound(this.soundFx.SCORE);
       }
 
-    //todo
-     if (this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer && Runner.isRiddle){
+     if (Runner.isRiddle
+          && ( this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer
+          || this.noPickupCollected >= Runner.config.MAX_PICKUP ) ){
         this.riddleOver();
       }
     } else
