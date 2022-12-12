@@ -33,7 +33,7 @@ function Runner(outerContainerId, opt_config) {
 
   this.distanceMeter = null;
   this.distanceRan = 0;
-  this.distanceTimer = 2000;
+  this.distanceTimer = 150;
   this.highestScore = 0;
 
   this.time = 0;
@@ -88,7 +88,7 @@ Runner.config = {
   BG_CLOUD_SPEED: 0.2,
   BOTTOM_PAD: 10,
   CLEAR_TIME: 3000, //time after first obstacle will spawn
-  PICKUP_TIME: 2500, //time after first pickup will spwan
+  PICKUP_TIME: 7000, //time after first pickup will spwan
   CLOUD_FREQUENCY: 0.5,
   GAMEOVER_CLEAR_TIME: 750,
   GAP_COEFFICIENT: 0.6,

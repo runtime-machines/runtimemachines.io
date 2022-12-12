@@ -173,15 +173,15 @@ Pickup.types = [
     type: 'COIN',
     width: 32,
     height: 32,
-    yPos: 50,
+    yPos: 25,
     multipleSpeed: 4,
     minGap: 120,
     minSpeed: 0,
     collisionBoxes: [
       new CollisionBox(0, 0, 30, 30)
     ],
-    numFrames: 1,
-    frameRate: 1000/6,
+    //numFrames: 1,
+    //frameRate: 1000/6,
     score: 375.4073879913347 * 5 // (the first number is 10 points)
   }
 ];
