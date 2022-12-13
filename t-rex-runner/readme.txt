@@ -6,9 +6,9 @@ go to t-rex-runner folder, exec this command
 
 then go into browser @ 'localhost:8000'
 
-remember to shut down server afterwards.
+shut down server afterwards.
 
 
 ------------- TODO
 
-remember to reflect changes to sprite-x1 also.
+TODO update sprite-x1
