@@ -39,7 +39,7 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
     for (let i=0; i < Pickup.types.length; i++){
         pickupWeights.push(Pickup.types[i].weight);
     }
-    this.pickupDistribution = createDistribution(pickupWeights, 10);
+    this.pickupDistribution = createDistribution(pickupWeights, 100);
   
     // Horizon
     this.horizonLine = null;

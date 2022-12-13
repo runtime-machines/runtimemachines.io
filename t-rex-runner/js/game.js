@@ -145,7 +145,8 @@ Runner.classes = {
       SKIP:{x:1054, y: 2}, //to check
       TEXT_SPRITE:{x:484,y:2},
       TREX:{x:0,y:15}, //custom file
-      COIN: {x:1111, y: 4} //to check
+      COIN: {x:1111, y: 4}, //to check
+      GEM: {x:1114, y: 26} //to check
   },
   HDPI: {
       CACTUS_LARGE:{x:652,y:2},
@@ -157,7 +158,8 @@ Runner.classes = {
       SKIP:{x:2108, y: 4}, //todo
       TEXT_SPRITE:{x:954,y:2},
       TREX:{x:0,y:30}, //custom file
-      COIN: {x:2224, y: 8}
+      COIN: {x:2224, y: 8},
+      GEM: {x:2222, y: 52}
   }
 };
 

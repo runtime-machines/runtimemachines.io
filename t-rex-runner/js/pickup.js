@@ -183,7 +183,7 @@ Pickup.types = [
     multipleSpeed: 4,
     minGap: 42,
     minSpeed: 0,
-    weight: 1,
+    weight: 0.95,
     collisionBoxes: [
       new CollisionBox(0, 0, 16, 16)
     ],
@@ -191,5 +191,24 @@ Pickup.types = [
     numFrames: 5,
     frameRate: 1000/6,
     score: 375.4073879913347 * 1 // (the first number is 10 points)
+  },
+  {
+    type: 'GEM',
+    width: 16,
+    height: 16,
+    yPos: 35,
+    yOff: 5,
+    ySpeed: 0.5,
+    multipleSpeed: 4,
+    minGap: 42,
+    minSpeed: 0,
+    weight: 0.05,
+    collisionBoxes: [
+      new CollisionBox(0, 0, 12, 16)
+    ],
+    inWave: true, //can it be in waves
+    numFrames: 4,
+    frameRate: 1000/6,
+    score: 375.4073879913347 * 10 // (the first number is 10 points)
   }
 ];
