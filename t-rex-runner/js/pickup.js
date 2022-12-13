@@ -36,7 +36,7 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
  * Coefficient for calculating the maximum gap.
  * @const
  */
-  Pickup.MAX_TIMER = 5000;
+  Pickup.MAX_TIMER = 2000;
 
   Pickup.prototype = {
     /**
@@ -108,6 +108,7 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
 
         var increment = (this.typeConfig.ySpeed * FPS / 1000) * deltaTime;
 
+        //TODO IMPLEMET USING SIN FUNCTION
         if(this.yPos <= this.typeConfig.yPos - this.typeConfig.yOff){
           //go down
           this.yDir = -1;
@@ -183,10 +184,10 @@ Pickup.types = [
     minGap: 42,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 0, 30, 30)
+      new CollisionBox(0, 0, 16, 16)
     ],
     numFrames: 5,
     frameRate: 1000/6,
-    score: 375.4073879913347 * 5 // (the first number is 10 points)
+    score: 375.4073879913347 * 1 // (the first number is 10 points)
   }
 ];

@@ -26,6 +26,9 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
     
     // Pickup
     this.pickups = []
+    this.pickupWaveCount = 0;
+    this.pickupWave = false;
+    this.pickupWaveProbability = 1;
     this.pickupHistory = [];
     this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
     this.pickupAcc = 0;
@@ -44,7 +47,9 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
 Horizon.config = {
     PICKUP_SPEED: 0.2,
     PICKUP_FREQUENCY: .5,
-    MAX_PICKUPS: 2,
+    MAX_PICKUPS: 10,
+    MAX_PICKUPS_IN_WAVE: 10,
+    MAX_PICKUPS_DURING_WAVE: 15,
     BG_CLOUD_SPEED: 0.2,
     BUMPY_THRESHOLD: .3,
     CLOUD_FREQUENCY: .5,
@@ -214,25 +219,40 @@ updatePickups: function(deltaTime, currentSpeed) {
             updatedPickups.shift();
         }
     }
+
     this.pickups = updatedPickups;
 
-    this.pickupAcc += deltaTime;
-
-    if(this.pickupAcc > this.pickupTimer){
-        if(this.pickups.length > 0){
-            if(this.pickups.length < Horizon.config.MAX_PICKUPS){
-                var lastpickup = this.pickups[this.pickups.length - 1];
-                if((lastpickup.xPos + lastpickup.width + lastpickup.typeConfig.minGap) < this.dimensions.WIDTH){
-                    this.pickupAcc = 0;
-                    this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
-                    this.addNewPickup(currentSpeed);
-                }
+    if(!this.pickupWave){
+        //todo make it respect time not frame.
+        this.pickupWave = ( Math.floor(Math.random()*1000) == 1)
+    }
+    
+    if(!this.pickupWave){
+        this.pickups = updatedPickups;
+        this.pickupAcc += deltaTime;
+        if(this.pickupAcc > this.pickupTimer){
+            var lastpickup = this.pickups[this.pickups.length - 1];
+            if( !lastpickup 
+                || (this.pickups.length < Horizon.config.MAX_PICKUPS 
+                        && (lastpickup.xPos + lastpickup.width + lastpickup.typeConfig.minGap) < this.dimensions.WIDTH) ){
+                this.pickupAcc = 0;
+                this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
+                this.addNewPickup(currentSpeed);
             }
-
-        } else {
+        }
+    } else {
+        if(this.pickupWaveCount >= this.config.MAX_PICKUPS_IN_WAVE || this.pickups > Horizon.config.MAX_PICKUPS_DURING_WAVE){
+            this.pickupWave = false;
+            this.pickupWaveCount = 0;
             this.pickupAcc = 0;
-            this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
-            this.addNewPickup(currentSpeed);
+            this.pickupTimer = Pickup.MAX_TIMER;
+        } else {
+            var lastpickup = this.pickups[this.pickups.length - 1];
+            if( !lastpickup 
+                || (lastpickup.xPos + lastpickup.width + lastpickup.typeConfig.minGap) < this.dimensions.WIDTH ){
+                this.pickupWaveCount += 1;
+                this.addNewPickup(currentSpeed);
+            }
         }
     }
 },

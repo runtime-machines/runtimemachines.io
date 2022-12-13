@@ -580,15 +580,17 @@ Runner.prototype = {
       var collision = hasObstacles &&
           checkForCollision(this.horizon.obstacles[0], this.tRex, this.canvasCtx);
 
-      //check for pickups
-      var pickedup = this.horizon.hasPickups() &&
-      checkForCollision(this.horizon.pickups[0], this.tRex, this.canvasCtx);
-      
-      if(pickedup){
-        pickedup[2].collect();
-        this.pickupScore += pickedup[3];
-        this.noPickupCollected += 1;
-        this.playSound(this.soundFx.COLLECT);
+      //check for pickups collision
+      if(this.horizon.hasPickups()){
+        for (let i = 0; i < this.horizon.pickups.length; i++) {
+          var pick = checkForCollision(this.horizon.pickups[i], this.tRex, this.canvasCtx);
+          if(pick){
+            pick[2].collect();
+            this.pickupScore += pick[3];
+            this.noPickupCollected += 1;
+            this.playSound(this.soundFx.COLLECT);
+          }
+        }
       }
 
       if (!collision) {
