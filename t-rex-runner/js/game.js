@@ -157,7 +157,7 @@ Runner.classes = {
       SKIP:{x:2108, y: 4}, //todo
       TEXT_SPRITE:{x:954,y:2},
       TREX:{x:0,y:30}, //custom file
-      COIN: {x:2222, y: 8}
+      COIN: {x:2224, y: 8}
   }
 };
 

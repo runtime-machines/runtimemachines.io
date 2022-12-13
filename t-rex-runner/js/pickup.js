@@ -106,7 +106,7 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
         //}
         this.xPos -= Math.floor((speed * FPS / 1000) * deltaTime);
 
-        var increment =  Math.floor((this.typeConfig.ySpeed * FPS / 1000) * deltaTime)
+        var increment = (this.typeConfig.ySpeed * FPS / 1000) * deltaTime;
 
         if(this.yPos <= this.typeConfig.yPos - this.typeConfig.yOff){
           //go down
@@ -174,19 +174,19 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
 Pickup.types = [
   {
     type: 'COIN',
-    width: 32,
-    height: 32,
-    yPos: 25,
-    yOff: 10,
-    ySpeed: 1,
+    width: 16,
+    height: 16,
+    yPos: 35,
+    yOff: 5,
+    ySpeed: 0.5,
     multipleSpeed: 4,
     minGap: 42,
     minSpeed: 0,
     collisionBoxes: [
       new CollisionBox(0, 0, 30, 30)
     ],
-    //numFrames: 1,
-    //frameRate: 1000/6,
+    numFrames: 5,
+    frameRate: 1000/6,
     score: 375.4073879913347 * 5 // (the first number is 10 points)
   }
 ];
