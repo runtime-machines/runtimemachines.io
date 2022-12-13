@@ -270,6 +270,11 @@ addNewPickup: function(currentSpeed) {
     if (currentSpeed < pickupType.minSpeed) {
         this.addNewPickup(currentSpeed);
     } else {
+
+         //spwans only pickups that can be in wave
+        if( this.pickupWave && !Pickup.type[pickupType].wave ) 
+            this.addNewPickup(currentSpeed);
+
         var pickupSpritePos = this.spritePos[pickupType.type];
 
         this.pickups.push(new Pickup(this.canvasCtx, pickupType,
