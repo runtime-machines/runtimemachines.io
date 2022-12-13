@@ -100,7 +100,7 @@
       new CollisionBox(1, 18, 55, 25)
     ],
     RUNNING: [
-      new CollisionBox(22, 5, 15, 55),
+      new CollisionBox(22, 5, 15, 50),
       new CollisionBox(24, 60, 10, 10)
     ]
   };
