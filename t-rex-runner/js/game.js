@@ -169,7 +169,8 @@ Runner.classes = {
 Runner.sounds = {
   BUTTON_PRESS: 'offline-sound-press',
   HIT: 'offline-sound-hit',
-  SCORE: 'offline-sound-reached'
+  SCORE: 'offline-sound-reached',
+  COLLECT: "offline-collect"
 };
 
 
@@ -587,6 +588,7 @@ Runner.prototype = {
         pickedup[2].collect();
         this.pickupScore += pickedup[3];
         this.noPickupCollected += 1;
+        this.playSound(this.soundFx.COLLECT);
       }
 
       if (!collision) {
