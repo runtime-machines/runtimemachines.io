@@ -77,6 +77,11 @@ function Runner(outerContainerId, opt_config) {
 window['Runner'] = Runner;
 
 /**
+ * Game Background.
+ */
+Runner.background = []
+
+/**
  * Default game configuration.
  * @enum {number}
  */
@@ -273,6 +278,10 @@ Runner.prototype = {
 
       //load main character sprites
       Runner.imageSpriteTrex = document.getElementById('hidpi-trex');
+      //load background
+      Runner.background[0] = document.getElementById('hidpi-back');
+      Runner.background[1] = document.getElementById('hidpi-mid');
+      Runner.background[2] = document.getElementById('hidpi-front');
 
     } else {
       Runner.imageSprite = document.getElementById('ldpi-sprites');

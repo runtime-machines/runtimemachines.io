@@ -14,7 +14,7 @@ html,body{
   display: inline-block;
 }
 
-.icon-offline {
+.icon-offline { /* TODO */
   content: -webkit-image-set(
       url(default_100_percent/offline/100-error-offline.png) 1x,
       url(default_200_percent/offline/200-error-offline.png) 2x);
