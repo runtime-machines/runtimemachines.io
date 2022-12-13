@@ -183,10 +183,11 @@ Pickup.types = [
     multipleSpeed: 4,
     minGap: 42,
     minSpeed: 0,
+    weight: 1,
     collisionBoxes: [
       new CollisionBox(0, 0, 16, 16)
     ],
-    waves: true, //can it be in waves
+    inWave: true, //can it be in waves
     numFrames: 5,
     frameRate: 1000/6,
     score: 375.4073879913347 * 1 // (the first number is 10 points)

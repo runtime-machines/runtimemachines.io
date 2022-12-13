@@ -28,11 +28,18 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
     this.pickups = []
     this.pickupWaveCount = 0;
     this.pickupWave = false;
-    this.pickupWaveProbability = 1;
+    this.pickupWaveProbability = 10;
     this.pickupHistory = [];
     this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
     this.pickupAcc = 0;
     this.pickupSpeed = this.config.PICKUP_SPEED;
+    
+    //create distribution for pickup spwan
+    var pickupWeights = []
+    for (let i=0; i < Pickup.types.length; i++){
+        pickupWeights.push(Pickup.types[i].weight);
+    }
+    this.pickupDistribution = createDistribution(pickupWeights, 10);
   
     // Horizon
     this.horizonLine = null;
@@ -262,19 +269,14 @@ updatePickups: function(deltaTime, currentSpeed) {
  * @param {number} currentSpeed
  */
 addNewPickup: function(currentSpeed) {
-    var pickupTypeIndex = getRandomNum(0, Pickup.types.length - 1);
+    var pickupTypeIndex = randomIndex(this.pickupDistribution);
     var pickupType = Pickup.types[pickupTypeIndex];
 
-    // Check for multiples of the same type of pickup.
+    // Check if pickup can be in a wave
     // Also check pickup is available at current speed.
-    if (currentSpeed < pickupType.minSpeed) {
+    if (currentSpeed < pickupType.minSpeed || (this.pickupWave && !Pickup.types[pickupTypeIndex].inWave)) {
         this.addNewPickup(currentSpeed);
     } else {
-
-         //spwans only pickups that can be in wave
-        if( this.pickupWave && !Pickup.type[pickupType].wave ) 
-            this.addNewPickup(currentSpeed);
-
         var pickupSpritePos = this.spritePos[pickupType.type];
 
         this.pickups.push(new Pickup(this.canvasCtx, pickupType,

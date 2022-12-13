@@ -93,3 +93,42 @@ function getEventPos(canvas, e){
 function isInside(pos, rect){
   return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.height && pos.y > rect.y
 }
+
+/**
+ * 
+ * @param {Array} weights, must sum to 1 
+ * @param {Number} size, size of the distribution 
+ * @returns {Array} the distribution
+ */
+const createDistribution = (weights, size) => {
+  const distribution = [];
+  const sum = weights.reduce((a, b) => a + b);
+  const quant = size / sum;
+  for (let i = 0; i < weights.length; ++i) {
+      const limit = quant * weights[i];
+      for (let j = 0; j < limit; ++j) {
+          distribution.push(i);
+      }
+  }
+  return distribution;
+};
+
+/**
+ * 
+ * @param {Array} distribution 
+ * @returns random index
+ */
+const randomIndex = (distribution) => {
+  const index = Math.floor(distribution.length * Math.random());  // random index
+  return distribution[index];  
+};
+/**
+ * 
+ * @param {Array} array 
+ * @param {Array} distribution 
+ * @returns random item
+ */
+const randomItem = (array, distribution) => {
+  const index = randomIndex(distribution);
+  return array[index];
+};
