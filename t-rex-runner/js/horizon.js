@@ -152,7 +152,13 @@ updateObstacles: function(deltaTime, currentSpeed) {
  * @param {number} currentSpeed
  */
  addNewObstacle: function(currentSpeed) {
-    var obstacleTypeIndex = getRandomNum(0, Obstacle.types.length - 1);
+    var obstacleTypeIndex = 0;
+    if(!Runner.config.DUCKING){
+        //exclude last one that is pterdactyl
+        obstacleTypeIndex = getRandomNum(0, Obstacle.types.length - 2);
+    } else {
+        obstacleTypeIndex = getRandomNum(0, Obstacle.types.length - 1);
+    }
     var obstacleType = Obstacle.types[obstacleTypeIndex];
 
     // Check for multiples of the same type of obstacle.

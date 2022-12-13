@@ -21,6 +21,7 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
   this.remove = false;
   this.xPos = 0;
   this.yPos = 0;
+  this.yDir = 1;
   this.width = 0;
   this.collisionBoxes = [];
 
@@ -104,6 +105,18 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
         //  speed += this.speedOffset;
         //}
         this.xPos -= Math.floor((speed * FPS / 1000) * deltaTime);
+
+        var increment =  Math.floor((this.typeConfig.ySpeed * FPS / 1000) * deltaTime)
+
+        if(this.yPos <= this.typeConfig.yPos - this.typeConfig.yOff){
+          //go down
+          this.yDir = -1;
+        } else if(this.yPos >= this.typeConfig.yPos + this.typeConfig.yOff){
+          //go up
+          this.yDir = 1;
+        }
+        
+        this.yPos -= increment * this.yDir;
   
         // Update animation frame
         if (this.typeConfig.numFrames) {
@@ -164,6 +177,8 @@ Pickup.types = [
     width: 32,
     height: 32,
     yPos: 25,
+    yOff: 10,
+    ySpeed: 1,
     multipleSpeed: 4,
     minGap: 42,
     minSpeed: 0,
