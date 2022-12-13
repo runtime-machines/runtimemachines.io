@@ -172,7 +172,8 @@ Runner.sounds = {
   BUTTON_PRESS: 'offline-sound-press',
   HIT: 'offline-sound-hit',
   SCORE: 'offline-sound-reached',
-  COLLECT: "offline-collect"
+  COIN: "offline-coin",
+  GEM: "offline-gem"
 };
 
 
@@ -590,7 +591,7 @@ Runner.prototype = {
             pick[2].collect();
             this.pickupScore += pick[3];
             this.noPickupCollected += 1;
-            this.playSound(this.soundFx.COLLECT);
+            this.playSound(this.soundFx[pick[2].typeConfig.type]);
           }
         }
       }
