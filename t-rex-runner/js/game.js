@@ -33,7 +33,6 @@ function Runner(outerContainerId, opt_config) {
 
   this.distanceMeter = null;
   this.distanceRan = 0;
-  this.distanceTimer = 150;
   this.highestScore = 0;
 
   this.time = 0;
@@ -77,13 +76,12 @@ function Runner(outerContainerId, opt_config) {
 }
 window['Runner'] = Runner;
 
-Runner.isRiddle = true;
-
 /**
  * Default game configuration.
  * @enum {number}
  */
 Runner.config = {
+  DUCKING: false,
   ACCELERATION: 0.001,
   BG_CLOUD_SPEED: 0.2,
   BOTTOM_PAD: 10,
@@ -94,7 +92,6 @@ Runner.config = {
   GAP_COEFFICIENT: 0.6,
   GRAVITY: 0.6,
   INITIAL_JUMP_VELOCITY: 12,
-  MAX_PICKUP: 10,
   MAX_CLOUDS: 6,
   MAX_OBSTACLE_LENGTH: 3,
   MAX_OBSTACLE_DUPLICATION: 2,
@@ -609,9 +606,9 @@ Runner.prototype = {
         this.playSound(this.soundFx.SCORE);
       }
 
-     if (Runner.isRiddle
-          && ( this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)) >= this.distanceTimer
-          || this.noPickupCollected >= Runner.config.MAX_PICKUP ) ){
+     if (Riddle.ON && Riddle.satisfied(
+                          this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)),
+                          this.noPickupCollected) ){
         this.riddleOver();
       }
     } else
@@ -742,7 +739,7 @@ Runner.prototype = {
 
       if (this.crashed && e.type == Runner.events.TOUCHSTART &&
           e.currentTarget == this.containerEl) {
-            if(Runner.isRiddle){
+            if(Riddle.ON){
               // let button handler to handle it
             } else {
               this.restart();
@@ -751,18 +748,18 @@ Runner.prototype = {
     // }
 
     //KEYCODE DUCK
-    /*
-    if (this.activated && !this.crashed && Runner.keycodes.DUCK[e.keyCode]) {
-      e.preventDefault();
-      if (this.tRex.jumping) {
-        // Speed drop, activated only when jump key is not pressed.
-        this.tRex.setSpeedDrop();
-      } else if (!this.tRex.jumping && !this.tRex.ducking) {
-        // Duck.
-        this.tRex.setDuck(true);
+    if(Runner.config.DUCKING){
+      if (this.activated && !this.crashed && Runner.keycodes.DUCK[e.keyCode]) {
+        e.preventDefault();
+        if (this.tRex.jumping) {
+          // Speed drop, activated only when jump key is not pressed.
+          this.tRex.setSpeedDrop();
+        } else if (!this.tRex.jumping && !this.tRex.ducking) {
+          // Duck.
+          this.tRex.setDuck(true);
+        }
       }
     }
-    */
   },
 
 
@@ -778,7 +775,7 @@ Runner.prototype = {
 
     if (this.isRunning() && isjumpKey) {
       this.tRex.endJump();
-    } else if (Runner.keycodes.DUCK[keyCode]) {
+    } else if (Runner.config.DUCKING && Runner.keycodes.DUCK[keyCode]) {
       this.tRex.speedDrop = false;
       this.tRex.setDuck(false);
     } else if (this.crashed) { //todo
@@ -788,7 +785,7 @@ Runner.prototype = {
       if (Runner.keycodes.RESTART[keyCode] || this.isLeftClickOnCanvas(e) ||
           (deltaTime >= this.config.GAMEOVER_CLEAR_TIME &&
           Runner.keycodes.JUMP[keyCode])) {
-          if(Runner.isRiddle){
+          if(Riddle.ON){
             // let button handler to handle it
           } else {
             this.restart();
@@ -858,7 +855,7 @@ Runner.prototype = {
       this.gameOverPanel.draw();
     }
 
-    if(Runner.isRiddle){
+    if(Riddle.ON){
       this.createButtonHandler();
     }
 
