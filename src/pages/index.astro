@@ -3,17 +3,25 @@ import Root from '~/layouts/Root.astro';
 import LandingPage, { WebsiteAssets } from '~/components/LandingPage.astro';
 import Logo_Main_Mono from '~/assets/images/Logo_Main_Mono.svg';
 import Logo_Main_Light from '~/assets/images/Logo_Main_Light.svg';
+import RightSide_Main_Mono from '~/assets/images/RightSide_Main_Mono.svg';
+import LeftSide_Main_Mono from '~/assets/images/LeftSide_Main_Mono.svg';
+import RightSide_Main_Col from '~/assets/images/RightSide_Main_Col.svg';
+import LeftSide_Main_Col from '~/assets/images/LeftSide_Main_Col.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
 		homepage: {
 			main_logo: Logo_Main_Mono,
+			left_section: LeftSide_Main_Mono,
+			right_section: RightSide_Main_Mono,
 		},
 	},
 	{
 		homepage: {
 			main_logo: Logo_Main_Light,
+			left_section: LeftSide_Main_Col,
+			right_section: RightSide_Main_Col,
 		},
 	},
 ];
@@ -21,6 +29,9 @@ var websiteAssets: WebsiteAssets[] = [
 const sides_id = ['left', 'right'];
 ---
 
+<div class="transition delay-150">
+	<SeriousRiddle />
+</div>
 <Root title="Homepage">
 	<div id="riddle-selector-hidden">
 		<div class="grid grid-cols-[1fr_1fr]">
@@ -41,11 +52,13 @@ const sides_id = ['left', 'right'];
 			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
 		/>
-		<div id="middle" class="left-[50%] h-full min-h-full cursor-ew-resize absolute z-20">
+		<div
+			id="middle"
+			class="animate-wigglemiddle <lg:hidden left-[50%] h-full min-h-full cursor-ew-resize absolute z-20">
 			<!-- class -translate-x-1/2 has issues I don't know why -->
 			<div
 				style="transform: translateX(-50%);"
-				class="w-15 h-5 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-1/4 grid grid-cols-[1fr_1fr]">
+				class="w-15 h-5 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr]">
 				<svg
 					class="max-w-5 max-h-5 m-auto"
 					width="15"
@@ -75,12 +88,14 @@ const sides_id = ['left', 'right'];
 			</div>
 		</div>
 		<LandingPage
-			css_attributes_parent={['dark z-15 ml-[50%] !<lg:ml-0 !lg:block border-l-1 border-[#FFAD8A] border-solid']}
-			css_attributes_child={['-left-1/2 !<lg:left-0']}
+			css_attributes_parent={[
+				'animate-wiggle dark z-15 ml-[50%] !<lg:ml-0 !lg:block border-l-1 border-[#FFAD8A] border-solid',
+			]}
+			css_attributes_child={['animate-wigglechild -left-1/2 !<lg:left-0']}
 			id={sides_id[1]}
 			websiteAssets={websiteAssets[1]}
 		/>
-		<div class="absolute right-[10px] bottom-[10px] lg:hidden button-div z-25">
+		<div class="hidden absolute right-[10px] bottom-[10px] lg:hidden button-div z-25">
 			<button id="switch-button" class="w-100px h-12 rounded-2xl bg-orange">switch</button>
 		</div>
 	</div>
@@ -99,7 +114,7 @@ const sides_id = ['left', 'right'];
 	function reEvaluateState() {
 		const localStorageValue = localStorage.getItem('websiteState');
 		const previousState = localStorageValue != null ? (localStorageValue as WebsiteState) : undefined;
-		let state: WebsiteState = WebsiteState.Selection;
+		let state: WebsiteState = WebsiteState.Website;
 		if (previousState != null && Object.values(WebsiteState).includes(previousState)) {
 			state = previousState;
 		}

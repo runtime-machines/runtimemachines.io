@@ -4,6 +4,8 @@ import MainSite from './MainSite.astro';
 export interface WebsiteAssets {
 	homepage: {
 		main_logo: string;
+		left_section: string;
+		right_section: string;
 	};
 }
 
@@ -18,14 +20,14 @@ const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets
 
 <div>
 	<div
-		class={'absolute w-full overflow-hidden ' +
-			css_attributes_parent.map((attribute) => {
+		class={'absolute bg-[#444444] w-full overflow-hidden ' +
+			css_attributes_parent.map((attribute: string) => {
 				return attribute + ' ';
 			})}
 		id={id}>
 		<div
-			class={'relative dark:bg-[#FAF2E4] overflow-hidden ' +
-				css_attributes_child.map((attribute) => {
+			class={'relative dark:bg-[#343434] overflow-hidden ' +
+				css_attributes_child.map((attribute: string) => {
 					return attribute + ' ';
 				})}
 			id={id + '-child'}>
