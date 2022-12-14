@@ -617,7 +617,7 @@ Runner.prototype = {
       }
 
       var playAcheivementSound = this.distanceMeter.update(deltaTime,
-          Math.ceil(this.getScore()));
+          Math.ceil(this.getScore()), 6);
 
       if (playAcheivementSound) {
         this.playSound(this.soundFx.SCORE);

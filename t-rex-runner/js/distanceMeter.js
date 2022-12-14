@@ -37,7 +37,11 @@
   DistanceMeter.dimensions = {
     WIDTH: 10,
     HEIGHT: 13,
-    DEST_WIDTH: 11
+    DEST_WIDTH: 11,
+    TEXT_WIDTH: 334,
+    TEXT_HEIGHT: 20,
+    DEST_TEXT_WIDTH: 151,
+    DEST_TEXT_HEIGHT: 9,
   };
   
   
@@ -47,6 +51,8 @@
    * @type {Array<number>}
    */
   DistanceMeter.yPos = [0, 13, 27, 40, 53, 67, 80, 93, 107, 120];
+
+  DistanceMeter.ObstacleTextPos = [ 480, 40 ];
   
   
   /**
@@ -98,15 +104,40 @@
       this.x = canvasWidth - (DistanceMeter.dimensions.DEST_WIDTH *
           (this.maxScoreUnits + 1));
     },
+
+    drawObstaclesText: function(){
+      // Obstacle text.
+      var textSourceX = DistanceMeter.ObstacleTextPos[0];
+      var textSourceY = DistanceMeter.ObstacleTextPos[1];
+
+      var textSourceWidth = DistanceMeter.dimensions.TEXT_WIDTH;
+      var textSourceHeight = DistanceMeter.dimensions.TEXT_HEIGHT;
+
+      var textTargetWidth = DistanceMeter.dimensions.DEST_TEXT_WIDTH;
+      var textTargetHeight = DistanceMeter.dimensions.DEST_TEXT_HEIGHT;
+      var textTargetX = 10;
+      var textTargetY = 11.5;
+
+      if (IS_HIDPI) {
+        textSourceY *= 2;
+        textSourceX *= 2;
+      }
+
+      this.canvasCtx.drawImage(Runner.imageSprite,
+        textSourceX, textSourceY, textSourceWidth, textSourceHeight,
+        textTargetX, textTargetY, textTargetWidth, textTargetHeight);
+    },
   
     /**
      * Draw a digit to canvas.
      * @param {number} digitPos Position of the digit.
      * @param {number} value Digit value 0-9.
      * @param {boolean} opt_highScore Whether drawing the high score.
+     * @param {boolean} opt_obstacleLeft Whether drawing how many obstacles are left.
      */
-    draw: function(digitPos, value, opt_highScore) {
-      var sourceWidth = DistanceMeter.dimensions.WIDTH;
+    draw: function(digitPos, value, opt_highScore, opt_obstacleLeft) {
+      var offset = -1
+      var sourceWidth = DistanceMeter.dimensions.WIDTH + offset;
       var sourceHeight = DistanceMeter.dimensions.HEIGHT;
       var sourceX = DistanceMeter.dimensions.WIDTH * value;
       var sourceY = 0;
@@ -133,6 +164,11 @@
         var highScoreX = this.x - (this.maxScoreUnits * 2) *
             DistanceMeter.dimensions.WIDTH;
         this.canvasCtx.translate(highScoreX, this.y);
+      } else if(opt_obstacleLeft){
+        //draw obstacle text and how many are left
+        this.drawObstaclesText();
+        var obstaclesLeftX = 10 + 11 + DistanceMeter.dimensions.DEST_TEXT_WIDTH;
+        this.canvasCtx.translate(obstaclesLeftX, this.y);
       } else {
         this.canvasCtx.translate(this.x, this.y);
       }
@@ -159,9 +195,10 @@
      * Update the distance meter.
      * @param {number} distance
      * @param {number} deltaTime
+     * @param {number} obstaclesLeft, optional
      * @return {boolean} Whether the acheivement sound fx should be played.
      */
-    update: function(deltaTime, distance) {
+    update: function(deltaTime, distance, obstalcesLeft) {
       var paint = true;
       var playSound = false;
   
@@ -220,8 +257,23 @@
       }
   
       this.drawHighScore();
+      
+      if(obstalcesLeft){
+        this.drawObstaclesLeft(obstalcesLeft);
+      }
   
       return playSound;
+    },
+
+    /**
+     * 
+     * @param {number} n, how many obstacle are left [0-9]
+     */
+    drawObstaclesLeft: function(n)
+    {
+      this.canvasCtx.save();
+      this.draw(0, parseInt(n, 10), false, true);
+      this.canvasCtx.restore();
     },
   
     /**

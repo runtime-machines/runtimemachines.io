@@ -15,6 +15,7 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
     this.spritePos = spritePos;
 
     // Obstacle
+    this.no_obstacles = 0;
     this.obstacles = [];
     this.obstacleHistory = [];
     this.gapCoefficient = gapCoefficient;
