@@ -13,6 +13,7 @@
     this.textImgPos = textImgPos;
     this.restartImgPos = restartImgPos;
     this.skipImgPos = skipImgPos;
+    this.deaths = 0;
     this.draw();
   };
   
@@ -73,12 +74,13 @@
      * Draw the panel.
      */
     draw: function() {
+      this.deaths += 1;
       var dimensions = GameOverPanel.dimensions;
   
       var centerX = this.canvasDimensions.WIDTH / 2;
 
       var button_off = 0;
-      if(Riddle.ON)
+      if(Riddle.ON && this.deaths > Riddle.MIN_DEATHS)
       {
         button_off = 40;
       }
@@ -133,7 +135,7 @@
       GameOverPanel.restartButton = {x: restartTargetX, y: restartTargetY,  width: dimensions.RESTART_WIDTH, height: dimensions.RESTART_HEIGHT};
 
       // skip button.
-      if(Riddle.ON){
+      if(Riddle.ON  && this.deaths > Riddle.MIN_DEATHS){
         this.canvasCtx.drawImage(Runner.imageSprite,
           this.skipImgPos.x, this.skipImgPos.y,
           restartSourceWidth, skipSourceHeight,
