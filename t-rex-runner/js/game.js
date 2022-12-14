@@ -882,23 +882,23 @@ Runner.prototype = {
    * Function that is called after playOutro animation is finished.
    */
   endGame: function(){
-      // TODO
+    //TODO
+      this.clearCanvas();
   },
 
   playOutro: function(){
-    // TODO
-    // CSS animation definition.
-    var keyframes = '@-webkit-keyframes intro { ' +
-      'from { width:' + this.dimensions.WIDTH + 'px }' +
-      'to { width: ' + 0 + 'px }' +
-      '}';  
+    // TODO 
+    var t = '@-webkit-keyframes fadeOut { '+ 
+        '0% { opacity: 1; } ' +
+        '100% {opacity: 0}'
+        '}';
 
-    document.styleSheets[0].insertRule(keyframes, 0);
+    document.styleSheets[0].insertRule(t, 0);
 
     this.containerEl.addEventListener(Runner.events.ANIM_END,
       this.endGame.bind(this));
 
-    this.containerEl.style.webkitAnimation = 'intro .4s ease-out 1 both';
+    this.containerEl.style.webkitAnimation = 'fadeOut ease 3s';
     this.containerEl.style.width = this.dimensions.WIDTH + 'px';
   },
 
@@ -921,6 +921,7 @@ Runner.prototype = {
         this.raq(this.playConfetti);
       } else {
         this.confetti = false;
+        this.crashed = true;
         this.stop();
         this.playOutro();
       }
@@ -935,7 +936,7 @@ Runner.prototype = {
     vibrate(200);
 
     this.stop();
-    this.crashed = true;
+    //this.crashed = true;
     this.freeze = true;
     this.gameOverPanel = false;
     this.distanceMeter.acheivement = false;
@@ -1009,6 +1010,7 @@ Runner.prototype = {
    */
   onVisibilityChange: function(e) {
     if (document.hidden || document.webkitHidden || e.type == 'blur') {
+      console.log("stop");
       this.stop();
     } else if (!this.crashed) {
       this.tRex.reset();
