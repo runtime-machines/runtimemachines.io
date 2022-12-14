@@ -7,7 +7,13 @@ Riddle.USE_PICKUPS = false;
 Riddle.MIN_DEATHS = 2;
 Riddle.MAX_OBSTACLES = 8;
 Riddle.SHOW_OBSTACLES_LEFT = true;
+Riddle.RESET_OBSTACLES_LEFT_UPON_DEATH = false;
 
-Riddle.satisfied = function(actualDistance, noPickupCollected){
-    return actualDistance >= Riddle.MAX_DISTANCE || noPickupCollected >= Riddle.PICKUP_TO_COLLECT;
+/**
+ * 
+ * @param {Runner} runner 
+ * @returns {boolean} 
+ */
+Riddle.satisfied = function(runner){
+    return runner.horizon.no_obstacles == Riddle.MAX_OBSTACLES;
 }

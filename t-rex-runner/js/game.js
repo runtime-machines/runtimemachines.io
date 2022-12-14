@@ -616,16 +616,18 @@ Runner.prototype = {
         this.gameOver();
       }
 
+      if( Riddle.ON && Riddle.SHOW_OBSTACLES_LEFT ){
+        var obstaclesLeft = Riddle.MAX_OBSTACLES - this.horizon.no_obstacles;
+      }
       var playAcheivementSound = this.distanceMeter.update(deltaTime,
-          Math.ceil(this.getScore()), 6);
+          Math.ceil(this.getScore()), obstaclesLeft);
 
       if (playAcheivementSound) {
         this.playSound(this.soundFx.SCORE);
       }
 
-     if (Riddle.ON && Riddle.satisfied(
-                          this.distanceMeter.getActualDistance(Math.ceil(this.distanceRan)),
-                          this.noPickupCollected) ){
+      // TODO
+     if (Riddle.ON && Riddle.satisfied(this) ){
         this.riddleOver();
       }
     } else

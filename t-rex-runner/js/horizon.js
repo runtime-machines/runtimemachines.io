@@ -143,6 +143,7 @@ updateObstacles: function(deltaTime, currentSpeed) {
     // Clean up existing obstacles.
     if (obstacle.remove) {
         updatedObstacles.shift();
+        this.no_obstacles += 1;
     }
     }
     this.obstacles = updatedObstacles;
@@ -310,6 +311,8 @@ reset: function() {
     this.pickupWave = false;
     this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
     this.pickupAcc = 0;
+
+    if(Riddle.RESET_OBSTACLES_LEFT_UPON_DEATH) this.no_obstacles = 0;
 
     this.horizonLine.reset();
 },
