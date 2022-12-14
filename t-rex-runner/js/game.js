@@ -523,6 +523,8 @@ Runner.prototype = {
     play outro animation
     */
 
+    console.log("playOutro1");
+
     this.ended = true;
   },
 
@@ -567,7 +569,6 @@ Runner.prototype = {
     this.clearCanvas();
 
     if (this.activated) {
-
       if (this.tRex.jumping) {
         this.tRex.updateJump(deltaTime);
       }
@@ -639,7 +640,7 @@ Runner.prototype = {
 
     if (!this.crashed) {
       this.tRex.update(deltaTime);
-      this.raq();
+      this.raq(this.update);
     }
   },
 
@@ -832,10 +833,10 @@ Runner.prototype = {
   /**
    * RequestAnimationFrame wrapper.
    */
-  raq: function() {
+  raq: function(func) {
     if (!this.drawPending) {
       this.drawPending = true;
-      this.raqId = requestAnimationFrame(this.update.bind(this));
+      this.raqId = requestAnimationFrame(func.bind(this));
     }
   },
 
