@@ -98,6 +98,9 @@
       this.drawBackGroundLayer(0, this.xPosBack, this.sourceXPosBack);
       //middle
       this.drawBackGroundLayer(1, this.xPosMid, this.sourceXPosMid);
+    },
+
+    drawBGFrontLayer: function(){
       //front
       this.drawBackGroundLayer(2, this.xPos, this.sourceXPos);
     },
@@ -107,7 +110,7 @@
      */
     draw: function() {
 
-      this.drawBackground();
+      this.drawBGFrontLayer();
 
       this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[0],
           this.spritePos.y,

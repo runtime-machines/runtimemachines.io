@@ -82,8 +82,10 @@ init: function() {
  */
 update: function(deltaTime, currentSpeed, updateObstacles, updatePickups) {
     this.runningTime += deltaTime;
-    this.horizonLine.update(deltaTime, currentSpeed);
+
+    this.horizonLine.drawBackground()
     this.updateClouds(deltaTime, currentSpeed);
+    this.horizonLine.update(deltaTime, currentSpeed);
 
     if (updateObstacles) {
         this.updateObstacles(deltaTime, currentSpeed);
@@ -302,6 +304,12 @@ hasPickups: function(){
 reset: function() {
     this.obstacles = [];
     this.pickups = [];
+    this.pickups = []
+    this.pickupWaveCount = 0;
+    this.pickupWave = false;
+    this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
+    this.pickupAcc = 0;
+
     this.horizonLine.reset();
 },
 

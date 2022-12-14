@@ -590,12 +590,12 @@ Runner.prototype = {
       // Check for collisions.
       ///remove context to remove collision debug show blablabla its too late to programming
       var collision = hasObstacles &&
-          checkForCollision(this.horizon.obstacles[0], this.tRex, this.canvasCtx);
+          checkForCollision(this.horizon.obstacles[0], this.tRex);
 
       //check for pickups collision
       if(this.horizon.hasPickups()){
         for (let i = 0; i < this.horizon.pickups.length; i++) {
-          var pick = checkForCollision(this.horizon.pickups[i], this.tRex, this.canvasCtx);
+          var pick = checkForCollision(this.horizon.pickups[i], this.tRex);
           if(pick){
             pick[2].collect();
             this.pickupScore += pick[3];
