@@ -345,9 +345,10 @@ const sides_id = ['left', 'right'];
 </script>
 
 <!-- COMPONENTS JAVASCRIPT -->
-<!-- <script define:vars={{ sides_id }}> EMAIL NEWSLETTER COMPONENT
+<!-- EMAIL COMPONENT -->
+<script define:vars={{ sides_id }}>
 	const emailSubmit = function (event) {
-		const id = event.currentTarget.id;
+		const id = event.currentTarget.face_id;
 		console.log('sending email address');
 		var myHeaders = new Headers();
 		myHeaders.append('Content-Type', 'application/json');
@@ -372,12 +373,30 @@ const sides_id = ['left', 'right'];
 	function handleForm(event) {
 		event.preventDefault();
 	}
-	// for (let e = 0; e < sides_id.length; e++) {
-	// 	const id = sides_id[e];
-	// 	const submitButton = document.getElementById('email_form_submit-' + id);
-	// 	submitButton.id = id;
-	// 	const form = document.getElementById('email_form-' + id);
-	// 	submitButton?.addEventListener('click', emailSubmit);
-	// 	form?.addEventListener('submit', handleForm);
-	// }
-</script> -->
+	function startupActions() {
+		for (let e = 0; e < sides_id.length; e++) {
+			const id = sides_id[e];
+			console.log(sides_id, id);
+			const submitButton = document.getElementById('email_form_submit-' + id);
+			submitButton.face_id = id;
+			const form = document.getElementById('email_form-' + id);
+			submitButton?.addEventListener('click', emailSubmit);
+			form?.addEventListener('submit', handleForm);
+			const text_field = document.getElementById('email_form_text-' + id);
+			text_field?.addEventListener('keyup', emailBoxSyncronization);
+			text_field.face_id = id;
+		}
+	}
+
+	startupActions();
+
+	function emailBoxSyncronization(event) {
+		for (let e = 0; e < sides_id.length; e++) {
+			const id = event.currentTarget.face_id;
+			if (sides_id[e] != id) {
+				const text_field = document.getElementById('email_form_text-' + sides_id[e]);
+				text_field.value = event.currentTarget.value;
+			}
+		}
+	}
+</script>

@@ -5,38 +5,36 @@ export interface Props {
 	websiteAssets: WebsiteAssets;
 	id: string;
 }
-// eslint-disable-next-line no-unused-vars
 const { websiteAssets, id } = Astro.props;
 ---
 
 <div class="max-w-8xl m-auto">
 	<div class="grid grid-rows-[auto_auto] lg:grid-rows-[auto_auto] gap-y-10">
 		<div class="grid">
-			<div class="m-auto w-sm pt-12 pb-5">
+			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
 				<img src={websiteAssets.homepage.main_logo} />
 			</div>
 		</div>
 		<div class="grid max-w-4xl m-auto">
 			<div class="ml-auto mr-auto mb-auto grid lg:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr 1fr] gap-10 pb-20">
-				<div class="h-lg w-sm rounded">
+				<div class="h-lg sm:w-sm w-xs w-sm rounded">
 					<img src={websiteAssets.homepage.right_section} class="rounded w-full h-full" />
 				</div>
-				<div class="h-lg w-sm rounded">
+				<div class="h-lg sm:w-sm w-xs w-sm rounded">
 					<img src={websiteAssets.homepage.left_section} class="rounded w-full h-full" />
 				</div>
 			</div>
-			<section class="bg-[#343434] <lg:dark:bg-[#343434] dark:bg-white rounded mb-10">
+			<section class="bg-[#343434] <lg:dark:bg-[#343434] dark:bg-[#444444] rounded mb-10">
 				<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 					<div class="mx-auto max-w-screen-md sm:text-center">
-						<h2
-							class="mb-4 text-3xl tracking-tight font-extrabold dark:text-gray-900 sm:text-4xl text-white <lg:dark:text-white">
+						<h2 class="mb-4 text-3xl tracking-tight font-extrabold sm:text-4xl text-white <lg:dark:text-white">
 							Sign up for our newsletter
 						</h2>
 						<p class="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
 							Stay up to date with the roadmap progress, announcements and exclusive discounts feel free to sign up with
 							your email.
 						</p>
-						<form action="#">
+						<form id={'email_form-' + id}>
 							<div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
 								<div class="relative w-full">
 									<label for="email" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -56,14 +54,15 @@ const { websiteAssets, id } = Astro.props;
 										class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
 										placeholder="Enter your email"
 										type="email"
-										id="email"
+										id={'email_form_text-' + id}
 										required=""
 									/>
 								</div>
 								<div>
 									<button
 										type="submit"
-										class="<lg:dark:text-white py-3 px-5 w-full text-sm font-medium text-center dark:text-black text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4 focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
+										id={'email_form_submit-' + id}
+										class="<lg:dark:text-white py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4 focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
 										>Subscribe</button
 									>
 								</div>

@@ -53,6 +53,7 @@ export const post: APIRoute = async ({ request }) => {
 				}
 			} catch (error: unknown) {
 				try {
+					console.log(error);
 					const x = error as MailChimpErrorResponse;
 					return new Response(x.response.text, {
 						status: 400,
