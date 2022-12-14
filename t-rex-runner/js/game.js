@@ -45,7 +45,10 @@ function Runner(outerContainerId, opt_config) {
   this.crashed = false;
   this.paused = false;
   this.freeze = false;
-  this.ended = false;
+
+  //outro
+  this.winPanel = false;
+  this.confettiAcc = 0;
 
   this.resizeTimerId_ = null;
 
@@ -86,6 +89,7 @@ Runner.background = []
  * @enum {number}
  */
 Runner.config = {
+  CONFETTI_DURATION: 2000, //2 seconds
   DUCKING: false,
   ACCELERATION: 0.001,
   BG_CLOUD_SPEED: 0.2,
@@ -149,7 +153,9 @@ Runner.classes = {
       RESTART:{x:2,y:2},
       SKIP:{x:1054, y: 2}, //to check
       TEXT_SPRITE:{x:484,y:2},
+      WIN_TEXT_SPRITE:{x:0, y:0},//to check
       TREX:{x:0,y:15}, //custom file
+      CONFETTI:{x:1649, y:3}, //to check
       COIN: {x:1111, y: 4}, //to check
       GEM: {x:1114, y: 26} //to check
   },
@@ -162,6 +168,8 @@ Runner.classes = {
       RESTART:{x:2,y:2},
       SKIP:{x:2108, y: 4}, //todo
       TEXT_SPRITE:{x:954,y:2},
+      WIN_TEXT_SPRITE:{x:1000, y:54},
+      CONFETTI:{x:3298, y:5},
       TREX:{x:0,y:30}, //custom file
       COIN: {x:2224, y: 8},
       GEM: {x:2222, y: 52}
@@ -475,6 +483,11 @@ Runner.prototype = {
         this.gameOverPanel.updateDimensions(this.dimensions.WIDTH);
         this.gameOverPanel.draw();
       }
+
+      if(this.winPanel){
+        this.winPanel.updateDimensions(this.dimensions.WIDTH);
+        this.winPanel.draw();
+      }
     }
   },
 
@@ -510,24 +523,6 @@ Runner.prototype = {
     }
   },
 
-  /**
-   * Play the game outro.
-   * to be defined ....
-   */
-  playOutro: function() {
-    this.playingOutro = true;
-
-    //this.tRex.playingIntro = true;
-    /*
-        TODO
-    play outro animation
-    */
-
-    console.log("playOutro1");
-
-    this.ended = true;
-  },
-
 
   /**
    * Update the game status to started.
@@ -535,7 +530,6 @@ Runner.prototype = {
   startGame: function() {
     this.runningTime = 0;
     this.playingIntro = false;
-    this.playingOutro = false;
     this.tRex.playingIntro = false;
     this.containerEl.style.webkitAnimation = '';
     this.playCount++;
@@ -832,6 +826,7 @@ Runner.prototype = {
 
   /**
    * RequestAnimationFrame wrapper.
+   * @param {function} func
    */
   raq: function(func) {
     if (!this.drawPending) {
@@ -884,6 +879,54 @@ Runner.prototype = {
   },
 
   /**
+   * Function that is called after playOutro animation is finished.
+   */
+  endGame: function(){
+      // TODO
+  },
+
+  playOutro: function(){
+    // TODO
+    // CSS animation definition.
+    var keyframes = '@-webkit-keyframes intro { ' +
+      'from { width:' + this.dimensions.WIDTH + 'px }' +
+      'to { width: ' + 0 + 'px }' +
+      '}';  
+
+    document.styleSheets[0].insertRule(keyframes, 0);
+
+    this.containerEl.addEventListener(Runner.events.ANIM_END,
+      this.endGame.bind(this));
+
+    this.containerEl.style.webkitAnimation = 'intro .4s ease-out 1 both';
+    this.containerEl.style.width = this.dimensions.WIDTH + 'px';
+  },
+
+    /**
+   * Play confetti animation.
+   * @param {boolean}
+   */
+  playConfetti: function() {
+      this.drawPending = false;
+      var now = getTimeStamp();
+      var deltaTime = now - (this.time || now);
+      this.time = now;
+      
+      this.confettiAcc += deltaTime;
+      if(this.confettiAcc < Runner.config.CONFETTI_DURATION ){
+        this.clearCanvas();
+        this.horizon.update(0, 0, true);
+        this.tRex.update(0, Trex.status.WAITING);
+        this.winPanel.update(deltaTime);
+        this.raq(this.playConfetti);
+      } else {
+        this.confetti = false;
+        this.stop();
+        this.playOutro();
+      }
+  },
+
+  /**
    * Riddle Over state.
    */
   riddleOver: function() {
@@ -897,16 +940,18 @@ Runner.prototype = {
     this.gameOverPanel = false;
     this.distanceMeter.acheivement = false;
 
-    //todo sprite for winning
-    this.clearCanvas();
-    this.horizon.update(0, 0, true);
-    this.tRex.update(0, Trex.status.WAITING);
-
+    // win panel.
+    if (!this.winPanel) {
+      this.winPanel = new WinPanel(this.canvas,
+      this.spriteDef.WIN_TEXT_SPRITE, this.spriteDef.CONFETTI, this.dimensions);
+    } else {
+      this.winPanel.draw();
+    }
+    
     this.updateScore();
-
     // Reset the time clock.
     this.time = getTimeStamp();
-    this.playOutro();
+    this.raq(this.playConfetti);
   },
 
   stop: function() {
