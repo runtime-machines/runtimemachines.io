@@ -29,9 +29,6 @@ var websiteAssets: WebsiteAssets[] = [
 const sides_id = ['left', 'right'];
 ---
 
-<div class="transition delay-150">
-	<SeriousRiddle />
-</div>
 <Root title="Homepage">
 	<div id="riddle-selector-hidden">
 		<div class="grid grid-cols-[1fr_1fr]">
@@ -39,9 +36,13 @@ const sides_id = ['left', 'right'];
 			<button id="playful-button" class="w-100px h-12 rounded-2xl bg-black text-white">playful button</button>
 		</div>
 	</div>
-	<div class="hidden" id="riddle-riddles-hidden">
-		<div class="block" id="riddle-serious-hidden">
-			<SeriousRiddle />
+	<div
+		class="hidden h-full transition-all linear duration-300 overflow-hidden max-h-full h-full"
+		id="riddle-riddles-hidden">
+		<div class="block h-full" id="riddle-serious-hidden">
+			<div class="h-full">
+				<SeriousRiddle />
+			</div>
 		</div>
 		<div class="hidden" id="riddle-playful-hidden">Playful Riddle</div>
 	</div>
@@ -111,6 +112,30 @@ const sides_id = ['left', 'right'];
 		Serious = 'serious',
 		Website = 'website',
 	}
+
+	function setupSelection() {
+		const serious_button = document.getElementById('serious-button');
+		const playful_button = document.getElementById('playful-button');
+
+		if (serious_button == null || playful_button == null) {
+			console.error('broken selection buttons');
+			return;
+		}
+
+		serious_button.addEventListener('click', seriousSelection);
+		playful_button.addEventListener('click', playfulSelection);
+
+		function seriousSelection() {
+			localStorage.setItem('websiteState', 'serious');
+			reEvaluateState();
+		}
+
+		function playfulSelection() {
+			localStorage.setItem('websiteState', 'playful');
+			reEvaluateState();
+		}
+	}
+
 	function reEvaluateState() {
 		const localStorageValue = localStorage.getItem('websiteState');
 		const previousState = localStorageValue != null ? (localStorageValue as WebsiteState) : undefined;
@@ -124,7 +149,7 @@ const sides_id = ['left', 'right'];
 		const serious = document.getElementById('riddle-serious-hidden');
 		const website = document.getElementById('riddle-website-hidden');
 		if (selector == null || riddles == null || playful == null || serious == null || website == null) {
-			console.log("Can't access riddle block elements!");
+			console.error("Can't access riddle block elements!");
 			return;
 		}
 		switch (state) {
@@ -139,7 +164,7 @@ const sides_id = ['left', 'right'];
 				break;
 			case WebsiteState.Selection:
 				{
-					selector.style.display = 'grid';
+					selector.style.display = 'block';
 					riddles.style.display = 'none';
 					playful.style.display = 'none';
 					serious.style.display = 'none';
@@ -158,9 +183,13 @@ const sides_id = ['left', 'right'];
 			case WebsiteState.Website:
 				{
 					selector.style.display = 'none';
-					riddles.style.display = 'none';
-					playful.style.display = 'none';
-					serious.style.display = 'none';
+					riddles.style.display = 'block';
+					// playful.style.display = 'none';
+					setTimeout(function () {
+						riddles.style.display = 'none';
+					}, 300);
+					riddles.style.maxHeight = '0';
+					serious.style.display = 'block';
 					website.style.display = 'block';
 				}
 				break;
@@ -169,7 +198,9 @@ const sides_id = ['left', 'right'];
 		}
 		localStorage.setItem('websiteState', state);
 	}
+	setupSelection();
 	reEvaluateState();
+	window.addEventListener('stateChange', reEvaluateState);
 </script>
 
 <script>
@@ -341,12 +372,12 @@ const sides_id = ['left', 'right'];
 	function handleForm(event) {
 		event.preventDefault();
 	}
-	for (let e = 0; e < sides_id.length; e++) {
-		const id = sides_id[e];
-		const submitButton = document.getElementById('email_form_submit-' + id);
-		submitButton.id = id;
-		const form = document.getElementById('email_form-' + id);
-		submitButton?.addEventListener('click', emailSubmit);
-		form?.addEventListener('submit', handleForm);
-	}
+	// for (let e = 0; e < sides_id.length; e++) {
+	// 	const id = sides_id[e];
+	// 	const submitButton = document.getElementById('email_form_submit-' + id);
+	// 	submitButton.id = id;
+	// 	const form = document.getElementById('email_form-' + id);
+	// 	submitButton?.addEventListener('click', emailSubmit);
+	// 	form?.addEventListener('submit', handleForm);
+	// }
 </script>

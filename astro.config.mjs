@@ -25,12 +25,12 @@ export default defineConfig({
 		image({
 			serviceEntryPoint: '@astrojs/image/sharp',
 		}),
-		mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
-		partytown({
-			config: {
-				forward: ['dataLayer.push'],
-			},
-		}),
+		// mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
+		// partytown({
+		// 	config: {
+		// 		forward: ['dataLayer.push'],
+		// 	},
+		// }),
 	],
 	vite: {
 		plugins: [WindiCSS()],
