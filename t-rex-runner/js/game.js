@@ -198,6 +198,7 @@ Runner.keycodes = {
  * @enum {string}
  */
 Runner.events = {
+  MOUSEUP: 'mouseup',
   ANIM_END: 'webkitAnimationEnd',
   CLICK: 'click',
   KEYDOWN: 'keydown',
@@ -584,7 +585,7 @@ Runner.prototype = {
         this.horizon.update(0, this.currentSpeed, hasObstacles, this.runningTime > this.config.PICKUP_TIME);
       } else {
         deltaTime = !this.started ? 0 : deltaTime;
-        this.horizon.update(deltaTime, this.currentSpeed, hasObstacles, this.runningTime > this.config.PICKUP_TIME);
+        this.horizon.update(deltaTime, this.currentSpeed, hasObstacles, Riddle.USE_PICKUPS && this.runningTime > this.config.PICKUP_TIME);
       }
 
       // Check for collisions.
@@ -593,7 +594,7 @@ Runner.prototype = {
           checkForCollision(this.horizon.obstacles[0], this.tRex);
 
       //check for pickups collision
-      if(this.horizon.hasPickups()){
+      if(Riddle.USE_PICKUPS && this.horizon.hasPickups()){
         for (let i = 0; i < this.horizon.pickups.length; i++) {
           var pick = checkForCollision(this.horizon.pickups[i], this.tRex);
           if(pick){
@@ -739,7 +740,7 @@ Runner.prototype = {
 
     // if (e.target != this.detailsButton) {
       //KEYCODE JUMP
-      if (!this.crashed && (Runner.keycodes.JUMP[e.keyCode] ||
+      if (!this.crashed && (Runner.keycodes.JUMP[e.keyCode] || e.type == Runner.events.MOUSEDOWN ||
            e.type == Runner.events.TOUCHSTART || e.type == Runner.events.GAMEPADCONNECTED)) {
         if (!this.activated) {
           this.loadSounds();
@@ -787,7 +788,7 @@ Runner.prototype = {
     var keyCode = String(e.keyCode);
     var isjumpKey = Runner.keycodes.JUMP[keyCode] ||
        e.type == Runner.events.TOUCHEND ||
-       e.type == Runner.events.MOUSEDOWN;
+       e.type == Runner.events.MOUSEUP;
 
     if (this.isRunning() && isjumpKey) {
       this.tRex.endJump();
