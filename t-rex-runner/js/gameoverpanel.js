@@ -78,7 +78,7 @@
       var centerX = this.canvasDimensions.WIDTH / 2;
 
       var button_off = 0;
-      if(Runner.isRiddle)
+      if(Riddle.ON)
       {
         button_off = 40;
       }
@@ -133,7 +133,7 @@
       GameOverPanel.restartButton = {x: restartTargetX, y: restartTargetY,  width: dimensions.RESTART_WIDTH, height: dimensions.RESTART_HEIGHT};
 
       // skip button.
-      if(Runner.isRiddle){
+      if(Riddle.ON){
         this.canvasCtx.drawImage(Runner.imageSprite,
           this.skipImgPos.x, this.skipImgPos.y,
           restartSourceWidth, skipSourceHeight,
