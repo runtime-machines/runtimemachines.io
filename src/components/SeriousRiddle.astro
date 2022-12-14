@@ -5,14 +5,14 @@
 	<div class="ml-8 mt-8">
 		<div id="title"></div>
 		<ul id="alternatives" class="mt-2 <lg:mt-8">
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-		</ul>
+				<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+				<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+				<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+				<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			</ul>
 		<div id="result" class="hidden float-left mt-4 mr-3 <lg:mt-8"></div>
-		<button
-			id="continue"
+			<button
+				id="continue"
 			class="hidden cursor-pointer rounded-lg mt-2 <lg:mt-6 p-2 pb-3 border-white border-2 border-dashed hover:bg-white <lg:bg-white hover:text-black <lg:text-black"
 			>Continue</button
 		>
@@ -20,30 +20,40 @@
 </div>
 
 <style>
-	.alternative {
-		position: relative;
-	}
-	.alternative::before {
-		position: absolute;
-		content: '';
-		width: 100%;
-		height: 2px;
-		border-radius: 4px;
-		background-color: #fff;
-		bottom: 0;
-		left: 0;
-		transform-origin: right;
-		transform: scaleX(0);
-		transition: transform 0.3s ease-in-out;
+	.alternative:link {
+		text-decoration: none;
 	}
 
-	.alternative:hover::before {
-		transform-origin: left;
-		transform: scaleX(1);
+	.alternative:visited {
+		text-decoration: none;
+		color: #fff;
+	}
+
+	.alternative {
+		color:#fff;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
+	}
+
+	.alternative:hover {
+		color: #a3f705;
+		text-shadow:0px 0px 30px #a3f705;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
 	}
 </style>
 
 <script>
+	enum WebsiteState {
+		Selection = 'selection',
+		Playful = 'playful',
+		Serious = 'serious',
+		Website = 'website',
+	}
 	interface Quiz {
 		question: string;
 		answers: string[];
@@ -62,7 +72,6 @@
 		},
 	];
 	// Code to display a question
-	const riddle = document.getElementById('serious-riddle');
 	function showQuestion(q: Quiz, i: number) {
 		let titleDiv = document.getElementById('title');
 		let alternatives = document.getElementById('alternatives');
@@ -72,7 +81,7 @@
 		if (titleDiv == null) return;
 		// Fill the question
 		let arrayHTML = [titleDiv];
-		let arrayStr = [q.question];
+		let arrayStr = [((i+1) + "/3 "+ q.question)];
 		let alts = document.querySelectorAll('.alternative');
 		q.answers.forEach(function (element) {
 			arrayStr.push(element);
@@ -104,7 +113,7 @@
 			resultDiv.style.display = 'none';
 			continueButton.style.display = 'none';
 
-			if (i + 2 > quiz.length && riddle != null) riddle.style.display = 'none';
+			if (i + 2 > quiz.length) endRiddle();
 			else showQuestion(quiz[i + 1], i + 1);
 		});
 	}
@@ -131,6 +140,13 @@
 		}
 
 		type();
+	}
+
+	function endRiddle(){
+		if(localStorage.getItem('websiteState') != WebsiteState.Website){
+			localStorage.setItem('websiteState', WebsiteState.Website);
+		}
+		location.reload();
 	}
 	showQuestion(quiz[0], 0);
 </script>
