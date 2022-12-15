@@ -206,6 +206,11 @@
             this.config.INTRO_DURATION) * deltaTime);
       }
 
+      if (this.playingOutro && this.xPos < Runner.defaultDimensions.WIDTH){
+        this.xPos += Math.round(( (Runner.defaultDimensions.WIDTH - this.xPos) /
+            ( Runner.config.CONFETTI_DURATION) ) * deltaTime);
+      }
+
       this.draw(this.currentAnimFrames[0][this.currentFrame], this.currentAnimFrames[1]);
   
       // Update the frame position.

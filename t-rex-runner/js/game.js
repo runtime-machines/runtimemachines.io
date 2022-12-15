@@ -44,7 +44,6 @@ function Runner(outerContainerId, opt_config) {
   this.activated = false;
   this.crashed = false;
   this.paused = false;
-  this.freeze = false;
 
   //outro
   this.winPanel = false;
@@ -89,7 +88,7 @@ Runner.background = []
  * @enum {number}
  */
 Runner.config = {
-  CONFETTI_DURATION: 2000, //2 seconds
+  CONFETTI_DURATION: 4000, //2 seconds
   DUCKING: false,
   ACCELERATION: 0.001,
   BG_CLOUD_SPEED: 0.2,
@@ -405,7 +404,7 @@ Runner.prototype = {
             runner.restart();
         }else if (isInside(mousePos,GameOverPanel.skipButton)){
             canvas.removeEventListener(type, foo, false);
-            runner.playOutro();
+            runner.fadeOut();
         } else {
         } 
       };
@@ -529,8 +528,11 @@ Runner.prototype = {
    */
   startGame: function() {
     this.runningTime = 0;
+    this.playingOutro = false;
     this.playingIntro = false;
     this.tRex.playingIntro = false;
+    this.fadingOut = false;
+    this.tRex.playingOutro = false;
     this.containerEl.style.webkitAnimation = '';
     this.playCount++;
 
@@ -623,6 +625,8 @@ Runner.prototype = {
 
       // TODO
      if (Riddle.ON && Riddle.satisfied(this) ){
+        this.playSound(this.soundFx.GEM);
+        vibrate(200);
         this.riddleOver();
       }
     } else
@@ -735,6 +739,8 @@ Runner.prototype = {
       e.preventDefault();
     }
 
+    if(this.winPanel){ return }
+
     // if (e.target != this.detailsButton) {
       //KEYCODE JUMP
       if (!this.crashed && (Runner.keycodes.JUMP[e.keyCode] || e.type == Runner.events.MOUSEDOWN ||
@@ -786,6 +792,8 @@ Runner.prototype = {
     var isjumpKey = Runner.keycodes.JUMP[keyCode] ||
        e.type == Runner.events.TOUCHEND ||
        e.type == Runner.events.MOUSEUP;
+      
+    if(this.winPanel){ return }
 
     if (this.isRunning() && isjumpKey) {
       this.tRex.endJump();
@@ -883,11 +891,12 @@ Runner.prototype = {
    */
   endGame: function(){
     //TODO
+      this.crashed = true;
+      this.stop();
       this.clearCanvas();
   },
 
-  playOutro: function(){
-    // TODO 
+  fadeOut: function(){
     var t = '@-webkit-keyframes fadeOut { '+ 
         '0% { opacity: 1; } ' +
         '100% {opacity: 0}'
@@ -898,7 +907,9 @@ Runner.prototype = {
     this.containerEl.addEventListener(Runner.events.ANIM_END,
       this.endGame.bind(this));
 
-    this.containerEl.style.webkitAnimation = 'fadeOut ease 3s';
+    var time = this.config.CONFETTI_DURATION / 2 / 1000;
+
+    this.containerEl.style.webkitAnimation = 'fadeOut ease '+time+'s';
     this.containerEl.style.width = this.dimensions.WIDTH + 'px';
   },
 
@@ -906,7 +917,7 @@ Runner.prototype = {
    * Play confetti animation.
    * @param {boolean}
    */
-  playConfetti: function() {
+  playOutro: function() {
       this.drawPending = false;
       var now = getTimeStamp();
       var deltaTime = now - (this.time || now);
@@ -915,15 +926,24 @@ Runner.prototype = {
       this.confettiAcc += deltaTime;
       if(this.confettiAcc < Runner.config.CONFETTI_DURATION ){
         this.clearCanvas();
-        this.horizon.update(0, 0, true);
-        this.tRex.update(0, Trex.status.WAITING);
+        
+        if (this.tRex.jumping) {
+          this.tRex.updateJump(deltaTime);
+        }
+
+        this.horizon.update(deltaTime, this.currentSpeed, true);
+        //make the t-rex slowing going in the cente
+        this.tRex.update(deltaTime);
         this.winPanel.update(deltaTime);
-        this.raq(this.playConfetti);
+
+        if(!this.fadingOut && this.confettiAcc > Runner.config.CONFETTI_DURATION / 2){
+          this.fadingOut = true;
+          this.fadeOut();
+        }
+
+        this.raq(this.playOutro);
       } else {
-        this.confetti = false;
-        this.crashed = true;
-        this.stop();
-        this.playOutro();
+        //this.playingOutro = false;
       }
   },
 
@@ -931,15 +951,10 @@ Runner.prototype = {
    * Riddle Over state.
    */
   riddleOver: function() {
-    //play sound for ending riddle
-    this.playSound(this.soundFx.SCORE);
-    vibrate(200);
-
     this.stop();
     //this.crashed = true;
-    this.freeze = true;
-    this.gameOverPanel = false;
-    this.distanceMeter.acheivement = false;
+    this.playingOutro = true;
+    this.tRex.playingOutro = true;
 
     // win panel.
     if (!this.winPanel) {
@@ -952,7 +967,7 @@ Runner.prototype = {
     this.updateScore();
     // Reset the time clock.
     this.time = getTimeStamp();
-    this.raq(this.playConfetti);
+    this.raq(this.playOutro);
   },
 
   stop: function() {
@@ -973,7 +988,7 @@ Runner.prototype = {
   },
 
   restart: function() {
-    if (!this.raqId && !this.freeze) {
+    if (!this.raqId) {
       this.playCount++;
       this.runningTime = 0;
       this.activated = true;
@@ -1010,8 +1025,11 @@ Runner.prototype = {
    */
   onVisibilityChange: function(e) {
     if (document.hidden || document.webkitHidden || e.type == 'blur') {
-      console.log("stop");
       this.stop();
+    } else if (this.playingOutro){
+      this.playOutro();
+    } else if (this.fadingOut){
+      // do nothing
     } else if (!this.crashed) {
       this.tRex.reset();
       this.play();
