@@ -28,7 +28,7 @@ WinPanel.dimensions = {
       width: 289/2,
       height: 87/2,
       frameRate: 1000/6,
-      numFrames: 2,
+      numFrames: 4,
   },
 
   WinPanel.prototype = {
@@ -63,7 +63,7 @@ WinPanel.dimensions = {
       var sourceHeight = WinPanel.config.height;
       var sourceX = this.confettiPos.x;
       var targetX = 0;
-      var targetY = 0;
+      var targetY = -10;
 
       if (IS_HIDPI) {
         sourceWidth = sourceWidth * 2;

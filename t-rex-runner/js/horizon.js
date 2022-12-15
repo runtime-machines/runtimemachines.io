@@ -190,7 +190,7 @@ updateObstacles: function(deltaTime, currentSpeed) {
 
 
     var obstacleTypeIndex = 0;
-    if(this.tot_obstacles == Riddle.MAX_OBSTACLES){
+    if(Riddle.ON && this.tot_obstacles == Riddle.MAX_OBSTACLES){
         obstacleTypeIndex = 2;
     } else if(!Runner.config.DUCKING){
         //exclude last one that is pterdactyl
@@ -202,8 +202,8 @@ updateObstacles: function(deltaTime, currentSpeed) {
 
     // Check for multiples of the same type of obstacle.
     // Also check obstacle is available at current speed.
-    if (this.duplicateObstacleCheck(obstacleType.type) ||
-        currentSpeed < obstacleType.minSpeed) {
+    if ( (this.duplicateObstacleCheck(obstacleType.type) ||
+        currentSpeed < obstacleType.minSpeed ) && !( Riddle.ON && this.tot_obstacles == Riddle.MAX_OBSTACLES ) ) {
     this.addNewObstacle(currentSpeed);
     } else {
     this.tot_obstacles += 1;

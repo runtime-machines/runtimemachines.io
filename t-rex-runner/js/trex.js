@@ -207,7 +207,7 @@
       }
 
       if (this.playingOutro && this.xPos < Runner.defaultDimensions.WIDTH){
-        this.xPos += Math.round(( (Runner.defaultDimensions.WIDTH - this.xPos) /
+        this.xPos += Math.round(( (Runner.defaultDimensions.WIDTH - this.config.START_X_POS) /
             ( Runner.config.CONFETTI_DURATION) ) * deltaTime);
       }
 

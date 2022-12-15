@@ -156,7 +156,8 @@ Runner.classes = {
       TREX:{x:0,y:15}, //custom file
       CONFETTI:{x:1649, y:3}, //to check
       COIN: {x:1111, y: 4}, //to check
-      GEM: {x:1114, y: 26} //to check
+      GEM: {x:1114, y: 26}, //to check
+      COG: {x: 736, y: 10 } //to check
   },
   HDPI: {
       CACTUS_LARGE:{x:652,y:2},
@@ -171,7 +172,8 @@ Runner.classes = {
       CONFETTI:{x:3298, y:5},
       TREX:{x:0,y:30}, //custom file
       COIN: {x:2224, y: 8},
-      GEM: {x:2222, y: 52}
+      GEM: {x:2222, y: 52},
+      COG: {x: 1472, y: 20 }
   }
 };
 
@@ -587,8 +589,11 @@ Runner.prototype = {
 
       // Check for collisions.
       ///remove context to remove collision debug show blablabla its too late to programming
+      if(Riddle.DEBUG_COLLIDER){
+        var cctx = this.canvasCtx;
+      }
       var collision = this.horizon.obstacles.length &&
-          checkForCollision(this.horizon.obstacles[0], this.tRex);
+          checkForCollision(this.horizon.obstacles[0], this.tRex, cctx);
 
       //check for pickups collision
       if(Riddle.USE_PICKUPS && this.horizon.hasPickups()){
@@ -862,10 +867,12 @@ Runner.prototype = {
     this.crashed = true;
     this.distanceMeter.acheivement = false;
 
-
-    this.clearCanvas();
-    this.horizon.update(0, 0, true, true);
-    this.tRex.update(0, Trex.status.CRASHED);
+    if(!Riddle.DEBUG_COLLIDER){
+      this.clearCanvas();
+      this.horizon.update(0, 0, true, true);
+      this.tRex.update(0, Trex.status.CRASHED);
+    }
+    
 
     this.updateScore();
 
@@ -890,10 +897,9 @@ Runner.prototype = {
    * Function that is called after playOutro animation is finished.
    */
   endGame: function(){
-    //TODO
-      this.crashed = true;
-      this.stop();
-      this.clearCanvas();
+    console.log("exit game");
+    this.playingOutro = false;
+    this.clearCanvas();
   },
 
   fadeOut: function(){
@@ -918,6 +924,8 @@ Runner.prototype = {
    * @param {boolean}
    */
   playOutro: function() {
+      if(!this.playingOutro) { return }
+
       this.drawPending = false;
       var now = getTimeStamp();
       var deltaTime = now - (this.time || now);
@@ -931,7 +939,7 @@ Runner.prototype = {
           this.tRex.updateJump(deltaTime);
         }
 
-        this.horizon.update(deltaTime, this.currentSpeed, true);
+        this.horizon.update(0, 0, true);
         //make the t-rex slowing going in the cente
         this.tRex.update(deltaTime);
         this.winPanel.update(deltaTime);
@@ -943,7 +951,7 @@ Runner.prototype = {
 
         this.raq(this.playOutro);
       } else {
-        //this.playingOutro = false;
+        this.playingOutro = false;
       }
   },
 
@@ -952,7 +960,8 @@ Runner.prototype = {
    */
   riddleOver: function() {
     this.stop();
-    //this.crashed = true;
+
+    this.crashed = true;
     this.playingOutro = true;
     this.tRex.playingOutro = true;
 
@@ -1026,10 +1035,10 @@ Runner.prototype = {
   onVisibilityChange: function(e) {
     if (document.hidden || document.webkitHidden || e.type == 'blur') {
       this.stop();
-    } else if (this.playingOutro){
+    } else if (this.playingOutro){ //todo this is not the correct boolean
+      //use like this.win instead
+      this.time = getTimeStamp();
       this.playOutro();
-    } else if (this.fadingOut){
-      // do nothing
     } else if (!this.crashed) {
       this.tRex.reset();
       this.play();

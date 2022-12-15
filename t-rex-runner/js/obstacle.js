@@ -227,21 +227,22 @@ Obstacle.types = [
     ]
   },
   {
-    type: 'SKIP', //  this was petro
-    width: 46,
+    type: 'COG', //  this was petro
+    width: 80,
     height: 40,
-    yPos: 85, // Variable height.
+    yPos: 95, // Variable height.
     //yPosMobile: [ 100, 50 ], // Variable height mobile.
     multipleSpeed: 7,
     minSpeed: 0, //this was 8.5
     minGap: 150,
     collisionBoxes: [
-      new CollisionBox(0, 12, 7, 38),
-      new CollisionBox(8, 0, 7, 49),
-      new CollisionBox(13, 10, 10, 38)
-    ],
-    numFrames: 2,
-    frameRate: 1000/6//,
+      new CollisionBox(40, 0, 10, 40),
+      new CollisionBox(30, 0, 10, 40),
+      new CollisionBox(15, 20, 50, 10),
+      new CollisionBox(10, 30, 60, 10)
+    ]//,
+    //numFrames: 1,
+    //frameRate: 1000/6//,
     //speedOffset: 1
   }
 ];

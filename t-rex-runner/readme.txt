@@ -13,4 +13,4 @@ TODO - update sprite-x1
 
 TODO - Ther's a bug with obstacles and onVisibilityChange.
 
-TODO - draw bg before playIntro
+TODO - HorizonLine is not as down as it can be. (there is a space between it and the bottom of the canvas);
