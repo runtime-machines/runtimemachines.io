@@ -1,53 +1,49 @@
 ---
 ---
 
-<div class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono <lg:text-3xl" id="serious-riddle">
-	<div class="ml-8 mt-8">
+<div class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <lg:text-xl text-center" id="serious-riddle">
+	<div class="lg:ml-1/4 lg:mr-1/4 mt-8 w-fit">
 		<div id="title"></div>
-		<ul id="alternatives" class="mt-2 <lg:mt-8">
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+		<ul id="alternatives" class="mt-4 <lg:mt-8">
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
 		</ul>
-		<div id="result" class="hidden float-left mt-4 mr-3 <lg:mt-8"></div>
-		<button
-			id="continue"
-			class="hidden cursor-pointer rounded-lg mt-2 <lg:mt-6 p-2 pb-3 border-white border-2 border-dashed hover:bg-white <lg:bg-white hover:text-black <lg:text-black"
-			>Continue</button
-		>
+		<div id="result" class="hidden mt-4 ml-auto mr-auto <lg:mt-8"></div>
+		<a id="continue" class="glow hidden mt-4 cursor-pointer ml-auto mr-auto w-fit <lg:border-2 <lg:p-1">Next &raquo;</a>
 	</div>
 </div>
 
 <style>
-	.alternative:link {
-		text-decoration: none;
-	}
-
-	.alternative:visited {
-		text-decoration: none;
-		color: #fff;
-	}
-
-	.alternative {
-		color: #fff;
+	.glow {
+		color:#fff;
 		-moz-transition: all 0.2s ease-in;
 		-o-transition: all 0.2s ease-in;
 		-webkit-transition: all 0.2s ease-in;
 		transition: all 0.2s ease-in;
 	}
 
-	.alternative:hover {
-		color: #a3f705;
-		text-shadow: 0px 0px 30px #a3f705;
+	.glow:hover {
+		color: #fff;
 		-moz-transition: all 0.2s ease-in;
 		-o-transition: all 0.2s ease-in;
 		-webkit-transition: all 0.2s ease-in;
 		transition: all 0.2s ease-in;
+		text-shadow:
+		0 0 7px #fff,
+		0 0 10px #73fdcf,
+		0 0 21px #73fdcf,
+		0 0 42px #0fa,
+		0 0 82px #0fa,
+		0 0 92px #0fa,
+		0 0 102px #0fa,
+		0 0 151px #0fa;
 	}
 </style>
 
 <script>
+	import {getRandomThreeQuiz} from './SeriousRiddleQuiz/SeriousRiddleQuiz.ts';
 	enum WebsiteState {
 		Selection = 'selection',
 		Playful = 'playful',
@@ -59,25 +55,14 @@
 		answers: string[];
 		correctAnswer: number;
 	}
-	const quiz: Quiz[] = [
-		{
-			question: 'The five elements of blockchain are distribution, encryption, immutability, tokenization and:',
-			answers: ['Transparency', 'Authorization', 'Efficiency', 'Decentralization'],
-			correctAnswer: 3,
-		},
-		{
-			question: 'True or false: Smart contracts are legally binding contracts.',
-			answers: ['True', 'False', "I don't know"],
-			correctAnswer: 1,
-		},
-	];
+	const quiz: Quiz[] = getRandomThreeQuiz();
 	// Code to display a question
+	
+	const titleDiv = document.getElementById('title');
+	const alternatives = document.getElementById('alternatives');
+	const resultDiv = document.getElementById('result');
+	const continueButton = document.getElementById('continue');
 	function showQuestion(q: Quiz, i: number) {
-		let titleDiv = document.getElementById('title');
-		let alternatives = document.getElementById('alternatives');
-		let resultDiv = document.getElementById('result');
-		let continueButton = document.getElementById('continue');
-
 		if (titleDiv == null) return;
 		// Fill the question
 		let arrayHTML = [titleDiv];
@@ -91,12 +76,12 @@
 		alts.forEach(function (element, index) {
 			arrayHTML.push(element as HTMLElement);
 			element.addEventListener('click', function () {
-				if (resultDiv == null || continueButton == null || alternatives == null) return;
+				if (resultDiv == null || continueButton == null || alternatives == null || continueButton == null) return;
 
 				if (q.correctAnswer == index) {
-					resultDiv.textContent = 'Correct Answer! ';
+					resultDiv.textContent = 'Correct Answer!';
 				} else {
-					resultDiv.textContent = 'Wrong Answer! ';
+					resultDiv.textContent = 'Wrong Answer!';
 				}
 				alternatives.style.display = 'none';
 				resultDiv.style.display = 'block';
