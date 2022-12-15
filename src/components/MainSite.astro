@@ -19,31 +19,31 @@ const { websiteAssets, id } = Astro.props;
 		<div class="grid max-w-4xl m-auto">
 			<div
 				class="ml-auto mr-auto mb-auto grid lg:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-10 pb-10">
-				<div class="h-lg sm:w-sm w-xs w-sm rounded">
+				<div class="h-lg sm:w-sm w-xs w-sm rounded dark:shadow-glow shadow-white-glow">
 					<img src={websiteAssets.homepage.right_section} class="rounded w-full h-full" />
 				</div>
 				<div class="row-start-2">
 					<ButtonMainPage text={'Play Think Riddle'} />
 				</div>
-				<div class="h-lg sm:w-sm w-xs w-sm rounded">
+				<div class="h-lg sm:w-sm w-xs w-sm rounded dark:shadow-glow shadow-white-glow">
 					<img src={websiteAssets.homepage.left_section} class="rounded w-full h-full" />
 				</div>
 				<div class="row-start-2">
 					<ButtonMainPage text={'Play Build Riddle'} />
 				</div>
 			</div>
-			<section class="bg-[#343434] <lg:dark:bg-[#343434] dark:bg-[#444444] rounded mb-10">
+			<section
+				class="bg-[#343434] <lg:dark:bg-[#343434] dark:bg-[#444444] rounded-2xl mb-10 dark:shadow-glow shadow-white-glow">
 				<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 					<div class="mx-auto max-w-screen-md sm:text-center">
 						<h2 class="mb-4 text-3xl tracking-tight font-extrabold sm:text-4xl text-white <lg:dark:text-white">
-							Sign up for our newsletter
+							Don't miss updates & benefits
 						</h2>
 						<p class="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
-							Stay up to date with the roadmap progress, announcements and exclusive discounts feel free to sign up with
-							your email.
+							Sign up for our newsletter to get updates, key insights, and become eligible for early-adopter benefits.
 						</p>
 						<form id={'email_form-' + id}>
-							<div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
+							<div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0 sm:w-2/3">
 								<div class="relative w-full">
 									<label for="email" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
 										>Email address</label
@@ -76,7 +76,7 @@ const { websiteAssets, id } = Astro.props;
 								</div>
 							</div>
 							<div
-								class="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
+								class="mx-auto w-fit max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
 								We care about the protection of your data. <a
 									href="#"
 									class="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read our Privacy Policy</a

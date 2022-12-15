@@ -17,6 +17,10 @@ export default defineConfig({
 				...theme('colors'),
 				orange: '#FF8855',
 			}),
+			boxShadow: {
+				glow: '0px 0px 30px 4px rgba(245,116,61,0.9)',
+				'white-glow': '0px 0px 30px 4px rgba(255,255,255,0.9)',
+			},
 			animation: {
 				wiggle: 'wiggle 1s ease-in-out',
 				wigglechild: 'wigglechild 1s ease-in-out',

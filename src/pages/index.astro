@@ -7,6 +7,7 @@ import RightSide_Main_Mono from '~/assets/images/RightSide_Main_Mono.svg';
 import LeftSide_Main_Mono from '~/assets/images/LeftSide_Main_Mono.svg';
 import RightSide_Main_Col from '~/assets/images/RightSide_Main_Col.svg';
 import LeftSide_Main_Col from '~/assets/images/LeftSide_Main_Col.svg';
+import Short_Logo from '~/assets/images/Short_Logo.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 
 var websiteAssets: WebsiteAssets[] = [
@@ -59,8 +60,8 @@ const sides_id = ['left', 'right'];
 			<!-- class -translate-x-1/2 has issues I don't know why -->
 			<div
 				style="transform: translateX(-50%);"
-				class="w-15 h-5 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr]">
-				<svg
+				class="w-10 h-10 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
+				<!--svg
 					class="max-w-5 max-h-5 m-auto"
 					width="15"
 					height="15"
@@ -72,8 +73,9 @@ const sides_id = ['left', 'right'];
 						fill="currentColor"
 						fill-rule="evenodd"
 						clip-rule="evenodd"></path>
-				</svg>
-				<svg
+				</svg-->
+				<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
+				<!--svg
 					class="max-w-5 max-h-5 m-auto"
 					width="15"
 					height="15"
@@ -85,7 +87,7 @@ const sides_id = ['left', 'right'];
 						fill="currentColor"
 						fill-rule="evenodd"
 						clip-rule="evenodd"></path>
-				</svg>
+				</svg-->
 			</div>
 		</div>
 		<LandingPage

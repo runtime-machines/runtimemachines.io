@@ -1,14 +1,20 @@
 ---
 ---
 
-<div class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <lg:text-xl text-center" id="serious-riddle">
+<div
+	class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <lg:text-xl text-center"
+	id="serious-riddle">
 	<div class="lg:ml-1/4 lg:mr-1/4 mt-8 w-fit">
 		<div id="title"></div>
 		<ul id="alternatives" class="mt-4 <lg:mt-8">
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1"></li>
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
+			</li>
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
+			</li>
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
+			</li>
+			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
+			</li>
 		</ul>
 		<div id="result" class="hidden mt-4 ml-auto mr-auto <lg:mt-8"></div>
 		<a id="continue" class="glow hidden mt-4 cursor-pointer ml-auto mr-auto w-fit <lg:border-2 <lg:p-1">Next &raquo;</a>
@@ -17,7 +23,7 @@
 
 <style>
 	.glow {
-		color:#fff;
+		color: #fff;
 		-moz-transition: all 0.2s ease-in;
 		-o-transition: all 0.2s ease-in;
 		-webkit-transition: all 0.2s ease-in;
@@ -30,20 +36,13 @@
 		-o-transition: all 0.2s ease-in;
 		-webkit-transition: all 0.2s ease-in;
 		transition: all 0.2s ease-in;
-		text-shadow:
-		0 0 7px #fff,
-		0 0 10px #73fdcf,
-		0 0 21px #73fdcf,
-		0 0 42px #0fa,
-		0 0 82px #0fa,
-		0 0 92px #0fa,
-		0 0 102px #0fa,
-		0 0 151px #0fa;
+		text-shadow: 0 0 7px #fff, 0 0 10px #73fdcf, 0 0 21px #73fdcf, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
+			0 0 102px #0fa, 0 0 151px #0fa;
 	}
 </style>
 
 <script>
-	import {getRandomThreeQuiz} from './SeriousRiddleQuiz/SeriousRiddleQuiz.ts';
+	import { getRandomThreeQuiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz.ts';
 	enum WebsiteState {
 		Selection = 'selection',
 		Playful = 'playful',
@@ -57,7 +56,7 @@
 	}
 	const quiz: Quiz[] = getRandomThreeQuiz();
 	// Code to display a question
-	
+
 	const titleDiv = document.getElementById('title');
 	const alternatives = document.getElementById('alternatives');
 	const resultDiv = document.getElementById('result');
