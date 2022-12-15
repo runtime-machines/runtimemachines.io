@@ -28,7 +28,6 @@
     this.bumpThreshold = 0.5;
   
     this.setSourceDimensions();
-    this.draw();
   };
   
   
@@ -75,7 +74,7 @@
       return Math.random() > this.bumpThreshold ? this.dimensions.WIDTH : 0;
     },
 
-    drawBackGroundLayer: function(i, xPos, sourceXPos){
+    drawBG: function(i, xPos, sourceXPos){
 
       var off = 100;
       var soff = 5;
@@ -93,25 +92,22 @@
         this.dimensions.WIDTH, 150);
     },
 
-    drawBackground: function() {
-      //back
-      this.drawBackGroundLayer(0, this.xPosBack, this.sourceXPosBack);
-      //middle
-      this.drawBackGroundLayer(1, this.xPosMid, this.sourceXPosMid);
+    drawBGBack: function(){
+      this.drawBG(0, this.xPosBack, this.sourceXPosBack);
     },
 
-    drawBGFrontLayer: function(){
-      //front
-      this.drawBackGroundLayer(2, this.xPos, this.sourceXPos);
+    drawBGMid: function(){
+      this.drawBG(1, this.xPosMid, this.sourceXPosMid);
+    },
+
+    drawBGFront: function(){
+      this.drawBG(2, this.xPos, this.sourceXPos);
     },
   
     /**
      * Draw the horizon line.
      */
-    draw: function() {
-
-      this.drawBGFrontLayer();
-
+    drawLine: function() {
       this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[0],
           this.spritePos.y,
           this.sourceDimensions.WIDTH, this.sourceDimensions.HEIGHT,
@@ -160,12 +156,9 @@
      * @param {number} speed
      */
     update: function(deltaTime, speed) {
-
       this.updateXPos(deltaTime, speed, 1, this.xPos, this.sourceXPos, this.spritePos.x);
       this.updateXPos(deltaTime, speed, 0.4, this.xPosMid, this.sourceXPosMid, this.spritePos.x);
       this.updateXPos(deltaTime, speed, 0.2, this.xPosBack, this.sourceXPosBack, this.spritePos.x);
-
-      this.draw();
     },
   
     /**

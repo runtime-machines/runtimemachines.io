@@ -67,12 +67,18 @@ Horizon.config = {
 };
 
 Horizon.prototype = {
+
 /**
- * Initialise the horizon. Just add the line and a cloud. No obstacles.
+ *  Initialize the Horizon.
  */
-init: function() {
-    this.addCloud();
+init: function(){
     this.horizonLine = new HorizonLine(this.canvas, this.spritePos.HORIZON);
+    this.horizonLine.drawBGBack();
+    this.horizonLine.drawBGMid();
+    this.addCloud();
+    this.horizonLine.drawBGFront();
+    this.horizonLine.drawLine();
+    
 },
 
 /**
@@ -85,9 +91,13 @@ init: function() {
 update: function(deltaTime, currentSpeed, updateObstacles, updatePickups) {
     this.runningTime += deltaTime;
 
-    this.horizonLine.drawBackground()
-    this.updateClouds(deltaTime, currentSpeed);
     this.horizonLine.update(deltaTime, currentSpeed);
+
+    this.horizonLine.drawBGBack();
+    this.horizonLine.drawBGMid();
+    this.updateClouds(deltaTime, currentSpeed);
+    this.horizonLine.drawBGFront();
+    this.horizonLine.drawLine();
 
     if (updateObstacles) {
         this.updateObstacles(deltaTime, currentSpeed);
