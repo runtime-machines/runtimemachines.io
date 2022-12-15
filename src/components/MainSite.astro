@@ -10,34 +10,51 @@ const { websiteAssets, id } = Astro.props;
 ---
 
 <div class="max-w-8xl m-auto">
-	<div class="grid grid-rows-[auto_auto] lg:grid-rows-[auto_auto] gap-y-10">
+	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto] gap-y-10">
 		<div class="grid">
 			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
 				<img src={websiteAssets.homepage.main_logo} />
 			</div>
 		</div>
-		<div class="block lg:hidden">colors buttons</div>
+		<div class="flex w-full px-3 grid grid-cols-[auto_auto_auto] font-semibold text-white">
+			<span class="m-auto text-xl">Light Mode</span>
+			<button
+				class="toggleTheme m-auto w-20 h-10 rounded-full bg-white flex items-center transition duration-300 focus:outline-none shadow">
+				<div
+					class="toggleThemeSwitch w-12 h-12 relative rounded-full transition duration-500 transform bg-yellow-500 -translate-x-2 p-1 text-white">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+						></path>
+					</svg>
+				</div>
+			</button>
+			<span class="m-auto text-xl">Dark Mode</span>
+		</div>
 		<div class="grid max-w-4xl m-auto">
 			<div
-				class="ml-auto mr-auto mb-auto grid lg:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-10 pb-10">
+				class="ml-auto mr-auto mb-auto grid md:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-2 lg:gap-10 pb-10">
 				<div class="h-lg sm:w-sm w-xs w-sm rounded dark:shadow-glow shadow-white-glow">
 					<img src={websiteAssets.homepage.right_section} class="rounded w-full h-full" />
 				</div>
 				<div class="h-lg sm:w-sm w-xs w-sm rounded dark:shadow-glow shadow-white-glow">
 					<img src={websiteAssets.homepage.left_section} class="rounded w-full h-full" />
 				</div>
-				<div class="lg:row-start-2 lg:col-start-1 lg:col-end-3">
+				<div class="md:row-start-2 md:col-start-1 md:col-end-3">
 					<ButtonMainPage text={'Play Think Riddle'} />
 				</div>
-				<!-- <div class="lg:row-start-2">
+				<!-- <div class="md:row-start-2">
 					<ButtonMainPage text={'Play Build Riddle'} />
 				</div> -->
 			</div>
 			<section
-				class="bg-[#343434] <lg:dark:bg-[#343434] dark:bg-[#444444] rounded-2xl mb-10 dark:shadow-glow shadow-white-glow">
-				<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+				class="bg-[#343434] <md:w-sm <md:dark:bg-[#343434] dark:bg-[#444444] rounded-2xl mb-10 dark:shadow-glow shadow-white-glow">
+				<div class="py-8 px-4 mx-auto max-w-screen-xl md:py-16 md:px-6">
 					<div class="mx-auto max-w-screen-md sm:text-center">
-						<h2 class="mb-4 text-3xl tracking-tight font-extrabold sm:text-4xl text-white <lg:dark:text-white">
+						<h2 class="mb-4 text-3xl tracking-tight font-extrabold sm:text-4xl text-white <md:dark:text-white">
 							Don't miss updates & benefits
 						</h2>
 						<p class="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
@@ -71,7 +88,7 @@ const { websiteAssets, id } = Astro.props;
 									<button
 										type="submit"
 										id={'email_form_submit-' + id}
-										class="<lg:dark:text-white py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4 focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
+										class="<md:dark:text-white py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4 focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
 										>Subscribe</button
 									>
 								</div>
@@ -103,3 +120,60 @@ const { websiteAssets, id } = Astro.props;
 		</div>
 	</div>
 </div>
+
+<script>
+	const switchToggle = document.getElementsByClassName('toggleThemeSwitch');
+	let isDarkmode = false;
+
+	const darkIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+	<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+	</svg>`;
+
+	const lightIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+	<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+	</svg>`;
+
+	const toggle_buttons = document.getElementsByClassName('toggleTheme');
+	for (let e = 0; e < toggle_buttons.length; e++) {
+		const button = toggle_buttons[e];
+		button.addEventListener('click', toggleTheme);
+	}
+
+	function toggleTheme() {
+		isDarkmode = !isDarkmode;
+		localStorage.setItem('isDarkmode', isDarkmode);
+		switchTheme();
+	}
+
+	function switchTheme() {
+		if (isDarkmode) {
+			for (let e = 0; e < switchToggle.length; e++) {
+				const element = switchToggle[e];
+				element.classList.remove('bg-yellow-500', '-translate-x-2');
+				element.classList.add('bg-gray-700', 'translate-x-full');
+			}
+			setTimeout(() => {
+				for (let e = 0; e < switchToggle.length; e++) {
+					switchToggle[e].innerHTML = darkIcon;
+				}
+			}, 0);
+			document.getElementById('right').classList.add('<md:max-h-0');
+			document.getElementById('left').classList.remove('<md:max-h-0');
+		} else {
+			for (let e = 0; e < switchToggle.length; e++) {
+				const element = switchToggle[e];
+				element.classList.add('bg-yellow-500', '-translate-x-2');
+				element.classList.remove('bg-gray-700', 'translate-x-full');
+			}
+			setTimeout(() => {
+				for (let e = 0; e < switchToggle.length; e++) {
+					switchToggle[e].innerHTML = lightIcon;
+				}
+			}, 0);
+			document.getElementById('left').classList.add('<md:max-h-0');
+			document.getElementById('right').classList.remove('<md:max-h-0');
+		}
+	}
+
+	switchTheme();
+</script>
