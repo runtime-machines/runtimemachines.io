@@ -18,22 +18,20 @@ export interface Props {
 const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets } = Astro.props;
 ---
 
-<div>
+<div
+	class={'absolute bg-[#444444] w-full overflow-hidden ' +
+		css_attributes_parent.map((attribute: string) => {
+			return attribute + ' ';
+		})}
+	id={id}>
 	<div
-		class={'absolute bg-[#444444] w-full overflow-hidden ' +
-			css_attributes_parent.map((attribute: string) => {
+		class={'relative dark:bg-[#343434] overflow-hidden ' +
+			css_attributes_child.map((attribute: string) => {
 				return attribute + ' ';
 			})}
-		id={id}>
-		<div
-			class={'relative dark:bg-[#343434] overflow-hidden ' +
-				css_attributes_child.map((attribute: string) => {
-					return attribute + ' ';
-				})}
-			id={id + '-child'}>
-			<MainSite websiteAssets={websiteAssets} id={id} />
-		</div>
-
-		<style></style>
+		id={id + '-child'}>
+		<MainSite websiteAssets={websiteAssets} id={id} />
 	</div>
+
+	<style></style>
 </div>

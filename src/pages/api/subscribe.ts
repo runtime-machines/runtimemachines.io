@@ -34,10 +34,15 @@ export const post: APIRoute = async ({ request }) => {
 			const email = body.email;
 			const validEmail = validateEmail(email);
 			if (!validEmail) {
-				return new Response('Email Invalid', {
-					status: 400,
-					headers: headers,
-				});
+				return new Response(
+					JSON.stringify({
+						message: 'email invalid',
+					}),
+					{
+						status: 400,
+						headers: headers,
+					}
+				);
 			}
 			const jsonData: AddListMemberBody = {
 				email_address: email,
@@ -46,25 +51,40 @@ export const post: APIRoute = async ({ request }) => {
 			try {
 				const response = await mailchimp.lists.addListMember(listId, jsonData);
 				if (response.status != 'subscribed' && response.status != 'pending') {
-					return new Response('MailChimp error', {
-						status: 400,
-						headers: headers,
-					});
+					return new Response(
+						JSON.stringify({
+							message: 'mailchimp error',
+						}),
+						{
+							status: 400,
+							headers: headers,
+						}
+					);
 				}
 			} catch (error: unknown) {
 				try {
 					console.log(error);
 					const x = error as MailChimpErrorResponse;
-					return new Response(x.response.text, {
-						status: 400,
-						headers: headers,
-					});
+					return new Response(
+						JSON.stringify({
+							message: JSON.parse(x.response.text).title,
+						}),
+						{
+							status: 400,
+							headers: headers,
+						}
+					);
 				} catch (error) {
 					console.log(error);
-					return new Response('internal server error', {
-						status: 500,
-						headers: headers,
-					});
+					return new Response(
+						JSON.stringify({
+							message: 'internal server error',
+						}),
+						{
+							status: 500,
+							headers: headers,
+						}
+					);
 				}
 			}
 			console.log('Subscribed user ', email);

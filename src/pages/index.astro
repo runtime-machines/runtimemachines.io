@@ -47,7 +47,7 @@ const sides_id = ['left', 'right'];
 		</div>
 		<div class="hidden" id="riddle-playful-hidden">Playful Riddle</div>
 	</div>
-	<div class="hidden" id="riddle-website-hidden">
+	<div class="hidden h-full overflow-x-hidden relative" id="riddle-website-hidden">
 		<LandingPage
 			css_attributes_parent={['z-5']}
 			css_attributes_child={[]}
@@ -368,9 +368,38 @@ const sides_id = ['left', 'right'];
 		};
 
 		fetch('/api/subscribe', requestOptions)
-			.then((response) => response.text())
-			.then((result) => console.log(result))
-			.catch((error) => console.log('error', error));
+			.then((response) => response.json())
+			.then((result) => {
+				console.log(result);
+				for (let e = 0; e < sides_id.length; e++) {
+					const id = sides_id[e];
+					const button = document.getElementById('email_form_submit-' + id);
+					switch (result.message) {
+						case 'Member Exists':
+						case 'email subscribed':
+							button.innerHTML = 'Subscribed';
+							button.style.backgroundColor = '#0fa';
+							button.classList.add('cursor-not-allowed');
+							button.disabled = true;
+							break;
+						case 'email invalid':
+							button.innerHTML = 'Invalid';
+							button.style.backgroundColor = 'red';
+							break;
+						default:
+							break;
+					}
+				}
+			})
+			.catch((error) => {
+				console.error('error', error);
+				const submitButton = document.getElementsByClassName('email_form_submit-' + id);
+				for (let e = 0; e < submitButton.length; e++) {
+					const button = submitButton[e];
+					button.innerHTML = 'Subscribed';
+					button.style.backgroundColor = '#0fa';
+				}
+			});
 	};
 	function handleForm(event) {
 		event.preventDefault();

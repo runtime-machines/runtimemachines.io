@@ -9,12 +9,14 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html class="w-full h-full overflow-x-hidden max-w-[100%]">
+<html class="dark:bg-gray-900 bg-gray-700 w-full h-full overflow-x-hidden max-w-[100%]">
 	<head>
 		<title>Page - {title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
-	<body class="dark:bg-gray-900 h-full">
-		<slot />
+	<body class="dark:bg-gray-900 bg-gray-700 h-full">
+		<div class="h-full overflow:hidden relative">
+			<slot />
+		</div>
 	</body>
 </html>
