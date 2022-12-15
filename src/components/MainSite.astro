@@ -16,21 +16,22 @@ const { websiteAssets, id } = Astro.props;
 				<img src={websiteAssets.homepage.main_logo} />
 			</div>
 		</div>
+		<div class="block lg:hidden">colors buttons</div>
 		<div class="grid max-w-4xl m-auto">
 			<div
 				class="ml-auto mr-auto mb-auto grid lg:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-10 pb-10">
 				<div class="h-lg sm:w-sm w-xs w-sm rounded dark:shadow-glow shadow-white-glow">
 					<img src={websiteAssets.homepage.right_section} class="rounded w-full h-full" />
 				</div>
-				<div class="row-start-2">
-					<ButtonMainPage text={'Play Think Riddle'} />
-				</div>
 				<div class="h-lg sm:w-sm w-xs w-sm rounded dark:shadow-glow shadow-white-glow">
 					<img src={websiteAssets.homepage.left_section} class="rounded w-full h-full" />
 				</div>
-				<div class="row-start-2">
-					<ButtonMainPage text={'Play Build Riddle'} />
+				<div class="lg:row-start-2 lg:col-start-1 lg:col-end-3">
+					<ButtonMainPage text={'Play Think Riddle'} />
 				</div>
+				<!-- <div class="lg:row-start-2">
+					<ButtonMainPage text={'Play Build Riddle'} />
+				</div> -->
 			</div>
 			<section
 				class="bg-[#343434] <lg:dark:bg-[#343434] dark:bg-[#444444] rounded-2xl mb-10 dark:shadow-glow shadow-white-glow">
