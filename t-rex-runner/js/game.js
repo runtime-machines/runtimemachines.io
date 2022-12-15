@@ -585,7 +585,7 @@ Runner.prototype = {
 
       // Check for collisions.
       ///remove context to remove collision debug show blablabla its too late to programming
-      var collision = hasObstacles &&
+      var collision = this.horizon.obstacles.length &&
           checkForCollision(this.horizon.obstacles[0], this.tRex);
 
       //check for pickups collision

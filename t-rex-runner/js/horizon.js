@@ -16,6 +16,7 @@ function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
 
     // Obstacle
     this.no_obstacles = 0;
+    this.tot_obstacles = 1;
     this.obstacles = [];
     this.obstacleHistory = [];
     this.gapCoefficient = gapCoefficient;
@@ -148,6 +149,9 @@ updateObstacles: function(deltaTime, currentSpeed) {
     }
     this.obstacles = updatedObstacles;
 
+    //add new obstacle if necessary
+
+    //add to if Riddle.ON
     if (this.obstacles.length > 0) {
         var lastObstacle = this.obstacles[this.obstacles.length - 1];
 
@@ -166,10 +170,20 @@ updateObstacles: function(deltaTime, currentSpeed) {
 /**
  * Add a new obstacle.
  * @param {number} currentSpeed
+ * @info it's a auto-recursive method.
  */
  addNewObstacle: function(currentSpeed) {
+
+    if(Riddle.ON && this.tot_obstacles > Riddle.MAX_OBSTACLES){
+        return;
+    }
+
+
     var obstacleTypeIndex = 0;
-    if(!Runner.config.DUCKING){
+    if(this.tot_obstacles == Riddle.MAX_OBSTACLES){
+        console.log("yoo");
+        obstacleTypeIndex = 2;
+    } else if(!Runner.config.DUCKING){
         //exclude last one that is pterdactyl
         obstacleTypeIndex = getRandomNum(0, Obstacle.types.length - 2);
     } else {
@@ -183,6 +197,7 @@ updateObstacles: function(deltaTime, currentSpeed) {
         currentSpeed < obstacleType.minSpeed) {
     this.addNewObstacle(currentSpeed);
     } else {
+    this.tot_obstacles += 1;
     var obstacleSpritePos = this.spritePos[obstacleType.type];
 
     this.obstacles.push(new Obstacle(this.canvasCtx, obstacleType,
@@ -311,8 +326,12 @@ reset: function() {
     this.pickupWave = false;
     this.pickupTimer = Math.random() * Pickup.MAX_TIMER;
     this.pickupAcc = 0;
+    this.tot_obstacles = this.no_obstacles +1;
 
-    if(Riddle.RESET_OBSTACLES_LEFT_UPON_DEATH) this.no_obstacles = 0;
+    if(Riddle.ON && Riddle.RESET_OBSTACLES_LEFT_UPON_DEATH){
+        this.no_obstacles = 0;
+        this.tot_obstacles = 1;
+    }
 
     this.horizonLine.reset();
 },
