@@ -57,44 +57,20 @@ const sides_id = ['left', 'right'];
 		</div>
 		<div class="hidden" id="riddle-playful-hidden">Playful Riddle</div>
 	</div>
-	<div class="hidden h-full overflow-x-hidden relative" id="riddle-website-hidden">
+	<div style="overflow-y: overlay" class="hidden h-full w-full overflow-x-hidden relative" id="riddle-website-hidden">
 		<LandingPage
 			css_attributes_parent={['z-5 md:border-l-1 md:border-[#444444]']}
 			css_attributes_child={[]}
 			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
 		/>
-		<div id="middle" class="fixed animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
-			<div
-				style="transform: translateX(-50%);"
-				class="w-10 h-10 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
-				<!--svg
-					class="max-w-5 max-h-5 m-auto"
-					width="15"
-					height="15"
-					viewBox="0 0 15 15"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					><path
-						d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z"
-						fill="currentColor"
-						fill-rule="evenodd"
-						clip-rule="evenodd"></path>
-				</svg-->
-				<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
-				<!--svg
-					class="max-w-5 max-h-5 m-auto"
-					width="15"
-					height="15"
-					viewBox="0 0 15 15"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					><path
-						d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
-						fill="currentColor"
-						fill-rule="evenodd"
-						clip-rule="evenodd"></path>
-				</svg-->
+		<div class="absolute w-full h-full">
+			<div id="middle" class="fixed animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
+				<div
+					style="transform: translateX(-50%);"
+					class="w-10 h-10 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
+					<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
+				</div>
 			</div>
 		</div>
 		<LandingPage
