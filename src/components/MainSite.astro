@@ -1,6 +1,7 @@
 ---
 import { WebsiteAssets } from './LandingPage.astro';
 import MainCard from './MainCard.astro';
+import SocialIcon from './SocialIcon.astro';
 
 export interface Props {
 	websiteAssets: WebsiteAssets;
@@ -10,7 +11,7 @@ const { websiteAssets, id } = Astro.props;
 ---
 
 <div class="max-w-8xl m-auto">
-	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto] gap-y-10">
+	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto]">
 		<div class="grid">
 			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
 				<img src={websiteAssets.homepage.main_logo} />
@@ -107,19 +108,12 @@ const { websiteAssets, id } = Astro.props;
 					</div>
 				</div>
 			</section>
-			<!-- <form class="pb-20" id={'email_form-' + id}>
-				<div class="mb-6">
-					<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-					<input
-						type="email"
-						id={'email_form_text-' + id}
-						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="name@runtimemachines.com"
-						required
-					/>
-				</div>
-				<button id={'email_form_submit-' + id}>Submit Form</button>
-			</form> -->
+		</div>
+		<div class="flex pb-5">
+			<div class="w-30 flex m-auto md:mr-10">
+				<SocialIcon image={websiteAssets.homepage.linkedin_image} link="https://linkedin.com" />
+				<SocialIcon image={websiteAssets.homepage.gh_image} link="https://github.com/runtime-machines" />
+			</div>
 		</div>
 	</div>
 </div>
