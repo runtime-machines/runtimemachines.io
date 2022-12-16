@@ -60,7 +60,7 @@ const crypto: Quiz[] = [
 		correctAnswer: 3,
 	},
 	{
-		question: 'Result of encrypting "rtm" using Caeser cipher',
+		question: 'Guess the result of encrypting "RTM" using Caeser cipher',
 		answers: ['uwp', 'uds', 'fdw', 'grj'],
 		correctAnswer: 0,
 	},
