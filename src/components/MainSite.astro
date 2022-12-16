@@ -149,7 +149,7 @@ const { websiteAssets, id } = Astro.props;
 		if (isDay) {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.remove('bg-gray-700', '-translate-x-2');
+				element.classList.remove('bg-[#343434]', '-translate-x-2');
 				element.classList.add('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {
@@ -162,7 +162,7 @@ const { websiteAssets, id } = Astro.props;
 		} else {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.add('bg-gray-700', '-translate-x-2');
+				element.classList.add('bg-[#343434]', '-translate-x-2');
 				element.classList.remove('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {
