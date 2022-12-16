@@ -2,22 +2,26 @@
 ---
 
 <div
-	class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <md:text-xl text-center"
+	class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <lg:text-xl text-center"
 	id="serious-riddle">
-	<div class="md:ml-1/4 md:mr-1/4 mt-8 w-fit">
+	<div id="title-screen" class="h-full w-full mt-8">
+		<div id="complete" class=" text-3xl"></div>
+		<div id="continue-click" class="vanishing mt-1/4"></div>
+	</div>
+	<div class="lg:min-ml-1/4 lg:min-mr-1/4 lg:mx-auto mt-8 w-fit">
 		<div id="title"></div>
-		<ul id="alternatives" class="mt-4 <md:mt-8">
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <md:border-white <md:border-2 <md:mt-2 <md:p-1">
+		<ul id="alternatives" class="mt-4 <lg:mt-8 w-fit mx-auto">
+			<li class="alternative glow cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
 			</li>
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <md:border-white <md:border-2 <md:mt-2 <md:p-1">
+			<li class="alternative glow cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
 			</li>
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <md:border-white <md:border-2 <md:mt-2 <md:p-1">
+			<li class="alternative glow cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
 			</li>
-			<li class="alternative glow cursor-pointer w-fit ml-auto mr-auto <md:border-white <md:border-2 <md:mt-2 <md:p-1">
+			<li class="alternative glow cursor-pointer w-fit <lg:border-white <lg:border-2 <lg:mt-2 <lg:p-1">
 			</li>
 		</ul>
-		<div id="result" class="hidden mt-4 ml-auto mr-auto <md:mt-8"></div>
-		<a id="continue" class="glow hidden mt-4 cursor-pointer ml-auto mr-auto w-fit <md:border-2 <md:p-1">Next &raquo;</a>
+		<div id="result" class="hidden mt-4 ml-auto mr-auto <lg:mt-8"></div>
+		<a id="continue" class="glow hidden mt-4 cursor-pointer ml-auto mr-auto w-fit <lg:border-2 <lg:p-1">Next &raquo;</a>
 	</div>
 </div>
 
@@ -39,10 +43,42 @@
 		text-shadow: 0 0 7px #fff, 0 0 10px #73fdcf, 0 0 21px #73fdcf, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
 			0 0 102px #0fa, 0 0 151px #0fa;
 	}
+
+	.glow-correct {
+		color: #fff;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
+		text-shadow: 0 0 7px #fff, 0 0 10px #73fdcf, 0 0 21px #73fdcf, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
+			0 0 102px #0fa, 0 0 151px #0fa;
+	}
+	.glow-wrong {
+		color: #fff;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
+		text-shadow: 0 0 7px #fff, 0 0 10px #fd7373, 0 0 21px #fd7373, 0 0 42px #ff0000, 0 0 82px #ff0000, 0 0 92px #ff0000,
+			0 0 102px #ff0000, 0 0 151px #ff0000;
+	}
+
+	.vanishing{
+		animation-name: continue;
+		animation-duration: 3s;
+		animation-delay: 2s;
+		animation-iteration-count: infinite;
+	}
+
+	@keyframes continue {
+		0%		{ opacity: 1; }
+		50%		{ opacity: 0; }
+		100%	{ opacity: 1; }
+	}
 </style>
 
 <script>
-	import { getRandomThreeQuiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz';
+	//import { getRandomThreeQuiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz.ts';
 	enum WebsiteState {
 		Selection = 'selection',
 		Playful = 'playful',
@@ -54,71 +90,117 @@
 		answers: string[];
 		correctAnswer: number;
 	}
-	const quiz: Quiz[] = getRandomThreeQuiz();
+	// Remove this comment to get three random questions
+	//const quiz: Quiz[] = getRandomThreeQuiz();
+	const riddleQuiz: Quiz[] = [
+		{
+			question: 'How is the first block called in a chain?',
+			answers: ['Root', 'Genesis', 'Origin', 'Source'],
+			correctAnswer: 1,
+		},
+		{
+			question: 'Result of encrypting "rtm" using Caeser cipher',
+			answers: ['uwp', 'uds', 'fdw', 'grj'],
+			correctAnswer: 0,
+		},
+		{
+			question: 'What does SQL stands for?',
+			answers: [
+				'Simple Query Language',
+				'Structured Query Language',
+				'Scripting Query Language',
+				'Strange Query Language',
+			],
+			correctAnswer: 1,
+		},
+	]
 	// Code to display a question
-
+	const titleScreen = document.getElementById('title-screen');
+	const completeDiv = document.getElementById('complete');
+	const continueDiv = document.getElementById('continue-click');
 	const titleDiv = document.getElementById('title');
 	const alternatives = document.getElementById('alternatives');
 	const resultDiv = document.getElementById('result');
 	const continueButton = document.getElementById('continue');
+	let clickedAnswer: HTMLElement;
+	let qIndex = 0
 	function showQuestion(q: Quiz, i: number) {
+		if(qIndex < i){
+			qIndex = i;
+		}
 		if (titleDiv == null) return;
 		// Fill the question
 		let arrayHTML = [titleDiv];
-		let arrayStr = [i + 1 + '/3 ' + q.question];
+		let arrayStr = [qIndex + 1 + '/3 ' + q.question];
 		let alts = document.querySelectorAll('.alternative');
-		q.answers.forEach(function (element) {
-			arrayStr.push(element);
+		q.answers.forEach(function (element, index) {
+			arrayStr.push(index + 1 + '. ' + element);
 		});
 
 		// Fill the alternatives
 		alts.forEach(function (element, index) {
 			arrayHTML.push(element as HTMLElement);
 			element.addEventListener('click', function () {
+				// Add results effects
 				if (resultDiv == null || continueButton == null || alternatives == null || continueButton == null) return;
 
-				if (q.correctAnswer == index) {
-					resultDiv.textContent = 'Correct Answer!';
-				} else {
-					resultDiv.textContent = 'Wrong Answer!';
+				if(qIndex == i){
+					if (q.correctAnswer == index) {
+						resultDiv.textContent = 'Correct Answer!';
+					} else {
+						clickedAnswer = element as HTMLElement;
+						element.classList.add('glow-wrong');
+						element.classList.remove('glow');
+						resultDiv.textContent = '';
+					}
+
+					arrayHTML[q.correctAnswer + 1].classList.add('glow-correct');
+					alternatives.classList.add('pointer-events-none');
+					resultDiv.style.display = 'block';
+					continueButton.style.display = 'block';
 				}
-				alternatives.style.display = 'none';
-				resultDiv.style.display = 'block';
-				continueButton.style.display = 'block';
 			});
 		});
 
-		typeWriter(arrayHTML, arrayStr);
+		typeWriter(arrayHTML, arrayStr, i);
 
 		if (continueButton == null) return;
 		continueButton.addEventListener('click', function () {
 			if (resultDiv == null || continueButton == null || alternatives == null) return;
-			alternatives.style.display = 'block';
+			// Remove results effects 
+			arrayHTML[q.correctAnswer + 1].classList.remove('glow-correct');
+			if(clickedAnswer != null){
+				clickedAnswer.classList.remove('glow-wrong');
+				clickedAnswer.classList.add('glow');
+			}
+			alternatives.classList.remove('pointer-events-none');
 			resultDiv.style.display = 'none';
 			continueButton.style.display = 'none';
 
-			if (i + 2 > quiz.length) endRiddle();
-			else showQuestion(quiz[i + 1], i + 1);
+			if(qIndex == i){
+				if (i + 2 > riddleQuiz.length) endRiddle();
+				else showQuestion(riddleQuiz[qIndex + 1], qIndex + 1);
+			}
 		});
 	}
 
-	function typeWriter(elements: HTMLElement[], texts: string[]) {
+	function typeWriter(elements: HTMLElement[], texts: string[], i: number) {
 		let f = 0;
 		let j = 0;
 		elements.forEach(function (element: HTMLElement) {
 			element.textContent = '';
 		});
 		function type() {
-			if (f < texts.length) {
+			if (f < texts.length && qIndex == i) {
 				const text = texts[f];
-				if (j < text.length) {
+				if (j < text.length && qIndex == i) {
 					elements[f].innerHTML += text.charAt(j);
 					j++;
-					setTimeout(type, 30);
+					setTimeout(type, 20);
 				} else {
 					f++;
 					j = 0;
-					setTimeout(type, 30);
+					setTimeout(type, 20);
 				}
 			}
 		}
@@ -132,5 +214,15 @@
 		}
 		window.dispatchEvent(new Event('stateChange'));
 	}
-	showQuestion(quiz[0], 0);
+
+	function startRiddle(){
+		if(titleScreen == null || completeDiv == null || continueDiv == null) return;
+		typeWriter([completeDiv, continueDiv], ['Complete this quiz to enter the website', 'Click anywhere to continue'], 0);
+		titleScreen.addEventListener('click', function(){
+			showQuestion(riddleQuiz[0], 0);
+			titleScreen.style.display = 'none';
+		})
+	}
+
+	startRiddle();
 </script>
