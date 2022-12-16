@@ -76,18 +76,17 @@
 
     drawBG: function(i, xPos, sourceXPos){
 
-      var off = 100;
       var soff = 5;
 
       this.canvasCtx.drawImage(Runner.background[i], sourceXPos[0]+soff,
         10,
-        ( this.sourceDimensions.WIDTH /2 )+off, 200,
+        this.sourceDimensions.WIDTH/2, 200,
         xPos[0], 0,
         this.dimensions.WIDTH, 150);
 
       this.canvasCtx.drawImage(Runner.background[i], sourceXPos[1]+soff,
         10,
-        (this.sourceDimensions.WIDTH / 2) +off, 200,
+        this.sourceDimensions.WIDTH/2, 200,
         xPos[1], 0,
         this.dimensions.WIDTH, 150);
     },

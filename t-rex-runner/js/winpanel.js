@@ -19,8 +19,8 @@ function WinPanel(canvas, textImgPos, confettiPos, dimensions) {
 WinPanel.dimensions = {
     TEXT_X: 0,
     TEXT_Y: 0,
-    TEXT_WIDTH: 191,
-    TEXT_HEIGHT: 11,
+    TEXT_WIDTH: 170,
+    TEXT_HEIGHT: 12,
   };
 
   WinPanel.config = {
@@ -91,15 +91,16 @@ WinPanel.dimensions = {
 
       var centerX = this.canvasDimensions.WIDTH / 2;
 
+      var big = 2; // make this depend on screen size;
       // Win text
       var textSourceX = dimensions.TEXT_X;
       var textSourceY = dimensions.TEXT_Y;
       var textSourceWidth = dimensions.TEXT_WIDTH;
       var textSourceHeight = dimensions.TEXT_HEIGHT;
-      var textTargetX = Math.round(centerX - (dimensions.TEXT_WIDTH / 2));
-      var textTargetY = Math.round((this.canvasDimensions.HEIGHT) / 2);
-      var textTargetWidth = dimensions.TEXT_WIDTH;
-      var textTargetHeight = dimensions.TEXT_HEIGHT;
+      var textTargetX = Math.round(centerX - (dimensions.TEXT_WIDTH * big / 2));
+      var textTargetY = Math.round( ( (this.canvasDimensions.HEIGHT) / 2 ) - (dimensions.TEXT_HEIGHT * big / 2) );
+      var textTargetWidth = dimensions.TEXT_WIDTH*big;
+      var textTargetHeight = dimensions.TEXT_HEIGHT*big;
   
       if (IS_HIDPI) {
         textSourceY *= 2;

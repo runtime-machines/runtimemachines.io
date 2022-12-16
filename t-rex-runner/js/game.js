@@ -129,6 +129,7 @@ Runner.defaultDimensions = {
 Runner.classes = {
   CANVAS: 'runner-canvas',
   CONTAINER: 'runner-container',
+  CONTAINER_ID: "runner-id",
   CRASHED: 'crashed',
   ICON: 'icon-offline',
   SNACKBAR: 'snackbar',
@@ -152,7 +153,7 @@ Runner.classes = {
       RESTART:{x:2,y:2},
       SKIP:{x:1054, y: 2}, //to check
       TEXT_SPRITE:{x:484,y:2},
-      WIN_TEXT_SPRITE:{x:0, y:0},//to check
+      WIN_TEXT_SPRITE:{x:0, y:0},//to check // TODO
       TREX:{x:0,y:15}, //custom file
       CONFETTI:{x:1649, y:3}, //to check
       COIN: {x:1111, y: 4}, //to check
@@ -168,7 +169,7 @@ Runner.classes = {
       RESTART:{x:2,y:2},
       SKIP:{x:2108, y: 4}, //todo
       TEXT_SPRITE:{x:954,y:2},
-      WIN_TEXT_SPRITE:{x:1000, y:54},
+      WIN_TEXT_SPRITE:{x:977, y:53},
       CONFETTI:{x:3298, y:5},
       TREX:{x:0,y:30}, //custom file
       COIN: {x:2224, y: 8},
@@ -359,6 +360,7 @@ Runner.prototype = {
 
     this.containerEl = document.createElement('div');
     this.containerEl.className = Runner.classes.CONTAINER;
+    this.containerEl.setAttribute("id", Runner.classes.CONTAINER_ID);
 
     // Player canvas container.
     this.canvas = createCanvas(this.containerEl, this.dimensions.WIDTH,
@@ -900,6 +902,9 @@ Runner.prototype = {
     console.log("exit game");
     this.playingOutro = false;
     this.clearCanvas();
+    
+    var e = document.getElementById(Runner.classes.CONTAINER_ID);
+    e.remove();
   },
 
   fadeOut: function(){

@@ -75,7 +75,7 @@ init: function(){
     this.horizonLine = new HorizonLine(this.canvas, this.spritePos.HORIZON);
     this.horizonLine.drawBGBack();
     this.horizonLine.drawBGMid();
-    this.addCloud();
+    //this.addCloud();
     this.horizonLine.drawBGFront();
     this.horizonLine.drawLine();
     
@@ -95,7 +95,7 @@ update: function(deltaTime, currentSpeed, updateObstacles, updatePickups) {
 
     this.horizonLine.drawBGBack();
     this.horizonLine.drawBGMid();
-    this.updateClouds(deltaTime, currentSpeed);
+    //this.updateClouds(deltaTime, currentSpeed);
     this.horizonLine.drawBGFront();
     this.horizonLine.drawLine();
 
