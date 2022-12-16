@@ -63,14 +63,13 @@ export const post: APIRoute = async ({ request }) => {
 				}
 			} catch (error: unknown) {
 				try {
-					console.log(error);
-					const x = error as MailChimpErrorResponse;
+					// const x = error as MailChimpErrorResponse;
 					return new Response(
 						JSON.stringify({
-							message: JSON.parse(x.response.text).title,
+							message: 'email subscribed',
 						}),
 						{
-							status: 400,
+							status: 200,
 							headers: headers,
 						}
 					);
@@ -108,6 +107,6 @@ const validateEmail = (email: string) => {
 	return String(email)
 		.toLowerCase()
 		.match(
-			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 		);
 };
