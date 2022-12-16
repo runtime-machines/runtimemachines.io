@@ -49,15 +49,12 @@ const sides_id = ['left', 'right'];
 	</div>
 	<div class="hidden h-full overflow-x-hidden relative" id="riddle-website-hidden">
 		<LandingPage
-			css_attributes_parent={['z-5']}
+			css_attributes_parent={['z-5 md:border-l-1 md:border-[#444444]']}
 			css_attributes_child={[]}
 			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
 		/>
-		<div
-			id="middle"
-			class="animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize absolute z-20">
-			<!-- class -translate-x-1/2 has issues I don't know why -->
+		<div id="middle" class="fixed animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
 			<div
 				style="transform: translateX(-50%);"
 				class="w-10 h-10 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
@@ -92,9 +89,9 @@ const sides_id = ['left', 'right'];
 		</div>
 		<LandingPage
 			css_attributes_parent={[
-				'md:animate-wiggle md:dark z-15 ml-0 md:ml-[50%] md:block md:border-l-1 md:border-[#FFAD8A] border-solid',
+				'!<md:ml-0 md:animate-wiggle md:dark z-15 ml-0 md:ml-[50%] md:block md:border-l-1 md:border-white border-solid',
 			]}
-			css_attributes_child={['md:animate-wigglechild ml-0 md:-left-1/2']}
+			css_attributes_child={['dark md:animate-wigglechild ml-0 md:-left-1/2 !<md:left-0 ']}
 			id={sides_id[1]}
 			websiteAssets={websiteAssets[1]}
 		/>
