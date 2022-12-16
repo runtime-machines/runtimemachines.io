@@ -9,6 +9,7 @@ export default defineConfig({
 		extend: {
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
+				badaboom: ['badaboom-pro', 'sans-serif'],
 			},
 			cursor: {
 				'ew-resize': 'ew-resize',

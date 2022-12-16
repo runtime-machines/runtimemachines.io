@@ -40,11 +40,11 @@ const { websiteAssets, id } = Astro.props;
 		</div>
 		<div class="grid max-w-4xl m-auto">
 			<div
-				class="ml-auto mr-auto mb-auto grid md:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-2 lg:gap-10 pb-10">
-				<MainCard image={websiteAssets.homepage.left_section} text="We build" css_classes={[]} />
+				class="ml-auto mr-auto mb-auto grid md:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-2 lg:gap-10 pb-10 font-badaboom">
+				<MainCard image={websiteAssets.homepage.left_section} text="We think" css_classes={[]} />
 				<MainCard
 					image={websiteAssets.homepage.right_section}
-					text="We think"
+					text="We build"
 					css_classes={['<md:dark:row-start-2 <md:row-start-1']}
 				/>
 				<!-- <div class="md:row-start-2 md:col-start-1 md:col-end-3">
@@ -58,7 +58,7 @@ const { websiteAssets, id } = Astro.props;
 				class="bg-[#343434] w-xs sm:w-sm md:w-full <md:dark:bg-[#343434] dark:bg-[#444444] rounded-2xl mb-10 shadow-xl">
 				<div class="py-8 px-4 mx-auto max-w-screen-xl md:py-16 md:px-6">
 					<div class="mx-auto max-w-screen-md sm:text-center">
-						<h2 class="mb-4 text-3xl tracking-tight font-extrabold sm:text-4xl text-white <md:dark:text-white">
+						<h2 class="mb-4 text-3xl tracking-tight font-badaboom sm:text-4xl text-white <md:dark:text-white">
 							Don't miss updates & benefits
 						</h2>
 						<p class="mx-auto mb-8 max-w-2xl font-light text-gray-400 md:mb-12 sm:text-xl dark:text-gray-400">
@@ -92,7 +92,7 @@ const { websiteAssets, id } = Astro.props;
 									<button
 										type="submit"
 										id={'email_form_submit-' + id}
-										class="<md:dark:text-white font-bold py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4bg-primary-600 hover:bg-primary-700"
+										class="<md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4bg-primary-600 hover:bg-primary-700 font-badaboom"
 										>Subscribe</button
 									>
 								</div>
@@ -101,7 +101,7 @@ const { websiteAssets, id } = Astro.props;
 								class="mx-auto w-fit max-w-screen-sm text-sm text-left text-gray-400 newsletter-form-footer dark:text-gray-300">
 								We care about the protection of your data. <a
 									href="#"
-									class="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read our Privacy Policy</a
+									class="font-medium text-white dark:text-[#5E6EFF] hover:underline">Read our Privacy Policy</a
 								>.
 							</div>
 						</form>
@@ -175,3 +175,4 @@ const { websiteAssets, id } = Astro.props;
 
 	switchTheme();
 </script>
+
