@@ -7,6 +7,9 @@ export default defineConfig({
 	},
 	theme: {
 		extend: {
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+			},
 			cursor: {
 				'ew-resize': 'ew-resize',
 			},

@@ -3,24 +3,24 @@ import Root from '~/layouts/Root.astro';
 import LandingPage, { WebsiteAssets } from '~/components/LandingPage.astro';
 import Logo_Main_Mono from '~/assets/images/Logo_Main_Mono.svg';
 import Logo_Main_Light from '~/assets/images/Logo_Main_Light.svg';
-import RightSide_Main_Mono from '~/assets/images/RightSide_Main_Mono.svg';
-import LeftSide_Main_Mono from '~/assets/images/LeftSide_Main_Mono.svg';
-import RightSide_Main_Col from '~/assets/images/RightSide_Main_Col.svg';
-import LeftSide_Main_Col from '~/assets/images/LeftSide_Main_Col.svg';
+import RightSide_Main_Mono from '~/assets/images/RightSide_Main_Mono.jpg';
+import LeftSide_Main_Mono from '~/assets/images/LeftSide_Main_Mono.jpg';
+import RightSide_Main_Col from '~/assets/images/RightSide_Main_Col.jpg';
+import LeftSide_Main_Col from '~/assets/images/LeftSide_Main_Col.jpg';
 import Short_Logo from '~/assets/images/Short_Logo.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
 		homepage: {
-			main_logo: Logo_Main_Mono,
+			main_logo: Logo_Main_Light,
 			left_section: LeftSide_Main_Mono,
 			right_section: RightSide_Main_Mono,
 		},
 	},
 	{
 		homepage: {
-			main_logo: Logo_Main_Light,
+			main_logo: Logo_Main_Mono,
 			left_section: LeftSide_Main_Col,
 			right_section: RightSide_Main_Col,
 		},
@@ -92,9 +92,9 @@ const sides_id = ['left', 'right'];
 		</div>
 		<LandingPage
 			css_attributes_parent={[
-				'animate-wiggle md:dark z-15 ml-[50%] !<md:ml-0 md:block md:border-l-1 md:border-[#FFAD8A] border-solid',
+				'md:animate-wiggle md:dark z-15 ml-0 md:ml-[50%] md:block md:border-l-1 md:border-[#FFAD8A] border-solid',
 			]}
-			css_attributes_child={['animate-wigglechild -left-1/2 !<md:left-0']}
+			css_attributes_child={['md:animate-wigglechild ml-0 md:-left-1/2']}
 			id={sides_id[1]}
 			websiteAssets={websiteAssets[1]}
 		/>

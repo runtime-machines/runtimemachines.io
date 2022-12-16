@@ -1,6 +1,6 @@
 ---
 export interface Props {
-	image: string;
+	image: string | null | undefined;
 	text: string;
 }
 const { image, text } = Astro.props;
@@ -12,5 +12,7 @@ const { image, text } = Astro.props;
 	<div class="m-auto sm:h-15 h-20 flex">
 		<span class="text-white m-auto font-extrabold text-3xl">{text}</span>
 	</div>
-	<img src={image} class="rounded w-full mb-0 self-end" />
+	<div class="rounded w-full mb-0 self-end">
+		<img src={image} class="w-full rounded" alt="" />
+	</div>
 </div>
