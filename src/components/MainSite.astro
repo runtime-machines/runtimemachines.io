@@ -1,6 +1,7 @@
 ---
 import { WebsiteAssets } from './LandingPage.astro';
 import MainCard from './MainCard.astro';
+import SocialIcon from './SocialIcon.astro';
 
 export interface Props {
 	websiteAssets: WebsiteAssets;
@@ -10,16 +11,16 @@ const { websiteAssets, id } = Astro.props;
 ---
 
 <div class="max-w-8xl m-auto">
-	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto] gap-y-10">
+	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto]">
 		<div class="grid">
 			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
 				<img src={websiteAssets.homepage.main_logo} />
 			</div>
 		</div>
-		<div class="flex">
+		<div class="flex md:hidden">
 			<div
 				class="block md:hidden flex sm:w-sm w-xs m-auto px-3 grid grid-cols-[auto_auto_auto] font-semibold text-white">
-				<span class="m-auto text-xl">Light</span>
+				<span class="m-auto text-xl">Night</span>
 				<button
 					class="toggleTheme m-auto w-20 h-10 rounded-full bg-white flex items-center transition duration-300 focus:outline-none shadow">
 					<div
@@ -34,14 +35,18 @@ const { websiteAssets, id } = Astro.props;
 						</svg>
 					</div>
 				</button>
-				<span class="m-auto text-xl">Dark</span>
+				<span class="m-auto text-xl">Day</span>
 			</div>
 		</div>
 		<div class="grid max-w-4xl m-auto">
 			<div
 				class="ml-auto mr-auto mb-auto grid md:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-2 lg:gap-10 pb-10 font-badaboom">
-				<MainCard image={websiteAssets.homepage.left_section} text="We think" />
-				<MainCard image={websiteAssets.homepage.right_section} text="We build" />
+				<MainCard image={websiteAssets.homepage.left_section} text="We think" css_classes={[]} />
+				<MainCard
+					image={websiteAssets.homepage.right_section}
+					text="We build"
+					css_classes={['<md:dark:row-start-2 <md:row-start-1']}
+				/>
 				<!-- <div class="md:row-start-2 md:col-start-1 md:col-end-3">
 					<ButtonMainPage text={'Play Think Riddle'} />
 				</div> -->
@@ -103,32 +108,25 @@ const { websiteAssets, id } = Astro.props;
 					</div>
 				</div>
 			</section>
-			<!-- <form class="pb-20" id={'email_form-' + id}>
-				<div class="mb-6">
-					<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-					<input
-						type="email"
-						id={'email_form_text-' + id}
-						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="name@runtimemachines.com"
-						required
-					/>
-				</div>
-				<button id={'email_form_submit-' + id}>Submit Form</button>
-			</form> -->
+		</div>
+		<div class="flex pb-5">
+			<div class="w-30 flex m-auto md:mr-10">
+				<SocialIcon image={websiteAssets.homepage.linkedin_image} link="https://linkedin.com" />
+				<SocialIcon image={websiteAssets.homepage.gh_image} link="https://github.com/runtime-machines" />
+			</div>
 		</div>
 	</div>
 </div>
 
 <script>
 	const switchToggle = document.getElementsByClassName('toggleThemeSwitch');
-	let isDarkmode = false;
+	let isDay = false;
 
-	const darkIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+	const lightIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 	<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
 	</svg>`;
 
-	const lightIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+	const darkIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 	<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
 	</svg>`;
 
@@ -139,38 +137,39 @@ const { websiteAssets, id } = Astro.props;
 	}
 
 	function toggleTheme() {
-		isDarkmode = !isDarkmode;
-		localStorage.setItem('isDarkmode', String(isDarkmode));
+		isDay = !isDay;
+		localStorage.setItem('isDay', String(isDay));
 		switchTheme();
 	}
 
 	function switchTheme() {
-		if (isDarkmode) {
+		console.log(isDay);
+		if (isDay) {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.remove('bg-yellow-500', '-translate-x-2');
-				element.classList.add('bg-gray-700', 'translate-x-full');
+				element.classList.remove('bg-gray-700', '-translate-x-2');
+				element.classList.add('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {
 				for (let e = 0; e < switchToggle.length; e++) {
 					switchToggle[e].innerHTML = darkIcon;
 				}
 			}, 0);
-			document.getElementById('right')?.classList.add('<md:max-h-0');
-			document.getElementById('left')?.classList.remove('<md:max-h-0');
+			document.getElementById('left')?.classList.add('<md:max-h-0');
+			document.getElementById('right')?.classList.remove('<md:max-h-0');
 		} else {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.add('bg-yellow-500', '-translate-x-2');
-				element.classList.remove('bg-gray-700', 'translate-x-full');
+				element.classList.add('bg-gray-700', '-translate-x-2');
+				element.classList.remove('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {
 				for (let e = 0; e < switchToggle.length; e++) {
 					switchToggle[e].innerHTML = lightIcon;
 				}
 			}, 0);
-			document.getElementById('left')?.classList.add('<md:max-h-0');
-			document.getElementById('right')?.classList.remove('<md:max-h-0');
+			document.getElementById('right')?.classList.add('<md:max-h-0');
+			document.getElementById('left')?.classList.remove('<md:max-h-0');
 		}
 	}
 
