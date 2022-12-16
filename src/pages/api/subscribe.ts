@@ -16,14 +16,14 @@ export const get: APIRoute = () => {
 	};
 };
 
-interface MailChimpErrorResponse {
-	status: number;
-	response: {
-		req: Request;
-		status: number;
-		text: string;
-	};
-}
+// interface MailChimpErrorResponse {
+// 	status: number;
+// 	response: {
+// 		req: Request;
+// 		status: number;
+// 		text: string;
+// 	};
+// }
 
 export const post: APIRoute = async ({ request }) => {
 	const headers = new Headers();
