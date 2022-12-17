@@ -3,16 +3,36 @@ import Root from '~/layouts/Root.astro';
 import LandingPage, { WebsiteAssets } from '~/components/LandingPage.astro';
 import Logo_Main_Mono from '~/assets/images/Logo_Main_Mono.svg';
 import Logo_Main_Light from '~/assets/images/Logo_Main_Light.svg';
+import RightSide_Main_Mono from '~/assets/images/RightSide_Main_Mono.jpg';
+import LeftSide_Main_Mono from '~/assets/images/LeftSide_Main_Mono.jpg';
+import RightSide_Main_Col from '~/assets/images/RightSide_Main_Col.jpg';
+import LeftSide_Main_Col from '~/assets/images/LeftSide_Main_Col.jpg';
+import Github_Image_Yellow from '~/assets/images/Github_Yellow.svg';
+// import Github_Image_Blue from '~/assets/images/Github_Blue.svg';
+import Github_Image_White from '~/assets/images/Github_White.svg';
+import Linkedin_Image_White from '~/assets/images/Linkedin_White.svg';
+// import Linkedin_Image_Blue from '~/assets/images/Linkedin_Blue.svg';
+import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
+import Short_Logo from '~/assets/images/Short_Logo.svg';
+import SeriousRiddle from '~/components/SeriousRiddle.astro';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
 		homepage: {
 			main_logo: Logo_Main_Mono,
+			left_section: LeftSide_Main_Mono,
+			right_section: RightSide_Main_Mono,
+			gh_image: Github_Image_White,
+			linkedin_image: Linkedin_Image_White,
 		},
 	},
 	{
 		homepage: {
 			main_logo: Logo_Main_Light,
+			left_section: LeftSide_Main_Col,
+			right_section: RightSide_Main_Col,
+			gh_image: Github_Image_Yellow,
+			linkedin_image: Linkedin_Image_Yellow,
 		},
 	},
 ];
@@ -21,60 +41,152 @@ const sides_id = ['left', 'right'];
 ---
 
 <Root title="Homepage">
-	<div>
+	<div id="riddle-selector-hidden" class="hidden">
+		<div class="grid grid-cols-[1fr_1fr]">
+			<button id="serious-button" class="w-100px h-12 rounded-2xl bg-orange">serious button</button>
+			<button id="playful-button" class="w-100px h-12 rounded-2xl bg-black text-white">playful button</button>
+		</div>
+	</div>
+	<div
+		class="hidden h-full transition-all linear duration-300 overflow-x-hidden max-h-full h-full"
+		id="riddle-riddles-hidden">
+		<div class="block h-full" id="riddle-serious-hidden">
+			<div class="h-full">
+				<SeriousRiddle />
+			</div>
+		</div>
+		<div class="hidden" id="riddle-playful-hidden">Playful Riddle</div>
+	</div>
+	<div style="overflow-y: overlay" class="hidden h-full w-full overflow-x-hidden relative" id="riddle-website-hidden">
 		<LandingPage
-			css_attributes_parent={['z-5']}
+			css_attributes_parent={['z-5 md:border-l-1 md:border-[#444444]']}
 			css_attributes_child={[]}
 			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
 		/>
-		<div id="middle" class="left-[50%] h-full min-h-full cursor-ew-resize absolute z-20">
-			<!-- class -translate-x-1/2 has issues I don't know why -->
-			<div
-				style="transform: translateX(-50%);"
-				class="w-15 h-5 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-1/4 grid grid-cols-[1fr_1fr]"
-			>
-				<svg
-					class="max-w-5 max-h-5 m-auto"
-					width="15"
-					height="15"
-					viewBox="0 0 15 15"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					><path
-						d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z"
-						fill="currentColor"
-						fill-rule="evenodd"
-						clip-rule="evenodd"></path>
-				</svg>
-				<svg
-					class="max-w-5 max-h-5 m-auto"
-					width="15"
-					height="15"
-					viewBox="0 0 15 15"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					><path
-						d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
-						fill="currentColor"
-						fill-rule="evenodd"
-						clip-rule="evenodd"></path>
-				</svg>
+		<div class="absolute w-full h-full">
+			<div id="middle" class="fixed animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
+				<div
+					style="transform: translateX(-50%);"
+					class="w-10 h-10 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
+					<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
+				</div>
 			</div>
 		</div>
 		<LandingPage
-			css_attributes_parent={['dark z-15 ml-[50%] !<lg:ml-0 !lg:block border-l-1 border-[#FFAD8A] border-solid']}
-			css_attributes_child={['-left-1/2 !<lg:left-0']}
+			css_attributes_parent={[
+				'dark !<md:ml-0 md:animate-wiggle md:dark z-15 ml-0 md:ml-[50%] md:block md:border-l-1 md:border-white border-solid',
+			]}
+			css_attributes_child={['md:animate-wigglechild ml-0 md:-left-1/2 !<md:left-0 ']}
 			id={sides_id[1]}
 			websiteAssets={websiteAssets[1]}
 		/>
-		<div class="absolute right-[10px] bottom-[10px] lg:hidden button-div z-25">
+		<div class="hidden absolute right-[10px] bottom-[10px] md:hidden button-div z-25">
 			<button id="switch-button" class="w-100px h-12 rounded-2xl bg-orange">switch</button>
 		</div>
 	</div>
 
 	<style></style>
 </Root>
+
+<!-- Riddle selector and website management -->
+<script>
+	enum WebsiteState {
+		Selection = 'selection',
+		Playful = 'playful',
+		Serious = 'serious',
+		Website = 'website',
+	}
+
+	function setupSelection() {
+		const serious_button = document.getElementById('serious-button');
+		const playful_button = document.getElementById('playful-button');
+
+		if (serious_button == null || playful_button == null) {
+			console.error('broken selection buttons');
+			return;
+		}
+
+		serious_button.addEventListener('click', seriousSelection);
+		playful_button.addEventListener('click', playfulSelection);
+
+		function seriousSelection() {
+			localStorage.setItem('websiteState', 'serious');
+			reEvaluateState();
+		}
+
+		function playfulSelection() {
+			localStorage.setItem('websiteState', 'playful');
+			reEvaluateState();
+		}
+	}
+
+	function reEvaluateState() {
+		const localStorageValue = localStorage.getItem('websiteState');
+		const previousState = localStorageValue != null ? (localStorageValue as WebsiteState) : undefined;
+		let state: WebsiteState = WebsiteState.Serious;
+		if (previousState != null && Object.values(WebsiteState).includes(previousState)) {
+			state = previousState;
+		}
+		const selector = document.getElementById('riddle-selector-hidden');
+		const riddles = document.getElementById('riddle-riddles-hidden');
+		const playful = document.getElementById('riddle-playful-hidden');
+		const serious = document.getElementById('riddle-serious-hidden');
+		const website = document.getElementById('riddle-website-hidden');
+		if (selector == null || riddles == null || playful == null || serious == null || website == null) {
+			console.error("Can't access riddle block elements!");
+			return;
+		}
+		switch (state) {
+			case WebsiteState.Playful:
+				{
+					selector.style.display = 'none';
+					riddles.style.display = 'block';
+					playful.style.display = 'block';
+					serious.style.display = 'none';
+					website.style.display = 'none';
+				}
+				break;
+			case WebsiteState.Selection:
+				{
+					selector.style.display = 'block';
+					riddles.style.display = 'none';
+					playful.style.display = 'none';
+					serious.style.display = 'none';
+					website.style.display = 'none';
+				}
+				break;
+			case WebsiteState.Serious:
+				{
+					selector.style.display = 'none';
+					riddles.style.display = 'block';
+					playful.style.display = 'none';
+					serious.style.display = 'block';
+					website.style.display = 'none';
+				}
+				break;
+			case WebsiteState.Website:
+				{
+					selector.style.display = 'none';
+					riddles.style.display = 'block';
+					// playful.style.display = 'none';
+					setTimeout(function () {
+						riddles.style.display = 'none';
+					}, 300);
+					riddles.style.maxHeight = '0';
+					serious.style.display = 'block';
+					website.style.display = 'block';
+				}
+				break;
+			default:
+				break;
+		}
+		localStorage.setItem('websiteState', state);
+	}
+	setupSelection();
+	reEvaluateState();
+	window.addEventListener('stateChange', reEvaluateState);
+</script>
 
 <script>
 	// Query the element
@@ -111,12 +223,12 @@ const sides_id = ['left', 'right'];
 		const dx = e.clientX - x;
 
 		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 
 		let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
-		const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
+		const newRightLeft = Math.max(1, Math.min(99, ((rightMargin + dx) * 100) / containerWidth));
 		rightSide.style.marginLeft = `${newRightLeft}%`;
 		resizer.style.left = `${newRightLeft}%`;
 		rightSideChild.style.left = `${-newRightLeft}%`;
@@ -132,7 +244,7 @@ const sides_id = ['left', 'right'];
 	// Hanlde mouse UP
 	const mouseUpHandler = function () {
 		if (resizer == null || rightSide == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 		resizer.style.removeProperty('cursor');
@@ -170,7 +282,7 @@ const sides_id = ['left', 'right'];
 		const dx = e.touches[0].clientX - x;
 
 		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 
@@ -184,7 +296,7 @@ const sides_id = ['left', 'right'];
 	// Handle finger UP
 	const touchEndHandler = function () {
 		if (resizer == null || rightSide == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 
@@ -197,7 +309,7 @@ const sides_id = ['left', 'right'];
 	let stylePage = true;
 	const switchClickHandler = function () {
 		if (rightSide == null || leftSide == null || switchButton == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 		// TRUE -> going from play to serious
@@ -218,10 +330,11 @@ const sides_id = ['left', 'right'];
 </script>
 
 <!-- COMPONENTS JAVASCRIPT -->
+<!-- EMAIL COMPONENT -->
 <script define:vars={{ sides_id }}>
 	const emailSubmit = function (event) {
-		const id = event.currentTarget.id;
-		console.log('sending email address');
+		const id = event.currentTarget.face_id;
+		//console.log('sending email address');
 		var myHeaders = new Headers();
 		myHeaders.append('Content-Type', 'application/json');
 
@@ -229,7 +342,7 @@ const sides_id = ['left', 'right'];
 			email: document.getElementById('email_form_text-' + id).value,
 		});
 
-		console.log(raw);
+		//console.log(raw);
 
 		var requestOptions = {
 			method: 'POST',
@@ -238,19 +351,65 @@ const sides_id = ['left', 'right'];
 		};
 
 		fetch('/api/subscribe', requestOptions)
-			.then((response) => response.text())
-			.then((result) => console.log(result))
-			.catch((error) => console.log('error', error));
+			.then((response) => response.json())
+			.then((result) => {
+				//console.log(result);
+				for (let e = 0; e < sides_id.length; e++) {
+					const id = sides_id[e];
+					const button = document.getElementById('email_form_submit-' + id);
+					switch (result.message) {
+						case 'Member Exists':
+						case 'email subscribed':
+							button.innerHTML = 'Subscribed';
+							button.style.backgroundColor = '#0fa';
+							button.classList.add('cursor-not-allowed');
+							button.disabled = true;
+							break;
+						case 'email invalid':
+							button.style.backgroundColor = 'red';
+							break;
+						default:
+							break;
+					}
+				}
+			})
+			.catch((error) => {
+				console.error('error', error);
+				const submitButton = document.getElementsByClassName('email_form_submit-' + id);
+				for (let e = 0; e < submitButton.length; e++) {
+					const button = submitButton[e];
+					button.innerHTML = 'Subscribed';
+					button.style.backgroundColor = '#0fa';
+				}
+			});
 	};
 	function handleForm(event) {
 		event.preventDefault();
 	}
-	for (let e = 0; e < sides_id.length; e++) {
-		const id = sides_id[e];
-		const submitButton = document.getElementById('email_form_submit-' + id);
-		submitButton.id = id;
-		const form = document.getElementById('email_form-' + id);
-		submitButton?.addEventListener('click', emailSubmit);
-		form?.addEventListener('submit', handleForm);
+	function startupActions() {
+		for (let e = 0; e < sides_id.length; e++) {
+			const id = sides_id[e];
+			//console.log(sides_id, id);
+			const submitButton = document.getElementById('email_form_submit-' + id);
+			submitButton.face_id = id;
+			const form = document.getElementById('email_form-' + id);
+			submitButton?.addEventListener('click', emailSubmit);
+			form?.addEventListener('submit', handleForm);
+			const text_field = document.getElementById('email_form_text-' + id);
+			text_field?.addEventListener('keyup', emailBoxSyncronization);
+			text_field.face_id = id;
+		}
+	}
+
+	startupActions();
+
+	function emailBoxSyncronization(event) {
+		for (let e = 0; e < sides_id.length; e++) {
+			const id = event.currentTarget.face_id;
+			if (sides_id[e] != id) {
+				const text_field = document.getElementById('email_form_text-' + sides_id[e]);
+				text_field.value = event.currentTarget.value;
+			}
+		}
 	}
 </script>

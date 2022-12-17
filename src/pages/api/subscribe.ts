@@ -16,14 +16,14 @@ export const get: APIRoute = () => {
 	};
 };
 
-interface MailChimpErrorResponse {
-	status: number;
-	response: {
-		req: Request;
-		status: number;
-		text: string;
-	};
-}
+// interface MailChimpErrorResponse {
+// 	status: number;
+// 	response: {
+// 		req: Request;
+// 		status: number;
+// 		text: string;
+// 	};
+// }
 
 export const post: APIRoute = async ({ request }) => {
 	const headers = new Headers();
@@ -34,10 +34,15 @@ export const post: APIRoute = async ({ request }) => {
 			const email = body.email;
 			const validEmail = validateEmail(email);
 			if (!validEmail) {
-				return new Response('Email Invalid', {
-					status: 400,
-					headers: headers,
-				});
+				return new Response(
+					JSON.stringify({
+						message: 'email invalid',
+					}),
+					{
+						status: 400,
+						headers: headers,
+					}
+				);
 			}
 			const jsonData: AddListMemberBody = {
 				email_address: email,
@@ -46,27 +51,42 @@ export const post: APIRoute = async ({ request }) => {
 			try {
 				const response = await mailchimp.lists.addListMember(listId, jsonData);
 				if (response.status != 'subscribed' && response.status != 'pending') {
-					return new Response('MailChimp error', {
-						status: 400,
-						headers: headers,
-					});
+					return new Response(
+						JSON.stringify({
+							message: 'mailchimp error',
+						}),
+						{
+							status: 400,
+							headers: headers,
+						}
+					);
 				}
 			} catch (error: unknown) {
 				try {
-					const x = error as MailChimpErrorResponse;
-					return new Response(x.response.text, {
-						status: 400,
-						headers: headers,
-					});
+					// const x = error as MailChimpErrorResponse;
+					return new Response(
+						JSON.stringify({
+							message: 'email subscribed',
+						}),
+						{
+							status: 200,
+							headers: headers,
+						}
+					);
 				} catch (error) {
-					console.log(error);
-					return new Response('internal server error', {
-						status: 500,
-						headers: headers,
-					});
+					//console.log(error);
+					return new Response(
+						JSON.stringify({
+							message: 'internal server error',
+						}),
+						{
+							status: 500,
+							headers: headers,
+						}
+					);
 				}
 			}
-			console.log('Subscribed user ', email);
+			//console.log('Subscribed user ', email);
 			return new Response(
 				JSON.stringify({
 					message: 'email subscribed',
@@ -77,7 +97,7 @@ export const post: APIRoute = async ({ request }) => {
 				}
 			);
 		} catch (error) {
-			console.log(error);
+			//console.log(error);
 		}
 	}
 	return new Response(null, { status: 400, headers: headers });
@@ -87,6 +107,6 @@ const validateEmail = (email: string) => {
 	return String(email)
 		.toLowerCase()
 		.match(
-			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 		);
 };

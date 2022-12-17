@@ -2,13 +2,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import image from '@astrojs/image';
-import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
+// import image from '@astrojs/image';
+// import mdx from '@astrojs/mdx';
+// import partytown from '@astrojs/partytown';
 import WindiCSS from 'vite-plugin-windicss';
 import { SITE } from './src/config.mjs';
 import vercel from '@astrojs/vercel/serverless';
-import { astroImageTools } from 'astro-imagetools';
+// import { astroImageTools } from 'astro-imagetools';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
@@ -20,17 +20,17 @@ export default defineConfig({
 	base: SITE.basePathname,
 	output: 'server',
 	integrations: [
-		astroImageTools,
+		// astroImageTools,
 		sitemap(),
-		image({
-			serviceEntryPoint: '@astrojs/image/sharp',
-		}),
-		mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
-		partytown({
-			config: {
-				forward: ['dataLayer.push'],
-			},
-		}),
+		// image({
+		// 	serviceEntryPoint: '@astrojs/image/sharp',
+		// }),
+		// mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
+		// partytown({
+		// 	config: {
+		// 		forward: ['dataLayer.push'],
+		// 	},
+		// }),
 	],
 	vite: {
 		plugins: [WindiCSS()],
