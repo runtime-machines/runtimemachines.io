@@ -223,7 +223,7 @@ const sides_id = ['left', 'right'];
 		const dx = e.clientX - x;
 
 		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 
@@ -244,7 +244,7 @@ const sides_id = ['left', 'right'];
 	// Hanlde mouse UP
 	const mouseUpHandler = function () {
 		if (resizer == null || rightSide == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 		resizer.style.removeProperty('cursor');
@@ -282,7 +282,7 @@ const sides_id = ['left', 'right'];
 		const dx = e.touches[0].clientX - x;
 
 		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 
@@ -296,7 +296,7 @@ const sides_id = ['left', 'right'];
 	// Handle finger UP
 	const touchEndHandler = function () {
 		if (resizer == null || rightSide == null || leftSide == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 
@@ -309,7 +309,7 @@ const sides_id = ['left', 'right'];
 	let stylePage = true;
 	const switchClickHandler = function () {
 		if (rightSide == null || leftSide == null || switchButton == null) {
-			console.log('resizer null');
+			//console.log('resizer null');
 			return;
 		}
 		// TRUE -> going from play to serious
@@ -334,7 +334,7 @@ const sides_id = ['left', 'right'];
 <script define:vars={{ sides_id }}>
 	const emailSubmit = function (event) {
 		const id = event.currentTarget.face_id;
-		console.log('sending email address');
+		//console.log('sending email address');
 		var myHeaders = new Headers();
 		myHeaders.append('Content-Type', 'application/json');
 
@@ -342,7 +342,7 @@ const sides_id = ['left', 'right'];
 			email: document.getElementById('email_form_text-' + id).value,
 		});
 
-		console.log(raw);
+		//console.log(raw);
 
 		var requestOptions = {
 			method: 'POST',
@@ -353,7 +353,7 @@ const sides_id = ['left', 'right'];
 		fetch('/api/subscribe', requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result);
+				//console.log(result);
 				for (let e = 0; e < sides_id.length; e++) {
 					const id = sides_id[e];
 					const button = document.getElementById('email_form_submit-' + id);
@@ -389,7 +389,7 @@ const sides_id = ['left', 'right'];
 	function startupActions() {
 		for (let e = 0; e < sides_id.length; e++) {
 			const id = sides_id[e];
-			console.log(sides_id, id);
+			//console.log(sides_id, id);
 			const submitButton = document.getElementById('email_form_submit-' + id);
 			submitButton.face_id = id;
 			const form = document.getElementById('email_form-' + id);

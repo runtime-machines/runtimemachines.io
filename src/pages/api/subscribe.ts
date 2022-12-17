@@ -74,7 +74,7 @@ export const post: APIRoute = async ({ request }) => {
 						}
 					);
 				} catch (error) {
-					console.log(error);
+					//console.log(error);
 					return new Response(
 						JSON.stringify({
 							message: 'internal server error',
@@ -86,7 +86,7 @@ export const post: APIRoute = async ({ request }) => {
 					);
 				}
 			}
-			console.log('Subscribed user ', email);
+			//console.log('Subscribed user ', email);
 			return new Response(
 				JSON.stringify({
 					message: 'email subscribed',
@@ -97,7 +97,7 @@ export const post: APIRoute = async ({ request }) => {
 				}
 			);
 		} catch (error) {
-			console.log(error);
+			//console.log(error);
 		}
 	}
 	return new Response(null, { status: 400, headers: headers });
