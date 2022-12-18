@@ -1,0 +1,11 @@
+---
+export interface Props {
+	link: string | null | undefined;
+	image: string | null | undefined;
+}
+const { link, image } = Astro.props;
+---
+
+<a href={link} class="w-10 m-auto">
+	<img src={image} alt="" />
+</a>

@@ -6,14 +6,49 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+const metatagTitle = 'We Think, We Build - RunTime Machines';
+const metatagDescription = 'The Era of Protocols is finishing, the Era of Infrastructures begins.';
 ---
 
 <!DOCTYPE html>
-<html class="h-full w-full">
+<html class="dark:bg-gray-900 bg-gray-700 w-full h-full overflow-x-hidden max-w-[100%]">
 	<head>
 		<title>Page - {title}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<link rel="stylesheet" href="https://use.typekit.net/ljf4mrn.css" />
+		<meta name="msapplication-TileColor" content="#da532c" />
+		<meta name="theme-color" content="#ffffff" />
+		<!-- Primary Meta Tags -->
+		<title>{metatagTitle}</title>
+		<meta name="title" content={metatagTitle} />
+		<meta name="description" content={metatagDescription} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://runtimemachines.io/" />
+		<meta property="og:title" content={metatagTitle} />
+		<meta property="og:description" content={metatagDescription} />
+		<meta property="og:image" content="https://runtimemachines.io/metatag-image.jpg" />
+		<meta property="og:image:alt" content="RunTime Machines website" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://runtimemachines.io/" />
+		<meta property="twitter:title" content={metatagTitle} />
+		<meta property="twitter:description" content={metatagDescription} />
+		<meta property="twitter:image" content="https://runtimemachines.io/metatag-image.jpg" />
+		<meta property="twitter:image:alt" content="RunTime Machines website" />
 	</head>
-	<body class="dark:bg-gray-900 h-full">
-		<slot />
+	<body class="dark:bg-gray-900 bg-gray-700 h-full select-none">
+		<div class="h-full overflow-x-hidden relative">
+			<slot />
+		</div>
 	</body>
 </html>
