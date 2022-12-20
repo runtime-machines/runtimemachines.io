@@ -1,4 +1,4 @@
-function Riddle(){};
+function Riddle() {}
 
 Riddle.ON = true;
 Riddle.MAX_DISTANCE = 500;
@@ -11,10 +11,10 @@ Riddle.RESET_OBSTACLES_LEFT_UPON_DEATH = false;
 Riddle.DEBUG_COLLIDER = false;
 
 /**
- * 
- * @param {Runner} runner 
- * @returns {boolean} 
+ *
+ * @param {Runner} runner
+ * @returns {boolean}
  */
-Riddle.satisfied = function(runner){
-    return runner.horizon.no_obstacles == Riddle.MAX_OBSTACLES;
-}
+Riddle.satisfied = function (runner) {
+	return runner.horizon.no_obstacles == Riddle.MAX_OBSTACLES;
+};

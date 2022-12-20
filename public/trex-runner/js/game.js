@@ -914,7 +914,7 @@
 			this.clearCanvas();
 
 			var e = document.getElementById(Runner.classes.CONTAINER_ID);
-			e.remove();
+			e.style.display = 'none';
 		},
 
 		fadeOut: function () {
