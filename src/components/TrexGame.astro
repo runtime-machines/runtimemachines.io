@@ -10,7 +10,7 @@ import hbm from '../assets/trex-runner/assets/HIDPI/middle.png';
 import hbf from '../assets/trex-runner/assets/HIDPI/front.png';
 
 //import css
-import '../assets/trex-runner/css/main.css';
+import './src/assets/trex-runner/css/main.css';
 
 //import audio
 import fs from 'node:fs/promises';
@@ -36,7 +36,6 @@ const fx_reached = await fs.readFile(url, { encoding: 'utf-8' });
 		<div id="main-content"></div>
 	</div>
 	<div id="offline-resources">
-		<link rel="stylesheet" href="css/main.css" />
 		<!-- LDPI SPIRTE SHEET  -->
 		<img id="ldpi-sprites" src={ls} />
 		<img id="ldpi-trex" src={lt} />
