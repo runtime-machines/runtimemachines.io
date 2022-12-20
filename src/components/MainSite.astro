@@ -2,6 +2,7 @@
 import { WebsiteAssets } from './LandingPage.astro';
 import MainCard from './MainCard.astro';
 import SocialIcon from './SocialIcon.astro';
+import ButtonMainPage from './ButtonMainPage.astro';
 
 export interface Props {
 	websiteAssets: WebsiteAssets;
@@ -47,9 +48,9 @@ const { websiteAssets, id } = Astro.props;
 					text="We build"
 					css_classes={['<md:dark:row-start-1 <md:row-start-2']}
 				/>
-				<!-- <div class="md:row-start-2 md:col-start-1 md:col-end-3">
-					<ButtonMainPage text={'Play Think Riddle'} />
-				</div> -->
+				<div class="md:row-start-2 md:col-start-1 md:col-end-3">
+					<ButtonMainPage text={'Play Think Riddle'} idButton={'think'} />
+				</div>
 				<!-- <div class="md:row-start-2">
 					<ButtonMainPage text={'Play Build Riddle'} />
 				</div> -->

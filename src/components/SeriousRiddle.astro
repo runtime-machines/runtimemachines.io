@@ -80,7 +80,7 @@
 </style>
 
 <script>
-	//import { getRandomThreeQuiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz.ts';
+	import { getRandomThreeQuiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz.ts';
 	enum WebsiteState {
 		Selection = 'selection',
 		Playful = 'playful',
@@ -93,7 +93,7 @@
 		correctAnswer: number;
 	}
 	// Remove this comment to get three random questions
-	//const quiz: Quiz[] = getRandomThreeQuiz();
+	const quiz: Quiz[] = getRandomThreeQuiz();
 	const riddleQuiz: Quiz[] = [
 		{
 			question: 'How is the first block called in a chain?',
@@ -217,7 +217,7 @@
 		window.dispatchEvent(new Event('stateChange'));
 	}
 
-	function startRiddle() {
+	function startRiddle(q: Quiz[]) {
 		if (titleScreen == null || completeDiv == null || continueDiv == null) return;
 		typeWriter(
 			[completeDiv, continueDiv],
@@ -225,10 +225,15 @@
 			0
 		);
 		titleScreen.addEventListener('click', function () {
-			showQuestion(riddleQuiz[0], 0);
+			showQuestion(q[0], 0);
 			titleScreen.style.display = 'none';
 		});
 	}
+	function startModalRiddle() {
+		console.log('working');
+		startRiddle(quiz);
+	}
 
-	startRiddle();
+	window.addEventListener('think', startModalRiddle);
+	startRiddle(riddleQuiz);
 </script>
