@@ -76,19 +76,17 @@
 
     drawBG: function(i, xPos, sourceXPos){
 
-      var soff = 5;
-
-      this.canvasCtx.drawImage(Runner.background[i], sourceXPos[0]+soff,
+      this.canvasCtx.drawImage(Runner.background[i], sourceXPos[0],
         10,
-        this.sourceDimensions.WIDTH/2, 200,
-        xPos[0], 0,
-        this.dimensions.WIDTH, 150);
+        600, 200,
+        xPos[0], -40,
+        600, 200);
 
-      this.canvasCtx.drawImage(Runner.background[i], sourceXPos[1]+soff,
+      this.canvasCtx.drawImage(Runner.background[i], sourceXPos[1],
         10,
-        this.sourceDimensions.WIDTH/2, 200,
-        xPos[1], 0,
-        this.dimensions.WIDTH, 150);
+        600 - 5, 200,
+        xPos[1], -40,
+        600, 200);
     },
 
     drawBGBack: function(){
@@ -107,16 +105,17 @@
      * Draw the horizon line.
      */
     drawLine: function() {
+      var yoff = 10
       this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[0],
           this.spritePos.y,
           this.sourceDimensions.WIDTH, this.sourceDimensions.HEIGHT,
-          this.xPos[0], this.yPos+5,
+          this.xPos[0], this.yPos+yoff,
           this.dimensions.WIDTH, this.dimensions.HEIGHT);
   
       this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[1],
           this.spritePos.y,
           this.sourceDimensions.WIDTH, this.sourceDimensions.HEIGHT,
-          this.xPos[1], this.yPos+5,
+          this.xPos[1], this.yPos+yoff,
           this.dimensions.WIDTH, this.dimensions.HEIGHT);  
     },
   
