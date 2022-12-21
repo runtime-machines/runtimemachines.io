@@ -413,3 +413,49 @@ const sides_id = ['left', 'right'];
 		}
 	}
 </script>
+
+<script>
+	// Play modal quiz
+	const riddles = document.getElementById('riddle-riddles-hidden');
+	const serious = document.getElementById('riddle-serious-hidden');
+	const classes = ['absolute', 'w-full', 'bg-opacity-70', 'bg-gray-800', 'animate', 'px-15', 'pt-15', 'pb-20', 'z-50'];
+
+	window.addEventListener('think', startModalQuiz);
+
+	function startModalQuiz() {
+		if (riddles == null || serious == null) return;
+		riddles.style.display = 'block';
+		riddles.style.maxHeight = '100%';
+		serious.style.display = 'block';
+		riddles.classList.add(...classes);
+		serious.classList.add('rounded-2xl');
+	}
+
+	window.onclick = function (event) {
+		if (riddles == null || serious == null) return;
+		if (event.target == riddles) {
+			riddles.style.display = 'none';
+			riddles.style.maxHeight = '0%';
+			serious.style.display = 'none';
+			riddles.classList.remove(...classes);
+		}
+	};
+</script>
+
+<style>
+	.animate {
+		animation-duration: 1s;
+		animation-name: animate-fade;
+		animation-delay: 0.5s;
+		animation-fill-mode: backwards;
+	}
+
+	@keyframes animate-fade {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+</style>
