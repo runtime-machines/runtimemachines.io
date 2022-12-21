@@ -79,13 +79,13 @@
       this.canvasCtx.drawImage(Runner.background[i], sourceXPos[0],
         10,
         600, 200,
-        xPos[0], -40,
+        xPos[0], -39,
         600, 200);
 
       this.canvasCtx.drawImage(Runner.background[i], sourceXPos[1],
         10,
-        600 - 5, 200,
-        xPos[1], -40,
+        600, 200,
+        xPos[1], -39,
         600, 200);
     },
 
