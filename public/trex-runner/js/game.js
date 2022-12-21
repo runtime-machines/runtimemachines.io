@@ -1131,5 +1131,7 @@
 	};
 })();
 
-//start the game
-new Runner('.interstitial-wrapper');
+var frame = 0
+
+if (frame++ < 5)
+	new Runner('.interstitial-wrapper');
