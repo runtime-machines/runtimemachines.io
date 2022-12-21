@@ -93,9 +93,10 @@ class SeriousRiddle {
 	}
 
 	typeWriter(arrayDiv: HTMLElement[], texts: string[], i: number) {
-		this.arrayHTML.forEach(function (element: HTMLElement) {
+		arrayDiv.forEach(function (element: HTMLElement) {
 			element.textContent = '';
 		});
+		let time = 20;
 
 		for (let index = 0; index < arrayDiv.length; index++) {
 			const div = arrayDiv[index];
@@ -103,7 +104,8 @@ class SeriousRiddle {
 				const char = texts[index][e];
 				setTimeout(() => {
 					if (this.qIndex == i) div.innerHTML += char;
-				}, 20 * e * index);
+				}, time);
+				time += 20;
 			}
 		}
 	}
