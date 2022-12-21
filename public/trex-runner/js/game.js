@@ -353,7 +353,6 @@
 
 			this.adjustDimensions();
 			this.setSpeed();
-
 			this.containerEl = document.createElement('div');
 			this.containerEl.className = Runner.classes.CONTAINER;
 			this.containerEl.setAttribute('id', Runner.classes.CONTAINER_ID);
@@ -909,12 +908,12 @@
 		 * Function that is called after playOutro animation is finished.
 		 */
 		endGame: function () {
-			console.log('exit game');
+			console.log('exit trex-game');
 			this.playingOutro = false;
 			this.clearCanvas();
 
-			var e = document.getElementById(Runner.classes.CONTAINER_ID);
-			e.style.display = 'none';
+			localStorage.setItem('websiteState', "website");
+			window.dispatchEvent(new Event('stateChange'));
 		},
 
 		fadeOut: function () {
@@ -1131,7 +1130,10 @@
 	};
 })();
 
-var frame = 0
 
-if (frame++ < 5)
+window.addEventListener('startTrexGame', start);
+
+function start(){
+	console.log("started trex-game")
 	new Runner('.interstitial-wrapper');
+}
