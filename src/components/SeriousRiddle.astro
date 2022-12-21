@@ -250,20 +250,19 @@
 		}
 	}
 	*/
+	const SRobject = new SeriousRiddle();
 	function startModalRiddle() {
 		if (titleScreen == null) return;
 		titleScreen.style.display = 'block';
 		let quiz: Quiz[] = getRandomThreeQuiz();
-		const SRobject = new SeriousRiddle(quiz);
-		SRobject.startRiddle();
+		SRobject.startRiddle(quiz);
 		console.log('start');
 	}
 
 	function startNormalRidddle() {
 		if (titleScreen == null) return;
 		titleScreen.style.display = 'block';
-		const SRobject = new SeriousRiddle(riddleQuiz);
-		SRobject.startRiddle();
+		SRobject.startRiddle(riddleQuiz);
 	}
 
 	window.addEventListener('think', startModalRiddle);

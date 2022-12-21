@@ -21,7 +21,7 @@ class SeriousRiddle {
 	qIndex: number;
 	riddleIter = 0;
 
-	constructor(q: Quiz[]) {
+	constructor() {
 		if (this.riddleIter == 0) {
 			this.titleScreen = document.getElementById('title-screen');
 			this.completeDiv = document.getElementById('complete');
@@ -33,9 +33,6 @@ class SeriousRiddle {
 			this.quizContainer = document.getElementById('quizContainer');
 			this.init();
 		}
-		this.riddleIter++;
-		this.quiz = q;
-		this.qIndex = 0;
 	}
 
 	init() {
@@ -48,26 +45,28 @@ class SeriousRiddle {
 		for (let index = 0; index < alts.length; index++) {
 			const element = alts[index];
 			this.arrayHTML.push(element as HTMLElement);
-			element.addEventListener('click', this.showResults);
+			element.index = index;
+			element.addEventListener('click', (e) => this.showResults(e));
 		}
 
 		if (this.continueButton == null || this.titleScreen == null) return;
-		this.continueButton.addEventListener('click', this.nextQ);
-		this.titleScreen.addEventListener('click', this.showFirst);
+		this.continueButton.addEventListener('click', () => this.nextQ());
+		this.titleScreen.addEventListener('click', () => this.showFirst());
 	}
 
-	startRiddle() {
+	startRiddle(q: Quiz[]) {
+		this.riddleIter++;
+		this.qIndex = 0;
+		this.quiz = q;
 		if (this.titleScreen == null || this.completeDiv == null || this.continueDiv == null) return;
 		this.typeWriter(
 			[this.completeDiv, this.continueDiv],
 			['Complete this quiz to enter the website', 'Click anywhere to continue'],
 			0
 		);
-		console.log('beginning');
 	}
 
 	showFirst() {
-		console.log(this);
 		if (this.titleScreen == null || this.quizContainer == null) return;
 		this.showQuestion(this.quiz[0], 0);
 		this.titleScreen.style.display = 'none';
@@ -128,7 +127,6 @@ class SeriousRiddle {
 			asnwerSelected.classList.remove('glow');
 			this.resultDiv.textContent = '';
 		}
-		console.log(asnwerSelectedIndex);
 		this.arrayHTML[this.quiz[this.qIndex].correctAnswer + 1].classList.add('glow-correct');
 		this.alternatives.classList.add('pointer-events-none');
 		this.resultDiv.style.display = 'block';
