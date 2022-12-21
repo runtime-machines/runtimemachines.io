@@ -4,6 +4,7 @@ import ls from '../assets/trex-runner/assets/LDPI/sprite.png';
 import lt from '../assets/trex-runner/assets/LDPI/sprite.png';
 // todo add also lhdpi for background etc..
 import hs from '../assets/trex-runner/assets/HIDPI/sprite.png';
+import ho from '../assets/trex-runner/assets/HIDPI/obstacles.png';
 import ht from '../assets/trex-runner/assets/HIDPI/trex.png';
 import hbb from '../assets/trex-runner/assets/HIDPI/back.png';
 import hbm from '../assets/trex-runner/assets/HIDPI/middle.png';
@@ -42,9 +43,12 @@ const fx_reached = await fs.readFile(url, { encoding: 'utf-8' });
 		<!-- HIDPI SPIRTE SHEET  -->
 		<img id="hidpi-sprites" src={hs} />
 		<img id="hidpi-trex" src={ht} />
+		<img id="hidpi-obstacles" src={ho} />
+		<!--Background -->
 		<img id="hidpi-back" src={hbb} />
 		<img id="hidpi-mid" src={hbm} />
 		<img id="hidpi-front" src={hbf} />
+
 		<template id="audio-resources">
 			<audio id="offline-sound-press" src={fx_press}></audio>
 			<audio id="offline-sound-hit" src={fx_hit}></audio>

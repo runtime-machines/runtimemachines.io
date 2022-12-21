@@ -185,6 +185,13 @@ const sides_id = ['left', 'right'];
 		}
 		localStorage.setItem('websiteState', state);
 	}
+	/**
+	 *
+	 * TODO REMEBER TO REMOVE, JUST FOR DEBUG
+	 *
+	 *
+	 */
+	localStorage.setItem('websiteState', WebsiteState.Playful);
 	setupSelection();
 	reEvaluateState();
 	window.addEventListener('stateChange', reEvaluateState);

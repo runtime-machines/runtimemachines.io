@@ -172,6 +172,9 @@
 			COIN: { x: 2224, y: 8 },
 			GEM: { x: 2222, y: 52 },
 			COG: { x: 1472, y: 20 },
+			DOUBLE_POTION: {x:17, y:40},
+			POTION: {x:131, y:38},
+			PC: {x:698, y:42}
 		},
 	};
 
@@ -284,6 +287,7 @@
 				this.spriteDef = Runner.spriteDefinition.HDPI;
 
 				//load main character sprites
+				Runner.obstacleSprites = document.getElementById('hidpi-obstacles');
 				Runner.imageSpriteTrex = document.getElementById('hidpi-trex');
 				//load background
 				Runner.background[0] = document.getElementById('hidpi-back');
