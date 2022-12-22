@@ -11,21 +11,14 @@
     this.canvasCtx = canvas.getContext('2d');
     this.sourceDimensions = {};
     this.dimensions = HorizonLine.dimensions;
-    this.sourceXPos = [this.spritePos.x, this.spritePos.x +
-        this.dimensions.WIDTH];
     this.xPos = [];
 
 
     //background layers
     this.xPosMid = [];
-    this.sourceXPosMid = [this.spritePos.x, this.spritePos.x +
-      this.dimensions.WIDTH];
     this.xPosBack = [];
-    this.sourceXPosBack = [this.spritePos.x, this.spritePos.x +
-      this.dimensions.WIDTH];
-
     this.yPos = 0;
-    this.bumpThreshold = 0.5;
+    this.bumpThreshold = 1;
   
     this.setSourceDimensions();
   };
@@ -38,6 +31,7 @@
   HorizonLine.dimensions = {
     WIDTH: 600,
     HEIGHT: 12,
+    BG_HEIGHT: 300,
     YPOS: 127
   };
   
@@ -76,29 +70,29 @@
 
     drawBG: function(i, xPos, sourceXPos){
 
-      this.canvasCtx.drawImage(Runner.background[i], sourceXPos[0],
-        10,
-        600, 200,
-        xPos[0], -39,
-        600, 200);
+      this.canvasCtx.drawImage(Runner.background[i], 0,
+        0,
+        this.sourceDimensions.WIDTH, this.sourceDimensions.BG_HEIGHT,
+        xPos[0], 0,
+        this.dimensions.WIDTH, this.dimensions.BG_HEIGHT);
 
-      this.canvasCtx.drawImage(Runner.background[i], sourceXPos[1],
-        10,
-        600, 200,
-        xPos[1], -39,
-        600, 200);
+      this.canvasCtx.drawImage(Runner.background[i], 0,
+        0,
+        this.sourceDimensions.WIDTH, this.sourceDimensions.BG_HEIGHT,
+        xPos[1], 0,
+        this.dimensions.WIDTH, this.dimensions.BG_HEIGHT);
     },
 
     drawBGBack: function(){
-      this.drawBG(0, this.xPosBack, this.sourceXPosBack);
+      this.drawBG(0, this.xPosBack);
     },
 
     drawBGMid: function(){
-      this.drawBG(1, this.xPosMid, this.sourceXPosMid);
+      this.drawBG(1, this.xPosMid);
     },
 
     drawBGFront: function(){
-      this.drawBG(2, this.xPos, this.sourceXPos);
+      this.drawBG(2, this.xPos);
     },
   
     /**
@@ -106,13 +100,13 @@
      */
     drawLine: function() {
       var yoff = 10
-      this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[0],
+      this.canvasCtx.drawImage(Runner.imageSprite, this.spritePos.x,
           this.spritePos.y,
           this.sourceDimensions.WIDTH, this.sourceDimensions.HEIGHT,
           this.xPos[0], this.yPos+yoff,
           this.dimensions.WIDTH, this.dimensions.HEIGHT);
   
-      this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[1],
+      this.canvasCtx.drawImage(Runner.imageSprite, this.spritePos.x,
           this.spritePos.y,
           this.sourceDimensions.WIDTH, this.sourceDimensions.HEIGHT,
           this.xPos[1], this.yPos+yoff,
@@ -124,7 +118,7 @@
      * @param {number} pos Line position.
      * @param {number} increment
      */
-    updateXPos: function(deltaTime, speed, coefficient, xPos, sourceXPos, spriteXPos) {
+    updateXPos: function(deltaTime, speed, coefficient, xPos) {
 
       var increment = Math.floor(speed * (FPS / 1000) * deltaTime * coefficient);
       var pos;
@@ -144,7 +138,6 @@
       if (xPos[line1] <= -this.dimensions.WIDTH) {
         xPos[line1] += this.dimensions.WIDTH * 2;
         xPos[line2] = xPos[line1] - this.dimensions.WIDTH;
-        sourceXPos[line1] = this.getRandomType() + spriteXPos;
       }
     },
   
@@ -154,9 +147,9 @@
      * @param {number} speed
      */
     update: function(deltaTime, speed) {
-      this.updateXPos(deltaTime, speed, 1, this.xPos, this.sourceXPos, this.spritePos.x);
-      this.updateXPos(deltaTime, speed, 0.4, this.xPosMid, this.sourceXPosMid, this.spritePos.x);
-      this.updateXPos(deltaTime, speed, 0.2, this.xPosBack, this.sourceXPosBack, this.spritePos.x);
+      this.updateXPos(deltaTime, speed, 1, this.xPos);
+      this.updateXPos(deltaTime, speed, 1, this.xPosMid);
+      this.updateXPos(deltaTime, speed, 0.9, this.xPosBack);
     },
   
     /**
