@@ -22,8 +22,26 @@
 	max-width: 600px;
 	overflow: hidden;
 	position: absolute;
-	top: 35px;
+	top: 15%;
 	width: 44px;
+}
+
+@media screen and (min-width: 610px) {
+	.offline .runner-container {
+		top: 25%;
+		outline-style: outset;
+		outline-width: 5px;
+		outline-color: rgba(151, 136, 246, 1);
+		border-radius: 1px;
+		padding-top: 100px;
+		background: rgb(151, 136, 246);
+		background: linear-gradient(
+			140deg,
+			rgba(151, 136, 246, 1) 0%,
+			rgba(151, 136, 246, 1) 36%,
+			rgba(99, 90, 150, 1) 100%
+		);
+	}
 }
 
 .offline .runner-canvas {
@@ -34,11 +52,7 @@
 	position: absolute;
 	top: 0;
 	z-index: 2;
-	border-style: outset;
-	border-width: 5px;
-	border-color: rgba(151, 136, 246, 1);
-	border-radius: 3px;
-	padding: 0px;
+	border-radius: 5px;
 }
 
 .offline .controller {

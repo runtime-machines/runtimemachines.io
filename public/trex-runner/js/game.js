@@ -502,6 +502,9 @@
 				this.playingIntro = true;
 				this.tRex.playingIntro = true;
 
+				//this.containerEl.firstChild.setAttribute("style", STYLE_RUNNER);
+				
+
 				// CSS animation definition.
 				var keyframes =
 					'@-webkit-keyframes intro { ' +
@@ -518,6 +521,9 @@
 
 				this.containerEl.style.webkitAnimation = 'intro .4s ease-out 1 both';
 				this.containerEl.style.width = this.dimensions.WIDTH + 'px';
+				/**
+				 * 	border-style: outset; border-width: 5px; border-color: rgba(151, 136, 246, 1); border-radius: 3px; padding: 0px;
+				 */
 
 				if (this.touchController) {
 					this.outerContainerEl.appendChild(this.touchController);
@@ -1148,6 +1154,7 @@ function startRiddle(){
 
 function startFull(){
 	console.log("started trex-game full")
+	Riddle.ON = false;
 	//set variable for game full
 	start();
 }

@@ -22,3 +22,7 @@
  
  /** @const */
  var IS_TOUCH_ENABLED = 'ontouchstart' in window;
+
+ /** @const */
+ var STYLE_RUNNER = 'height: 150px; max-width: 600px; opacity: 1; overflow: hidden; position: absolute; top: 0; z-index: 2;'+
+ 'border-style: outset; border-width: 5px; border-color: rgba(151, 136, 246, 1); border-radius: 3px; padding: 0px;'
