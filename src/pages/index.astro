@@ -146,7 +146,7 @@ const sides_id = ['left', 'right'];
 					playful.style.display = 'block';
 					serious.style.display = 'none';
 					website.style.display = 'none';
-					window.dispatchEvent(new Event('startTrexGame'));
+					window.dispatchEvent(new Event('startTrexRiddle'));
 				}
 				break;
 			case WebsiteState.Selection:
@@ -192,6 +192,12 @@ const sides_id = ['left', 'right'];
 	 *
 	 */
 	localStorage.setItem('websiteState', WebsiteState.Playful);
+	/**
+	 *
+	 *
+	 *
+	 *
+	 */
 	setupSelection();
 	reEvaluateState();
 	window.addEventListener('stateChange', reEvaluateState);

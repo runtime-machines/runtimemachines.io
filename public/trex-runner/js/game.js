@@ -1135,9 +1135,23 @@
 })();
 
 
-window.addEventListener('startTrexGame', start);
+window.addEventListener('startTrexFull', startFull);
+window.addEventListener('startTrexRiddle', startRiddle);
+
+
+function startRiddle(){
+	console.log("started trex-game riddle")
+	//set variable for game for riddle
+	start();
+}
+
+
+function startFull(){
+	console.log("started trex-game full")
+	//set variable for game full
+	start();
+}
 
 function start(){
-	console.log("started trex-game")
 	new Runner('.interstitial-wrapper');
 }
