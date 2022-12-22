@@ -163,6 +163,7 @@ const sides_id = ['left', 'right'];
 					playful.style.display = 'none';
 					serious.style.display = 'block';
 					website.style.display = 'none';
+					window.dispatchEvent(new Event('riddleThink'));
 				}
 				break;
 			case WebsiteState.Website:
