@@ -419,6 +419,7 @@ const sides_id = ['left', 'right'];
 	// Play modal quiz
 	const riddles = document.getElementById('riddle-riddles-hidden');
 	const serious = document.getElementById('riddle-serious-hidden');
+	const closeButton = document.getElementById('close');
 	const classes = ['absolute', 'w-full', 'bg-opacity-70', 'bg-gray-800', 'animate', 'px-15', 'pt-15', 'pb-20', 'z-50'];
 
 	window.addEventListener('think', startModalQuiz);
@@ -434,7 +435,7 @@ const sides_id = ['left', 'right'];
 
 	window.onclick = function (event) {
 		if (riddles == null || serious == null) return;
-		if (event.target == riddles) {
+		if (event.target == riddles || event.target == closeButton) {
 			riddles.style.display = 'none';
 			riddles.style.maxHeight = '0%';
 			serious.style.display = 'none';

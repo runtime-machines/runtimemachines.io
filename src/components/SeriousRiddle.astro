@@ -4,6 +4,7 @@
 <div
 	class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <lg:text-xl text-center"
 	id="serious-riddle">
+	<div id="close" class="mr-0 mt-0 text-right hidden">&#10006;</div>
 	<div id="title-screen" class="h-full w-full mt-8 z-51">
 		<div id="complete" class="text-3xl"></div>
 		<div id="continue-click" class="vanishing mt-1/4"></div>
@@ -108,161 +109,22 @@
 	];
 	// Code to display a question
 	const titleScreen = document.getElementById('title-screen');
-	/*const completeDiv = document.getElementById('complete');
-	const continueDiv = document.getElementById('continue-click');
-	const titleDiv = document.getElementById('title');
-	const alternatives = document.getElementById('alternatives');
-	const resultDiv = document.getElementById('result');
-	const continueButton = document.getElementById('continue');
-	const quizContainer = document.getElementById('quizContainer');
-	let clickedAnswer: HTMLElement;
-	let qIndex = 0;
-	let tPlayed = 0;
-	function showQuestion(q: Quiz, i: number) {
-		let asnwerSelected: HTMLElement;
-		let asnwerSelectedIndex: number;
-		if (qIndex < i) {
-			qIndex = i;
-		}
-		if (titleDiv == null) return;
-		// Fill the question
-		let arrayHTML = [titleDiv];
-		let arrayStr = [qIndex + 1 + '/3 ' + q.question];
-		let alts = document.querySelectorAll('.alternative');
-		q.answers.forEach(function (element, index) {
-			arrayStr.push(index + 1 + '. ' + element);
-		});
-
-		// Fill the alternatives
-		alts.forEach(function (element, index) {
-			arrayHTML.push(element as HTMLElement);
-			element.index = index;
-			element.addEventListener('click', showResults);
-		});
-
-		function showResults(event) {
-			asnwerSelected = event.currentTarget;
-			asnwerSelectedIndex = asnwerSelected.index;
-			console.log(event, q);
-				// Add results effects
-			if (resultDiv == null || continueButton == null || alternatives == null || continueButton == null) return;
-
-			if (qIndex == i) {
-				if (q.correctAnswer == asnwerSelectedIndex) {
-					resultDiv.textContent = 'Correct Answer!';
-				} else {
-					clickedAnswer = asnwerSelected as HTMLElement;
-					asnwerSelected.classList.add('glow-wrong');
-					asnwerSelected.classList.remove('glow');
-					resultDiv.textContent = '';
-				}
-				console.log(asnwerSelectedIndex);
-				arrayHTML[q.correctAnswer + 1].classList.add('glow-correct');
-				alternatives.classList.add('pointer-events-none');
-				resultDiv.style.display = 'block';
-				continueButton.style.display = 'block';
-			}
-		}
-
-		typeWriter(arrayHTML, arrayStr, i);
-
-		if (continueButton == null) return;
-		continueButton.addEventListener('click', nextQ);
-
-		function nextQ() {
-			if (resultDiv == null || continueButton == null || alternatives == null) return;
-			// Remove results effects
-			arrayHTML[q.correctAnswer + 1].classList.remove('glow-correct');
-			if (clickedAnswer != null) {
-				clickedAnswer.classList.remove('glow-wrong');
-				clickedAnswer.classList.add('glow');
-			}
-			alternatives.classList.remove('pointer-events-none');
-			resultDiv.style.display = 'none';
-			continueButton.removeEventListener('click', nextQ);
-			continueButton.style.display = 'none';
-			console.log("listener "+ tPlayed );
-			if (qIndex == i) {
-				if (i + 2 > riddleQuiz.length) endRiddle();
-				else showQuestion(riddleQuiz[qIndex + 1], qIndex + 1);
-			}
-		}
-
-		function endRiddle() {
-			if (localStorage.getItem('websiteState') != WebsiteState.Website) {
-				localStorage.setItem('websiteState', WebsiteState.Website);
-			}
-
-			if( quizContainer == null || continueButton == null) return;
-			quizContainer.style.display = 'none';
-			qIndex = 0;
-			tPlayed++;
-			alts.forEach(function (element){
-				element.classList.remove('glow-correct');
-				element.classList.remove('glow-wrong');
-			});
-			window.dispatchEvent(new Event('stateChange'));
-			alts.forEach(function (element) {
-				element.removeEventListener('click', showResults);
-			});
-		}
-	}
-
-	function typeWriter(elements: HTMLElement[], texts: string[], i: number) {
-		let f = 0;
-		let j = 0;
-		elements.forEach(function (element: HTMLElement) {
-			element.textContent = '';
-		});
-		function type() {
-			if (f < texts.length && qIndex == i) {
-				const text = texts[f];
-				if (j < text.length && qIndex == i) {
-					elements[f].innerHTML += text.charAt(j);
-					j++;
-					setTimeout(type, 20);
-				} else {
-					f++;
-					j = 0;
-					setTimeout(type, 20);
-				}
-			}
-		}
-
-		type();
-	}
-
-	function startRiddle(q: Quiz[], timesPlayed: number) {
-		if (titleScreen == null || completeDiv == null || continueDiv == null ) return;
-		typeWriter(
-			[completeDiv, continueDiv],
-			['Complete this quiz to enter the website', 'Click anywhere to continue'],
-			0
-		);
-		console.log("beginning");
-		titleScreen.addEventListener('click', showFirst);
-
-		function showFirst() {
-			if (titleScreen == null || quizContainer == null || tPlayed != timesPlayed) return;
-			showQuestion(q[0], 0);
-			titleScreen.style.display = 'none';
-			quizContainer.style.display = 'block';
-		}
-	}
-	*/
+	const closeButton = document.getElementById('close');
 	const SRobject = new SeriousRiddle();
 	function startModalRiddle() {
 		if (titleScreen == null) return;
 		titleScreen.style.display = 'block';
+		closeButton.style.display = 'block';
 		let quiz: Quiz[] = getRandomThreeQuiz();
-		SRobject.startRiddle(quiz);
+		SRobject.startRiddle(quiz, true);
 		console.log('start');
 	}
 
 	function startNormalRidddle() {
 		if (titleScreen == null) return;
 		titleScreen.style.display = 'block';
-		SRobject.startRiddle(riddleQuiz);
+		console.log('cisono');
+		SRobject.startRiddle(riddleQuiz, false);
 	}
 	// Now, test your knowledge with the RTM Quizz!
 	window.addEventListener('think', startModalRiddle);

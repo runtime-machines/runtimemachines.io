@@ -54,16 +54,14 @@ class SeriousRiddle {
 		this.titleScreen.addEventListener('click', () => this.showFirst());
 	}
 
-	startRiddle(q: Quiz[]) {
+	startRiddle(q: Quiz[], modal: boolean) {
+		let welcome = 'Now, test your knowledge with the RTM Quiz!';
+		if (!modal) welcome = 'Complete this quiz to enter the website';
 		this.riddleIter++;
 		this.qIndex = 0;
 		this.quiz = q;
 		if (this.titleScreen == null || this.completeDiv == null || this.continueDiv == null) return;
-		this.typeWriter(
-			[this.completeDiv, this.continueDiv],
-			['Complete this quiz to enter the website', 'Click anywhere to continue'],
-			0
-		);
+		this.typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 0);
 	}
 
 	showFirst() {
