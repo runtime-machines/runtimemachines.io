@@ -92,7 +92,7 @@
 		DUCKING: false,
 		ACCELERATION: 0.001,
 		BG_CLOUD_SPEED: 0.2,
-		BOTTOM_PAD: 5,
+		BOTTOM_PAD: 4,
 		CLEAR_TIME: 3000, //time after first obstacle will spawn
 		PICKUP_TIME: 3000, //time after first pickup will spwan
 		CLOUD_FREQUENCY: 0.5,
