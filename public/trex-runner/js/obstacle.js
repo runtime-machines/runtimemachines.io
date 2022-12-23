@@ -51,7 +51,7 @@ Obstacle.prototype = {
 
     // Check if obstacle can be positioned at various heights.
 
-    this.yPos = this.typeConfig.yPos;
+    this.yPos = this.typeConfig.yPos - Runner.config.BOTTOM_PAD;
 
     this.draw();
 
@@ -165,9 +165,9 @@ Obstacle.types = [
     type: 'DOUBLE_POTION',
     width: 40,
     height: 40,
-    yPos: 99,
+    yPos: 104,
     multipleSpeed: 4,
-    minGap: 120,
+    minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
       new CollisionBox(0, 7, 5, 27), //TODO: change this
@@ -179,9 +179,9 @@ Obstacle.types = [
     type: 'POTION',
     width: 40,
     height: 40,
-    yPos: 99,
+    yPos: 104,
     multipleSpeed: 4,
-    minGap: 120,
+    minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
       new CollisionBox(0, 7, 5, 27), //TODO: change this
@@ -193,9 +193,9 @@ Obstacle.types = [
     type: 'PC',
     width: 40,
     height: 40,
-    yPos: 100,
+    yPos: 105,
     multipleSpeed: 4,
-    minGap: 120,
+    minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
       new CollisionBox(0, 7, 5, 27), //TODO: change this

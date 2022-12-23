@@ -49,6 +49,8 @@ WinPanel.dimensions = {
       //draw win text
       this.draw();
 
+      if(!Riddle.CONFETTI) return;
+
       //update win animation
       this.timer += deltaTime;
       if (this.timer >= WinPanel.config.frameRate) {
