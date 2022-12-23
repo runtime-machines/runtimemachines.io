@@ -112,18 +112,16 @@
 	const closeButton = document.getElementById('close');
 	const SRobject = new SeriousRiddle();
 	function startModalRiddle() {
-		if (titleScreen == null) return;
+		if (titleScreen == null || closeButton == null) return;
 		titleScreen.style.display = 'block';
 		closeButton.style.display = 'block';
 		let quiz: Quiz[] = getRandomThreeQuiz();
 		SRobject.startRiddle(quiz, true);
-		console.log('start');
 	}
 
 	function startNormalRidddle() {
 		if (titleScreen == null) return;
 		titleScreen.style.display = 'block';
-		console.log('cisono');
 		SRobject.startRiddle(riddleQuiz, false);
 	}
 	// Now, test your knowledge with the RTM Quizz!
