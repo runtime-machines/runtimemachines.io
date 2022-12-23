@@ -155,7 +155,7 @@
 			CONFETTI: { x: 1649, y: 3 }, //to check
 			COIN: { x: 1111, y: 4 }, //to check
 			GEM: { x: 1114, y: 26 }, //to check
-			COG: { x: 736, y: 10 }, //to check
+			COG: {x:613, y:45}  //to check
 		},
 		HDPI: {
 			CACTUS_LARGE: { x: 652, y: 2 },
@@ -174,7 +174,8 @@
 			COG: { x: 1472, y: 20 },
 			DOUBLE_POTION: {x:17, y:40},
 			POTION: {x:131, y:38},
-			PC: {x:698, y:42}
+			PC: {x:698, y:42},
+			COG: {x:613, y:45}
 		},
 	};
 

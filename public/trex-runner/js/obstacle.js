@@ -36,6 +36,7 @@
  * @const
  */
 Obstacle.MAX_GAP_COEFFICIENT = 1.5;
+Obstacle.LAST_OBSTACLE_INDEX = 3;
 
 
 Obstacle.prototype = {
@@ -208,21 +209,17 @@ Obstacle.types = [
   },
   {
     type: 'COG', //  this was petro //TODO: CHANGE THIS
-    width: 80,
+    width: 40,
     height: 40,
-    yPos: 95, // Variable height.
+    yPos: 100, // Variable height.
     //yPosMobile: [ 100, 50 ], // Variable height mobile.
     multipleSpeed: 7,
     minSpeed: 0, //this was 8.5
     minGap: 150,
     collisionBoxes: [
-      new CollisionBox(40, 0, 10, 40),
-      new CollisionBox(30, 0, 10, 40),
-      new CollisionBox(15, 20, 50, 10),
-      new CollisionBox(10, 30, 60, 10)
-    ]//,
-    //numFrames: 1,
-    //frameRate: 1000/6//,
-    //speedOffset: 1
+      new CollisionBox(0, 7, 5, 27), //TODO: change this
+      new CollisionBox(4, 0, 6, 34),
+      new CollisionBox(10, 4, 7, 14)
+    ]
   }
 ];

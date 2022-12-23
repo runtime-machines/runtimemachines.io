@@ -191,7 +191,7 @@ updateObstacles: function(deltaTime, currentSpeed) {
 
     var obstacleTypeIndex = 0;
     if(Riddle.ON && this.tot_obstacles == Riddle.MAX_OBSTACLES){
-        obstacleTypeIndex = 2;
+        obstacleTypeIndex = Obstacle.LAST_OBSTACLE_INDEX;
     } else if(!Runner.config.DUCKING){
         //exclude last one that is pterdactyl
         obstacleTypeIndex = getRandomNum(0, Obstacle.types.length - 2);
