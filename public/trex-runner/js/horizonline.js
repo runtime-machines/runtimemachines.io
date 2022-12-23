@@ -149,7 +149,7 @@
     update: function(deltaTime, speed) {
       this.updateXPos(deltaTime, speed, 1, this.xPos);
       this.updateXPos(deltaTime, speed, 1, this.xPosMid);
-      this.updateXPos(deltaTime, speed, 0.9, this.xPosBack);
+      this.updateXPos(deltaTime, speed, 1, this.xPosBack);
     },
   
     /**
