@@ -1,11 +1,6 @@
 import { Quiz } from './SeriousRiddleQuiz';
 
-enum WebsiteState {
-	Selection = 'selection',
-	Playful = 'playful',
-	Serious = 'serious',
-	Website = 'website',
-}
+import { WebsiteState } from '~/utils/utils';
 
 class ElementWithIndex extends Element {
 	index: number | undefined;
