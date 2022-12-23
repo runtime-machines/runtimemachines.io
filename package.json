@@ -65,7 +65,6 @@
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "astro-imagetools": "^0.6.16",
     "axios": "^1.2.1",
-    "dotenv": "^16.0.3",
-    "fs": "^0.0.1-security"
+    "dotenv": "^16.0.3"
   }
 }
