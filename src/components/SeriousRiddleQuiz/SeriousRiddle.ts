@@ -20,6 +20,8 @@ class SeriousRiddle {
 	quiz: Quiz[] = [];
 	qIndex: number;
 	riddleIter = 0;
+	correct = 0;
+	isModal = false;
 
 	constructor() {
 		if (this.riddleIter == 0) {
@@ -57,9 +59,11 @@ class SeriousRiddle {
 	startRiddle(q: Quiz[], modal: boolean) {
 		let welcome = 'Now, test your knowledge with the RTM Quiz!';
 		if (!modal) welcome = 'Complete this quiz to enter the website';
+		this.correct = 0;
 		this.riddleIter++;
 		this.qIndex = 0;
 		this.quiz = q;
+		this.isModal = modal;
 		if (this.titleScreen == null || this.completeDiv == null || this.continueDiv == null) return;
 		this.typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 0);
 	}
@@ -121,11 +125,14 @@ class SeriousRiddle {
 			return;
 
 		if (this.quiz[this.qIndex].correctAnswer == asnwerSelectedIndex) {
+			this.correct++;
 			this.resultDiv.textContent = 'Correct Answer!';
+			if (this.isModal == true && this.qIndex == 2)
+				this.resultDiv.textContent = 'Correct Answer! You did: ' + this.correct + '/3';
 		} else {
 			asnwerSelected.classList.add('glow-wrong');
-			asnwerSelected.classList.remove('glow');
 			this.resultDiv.textContent = '';
+			if (this.isModal == true && this.qIndex == 2) this.resultDiv.textContent = 'You did: ' + this.correct + '/3';
 		}
 		this.arrayHTML[this.quiz[this.qIndex].correctAnswer + 1].classList.add('glow-correct');
 		this.alternatives.classList.add('pointer-events-none');

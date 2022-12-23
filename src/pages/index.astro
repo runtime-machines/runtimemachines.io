@@ -44,8 +44,9 @@ const sides_id = ['left', 'right'];
 <Root title="RunTime Machines">
 	<div id="riddle-selector-hidden" class="hidden">
 		<div class="grid grid-cols-[1fr_1fr]">
-			<button id="serious-button" class="w-100px h-12 rounded-2xl bg-orange">serious button</button>
-			<button id="playful-button" class="w-100px h-12 rounded-2xl bg-black text-white">playful button</button>
+			<div id="titleSelection" class="w-full float-left text-2xl text-white"></div>
+			<button id="serious-button" class="w-100px h-12 rounded-2xl bg-black text-white">Thinker</button>
+			<button id="playful-button" class="w-100px h-12 rounded-2xl bg-orange">Builder</button>
 		</div>
 	</div>
 	<div
@@ -192,7 +193,7 @@ const sides_id = ['left', 'right'];
 	 *
 	 *
 	 */
-	localStorage.setItem('websiteState', WebsiteState.Playful);
+	//localStorage.setItem('websiteState', WebsiteState.Playful);
 	/**
 	 *
 	 *
@@ -457,6 +458,30 @@ const sides_id = ['left', 'right'];
 			riddles.classList.remove(...classes);
 		}
 	};
+</script>
+
+<script>
+	function typeWriter(arrayDiv: HTMLElement[], texts: string[]) {
+		arrayDiv.forEach(function (element: HTMLElement) {
+			element.textContent = '';
+		});
+		let time = 30;
+
+		for (let index = 0; index < arrayDiv.length; index++) {
+			const div = arrayDiv[index];
+			for (let e = 0; e < texts[index].length; e++) {
+				const char = texts[index][e];
+				setTimeout(() => {
+					if (localStorageValue == 'selection') div.innerHTML += char;
+				}, time);
+				time += 30;
+			}
+		}
+	}
+
+	const titleSelection = document.getElementById('titleSelection');
+	const localStorageValue = localStorage.getItem('websiteState');
+	if (titleSelection != null && localStorageValue == 'selection') typeWriter([titleSelection], ['Choose your side']);
 </script>
 
 <style>
