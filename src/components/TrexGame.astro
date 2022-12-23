@@ -13,23 +13,17 @@ import hbf from '../assets/trex-runner/assets/HIDPI/front.png';
 //import css
 import '../assets/trex-runner/css/main.css';
 
-//import audio
-import fs from 'node:fs/promises';
+const audio = await Astro.glob('../assets/trex-runner/assets/audio/*.md');
 
-var url = new URL('../assets/trex-runner/assets/audio/press.txt', import.meta.url);
-const fx_press = await fs.readFile(url, { encoding: 'utf-8' });
+const fx_press = await audio.filter((post) => post.frontmatter.title == 'press')[0].frontmatter.audio;
 
-url = new URL('../assets/trex-runner/assets/audio/hit.txt', import.meta.url);
-const fx_hit = await fs.readFile(url, { encoding: 'utf-8' });
+const fx_hit = await audio.filter((post) => post.frontmatter.title == 'hit')[0].frontmatter.audio;
 
-url = new URL('../assets/trex-runner/assets/audio/coin.txt', import.meta.url);
-const fx_coin = await fs.readFile(url, { encoding: 'utf-8' });
+const fx_coin = await audio.filter((post) => post.frontmatter.title == 'coin')[0].frontmatter.audio;
 
-url = new URL('../assets/trex-runner/assets/audio/gem.txt', import.meta.url);
-const fx_gem = await fs.readFile(url, { encoding: 'utf-8' });
+const fx_gem = await audio.filter((post) => post.frontmatter.title == 'gem')[0].frontmatter.audio;
 
-url = new URL('../assets/trex-runner/assets/audio/reached.txt', import.meta.url);
-const fx_reached = await fs.readFile(url, { encoding: 'utf-8' });
+const fx_reached = await audio.filter((post) => post.frontmatter.title == 'reached')[0].frontmatter.audio;
 ---
 
 <div id="t" class="offline h-full w-full">
