@@ -15,22 +15,14 @@ import '../assets/trex-runner/css/main.css';
 
 const audio = await Astro.glob('../assets/trex-runner/assets/audio/*.md');
 
-// //import audio
-// import fs from 'node:fs/promises';
-
-// var url = new URL('../assets/trex-runner/assets/audio/press.txt', import.meta.url);
 const fx_press = await audio.filter((post) => post.frontmatter.title == 'press')[0].frontmatter.audio;
 
-// url = new URL('../assets/trex-runner/assets/audio/hit.txt', import.meta.url);
 const fx_hit = await audio.filter((post) => post.frontmatter.title == 'hit')[0].frontmatter.audio;
 
-// url = new URL('../assets/trex-runner/assets/audio/coin.txt', import.meta.url);
 const fx_coin = await audio.filter((post) => post.frontmatter.title == 'coin')[0].frontmatter.audio;
 
-// url = new URL('../assets/trex-runner/assets/audio/gem.txt', import.meta.url);
 const fx_gem = await audio.filter((post) => post.frontmatter.title == 'gem')[0].frontmatter.audio;
 
-// url = new URL('../assets/trex-runner/assets/audio/reached.txt', import.meta.url);
 const fx_reached = await audio.filter((post) => post.frontmatter.title == 'reached')[0].frontmatter.audio;
 ---
 
