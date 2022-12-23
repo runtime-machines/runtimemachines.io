@@ -82,9 +82,6 @@ const sides_id = ['left', 'right'];
 			id={sides_id[1]}
 			websiteAssets={websiteAssets[1]}
 		/>
-		<div class="hidden absolute right-[10px] bottom-[10px] md:hidden button-div z-25">
-			<button id="switch-button" class="w-100px h-12 rounded-2xl bg-orange">switch</button>
-		</div>
 	</div>
 
 	<style></style>
@@ -210,7 +207,6 @@ const sides_id = ['left', 'right'];
 	const leftSide = document.getElementById('left');
 	const rightSide = document.getElementById('right');
 	const rightSideChild = document.getElementById('right-child');
-	const switchButton = document.getElementById('switch-button');
 
 	// The current position of mouse
 	let x = 0;
@@ -320,29 +316,6 @@ const sides_id = ['left', 'right'];
 		document.removeEventListener('touchmove', touchMoveHandler);
 		document.removeEventListener('touchend', touchEndHandler);
 	};
-
-	// Mobile section button switchMode handler
-	let stylePage = true;
-	const switchClickHandler = function () {
-		if (rightSide == null || leftSide == null || switchButton == null) {
-			//console.log('resizer null');
-			return;
-		}
-		// TRUE -> going from play to serious
-		// FALSE -> going from serious to play
-		if (stylePage) {
-			leftSide.style.display = 'block';
-			rightSide.style.display = 'none';
-			switchButton.style.backgroundColor = '#4A4A4A';
-			stylePage = false;
-		} else {
-			rightSide.style.display = 'block';
-			leftSide.style.display = 'none';
-			switchButton.style.backgroundColor = '#FF8855';
-			stylePage = true;
-		}
-	};
-	switchButton?.addEventListener('click', switchClickHandler);
 </script>
 
 <!-- COMPONENTS JAVASCRIPT -->
