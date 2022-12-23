@@ -192,7 +192,7 @@ Obstacle.types = [
   },
   {
     type: 'PC',
-    width: 40,
+    width: 38.5,
     height: 40,
     yPos: 105,
     multipleSpeed: 4,
@@ -202,9 +202,9 @@ Obstacle.types = [
       new CollisionBox(0, 7, 5, 27), //TODO: change this
       new CollisionBox(4, 0, 6, 34),
       new CollisionBox(10, 4, 7, 14)
-    ]//,
-    //numFrames: 1,
-    //frameRate: 1000/6//,
+    ],
+    numFrames: 5,
+    frameRate: 1000/6//,
     //speedOffset: 1
   },
   {
