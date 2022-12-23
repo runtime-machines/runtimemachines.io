@@ -124,7 +124,7 @@ const sides_id = ['left', 'right'];
 	function reEvaluateState() {
 		const localStorageValue = localStorage.getItem('websiteState');
 		const previousState = localStorageValue != null ? (localStorageValue as WebsiteState) : undefined;
-		let state: WebsiteState = WebsiteState.Serious;
+		let state: WebsiteState = WebsiteState.Selection;
 		if (previousState != null && Object.values(WebsiteState).includes(previousState)) {
 			state = previousState;
 		}
