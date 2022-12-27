@@ -354,13 +354,15 @@ const sides_id = ['left', 'right'];
 					switch (result.message) {
 						case 'Member Exists':
 						case 'email subscribed':
+							button.classList.remove('bg-gray-light hover:bg-gray-dark');
 							button.innerHTML = 'Subscribed';
 							button.style.backgroundColor = '#0fa';
 							button.classList.add('cursor-not-allowed');
 							button.disabled = true;
 							break;
 						case 'email invalid':
-							button.style.backgroundColor = 'red';
+							button.classList.remove('bg-red');
+							button.classList.add('bg-red');
 							break;
 						default:
 							break;
@@ -372,8 +374,8 @@ const sides_id = ['left', 'right'];
 				const submitButton = document.getElementsByClassName('email_form_submit-' + id);
 				for (let e = 0; e < submitButton.length; e++) {
 					const button = submitButton[e];
-					button.innerHTML = 'Subscribed';
-					button.style.backgroundColor = '#0fa';
+					button.innerHTML = 'Error';
+					button.style.backgroundColor = 'reds';
 				}
 			});
 	};
