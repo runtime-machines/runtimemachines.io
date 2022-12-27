@@ -15,6 +15,7 @@ import Linkedin_Image_White from '~/assets/images/Linkedin_White.svg';
 import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 import TrexGame from '~/components/TrexGame.astro';
+import { getSides } from '~/utils/utils';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
@@ -37,7 +38,7 @@ var websiteAssets: WebsiteAssets[] = [
 	},
 ];
 
-const sides_id = ['left', 'right'];
+const sides_id = getSides();
 ---
 
 <Root title="RunTime Machines">
@@ -318,7 +319,12 @@ const sides_id = ['left', 'right'];
 
 <!-- COMPONENTS JAVASCRIPT -->
 <!-- EMAIL COMPONENT -->
-<script define:vars={{ sides_id }}>
+<script>
+	import { getSides } from '~/utils/utils';
+	import colors from 'windicss/colors';
+
+	const sides_id = getSides();
+
 	const emailSubmitHomepage = (event) => {
 		emailSubmit(event, 'homepage');
 	};
@@ -352,15 +358,14 @@ const sides_id = ['left', 'right'];
 					switch (result.message) {
 						case 'Member Exists':
 						case 'email subscribed':
-							button.classList.remove('bg-gray-light hover:bg-gray-dark');
 							button.innerHTML = 'Subscribed';
-							button.style.backgroundColor = '#0fa';
-							button.classList.add('cursor-not-allowed');
+							button.style.backgroundColor = colors.green[500];
 							button.disabled = true;
 							break;
 						case 'email invalid':
-							button.classList.remove('bg-red');
-							button.classList.add('bg-red');
+							button.style.backgroundColor = colors.red[500];
+							button.innerHTML = 'Invalid';
+							button.invalid = true;
 							break;
 						default:
 							break;
