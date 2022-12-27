@@ -209,9 +209,9 @@ Obstacle.types = [
   },
   {
     type: 'COG', //  this was petro //TODO: CHANGE THIS
-    width: 40,
+    width: 78,
     height: 40,
-    yPos: 100, // Variable height.
+    yPos: 105, // Variable height.
     //yPosMobile: [ 100, 50 ], // Variable height mobile.
     multipleSpeed: 7,
     minSpeed: 0, //this was 8.5

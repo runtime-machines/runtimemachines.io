@@ -175,7 +175,7 @@
 			DOUBLE_POTION: {x:17, y:40},
 			POTION: {x:131, y:38},
 			PC: {x:698, y:42},
-			COG: {x:613, y:45}
+			COG: {x:540, y:45}
 		},
 	};
 
