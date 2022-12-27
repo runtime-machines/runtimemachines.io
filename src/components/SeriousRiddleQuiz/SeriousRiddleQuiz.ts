@@ -41,6 +41,26 @@ const dlt: Quiz[] = [
 		answers: ['Person-To-Password', 'Protocol-To-Person', 'Person-To-Person', 'Peer-To-Peer'],
 		correctAnswer: 3,
 	},
+	{
+		question: 'What is Round Robin?',
+		answers: [
+			'A consensus model where nodes are pseudo-randomly selected to create blocks',
+			'A consensus model where nodes are randomly chosen to create blocks',
+			'A round in a consensus model where the resources are assigned via random oracles.',
+			'A round in a consensus model where blocks are built by the fastest participant.',
+		],
+		correctAnswer: 0,
+	},
+	{
+		question: 'What is the use case for ERC-20 token standard?',
+		answers: [
+			'Provides functionalities to transfer tokens, as well as approval of tokens',
+			'Provides functionalities for non-fungible tokens',
+			'Provides functionalities to transfer tokens on behalf of another address, contract or account',
+			'Provides functionalities to manage multiple tokens in the same contract',
+		],
+		correctAnswer: 0,
+	},
 ];
 
 const crypto: Quiz[] = [
@@ -62,6 +82,46 @@ const crypto: Quiz[] = [
 	{
 		question: 'Guess the result of encrypting "RTM" using Caeser cipher',
 		answers: ['uwp', 'uds', 'fdw', 'grj'],
+		correctAnswer: 0,
+	},
+	{
+		question: 'Where the cryptosystem acronym "RSA" comes from?',
+		answers: [
+			'It comes from the surnames of its creators',
+			"It's a code name to maintain the project secret",
+			'It means Refactoring System Algorithm ',
+			'It comes from the names of its creators',
+		],
+		correctAnswer: 0,
+	},
+	{
+		question: 'Is "SNARK" an acronym?',
+		answers: [
+			"No: it's the surname of the inventor",
+			'Yes: Succinct Non-interactive ARgument of Knowledge',
+			"No: it's in a book of Lewis Carroll",
+			'Yes: Super NAtural tRansaction toolKit',
+		],
+		correctAnswer: 1,
+	},
+	{
+		question: 'Is computing the discrete logarithm a difficult problem?',
+		answers: [
+			'Nope',
+			'Yes, always',
+			'Only in certain cyclic groups having prime order',
+			'Only in multiplicative groups of integers modulo n',
+		],
+		correctAnswer: 2,
+	},
+	{
+		question: '1 + 1 = ?',
+		answers: ['2', '1', '0', 'It depends on the base...'],
+		correctAnswer: 3,
+	},
+	{
+		question: 'Does a digital signature guarantee confidentiality?',
+		answers: ['No', 'Yes', 'Yes, for a sufficiently long key', 'No, if the key is reused'],
 		correctAnswer: 0,
 	},
 ];
@@ -107,19 +167,58 @@ const data: Quiz[] = [
 		],
 		correctAnswer: 2,
 	},
+	{
+		question: 'The operator AND in a query has the effect of...',
+		answers: ['Expanding your result', 'Restricting your result', 'Quantifying your result', 'Grouping your result'],
+		correctAnswer: 1,
+	},
+	{
+		question: 'What is the purpose of the NOT operator?',
+		answers: [
+			'To exclude a term or phrase from a result',
+			'To expand your result',
+			'To check if the result equals a specific value',
+			'To negate your result',
+		],
+		correctAnswer: 0,
+	},
+	{
+		question: 'Which of the following stores all of the data in the database?',
+		answers: ['Query', 'Record', 'Table', 'Field'],
+		correctAnswer: 2,
+	},
+	{
+		question: 'Which of the following is NOT a datatype?',
+		answers: ['Integer', 'Text', 'Telephone Number', 'Byte'],
+		correctAnswer: 2,
+	},
 ];
 
-function getRandomQuiz(q: Quiz[]) {
+/*function getRandomQuiz(q: Quiz[]) {
 	const r = Math.floor(Math.random() * q.length);
 
 	return q[r];
-}
+}*/
 
-export function getRandomThreeQuiz(): Quiz[] {
+export function getRandomTenQuiz(): Quiz[] {
 	const quiz: Quiz[] = [];
-	quiz.push(getRandomQuiz(dlt));
+	/*quiz.push(getRandomQuiz(dlt));
 	quiz.push(getRandomQuiz(crypto));
-	quiz.push(getRandomQuiz(data));
+	quiz.push(getRandomQuiz(data));*/
+	const fullQuiz: Quiz[] = dlt.concat(crypto.concat(data));
+
+	const randomNumbers: number[] = [];
+
+	while (randomNumbers.length < 10) {
+		const randomNumber = Math.floor(Math.random() * fullQuiz.length) + 1;
+		if (!randomNumbers.includes(randomNumber)) {
+			randomNumbers.push(randomNumber);
+		}
+	}
+
+	for (let index = 0; index < 10; index++) {
+		quiz.push(fullQuiz[randomNumbers[index]]);
+	}
 
 	return quiz;
 }

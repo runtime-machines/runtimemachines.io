@@ -21,6 +21,8 @@ class SeriousRiddle {
 	quiz: Quiz[] = [];
 	qIndex = 0;
 	riddleIter = 0;
+	correct = 0;
+	isModal = false;
 
 	constructor() {
 		if (this.riddleIter == 0) {
@@ -58,16 +60,19 @@ class SeriousRiddle {
 	startRiddle(q: Quiz[], modal: boolean) {
 		let welcome = 'Now, test your knowledge with the RTM Quiz!';
 		if (!modal) welcome = 'Complete this quiz to enter the website';
+		this.correct = 0;
 		this.riddleIter++;
 		this.qIndex = 0;
 		this.quiz = q;
+		this.isModal = modal;
 		if (this.titleScreen == null || this.completeDiv == null || this.continueDiv == null) return;
 		this.typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 0);
 	}
 
 	showFirst() {
-		if (this.titleScreen == null || this.quizContainer == null) return;
+		if (this.titleScreen == null || this.quizContainer == null || this.continueButton == null) return;
 		this.showQuestion(this.quiz[0], 0);
+		this.continueButton.textContent = 'Next »';
 		this.titleScreen.style.display = 'none';
 		this.quizContainer.style.display = 'block';
 	}
@@ -76,7 +81,8 @@ class SeriousRiddle {
 		if (this.qIndex < i) {
 			this.qIndex = i;
 		}
-		const qHeader = this.qIndex + 1 + '/3 ' + q.question;
+		let qHeader = this.qIndex + 1 + '/3 ' + q.question;
+		if (this.isModal == true) qHeader = this.qIndex + 1 + '/10 ' + q.question;
 		this.quizContent = [qHeader];
 
 		for (let index = 0; index < q.answers.length; index++) {
@@ -122,12 +128,19 @@ class SeriousRiddle {
 			return;
 
 		if (this.quiz[this.qIndex].correctAnswer == asnwerSelectedIndex) {
+			this.correct++;
 			this.resultDiv.textContent = 'Correct Answer!';
+			if (this.isModal == true && this.qIndex == 9)
+				this.resultDiv.textContent =
+					'Correct Answer! You have got ' + this.correct + ' out of 10 questions. Well done!';
 		} else {
 			asnwerSelected.classList.add('glow-wrong');
-			asnwerSelected.classList.remove('glow');
 			this.resultDiv.textContent = '';
+			if (this.isModal == true && this.qIndex == 9)
+				this.resultDiv.textContent = 'You have got ' + this.correct + ' out of 10 questions. Well done!';
 		}
+		if (this.isModal == false && this.qIndex == 2) this.continueButton.textContent = 'Enter »';
+		if (this.isModal == true && this.qIndex == 9) this.continueButton.textContent = 'Exit »';
 		this.arrayHTML[this.quiz[this.qIndex].correctAnswer + 1].classList.add('glow-correct');
 		this.alternatives.classList.add('pointer-events-none');
 		this.resultDiv.style.display = 'block';
@@ -158,7 +171,7 @@ class SeriousRiddle {
 		if (localStorage.getItem('websiteState') != WebsiteState.Website) {
 			localStorage.setItem('websiteState', WebsiteState.Website);
 		}
-
+		console.log('index: ' + this.qIndex + ' modal: ' + this.isModal);
 		if (this.quizContainer == null || this.continueButton == null) return;
 		this.quizContainer.style.display = 'none';
 		this.resetAllEffects();
