@@ -940,9 +940,6 @@
 			console.log('modal: exit trex-game');
 			this.stop();
 			this.crashed = true;
-			
-			localStorage.setItem('websiteState', "website");
-			window.dispatchEvent(new Event('stateChange'));
 			this.cleanUp();
 		},
 
