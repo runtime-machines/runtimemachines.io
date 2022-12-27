@@ -925,6 +925,8 @@
 
 			localStorage.setItem('websiteState', "website");
 			window.dispatchEvent(new Event('stateChange'));
+			Runner.instance_ = false;
+			this.containerEl.remove();
 		},
 
 		fadeOut: function () {
