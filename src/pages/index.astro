@@ -60,7 +60,7 @@ const sides_id = ['left', 'right'];
 	</div>
 	<div style="overflow-y: overlay" class="hidden h-full w-full overflow-x-hidden relative" id="riddle-website-hidden">
 		<LandingPage
-			css_attributes_parent={['z-5 md:border-l-1 md:border-[#444444]']}
+			css_attributes_parent={['z-5 md:border-l-1 md:border-gray-dark']}
 			css_attributes_child={[]}
 			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
@@ -69,7 +69,7 @@ const sides_id = ['left', 'right'];
 			<div id="middle" class="fixed animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
 				<div
 					style="transform: translateX(-50%);"
-					class="w-10 h-10 border-1 bg-white border-[#FFAD8A] absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
+					class="w-10 h-10 border-1 bg-white border-orange absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
 					<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
 				</div>
 			</div>
@@ -189,7 +189,7 @@ const sides_id = ['left', 'right'];
 	 *
 	 *
 	 */
-	localStorage.setItem('websiteState', WebsiteState.Selection);
+	localStorage.setItem('websiteState', WebsiteState.Website);
 	/**
 	 *
 	 *

@@ -6,6 +6,13 @@ export default defineConfig({
 		container: false,
 	},
 	theme: {
+		colors: {
+			red: 'red',
+			green: 'green',
+			'gray-dark': '#343434',
+			'gray-light': '#444444',
+			orange: '#ff8855',
+		},
 		extend: {
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
