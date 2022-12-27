@@ -194,17 +194,31 @@ const data: Quiz[] = [
 	},
 ];
 
-function getRandomQuiz(q: Quiz[]) {
+/*function getRandomQuiz(q: Quiz[]) {
 	const r = Math.floor(Math.random() * q.length);
 
 	return q[r];
-}
+}*/
 
-export function getRandomThreeQuiz(): Quiz[] {
+export function getRandomTenQuiz(): Quiz[] {
 	const quiz: Quiz[] = [];
-	quiz.push(getRandomQuiz(dlt));
+	/*quiz.push(getRandomQuiz(dlt));
 	quiz.push(getRandomQuiz(crypto));
-	quiz.push(getRandomQuiz(data));
+	quiz.push(getRandomQuiz(data));*/
+	const fullQuiz: Quiz[] = dlt.concat(crypto.concat(data));
+
+	const randomNumbers: number[] = [];
+
+	while (randomNumbers.length < 10) {
+		const randomNumber = Math.floor(Math.random() * fullQuiz.length) + 1;
+		if (!randomNumbers.includes(randomNumber)) {
+			randomNumbers.push(randomNumber);
+		}
+	}
+
+	for (let index = 0; index < 10; index++) {
+		quiz.push(fullQuiz[randomNumbers[index]]);
+	}
 
 	return quiz;
 }

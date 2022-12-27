@@ -83,7 +83,7 @@
 </style>
 
 <script>
-	import { getRandomThreeQuiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz.ts';
+	import { getRandomTenQuiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz';
 	import SeriousRiddle from './SeriousRiddleQuiz/SeriousRiddle';
 	import { Quiz } from './SeriousRiddleQuiz/SeriousRiddleQuiz';
 
@@ -117,7 +117,7 @@
 		if (titleScreen == null || closeButton == null) return;
 		titleScreen.style.display = 'block';
 		closeButton.style.display = 'block';
-		let quiz: Quiz[] = getRandomThreeQuiz();
+		let quiz: Quiz[] = getRandomTenQuiz();
 		SRobject.startRiddle(quiz, true);
 	}
 
