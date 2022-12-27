@@ -248,6 +248,8 @@
           this.flashTimer = 0;
         }
       }
+
+      if(!Riddle.ON){ //if riddle is ON don't show distance ran
   
       // Draw the digits if not flashing.
       if (paint) {
@@ -258,6 +260,7 @@
   
       this.drawHighScore();
       
+      }
       if(obstalcesLeft){
         this.drawObstaclesLeft(obstalcesLeft);
       }

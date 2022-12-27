@@ -13,7 +13,6 @@ import Github_Image_White from '~/assets/images/Github_White.svg';
 import Linkedin_Image_White from '~/assets/images/Linkedin_White.svg';
 // import Linkedin_Image_Blue from '~/assets/images/Linkedin_Blue.svg';
 import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
-import Short_Logo from '~/assets/images/Short_Logo.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 import TrexGame from '~/components/TrexGame.astro';
 
@@ -56,7 +55,9 @@ const sides_id = ['left', 'right'];
 				<SeriousRiddle />
 			</div>
 		</div>
-		<div class="hidden w-full h-full" id="riddle-playful-hidden"><TrexGame /></div>
+		<div class="hidden w-full h-full bg-gray-700 bg-opacity-90" id="riddle-playful-hidden">
+			<TrexGame />
+		</div>
 	</div>
 	<div style="overflow-y: overlay" class="hidden h-full w-full overflow-x-hidden relative" id="riddle-website-hidden">
 		<LandingPage
@@ -65,15 +66,6 @@ const sides_id = ['left', 'right'];
 			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
 		/>
-		<div class="absolute w-full h-full">
-			<div id="middle" class="fixed animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
-				<div
-					style="transform: translateX(-50%);"
-					class="w-10 h-10 border-1 bg-white border-orange absolute left-1/2 top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
-					<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
-				</div>
-			</div>
-		</div>
 		<LandingPage
 			css_attributes_parent={[
 				'dark !<md:ml-0 md:animate-wiggle md:dark z-15 ml-0 md:ml-[50%] md:block md:border-l-1 md:border-white border-solid',
@@ -89,12 +81,7 @@ const sides_id = ['left', 'right'];
 
 <!-- Riddle selector and website management -->
 <script>
-	enum WebsiteState {
-		Selection = 'selection',
-		Playful = 'playful',
-		Serious = 'serious',
-		Website = 'website',
-	}
+	import { WebsiteState } from '~/utils/utils';
 
 	function setupSelection() {
 		const serious_button = document.getElementById('serious-button');
@@ -169,12 +156,12 @@ const sides_id = ['left', 'right'];
 				{
 					selector.style.display = 'none';
 					riddles.style.display = 'block';
-					// playful.style.display = 'none';
 					setTimeout(function () {
+						playful.style.display = 'none';
 						riddles.style.display = 'none';
+						serious.style.display = 'none';
 					}, 300);
 					riddles.style.maxHeight = '0';
-					serious.style.display = 'block';
 					website.style.display = 'block';
 				}
 				break;
@@ -203,7 +190,7 @@ const sides_id = ['left', 'right'];
 
 <script>
 	// Query the element
-	const resizer = document.getElementById('middle');
+	const resizers = document.getElementsByClassName('middle');
 	const leftSide = document.getElementById('left');
 	const rightSide = document.getElementById('right');
 	const rightSideChild = document.getElementById('right-child');
@@ -226,23 +213,25 @@ const sides_id = ['left', 'right'];
 		document.addEventListener('mouseup', mouseUpHandler);
 	};
 
-	// Attach the handler
-	resizer?.addEventListener('mousedown', mouseDownHandler);
-
 	// Handle mouse movement
 	const mouseMoveHandler = function (e: any) {
 		// How far the mouse has been moved
 		const dx = e.clientX - x;
 
-		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
+		if (resizers == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
 			//console.log('resizer null');
 			return;
 		}
 
-		let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
+		let containerWidth = resizers[0].parentElement?.getBoundingClientRect().width;
+		if (containerWidth == 0) return;
 		const newRightLeft = Math.max(1, Math.min(99, ((rightMargin + dx) * 100) / containerWidth));
 		rightSide.style.marginLeft = `${newRightLeft}%`;
-		resizer.style.left = `${newRightLeft}%`;
+		for (let i = 0; i < resizers.length; i++) {
+			const element = resizers[i];
+			element.style.left = `${newRightLeft}%`;
+		}
+		//e.target.style.left = `${newRightLeft}%`;
 		rightSideChild.style.left = `${-newRightLeft}%`;
 
 		document.body.style.cursor = 'col-resize';
@@ -255,11 +244,16 @@ const sides_id = ['left', 'right'];
 
 	// Hanlde mouse UP
 	const mouseUpHandler = function () {
-		if (resizer == null || rightSide == null || leftSide == null) {
+		if (resizers == null || rightSide == null || leftSide == null) {
 			//console.log('resizer null');
 			return;
 		}
-		resizer.style.removeProperty('cursor');
+
+		for (let i = 0; i < resizers.length; i++) {
+			const element = resizers[i];
+			element.style.removeProperty('cursor');
+		}
+
 		document.body.style.removeProperty('cursor');
 
 		leftSide.style.removeProperty('user-select');
@@ -285,29 +279,26 @@ const sides_id = ['left', 'right'];
 		document.addEventListener('touchmove', touchMoveHandler);
 		document.addEventListener('touchend', touchEndHandler);
 	};
-
-	resizer?.addEventListener('touchstart', touchStartHandler);
-
 	// Handle finger movement
 	const touchMoveHandler = function (e: any) {
 		// How far the mouse has been moved
 		const dx = e.touches[0].clientX - x;
 
-		if (resizer == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
+		if (resizers == null || rightSide == null || rightSideChild == null || rightMargin == null || leftSide == null) {
 			//console.log('resizer null');
 			return;
 		}
 
-		let containerWidth = resizer.parentElement?.getBoundingClientRect().width ?? 1;
+		let containerWidth = resizers[0].parentElement?.getBoundingClientRect().width ?? 1;
 		const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
 		rightSide.style.marginLeft = `${newRightLeft}%`;
-		resizer.style.left = `${newRightLeft}%`;
+		e.target.style.left = `${newRightLeft}%`;
 		rightSideChild.style.left = `${-newRightLeft}%`;
 	};
 
 	// Handle finger UP
 	const touchEndHandler = function () {
-		if (resizer == null || rightSide == null || leftSide == null) {
+		if (resizers == null || rightSide == null || leftSide == null) {
 			//console.log('resizer null');
 			return;
 		}
@@ -316,6 +307,13 @@ const sides_id = ['left', 'right'];
 		document.removeEventListener('touchmove', touchMoveHandler);
 		document.removeEventListener('touchend', touchEndHandler);
 	};
+
+	// Attach the handler
+	for (let i = 0; i < resizers.length; i++) {
+		const element = resizers[i];
+		element.addEventListener('mousedown', mouseDownHandler);
+		element.addEventListener('touchstart', touchStartHandler);
+	}
 </script>
 
 <!-- COMPONENTS JAVASCRIPT -->
@@ -385,7 +383,6 @@ const sides_id = ['left', 'right'];
 	function startupActions() {
 		for (let e = 0; e < sides_id.length; e++) {
 			const id = sides_id[e];
-			//console.log(sides_id, id);
 			const submitButton = document.getElementById('email_form_submit-' + id);
 			submitButton.face_id = id;
 			const form = document.getElementById('email_form-' + id);
@@ -414,10 +411,12 @@ const sides_id = ['left', 'right'];
 	// Play modal quiz
 	const riddles = document.getElementById('riddle-riddles-hidden');
 	const serious = document.getElementById('riddle-serious-hidden');
+	const playful = document.getElementById('riddle-playful-hidden');
 	const closeButton = document.getElementById('close');
-	const classes = ['absolute', 'w-full', 'bg-opacity-70', 'bg-gray-800', 'animate', 'px-15', 'pt-15', 'pb-20', 'z-50'];
+	const classes = ['absolute', 'w-full', 'bg-opacity-70', 'bg-gray-800', 'animate', 'px-35', 'pt-35', 'pb-40', 'z-50'];
 
 	window.addEventListener('think', startModalQuiz);
+	window.addEventListener('play', startModalRunner);
 
 	function startModalQuiz() {
 		if (riddles == null || serious == null) return;
@@ -428,13 +427,25 @@ const sides_id = ['left', 'right'];
 		serious.classList.add('rounded-2xl');
 	}
 
+	function startModalRunner() {
+		if (playful == null || riddles == null) return;
+		riddles.style.display = 'block';
+		riddles.style.maxHeight = '100%';
+		playful.style.display = 'block';
+		riddles.classList.add(...classes);
+		playful.classList.add('rounded-2xl');
+		window.dispatchEvent(new Event('startTrexFull'));
+	}
+
 	window.onclick = function (event) {
-		if (riddles == null || serious == null) return;
+		if (riddles == null || serious == null || playful == null) return;
 		if (event.target == riddles || event.target == closeButton) {
 			riddles.style.display = 'none';
 			riddles.style.maxHeight = '0%';
 			serious.style.display = 'none';
+			playful.style.display = 'none';
 			riddles.classList.remove(...classes);
+			window.dispatchEvent(new Event('focusOffGameRiddleModal'));
 		}
 	};
 </script>

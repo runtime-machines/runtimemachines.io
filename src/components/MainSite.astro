@@ -3,6 +3,7 @@ import { WebsiteAssets } from './LandingPage.astro';
 import MainCard from './MainCard.astro';
 import SocialIcon from './SocialIcon.astro';
 import ButtonMainPage from './ButtonMainPage.astro';
+import Short_Logo from '~/assets/images/Short_Logo.svg';
 
 export interface Props {
 	websiteAssets: WebsiteAssets;
@@ -11,7 +12,14 @@ export interface Props {
 const { websiteAssets, id } = Astro.props;
 ---
 
-<div class="max-w-8xl m-auto">
+<div class="w-full m-auto">
+	<div
+		class="middle hidden dark:block absolute animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
+		<div
+			class="fixed transform -translate-x-2/4 w-10 h-10 border-1 bg-white border-[#FFAD8A] top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
+			<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
+		</div>
+	</div>
 	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto]">
 		<div class="grid">
 			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
@@ -48,8 +56,10 @@ const { websiteAssets, id } = Astro.props;
 					text="We build"
 					css_classes={['<md:dark:row-start-1 <md:row-start-2']}
 				/>
-				<div class="md:row-start-2 md:col-start-1 md:col-end-3">
+				<div class="md:row-start-2 md:col-start-1 md:col-end-2 md:pb-0 pb-10">
 					<ButtonMainPage text={'Play Think Riddle'} idButton={'think'} />
+				</div>
+				<div class="md:row-start-2 md:col-start-2 md:col-end-3">
 					<ButtonMainPage text={'Play Playful Riddle'} idButton={'play'} />
 				</div>
 				<!-- <div class="md:row-start-2">
