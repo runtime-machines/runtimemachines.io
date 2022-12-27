@@ -206,6 +206,7 @@
 	 * @enum {string}
 	 */
 	Runner.events = {
+		MODAL: 'focusOffGameRiddleModal',
 		MOUSEUP: 'mouseup',
 		ANIM_END: 'webkitAnimationEnd',
 		CLICK: 'click',
@@ -380,6 +381,12 @@
 
 			// Distance meter
 			this.distanceMeter = new DistanceMeter(this.canvas, this.spriteDef.TEXT_SPRITE, this.dimensions.WIDTH);
+			//load highscore from cache
+			var hi = localStorage.getItem('highscore')
+			if(hi){
+				this.highestScore = hi
+				this.distanceMeter.setHighScore(this.highestScore);
+			}
 
 			// Draw t-rex
 			this.tRex = new Trex(this.canvas, this.spriteDef.TREX);
@@ -394,6 +401,7 @@
 			this.update();
 
 			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
+			window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this));
 		},
 
 		/**
@@ -551,7 +559,7 @@
 
 			// Handle tabbing off the page. Pause the current game.
 			document.addEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
-
+0
 			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
 
 			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
@@ -915,6 +923,16 @@
 			this.time = getTimeStamp();
 		},
 
+		exitGame: function(){
+			console.log('modal: exit trex-game');
+			this.stop();
+			this.crashed = true;
+			this.clearCanvas();
+			localStorage.setItem('websiteState', "website");
+			Runner.instance_ = false;
+			this.containerEl.remove();
+		},
+
 		/**
 		 * Function that is called after playOutro animation is finished.
 		 */
@@ -924,6 +942,7 @@
 			this.clearCanvas();
 
 			localStorage.setItem('websiteState', "website");
+			//debug listener with no canvas
 			window.dispatchEvent(new Event('stateChange'));
 			Runner.instance_ = false;
 			this.containerEl.remove();
@@ -1056,6 +1075,7 @@
 			if (this.getScore() > this.highestScore) {
 				this.highestScore = Math.ceil(this.getScore());
 				this.distanceMeter.setHighScore(this.highestScore);
+				localStorage.setItem('highscore', this.highestScore);
 			}
 		},
 
