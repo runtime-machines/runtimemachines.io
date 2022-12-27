@@ -223,9 +223,8 @@ const sides_id = ['left', 'right'];
 			return;
 		}
 
-		let containerWidth = e.target.parentElement?.getBoundingClientRect().width;
-		containerWidth = containerWidth == 0 ? 1 : containerWidth;
-		console.log(containerWidth);
+		let containerWidth = resizers[0].parentElement?.getBoundingClientRect().width;
+		if (containerWidth == 0) return;
 		const newRightLeft = Math.max(1, Math.min(99, ((rightMargin + dx) * 100) / containerWidth));
 		rightSide.style.marginLeft = `${newRightLeft}%`;
 		for (let i = 0; i < resizers.length; i++) {
@@ -249,7 +248,12 @@ const sides_id = ['left', 'right'];
 			//console.log('resizer null');
 			return;
 		}
-		//resizer.style.removeProperty('cursor');
+
+		for (let i = 0; i < resizers.length; i++) {
+			const element = resizers[i];
+			element.style.removeProperty('cursor');
+		}
+
 		document.body.style.removeProperty('cursor');
 
 		leftSide.style.removeProperty('user-select');
@@ -285,7 +289,7 @@ const sides_id = ['left', 'right'];
 			return;
 		}
 
-		let containerWidth = e.target.parentElement?.getBoundingClientRect().width ?? 1;
+		let containerWidth = resizers[0].parentElement?.getBoundingClientRect().width ?? 1;
 		const newRightLeft = ((rightMargin + dx) * 100) / containerWidth;
 		rightSide.style.marginLeft = `${newRightLeft}%`;
 		e.target.style.left = `${newRightLeft}%`;
