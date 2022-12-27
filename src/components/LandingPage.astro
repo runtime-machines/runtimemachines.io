@@ -21,13 +21,13 @@ const { css_attributes_parent = [], css_attributes_child = [], id, websiteAssets
 ---
 
 <div
-	class={'absolute bg-[#444444] w-full overflow-hidden ' +
+	class={'absolute bg-gray-light w-full overflow-hidden ' +
 		css_attributes_parent.map((attribute: string) => {
 			return attribute + ' ';
 		})}
 	id={id}>
 	<div
-		class={'relative dark:bg-[#343434] overflow-hidden ' +
+		class={'relative dark:bg-gray-dark overflow-hidden ' +
 			css_attributes_child.map((attribute: string) => {
 				return attribute + ' ';
 			})}

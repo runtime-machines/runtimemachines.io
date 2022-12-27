@@ -61,7 +61,7 @@ const sides_id = ['left', 'right'];
 	</div>
 	<div style="overflow-y: overlay" class="hidden h-full w-full overflow-x-hidden relative" id="riddle-website-hidden">
 		<LandingPage
-			css_attributes_parent={['z-5 md:border-l-1 md:border-[#444444]']}
+			css_attributes_parent={['z-5 md:border-l-1 md:border-gray-dark']}
 			css_attributes_child={[]}
 			id={sides_id[0]}
 			websiteAssets={websiteAssets[0]}
@@ -319,7 +319,14 @@ const sides_id = ['left', 'right'];
 <!-- COMPONENTS JAVASCRIPT -->
 <!-- EMAIL COMPONENT -->
 <script define:vars={{ sides_id }}>
-	const emailSubmit = function (event) {
+	const emailSubmitHomepage = (event) => {
+		emailSubmit(event, 'homepage');
+	};
+	// TODO: use 'emailSubmitQuiz' when submitting the email after completing the quiz riddle
+	// const emailSubmitQuiz = event => {
+	// 	emailSubmit(event, "quiz")
+	// };
+	const emailSubmit = function (event, subscribed_via) {
 		const id = event.currentTarget.face_id;
 		//console.log('sending email address');
 		var myHeaders = new Headers();
@@ -327,9 +334,8 @@ const sides_id = ['left', 'right'];
 
 		var raw = JSON.stringify({
 			email: document.getElementById('email_form_text-' + id).value,
+			subscribed_via: subscribed_via,
 		});
-
-		//console.log(raw);
 
 		var requestOptions = {
 			method: 'POST',
@@ -346,13 +352,15 @@ const sides_id = ['left', 'right'];
 					switch (result.message) {
 						case 'Member Exists':
 						case 'email subscribed':
+							button.classList.remove('bg-gray-light hover:bg-gray-dark');
 							button.innerHTML = 'Subscribed';
 							button.style.backgroundColor = '#0fa';
 							button.classList.add('cursor-not-allowed');
 							button.disabled = true;
 							break;
 						case 'email invalid':
-							button.style.backgroundColor = 'red';
+							button.classList.remove('bg-red');
+							button.classList.add('bg-red');
 							break;
 						default:
 							break;
@@ -364,8 +372,8 @@ const sides_id = ['left', 'right'];
 				const submitButton = document.getElementsByClassName('email_form_submit-' + id);
 				for (let e = 0; e < submitButton.length; e++) {
 					const button = submitButton[e];
-					button.innerHTML = 'Subscribed';
-					button.style.backgroundColor = '#0fa';
+					button.innerHTML = 'Error';
+					button.style.backgroundColor = 'reds';
 				}
 			});
 	};
@@ -378,7 +386,7 @@ const sides_id = ['left', 'right'];
 			const submitButton = document.getElementById('email_form_submit-' + id);
 			submitButton.face_id = id;
 			const form = document.getElementById('email_form-' + id);
-			submitButton?.addEventListener('click', emailSubmit);
+			submitButton?.addEventListener('click', emailSubmitHomepage);
 			form?.addEventListener('submit', handleForm);
 			const text_field = document.getElementById('email_form_text-' + id);
 			text_field?.addEventListener('keyup', emailBoxSyncronization);

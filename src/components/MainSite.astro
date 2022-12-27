@@ -66,7 +66,7 @@ const { websiteAssets, id } = Astro.props;
 					<ButtonMainPage text={'Play Build Riddle'} />
 				</div> -->
 			</div>
-			<section class="bg-[#343434] w-xs sm:w-sm md:w-full dark:bg-[#444444] rounded-2xl mb-10 shadow-xl">
+			<section class="bg-gray-dark w-xs sm:w-sm md:w-full dark:bg-gray-light rounded-2xl mb-10 shadow-xl">
 				<div class="py-8 px-4 mx-auto max-w-screen-xl md:py-16 md:px-6">
 					<div class="mx-auto max-w-screen-md">
 						<h2
@@ -105,7 +105,7 @@ const { websiteAssets, id } = Astro.props;
 									<button
 										type="submit"
 										id={'email_form_submit-' + id}
-										class="<md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4bg-primary-600 hover:bg-primary-700 font-badaboom"
+										class="bg-gray-light hover:bg-gray-dark <md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:focus:ring-4 font-badaboom"
 										>Subscribe</button
 									>
 								</div>
@@ -115,8 +115,7 @@ const { websiteAssets, id } = Astro.props;
 								We care about the protection of your data. <a
 									href="/privacy_cookie_policy.pdf"
 									target="_blank"
-									class="font-medium text-white dark:text-[#5E6EFF] hover:underline"
-									>Read our Privacy and Cookie Policy</a
+									class="font-medium text-white dark:text-orange hover:underline">Read our Privacy and Cookie Policy</a
 								>.
 							</div>
 						</form>
@@ -162,7 +161,7 @@ const { websiteAssets, id } = Astro.props;
 		if (isDay) {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.remove('bg-[#343434]', '-translate-x-2');
+				element.classList.remove('bg-gray-dark', '-translate-x-2');
 				element.classList.add('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {
@@ -175,7 +174,7 @@ const { websiteAssets, id } = Astro.props;
 		} else {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.add('bg-[#343434]', '-translate-x-2');
+				element.classList.add('bg-gray-dark', '-translate-x-2');
 				element.classList.remove('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {
