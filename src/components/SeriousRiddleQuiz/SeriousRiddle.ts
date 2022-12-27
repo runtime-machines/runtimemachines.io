@@ -1,10 +1,11 @@
 import { Quiz } from './SeriousRiddleQuiz';
-enum WebsiteState {
-	Selection = 'selection',
-	Playful = 'playful',
-	Serious = 'serious',
-	Website = 'website',
+
+import { WebsiteState } from '~/utils/utils';
+
+class ElementWithIndex extends Element {
+	index: number | undefined;
 }
+
 class SeriousRiddle {
 	titleScreen: HTMLElement | undefined | null;
 	completeDiv: HTMLElement | undefined | null;
@@ -18,7 +19,7 @@ class SeriousRiddle {
 	arrayHTML: HTMLElement[] = [];
 	quizContent: string[] = [];
 	quiz: Quiz[] = [];
-	qIndex: number;
+	qIndex = 0;
 	riddleIter = 0;
 	correct = 0;
 	isModal = false;
@@ -47,7 +48,7 @@ class SeriousRiddle {
 		for (let index = 0; index < alts.length; index++) {
 			const element = alts[index];
 			this.arrayHTML.push(element as HTMLElement);
-			element.index = index;
+			(element as ElementWithIndex).index = index;
 			element.addEventListener('click', (e) => this.showResults(e));
 		}
 

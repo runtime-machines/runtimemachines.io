@@ -3,6 +3,7 @@ import { WebsiteAssets } from './LandingPage.astro';
 import MainCard from './MainCard.astro';
 import SocialIcon from './SocialIcon.astro';
 import ButtonMainPage from './ButtonMainPage.astro';
+import Short_Logo from '~/assets/images/Short_Logo.svg';
 
 export interface Props {
 	websiteAssets: WebsiteAssets;
@@ -11,7 +12,14 @@ export interface Props {
 const { websiteAssets, id } = Astro.props;
 ---
 
-<div class="max-w-8xl m-auto">
+<div class="w-full m-auto">
+	<div
+		class="middle hidden dark:block absolute animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
+		<div
+			class="fixed transform -translate-x-2/4 w-10 h-10 border-1 bg-white border-[#FFAD8A] top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
+			<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
+		</div>
+	</div>
 	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto]">
 		<div class="grid">
 			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
@@ -48,14 +56,14 @@ const { websiteAssets, id } = Astro.props;
 					text="We build"
 					css_classes={['<md:dark:row-start-1 <md:row-start-2']}
 				/>
-				<div class="md:row-start-2 md:col-start-1 md:col-end-2">
+				<div class="md:row-start-2 md:col-start-1 md:col-end-2 md:pb-0 pb-10">
 					<ButtonMainPage text={'Sharpen your skills'} idButton={'think'} />
 				</div>
-				<div class="md:row-start-2 md:col-start-2 md:col-end-3 <md:mt-10">
-					<ButtonMainPage text={'Play RTM Runner'} idButton={'startTrexFull'} />
+				<div class="md:row-start-2 md:col-start-2 md:col-end-3">
+					<ButtonMainPage text={'Play RTM Runner'} idButton={'play'} />
 				</div>
 			</div>
-			<section class="bg-[#343434] w-xs sm:w-sm md:w-full dark:bg-[#444444] rounded-2xl mb-10 shadow-xl">
+			<section class="bg-gray-dark w-xs sm:w-sm md:w-full dark:bg-gray-light rounded-2xl mb-10 shadow-xl">
 				<div class="py-8 px-4 mx-auto max-w-screen-xl md:py-16 md:px-6">
 					<div class="mx-auto max-w-screen-md">
 						<h2
@@ -94,7 +102,7 @@ const { websiteAssets, id } = Astro.props;
 									<button
 										type="submit"
 										id={'email_form_submit-' + id}
-										class="<md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:bg-primary-700 dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:hover:bg-primary-800 dark:focus:ring-4bg-primary-600 hover:bg-primary-700 font-badaboom"
+										class="bg-gray-light hover:bg-gray-dark <md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:focus:ring-4 font-badaboom"
 										>Subscribe</button
 									>
 								</div>
@@ -104,8 +112,7 @@ const { websiteAssets, id } = Astro.props;
 								We care about the protection of your data. <a
 									href="/privacy_cookie_policy.pdf"
 									target="_blank"
-									class="font-medium text-white dark:text-[#5E6EFF] hover:underline"
-									>Read our Privacy and Cookie Policy</a
+									class="font-medium text-white dark:text-orange hover:underline">Read our Privacy and Cookie Policy</a
 								>.
 							</div>
 						</form>
@@ -151,7 +158,7 @@ const { websiteAssets, id } = Astro.props;
 		if (isDay) {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.remove('bg-[#343434]', '-translate-x-2');
+				element.classList.remove('bg-gray-dark', '-translate-x-2');
 				element.classList.add('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {
@@ -164,7 +171,7 @@ const { websiteAssets, id } = Astro.props;
 		} else {
 			for (let e = 0; e < switchToggle.length; e++) {
 				const element = switchToggle[e];
-				element.classList.add('bg-[#343434]', '-translate-x-2');
+				element.classList.add('bg-gray-dark', '-translate-x-2');
 				element.classList.remove('bg-yellow-500', 'translate-x-full');
 			}
 			setTimeout(() => {

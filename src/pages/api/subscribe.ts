@@ -7,6 +7,10 @@ mailchimp.setConfig({
 	server: process.env.SERVER,
 });
 const listId = process.env.LISTID || '0';
+const groupsId = {
+	quiz: 'dde0420c90',
+	homepage: 'aa8f1aa024',
+};
 
 import { APIRoute } from 'astro';
 
@@ -44,9 +48,17 @@ export const post: APIRoute = async ({ request }) => {
 					}
 				);
 			}
+			const group = body.subscribed_via || 'homepage';
+			let groupId = groupsId.homepage;
+			if (group === 'quiz') {
+				groupId = groupsId.quiz;
+			}
 			const jsonData: AddListMemberBody = {
 				email_address: email,
 				status: 'subscribed',
+				interests: {
+					[groupId]: true,
+				},
 			};
 			try {
 				const response = await mailchimp.lists.addListMember(listId, jsonData);

@@ -175,7 +175,7 @@
 			DOUBLE_POTION: {x:17, y:40},
 			POTION: {x:131, y:38},
 			PC: {x:698, y:42},
-			COG: {x:613, y:45}
+			COG: {x:540, y:45}
 		},
 	};
 
@@ -206,6 +206,7 @@
 	 * @enum {string}
 	 */
 	Runner.events = {
+		MODAL: 'focusOffGameRiddleModal',
 		MOUSEUP: 'mouseup',
 		ANIM_END: 'webkitAnimationEnd',
 		CLICK: 'click',
@@ -380,6 +381,12 @@
 
 			// Distance meter
 			this.distanceMeter = new DistanceMeter(this.canvas, this.spriteDef.TEXT_SPRITE, this.dimensions.WIDTH);
+			//load highscore from cache
+			var hi = localStorage.getItem('highscore')
+			if(hi){
+				this.highestScore = hi
+				this.distanceMeter.setHighScore(this.highestScore);
+			}
 
 			// Draw t-rex
 			this.tRex = new Trex(this.canvas, this.spriteDef.TREX);
@@ -393,7 +400,9 @@
 			this.startListening();
 			this.update();
 
-			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
+			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this), {once: true});
+			if(Riddle.MODAL)
+				window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this), {once: true});
 		},
 
 		/**
@@ -419,13 +428,15 @@
 				this.canvas.addEventListener(
 					Runner.events.TOUCHSTART,
 					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
-					false
+					false,
+					{once: true}
 				);
 			} else {
 				this.canvas.addEventListener(
 					Runner.events.CLICK,
 					handler_builder(this.canvas, this, Runner.events.CLICK),
-					false
+					false,
+					{once: true}
 				);
 			}
 		},
@@ -551,10 +562,8 @@
 
 			// Handle tabbing off the page. Pause the current game.
 			document.addEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
-
-			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
-
-			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
+			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this), {once: true});
+			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this), {once: true});
 		},
 
 		clearCanvas: function () {
@@ -694,7 +703,7 @@
 				document.addEventListener(Runner.events.MOUSEDOWN, this);
 				document.addEventListener(Runner.events.MOUSEUP, this);
 			}
-			window.addEventListener(Runner.events.GAMEPADCONNECTED, this);
+			window.addEventListener(Runner.events.GAMEPADCONNECTED, this, {once: true});
 			window.setInterval(this.pollGamepads.bind(this), 10);
 		},
 
@@ -915,16 +924,35 @@
 			this.time = getTimeStamp();
 		},
 
+		cleanUp: function(){
+			this.clearCanvas();
+			Runner.instance_ = false;
+			this.containerEl.remove();
+			if(this.touchController){
+				this.touchController.remove();
+			}
+		},
+
+		/**
+		 * function called as event listener for modal focus off
+		 */
+		exitGame: function(){
+			console.log('modal: exit trex-game');
+			this.stop();
+			this.crashed = true;
+			this.cleanUp();
+		},
+
 		/**
 		 * Function that is called after playOutro animation is finished.
 		 */
 		endGame: function () {
 			console.log('exit trex-game');
 			this.playingOutro = false;
-			this.clearCanvas();
-
+			
 			localStorage.setItem('websiteState', "website");
 			window.dispatchEvent(new Event('stateChange'));
+			this.cleanUp();
 		},
 
 		fadeOut: function () {
@@ -1054,6 +1082,7 @@
 			if (this.getScore() > this.highestScore) {
 				this.highestScore = Math.ceil(this.getScore());
 				this.distanceMeter.setHighScore(this.highestScore);
+				localStorage.setItem('highscore', this.highestScore);
 			}
 		},
 
@@ -1092,7 +1121,7 @@
 		 */
 		getScore: function () {
 			return this.distanceRan + this.pickupScore;
-		},
+		}
 	};
 
 	/**
@@ -1141,22 +1170,19 @@
 	};
 })();
 
-
 window.addEventListener('startTrexFull', startFull);
 window.addEventListener('startTrexRiddle', startRiddle);
 
-
 function startRiddle(){
-	console.log("started trex-game riddle")
-	//set variable for game for riddle
+	console.log("started trex-game riddle");
+	Riddle.ON = true;
 	start();
 }
 
-
 function startFull(){
-	console.log("started trex-game full")
+	console.log("started trex-game full");
 	Riddle.ON = false;
-	//set variable for game full
+	Riddle.MODAL = true;
 	start();
 }
 
