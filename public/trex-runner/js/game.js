@@ -400,8 +400,9 @@
 			this.startListening();
 			this.update();
 
-			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
-			window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this));
+			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this), {once: true});
+			if(Riddle.MODAL)
+				window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this), {once: true});
 		},
 
 		/**
@@ -427,13 +428,15 @@
 				this.canvas.addEventListener(
 					Runner.events.TOUCHSTART,
 					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
-					false
+					false,
+					{once: true}
 				);
 			} else {
 				this.canvas.addEventListener(
 					Runner.events.CLICK,
 					handler_builder(this.canvas, this, Runner.events.CLICK),
-					false
+					false,
+					{once: true}
 				);
 			}
 		},
@@ -559,10 +562,8 @@
 
 			// Handle tabbing off the page. Pause the current game.
 			document.addEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
-0
-			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
-
-			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
+			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this), {once: true});
+			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this), {once: true});
 		},
 
 		clearCanvas: function () {
@@ -702,7 +703,7 @@
 				document.addEventListener(Runner.events.MOUSEDOWN, this);
 				document.addEventListener(Runner.events.MOUSEUP, this);
 			}
-			window.addEventListener(Runner.events.GAMEPADCONNECTED, this);
+			window.addEventListener(Runner.events.GAMEPADCONNECTED, this, {once: true});
 			window.setInterval(this.pollGamepads.bind(this), 10);
 		},
 
@@ -923,14 +924,26 @@
 			this.time = getTimeStamp();
 		},
 
+		cleanUp: function(){
+			this.clearCanvas();
+			Runner.instance_ = false;
+			this.containerEl.remove();
+			if(this.touchController){
+				this.touchController.remove();
+			}
+		},
+
+		/**
+		 * function called as event listener for modal focus off
+		 */
 		exitGame: function(){
 			console.log('modal: exit trex-game');
 			this.stop();
 			this.crashed = true;
-			this.clearCanvas();
+			
 			localStorage.setItem('websiteState', "website");
-			Runner.instance_ = false;
-			this.containerEl.remove();
+			window.dispatchEvent(new Event('stateChange'));
+			this.cleanUp();
 		},
 
 		/**
@@ -939,13 +952,10 @@
 		endGame: function () {
 			console.log('exit trex-game');
 			this.playingOutro = false;
-			this.clearCanvas();
-
+			
 			localStorage.setItem('websiteState', "website");
-			//debug listener with no canvas
 			window.dispatchEvent(new Event('stateChange'));
-			Runner.instance_ = false;
-			this.containerEl.remove();
+			this.cleanUp();
 		},
 
 		fadeOut: function () {
@@ -1114,7 +1124,7 @@
 		 */
 		getScore: function () {
 			return this.distanceRan + this.pickupScore;
-		},
+		}
 	};
 
 	/**
@@ -1163,22 +1173,19 @@
 	};
 })();
 
-
 window.addEventListener('startTrexFull', startFull);
 window.addEventListener('startTrexRiddle', startRiddle);
 
-
 function startRiddle(){
-	console.log("started trex-game riddle")
-	//set variable for game for riddle
+	console.log("started trex-game riddle");
+	Riddle.ON = true;
 	start();
 }
 
-
 function startFull(){
-	console.log("started trex-game full")
+	console.log("started trex-game full");
 	Riddle.ON = false;
-	//set variable for game full
+	Riddle.MODAL = true;
 	start();
 }
 
