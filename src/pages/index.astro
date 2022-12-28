@@ -173,7 +173,19 @@ const sides_id = getSides();
 					}, 300);
 					riddles.style.maxHeight = '0';
 					website.style.display = 'block';
+
+					// This is a fix for safari, unfortunately overflow-x doesn't work so I need to
+					// overflow: hidden everything and then change the height of the parent div to fix
+					// the height otherwise it would be cut at 100vh
 					document.getElementById('overflow-block').style.height = document.getElementById('left').scrollHeight + 'px';
+					document.addEventListener('DOMContentLoaded', () => {
+						document.getElementById('overflow-block').style.height =
+							document.getElementById('left').scrollHeight + 'px';
+					});
+					setTimeout(function () {
+						document.getElementById('overflow-block').style.height =
+							document.getElementById('left').scrollHeight + 'px';
+					}, 310); // I know.
 				}
 				break;
 			default:
@@ -232,11 +244,6 @@ const sides_id = getSides();
 		let containerWidth = resizers[0].parentElement?.getBoundingClientRect().width;
 		if (containerWidth == 0) return;
 		const newRightLeft = Math.max(1, Math.min(99, ((rightMargin + dx) * 100) / containerWidth));
-		if (newRightLeft == 1 || newRightLeft == 99) {
-			mouseUpHandler();
-			diasbled = true;
-			return;
-		}
 		rightSide.style.marginLeft = `${newRightLeft}%`;
 		for (let i = 0; i < resizers.length; i++) {
 			const element = resizers[i];
@@ -350,11 +357,11 @@ const sides_id = getSides();
 						case 'Member Exists':
 						case 'email subscribed':
 							button.innerHTML = 'Subscribed';
-							button.style.backgroundColor = colors.green[500];
+							button.style.backgroundColor = colors.green[600];
 							button.disabled = true;
 							break;
 						case 'email invalid':
-							button.style.backgroundColor = colors.red[500];
+							button.style.backgroundColor = colors.red[600];
 							button.innerHTML = 'Email Invalid';
 							button.invalid = true;
 							break;
