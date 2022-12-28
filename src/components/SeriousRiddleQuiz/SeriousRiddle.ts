@@ -70,11 +70,22 @@ class SeriousRiddle {
 	}
 
 	showFirst() {
-		if (this.titleScreen == null || this.quizContainer == null || this.continueButton == null) return;
+		if (
+			this.titleScreen == null ||
+			this.quizContainer == null ||
+			this.continueButton == null ||
+			this.alternatives == null ||
+			this.resultDiv == null
+		)
+			return;
+		this.resetAllEffects();
 		this.showQuestion(this.quiz[0], 0);
 		this.continueButton.textContent = 'Next »';
 		this.titleScreen.style.display = 'none';
 		this.quizContainer.style.display = 'block';
+		this.alternatives.classList.remove('pointer-events-none');
+		this.resultDiv.style.display = 'none';
+		this.continueButton.style.display = 'none';
 	}
 
 	showQuestion(q: Quiz, i: number) {
