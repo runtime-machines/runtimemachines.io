@@ -190,10 +190,12 @@ class SeriousRiddle {
 			window.dispatchEvent(new Event('stateChange'));
 		} else {
 			const riddles = document.getElementById('riddle-riddles-hidden');
-			if (riddles == null || this.quizContainer == null) return;
+			const serious = document.getElementById('riddle-serious-hidden');
+			if (riddles == null || this.quizContainer == null || serious == null) return;
 			this.quizContainer.style.display = 'none';
 			this.resetAllEffects();
 			riddles.style.display = 'none';
+			serious.style.display = 'none';
 		}
 	}
 }
