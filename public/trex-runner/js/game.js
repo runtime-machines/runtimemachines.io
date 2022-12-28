@@ -94,7 +94,7 @@
 		BG_CLOUD_SPEED: 0.2,
 		BOTTOM_PAD: 4,
 		CLEAR_TIME: 3000, //time after first obstacle will spawn
-		PICKUP_TIME: 3000, //time after first pickup will spwan
+		PICKUP_TIME: 12000, //time after first pickup will spwan
 		CLOUD_FREQUENCY: 0.5,
 		GAMEOVER_CLEAR_TIME: 750,
 		GAP_COEFFICIENT: 0.6,
