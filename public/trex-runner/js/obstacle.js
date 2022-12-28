@@ -194,16 +194,16 @@ Obstacle.types = [
   },
   {
     type: 'POTION',
-    width: 40,
+    width: 32,
     height: 40,
     yPos: 104,
     multipleSpeed: 4,
     minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 7, 5, 27), //TODO: change this
-      new CollisionBox(4, 0, 6, 34),
-      new CollisionBox(10, 4, 7, 14)
+      new CollisionBox(0, 40, 30, -20), //TODO: change this
+      //new CollisionBox(4, 0, 6, 34),
+      new CollisionBox(11, 4, 7, 14)
     ]
   },
   {
@@ -220,7 +220,7 @@ Obstacle.types = [
       new CollisionBox(10, 4, 7, 14)
     ],
     numFrames: 5,
-    frameRate: 1000/6//,
+    frameRate: 1000/8//,
     //speedOffset: 1
   },
   {
