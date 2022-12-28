@@ -42,7 +42,7 @@ const sides_id = getSides();
 ---
 
 <Root title="RunTime Machines">
-	<div id="riddle-selector-hidden" class="hidden h-full pt-15 pb-20 bg-black">
+	<div id="riddle-selector-hidden" class="hidden h-full pt-15 pb-20 bg-black font-mono">
 		<div id="titleSelection" class="mx-auto text-2xl text-white text-center"></div>
 		<div class="md:grid md:grid-cols-[1fr_1fr] md:auto-rows-auto md:h-full text-6xl mt-15 <md:mt-2/5">
 			<div
@@ -490,8 +490,8 @@ const sides_id = getSides();
 	const seriousText = document.getElementById('serious-text');
 	const playfulText = document.getElementById('playful-text');
 	const localStorageValue = localStorage.getItem('websiteState');
-	if (titleSelection != null && localStorageValue == 'selection')
-		typeWriter([titleSelection, seriousText, playfulText], ['Choose your side', 'Thinker', 'Builder']);
+	if (titleSelection != null && localStorageValue == 'selection' && seriousText != null && playfulText != null)
+		typeWriter([titleSelection, seriousText, playfulText], ['Choose your side!', 'thinker', 'builder']);
 </script>
 
 <style>
