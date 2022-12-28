@@ -42,7 +42,7 @@ const sides_id = getSides();
 ---
 
 <Root title="RunTime Machines">
-	<div id="riddle-selector-hidden" class="hidden h-full pt-15 pb-20 bg-black">
+	<div id="riddle-selector-hidden" class="hidden h-full pt-15 pb-20 bg-black font-mono">
 		<div id="titleSelection" class="mx-auto text-2xl text-white text-center"></div>
 		<div class="md:grid md:grid-cols-[1fr_1fr] md:auto-rows-auto md:h-full text-6xl mt-15 <md:mt-2/5">
 			<div
@@ -435,17 +435,16 @@ const sides_id = getSides();
 	window.addEventListener('play', startModalRunner);
 
 	function startModalQuiz() {
-		if (riddles == null || serious == null) return;
+		if (riddles == null || serious == null || closeButton == null) return;
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		serious.style.display = 'block';
 		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
-		serious.classList.add('rounded-2xl');
 	}
 
 	function startModalRunner() {
-		if (playful == null || riddles == null) return;
+		if (playful == null || riddles == null || closeButton == null) return;
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		playful.style.display = 'block';
@@ -475,9 +474,8 @@ const sides_id = getSides();
 	const playfulText = document.getElementById('playful-text');
 	function startSelectionScreen() {
 		const titleSelection = document.getElementById('titleSelection');
-		console.log('started selection screen');
-		if (titleSelection != null) {
-			typeWriter([titleSelection, seriousText, playfulText], ['Choose your side', 'Thinker', 'Builder'], 45, () => {
+		if (titleSelection != null && seriousText != null && playfulText != null) {
+			typeWriter([titleSelection, seriousText, playfulText], ['Choose your side!', 'thinker', 'builder'], 45, () => {
 				return true;
 			});
 		} else {

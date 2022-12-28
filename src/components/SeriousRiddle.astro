@@ -2,11 +2,11 @@
 ---
 
 <div
-	class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <lg:text-xl text-center"
+	class="relative w-full h-full overflow-hidden overflow-y-auto text-white z-25 bg-black font-mono text-2xl <md:text-xl p-4 <lg:text-xl text-center scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-300"
 	id="serious-riddle">
-	<div id="title-screen" class="h-full w-full mt-8 z-51">
-		<div id="complete" class="text-3xl"></div>
-		<div id="continue-click" class="vanishing mt-1/4"></div>
+	<div id="title-screen" class="w-full mt-8 z-51 h-11/12">
+		<div id="complete" class="text-3xl <md:text-2xl"></div>
+		<div id="continue-click" class="vanishing mt-1/4 <md:text-xl"></div>
 	</div>
 	<div class="lg:pl-1/5 lg:pr-1/5">
 		<div id="quizContainer" class="mx-auto mt-8 w-fit">
@@ -32,14 +32,16 @@
 		transition: all 0.2s ease-in;
 	}
 
-	.glow:hover {
-		color: #fff;
-		-moz-transition: all 0.2s ease-in;
-		-o-transition: all 0.2s ease-in;
-		-webkit-transition: all 0.2s ease-in;
-		transition: all 0.2s ease-in;
-		text-shadow: 0 0 7px #fff, 0 0 10px #73fdcf, 0 0 21px #73fdcf, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
-			0 0 102px #0fa, 0 0 151px #0fa;
+	@media screen and (min-width: 992px) {
+		.glow:hover {
+			color: #fff;
+			-moz-transition: all 0.2s ease-in;
+			-o-transition: all 0.2s ease-in;
+			-webkit-transition: all 0.2s ease-in;
+			transition: all 0.2s ease-in;
+			text-shadow: 0 0 7px #fff, 0 0 10px #73fdcf, 0 0 21px #73fdcf, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
+				0 0 102px #0fa, 0 0 151px #0fa;
+		}
 	}
 
 	.glow-correct {
@@ -110,9 +112,11 @@
 	];
 	// Code to display a question
 	const titleScreen = document.getElementById('title-screen');
+	const seriousRiddle = document.getElementById('serious-riddle');
 	const SRobject = new SeriousRiddle();
 	function startModalRiddle() {
-		if (titleScreen == null) return;
+		if (titleScreen == null || seriousRiddle == null) return;
+		seriousRiddle.classList.add('rounded-2xl');
 		titleScreen.style.display = 'block';
 		let quiz: Quiz[] = getRandomTenQuiz();
 		SRobject.startRiddle(quiz, true);
