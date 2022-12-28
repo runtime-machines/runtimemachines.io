@@ -9,7 +9,7 @@
  */
  function Obstacle(canvasCtx, type, spriteImgPos, dimensions,
     gapCoefficient, speed) {
-
+      
   this.canvasCtx = canvasCtx;
   this.spritePos = spriteImgPos;
   this.typeConfig = type;

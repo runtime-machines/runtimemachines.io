@@ -142,27 +142,24 @@
 	 */
 	Runner.spriteDefinition = {
 		LDPI: {
-			CACTUS_LARGE: { x: 332, y: 2 },
-			CACTUS_SMALL: { x: 228, y: 2 },
 			CLOUD: { x: 86, y: 2 },
 			HORIZON: { x: 2, y: 54 },
-			PTERODACTYL: { x: 134, y: 2 },
-			RESTART: { x: 2, y: 2 },
-			SKIP: { x: 1054, y: 2 }, //to check
-			TEXT_SPRITE: { x: 484, y: 2 },
-			WIN_TEXT_SPRITE: { x: 0, y: 0 }, //to check // TODO
-			TREX: { x: 0, y: 15 }, //custom file
-			CONFETTI: { x: 1649, y: 3 }, //to check
-			COIN: { x: 1111, y: 4 }, //to check
-			GEM: { x: 1114, y: 26 }, //to check
-			COG: {x:613, y:45}  //to check
+			RESTART: { x: 1, y: 1 },
+			SKIP: { x: 1054, y: 2 },
+			TEXT_SPRITE: { x: 476, y: 1 },
+			WIN_TEXT_SPRITE: { x: 489, y: 27 },
+			TREX: { x: 0, y: 15 },
+			CONFETTI: { x: 1649, y: 3 },
+			COIN: { x: 1111, y: 4 },
+			GEM: { x: 1114, y: 26 },
+			DOUBLE_POTION: {x:8, y:20},
+			POTION: {x:65, y:19},
+			PC: {x:348, y:21}, // TODO: fix my sprite sequence
+			COG: {x:270, y:23}
 		},
 		HDPI: {
-			CACTUS_LARGE: { x: 652, y: 2 },
-			CACTUS_SMALL: { x: 446, y: 2 },
 			CLOUD: { x: 166, y: 2 },
 			HORIZON: { x: 2, y: 104 },
-			PTERODACTYL: { x: 260, y: 2 },
 			RESTART: { x: 2, y: 2 },
 			SKIP: { x: 2108, y: 4 }, //todo
 			TEXT_SPRITE: { x: 954, y: 2 },
@@ -171,7 +168,6 @@
 			TREX: { x: 0, y: 30 }, //custom file
 			COIN: { x: 2224, y: 8 },
 			GEM: { x: 2224, y: 40 },
-			COG: { x: 1472, y: 20 },
 			DOUBLE_POTION: {x:17, y:40},
 			POTION: {x:131, y:38},
 			PC: {x:698, y:42},
@@ -284,24 +280,23 @@
 		 * definition.
 		 */
 		loadImages: function () {
+			var id = '';
 			if (IS_HIDPI) {
-				Runner.imageSprite = document.getElementById('hidpi-sprites');
 				this.spriteDef = Runner.spriteDefinition.HDPI;
-
-				//load main character sprites
-				Runner.obstacleSprites = document.getElementById('hidpi-obstacles');
-				Runner.imageSpriteTrex = document.getElementById('hidpi-trex');
-				//load background
-				Runner.background[0] = document.getElementById('hidpi-back');
-				Runner.background[1] = document.getElementById('hidpi-mid');
-				Runner.background[2] = document.getElementById('hidpi-front');
+				id = 'hidpi-';
 			} else {
-				Runner.imageSprite = document.getElementById('ldpi-sprites');
 				this.spriteDef = Runner.spriteDefinition.LDPI;
-
-				//load main character sprites
-				Runner.imageSpriteTrex = document.getElementById('ldpi-trex');
+				id = 'ldpi-';
 			}
+			//load main sprite sheet
+			Runner.imageSprite = document.getElementById(id.concat('sprites'));
+			//load main character sprites
+			Runner.obstacleSprites = document.getElementById(id.concat('obstacles'));
+			Runner.imageSpriteTrex = document.getElementById(id.concat('trex'));
+			//load background
+			Runner.background[0] = document.getElementById(id.concat('back'));
+			Runner.background[1] = document.getElementById(id.concat('mid'));
+			Runner.background[2] = document.getElementById(id.concat('front'));
 
 			this.init();
 		},

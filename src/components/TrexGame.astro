@@ -1,8 +1,12 @@
 ---
-//import sprites
+//import ldpi sprites
 import ls from '../assets/trex-runner/assets/LDPI/sprite.png';
-import lt from '../assets/trex-runner/assets/LDPI/sprite.png';
-// todo add also lhdpi for background etc..
+import lo from '../assets/trex-runner/assets/LDPI/obstacles.png';
+import lt from '../assets/trex-runner/assets/LDPI/trex.png';
+import lbb from '../assets/trex-runner/assets/LDPI/back.png';
+import lbm from '../assets/trex-runner/assets/LDPI/middle.png';
+import lbf from '../assets/trex-runner/assets/LDPI/front.png';
+//import hidpi sprites
 import hs from '../assets/trex-runner/assets/HIDPI/sprite.png';
 import ho from '../assets/trex-runner/assets/HIDPI/obstacles.png';
 import ht from '../assets/trex-runner/assets/HIDPI/trex.png';
@@ -31,14 +35,17 @@ const fx_reached = await audio.filter((post) => post.frontmatter.title == 'reach
 		<div id="main-content"></div>
 	</div>
 	<div id="offline-resources">
-		<!-- LDPI SPIRTE SHEET  -->
+		<!-- LDPI SPIRTES -->
 		<img id="ldpi-sprites" src={ls} />
 		<img id="ldpi-trex" src={lt} />
-		<!-- HIDPI SPIRTE SHEET  -->
+		<img id="ldpi-obstacles" src={lo} />
+		<img id="ldpi-back" src={lbb} />
+		<img id="ldpi-mid" src={lbm} />
+		<img id="ldpi-front" src={lbf} />
+		<!-- HIDPI SPIRTES  -->
 		<img id="hidpi-sprites" src={hs} />
 		<img id="hidpi-trex" src={ht} />
 		<img id="hidpi-obstacles" src={ho} />
-		<!--Background -->
 		<img id="hidpi-back" src={hbb} />
 		<img id="hidpi-mid" src={hbm} />
 		<img id="hidpi-front" src={hbf} />
