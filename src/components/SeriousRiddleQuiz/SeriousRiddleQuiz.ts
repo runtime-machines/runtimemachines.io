@@ -210,8 +210,8 @@ export function getRandomTenQuiz(): Quiz[] {
 	const randomNumbers: number[] = [];
 
 	while (randomNumbers.length < 10) {
-		const randomNumber = Math.floor(Math.random() * fullQuiz.length) + 1;
-		if (!randomNumbers.includes(randomNumber)) {
+		const randomNumber = Math.floor(Math.random() * fullQuiz.length);
+		if (!randomNumbers.includes(randomNumber) && randomNumber < fullQuiz.length) {
 			randomNumbers.push(randomNumber);
 		}
 	}

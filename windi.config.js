@@ -67,5 +67,5 @@ export default defineConfig({
 		include: ['./src/**/*.{vue,html,jsx,tsx,astro}'],
 		exclude: ['node_modules', '.git'],
 	},
-	plugins: [require('windicss/plugin/typography')],
+	plugins: [require('windicss/plugin/typography'), require('@windicss/plugin-scrollbar')],
 });

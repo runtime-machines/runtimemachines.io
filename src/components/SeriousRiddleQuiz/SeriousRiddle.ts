@@ -1,6 +1,6 @@
 import { Quiz } from './SeriousRiddleQuiz';
 
-import { WebsiteState } from '~/utils/utils';
+import { typeWriter, WebsiteState } from '~/utils/utils';
 
 class ElementWithIndex extends Element {
 	index: number | undefined;
@@ -65,16 +65,31 @@ class SeriousRiddle {
 		this.qIndex = 0;
 		this.quiz = q;
 		this.isModal = modal;
+		if (this.quizContainer == null) return;
+		this.quizContainer.style.display = 'none';
 		if (this.titleScreen == null || this.completeDiv == null || this.continueDiv == null) return;
-		this.typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 0);
+		typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 20, () => {
+			return this.qIndex == 0;
+		});
 	}
 
 	showFirst() {
-		if (this.titleScreen == null || this.quizContainer == null || this.continueButton == null) return;
+		if (
+			this.titleScreen == null ||
+			this.quizContainer == null ||
+			this.continueButton == null ||
+			this.alternatives == null ||
+			this.resultDiv == null
+		)
+			return;
+		this.resetAllEffects();
 		this.showQuestion(this.quiz[0], 0);
 		this.continueButton.textContent = 'Next »';
 		this.titleScreen.style.display = 'none';
 		this.quizContainer.style.display = 'block';
+		this.alternatives.classList.remove('pointer-events-none');
+		this.resultDiv.style.display = 'none';
+		this.continueButton.style.display = 'none';
 	}
 
 	showQuestion(q: Quiz, i: number) {
@@ -94,30 +109,20 @@ class SeriousRiddle {
 	}
 
 	typeWriterQuiz(i: number) {
-		this.typeWriter(this.arrayHTML, this.quizContent, i);
-	}
-
-	typeWriter(arrayDiv: HTMLElement[], texts: string[], i: number) {
-		arrayDiv.forEach(function (element: HTMLElement) {
-			element.textContent = '';
+		typeWriter(this.arrayHTML, this.quizContent, 20, () => {
+			return this.qIndex == i;
 		});
-		let time = 20;
-
-		for (let index = 0; index < arrayDiv.length; index++) {
-			const div = arrayDiv[index];
-			for (let e = 0; e < texts[index].length; e++) {
-				const char = texts[index][e];
-				setTimeout(() => {
-					if (this.qIndex == i) div.innerHTML += char;
-				}, time);
-				time += 20;
-			}
-		}
 	}
 
-	showResults(event: { currentTarget: any }) {
-		const asnwerSelected = event.currentTarget;
-		const asnwerSelectedIndex = asnwerSelected.index;
+	showResults(event: Event) {
+		const asnwerSelected = event.currentTarget as HTMLElement;
+		let asnwerSelectedIndex;
+		if (asnwerSelected != null && 'index' in asnwerSelected) {
+			asnwerSelectedIndex = asnwerSelected.index;
+		} else {
+			console.log('current element index in show results is undefined!');
+			return;
+		}
 		// Add results effects
 		if (
 			this.resultDiv == null ||
@@ -131,8 +136,7 @@ class SeriousRiddle {
 			this.correct++;
 			this.resultDiv.textContent = 'Correct Answer!';
 			if (this.isModal == true && this.qIndex == 9)
-				this.resultDiv.textContent =
-					'Correct Answer! You have got ' + this.correct + ' out of 10 questions. Well done!';
+				this.resultDiv.textContent = 'You have got ' + this.correct + ' out of 10 questions. Well done!';
 		} else {
 			asnwerSelected.classList.add('glow-wrong');
 			this.resultDiv.textContent = '';
@@ -168,14 +172,23 @@ class SeriousRiddle {
 	}
 
 	endRiddle() {
-		if (localStorage.getItem('websiteState') != WebsiteState.Website) {
-			localStorage.setItem('websiteState', WebsiteState.Website);
+		if (this.isModal == false) {
+			if (localStorage.getItem('websiteState') != WebsiteState.Website) {
+				localStorage.setItem('websiteState', WebsiteState.Website);
+			}
+			if (this.quizContainer == null || this.continueButton == null) return;
+			this.quizContainer.style.display = 'none';
+			this.resetAllEffects();
+			window.dispatchEvent(new Event('stateChange'));
+		} else {
+			const riddles = document.getElementById('riddle-riddles-hidden');
+			const serious = document.getElementById('riddle-serious-hidden');
+			if (riddles == null || this.quizContainer == null || serious == null) return;
+			this.quizContainer.style.display = 'none';
+			this.resetAllEffects();
+			riddles.style.display = 'none';
+			serious.style.display = 'none';
 		}
-		console.log('index: ' + this.qIndex + ' modal: ' + this.isModal);
-		if (this.quizContainer == null || this.continueButton == null) return;
-		this.quizContainer.style.display = 'none';
-		this.resetAllEffects();
-		window.dispatchEvent(new Event('stateChange'));
 	}
 }
 
