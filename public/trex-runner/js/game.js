@@ -395,7 +395,7 @@
 			this.startListening();
 			this.update();
 
-			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this), {once: true});
+			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
 			if(Riddle.MODAL)
 				window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this), {once: true});
 		},
@@ -424,15 +424,13 @@
 				this.canvas.addEventListener(
 					Runner.events.TOUCHSTART,
 					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
-					false,
-					{once: true}
+					false
 				);
 			} else {
 				this.canvas.addEventListener(
 					Runner.events.CLICK,
 					handler_builder(this.canvas, this, Runner.events.CLICK),
-					false,
-					{once: true}
+					false
 				);
 			}
 		},
@@ -558,8 +556,8 @@
 
 			// Handle tabbing off the page. Pause the current game.
 			document.addEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
-			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this), {once: true});
-			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this), {once: true});
+			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
+			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
 		},
 
 		clearCanvas: function () {
@@ -699,7 +697,7 @@
 				document.addEventListener(Runner.events.MOUSEDOWN, this);
 				document.addEventListener(Runner.events.MOUSEUP, this);
 			}
-			window.addEventListener(Runner.events.GAMEPADCONNECTED, this, {once: true});
+			window.addEventListener(Runner.events.GAMEPADCONNECTED, this);
 			window.setInterval(this.pollGamepads.bind(this), 10);
 		},
 
