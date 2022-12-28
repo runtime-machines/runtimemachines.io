@@ -434,17 +434,16 @@ const sides_id = getSides();
 	window.addEventListener('play', startModalRunner);
 
 	function startModalQuiz() {
-		if (riddles == null || serious == null) return;
+		if (riddles == null || serious == null || closeButton == null) return;
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		serious.style.display = 'block';
 		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
-		serious.classList.add('rounded-2xl');
 	}
 
 	function startModalRunner() {
-		if (playful == null || riddles == null) return;
+		if (playful == null || riddles == null || closeButton == null) return;
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		playful.style.display = 'block';

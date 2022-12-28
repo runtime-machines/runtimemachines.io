@@ -110,9 +110,11 @@
 	];
 	// Code to display a question
 	const titleScreen = document.getElementById('title-screen');
+	const seriousRiddle = document.getElementById('serious-riddle');
 	const SRobject = new SeriousRiddle();
 	function startModalRiddle() {
-		if (titleScreen == null) return;
+		if (titleScreen == null || seriousRiddle == null) return;
+		seriousRiddle.classList.add('rounded-2xl');
 		titleScreen.style.display = 'block';
 		let quiz: Quiz[] = getRandomTenQuiz();
 		SRobject.startRiddle(quiz, true);
