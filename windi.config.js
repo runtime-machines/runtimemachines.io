@@ -6,14 +6,15 @@ export default defineConfig({
 		container: false,
 	},
 	theme: {
-		colors: {
-			red: 'red',
-			green: 'green',
-			'gray-dark': '#343434',
-			'gray-light': '#444444',
-			orange: '#ff8855',
-		},
 		extend: {
+			colors: {
+				red: 'red-400',
+				'red-hover': 'red-800',
+				green: 'green',
+				'gray-dark': '#343434',
+				'gray-light': '#444444',
+				orange: '#ff8855',
+			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
 				badaboom: ['badaboom-pro', 'sans-serif'],
@@ -29,7 +30,7 @@ export default defineConfig({
 				orange: '#FF8855',
 			}),
 			boxShadow: {
-				glow: '0px 0px 30px 4px rgba(245,116,61,0.9)',
+				glow: '0px 0px 30px 4px rgba(45,255,196,0.9)',
 				'white-glow': '0px 0px 30px 4px rgba(255,255,255,0.9)',
 			},
 			animation: {

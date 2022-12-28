@@ -15,6 +15,7 @@ import Linkedin_Image_White from '~/assets/images/Linkedin_White.svg';
 import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 import TrexGame from '~/components/TrexGame.astro';
+import { getSides } from '~/utils/utils';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
@@ -37,19 +38,29 @@ var websiteAssets: WebsiteAssets[] = [
 	},
 ];
 
-const sides_id = ['left', 'right'];
+const sides_id = getSides();
 ---
 
 <Root title="RunTime Machines">
-	<div id="riddle-selector-hidden" class="hidden">
-		<div class="grid grid-cols-[1fr_1fr]">
-			<button id="serious-button" class="w-100px h-12 rounded-2xl bg-orange">serious button</button>
-			<button id="playful-button" class="w-100px h-12 rounded-2xl bg-black text-white">playful button</button>
+	<div id="riddle-selector-hidden" class="hidden h-full pt-15 pb-20 bg-black">
+		<div id="titleSelection" class="mx-auto text-2xl text-white text-center"></div>
+		<div class="md:grid md:grid-cols-[1fr_1fr] md:auto-rows-auto md:h-full text-6xl mt-15 <md:mt-2/5">
+			<div
+				id="serious-button"
+				class="md:w-5/6 md:h-3/5 mx-auto glow items-center flex bg-black row-start-1 col-start-1 col-end-2 <md:pb-5 <md:border-b-2">
+				<div id="serious-text" class="text-center w-full <md:animate-pulse"></div>
+			</div>
+			<div
+				id="playful-button"
+				class="md:w-5/6 md:h-3/5 mx-auto glow items-center flex bg-black row-start-1 <md:row-start-2 col-start-2 <md:col-start-1 <md:pt-7">
+				<div id="playful-text" class="text-center w-full <md:animate-bounce"></div>
+			</div>
 		</div>
 	</div>
 	<div
 		class="hidden h-full transition-all linear duration-300 overflow-x-hidden max-h-full h-full"
 		id="riddle-riddles-hidden">
+		<div id="close" class="mr-0 mt-0 text-right hidden text-3xl text-white">&times;</div>
 		<div class="block h-full" id="riddle-serious-hidden">
 			<div class="h-full">
 				<SeriousRiddle />
@@ -170,19 +181,6 @@ const sides_id = ['left', 'right'];
 		}
 		localStorage.setItem('websiteState', state);
 	}
-	/**
-	 *
-	 * TODO REMEBER TO REMOVE, JUST FOR DEBUG
-	 *
-	 *
-	 */
-	localStorage.setItem('websiteState', WebsiteState.Playful);
-	/**
-	 *
-	 *
-	 *
-	 *
-	 */
 	setupSelection();
 	reEvaluateState();
 	window.addEventListener('stateChange', reEvaluateState);
@@ -318,7 +316,12 @@ const sides_id = ['left', 'right'];
 
 <!-- COMPONENTS JAVASCRIPT -->
 <!-- EMAIL COMPONENT -->
-<script define:vars={{ sides_id }}>
+<script>
+	import { getSides } from '~/utils/utils';
+	import colors from 'windicss/colors';
+
+	const sides_id = getSides();
+
 	const emailSubmitHomepage = (event) => {
 		emailSubmit(event, 'homepage');
 	};
@@ -352,15 +355,14 @@ const sides_id = ['left', 'right'];
 					switch (result.message) {
 						case 'Member Exists':
 						case 'email subscribed':
-							button.classList.remove('bg-gray-light hover:bg-gray-dark');
 							button.innerHTML = 'Subscribed';
-							button.style.backgroundColor = '#0fa';
-							button.classList.add('cursor-not-allowed');
+							button.style.backgroundColor = colors.green[500];
 							button.disabled = true;
 							break;
 						case 'email invalid':
-							button.classList.remove('bg-red');
-							button.classList.add('bg-red');
+							button.style.backgroundColor = colors.red[500];
+							button.innerHTML = 'Invalid';
+							button.invalid = true;
 							break;
 						default:
 							break;
@@ -413,7 +415,20 @@ const sides_id = ['left', 'right'];
 	const serious = document.getElementById('riddle-serious-hidden');
 	const playful = document.getElementById('riddle-playful-hidden');
 	const closeButton = document.getElementById('close');
-	const classes = ['absolute', 'w-full', 'bg-opacity-70', 'bg-gray-800', 'animate', 'px-35', 'pt-35', 'pb-40', 'z-50'];
+	const classes = [
+		'absolute',
+		'w-full',
+		'bg-opacity-70',
+		'bg-gray-800',
+		'animate',
+		'md:px-45',
+		'md:pt-20',
+		'md:pb-20',
+		'z-50',
+		'px-10',
+		'pt-10',
+		'pb-15',
+	];
 
 	window.addEventListener('think', startModalQuiz);
 	window.addEventListener('play', startModalRunner);
@@ -423,6 +438,7 @@ const sides_id = ['left', 'right'];
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		serious.style.display = 'block';
+		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
 		serious.classList.add('rounded-2xl');
 	}
@@ -432,6 +448,7 @@ const sides_id = ['left', 'right'];
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		playful.style.display = 'block';
+		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
 		playful.classList.add('rounded-2xl');
 		window.dispatchEvent(new Event('startTrexFull'));
@@ -450,6 +467,33 @@ const sides_id = ['left', 'right'];
 	};
 </script>
 
+<script>
+	function typeWriter(arrayDiv: HTMLElement[], texts: string[]) {
+		arrayDiv.forEach(function (element: HTMLElement) {
+			element.textContent = '';
+		});
+		let time = 50;
+
+		for (let index = 0; index < arrayDiv.length; index++) {
+			const div = arrayDiv[index];
+			for (let e = 0; e < texts[index].length; e++) {
+				const char = texts[index][e];
+				setTimeout(() => {
+					if (localStorageValue == 'selection') div.innerHTML += char;
+				}, time);
+				time += 45;
+			}
+		}
+	}
+
+	const titleSelection = document.getElementById('titleSelection');
+	const seriousText = document.getElementById('serious-text');
+	const playfulText = document.getElementById('playful-text');
+	const localStorageValue = localStorage.getItem('websiteState');
+	if (titleSelection != null && localStorageValue == 'selection')
+		typeWriter([titleSelection, seriousText, playfulText], ['Choose your side', 'Thinker', 'Builder']);
+</script>
+
 <style>
 	.animate {
 		animation-duration: 1s;
@@ -465,5 +509,23 @@ const sides_id = ['left', 'right'];
 		100% {
 			opacity: 1;
 		}
+	}
+
+	.glow {
+		color: #fff;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
+	}
+
+	.glow:hover {
+		color: #fff;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.2s ease-in;
+		text-shadow: 0 0 7px #fff, 0 0 10px #73fdcf, 0 0 21px #73fdcf, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
+			0 0 102px #0fa, 0 0 151px #0fa;
 	}
 </style>

@@ -7,10 +7,10 @@ const { text, idButton } = Astro.props;
 ---
 
 <div
-	class="sm:w-sm rounded md:mt-10 bg-gray-light dark:bg-gray-dark h-15 flex shadow-xl"
+	class="sm:w-sm sm:mx-auto rounded md:mt-10 bg-gray-light dark:bg-gray-dark h-15 flex shadow-xl group cursor-pointer"
 	id={idButton}
 	onclick="window.dispatchEvent(new Event(this.id));">
-	<div class="m-auto text-xl text-white font-bold">
+	<div class="m-auto text-xl text-white font-bold group-hover:scale-115 transform transition-all">
 		{text}
 		<slot />
 	</div>
