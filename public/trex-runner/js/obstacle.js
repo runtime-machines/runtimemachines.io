@@ -19,6 +19,7 @@
   this.remove = false;
   this.xPos = 0;
   this.yPos = 0;
+  this.yDir = 1;
   this.width = 0;
   this.collisionBoxes = [];
   this.gap = 0;
@@ -97,6 +98,21 @@ Obstacle.prototype = {
         speed += this.speedOffset;
       }
       this.xPos -= Math.floor((speed * FPS / 1000) * deltaTime);
+
+      if(this.typeConfig.yOff){
+
+        var increment = (this.typeConfig.ySpeed * FPS / 1000) * deltaTime;
+        //TODO IMPLEMET USING SIN FUNCTION
+        if(this.yPos <= this.typeConfig.yPos - this.typeConfig.yOff){
+          //go down
+          this.yDir = -1;
+        } else if(this.yPos >= this.typeConfig.yPos + this.typeConfig.yOff){
+          //go up
+          this.yDir = 1;
+        }
+        
+        this.yPos -= increment * this.yDir;
+      }
 
       // Update frame
       if (this.typeConfig.numFrames) {
@@ -211,11 +227,13 @@ Obstacle.types = [
     type: 'COG', //  this was petro //TODO: CHANGE THIS
     width: 78,
     height: 40,
-    yPos: 115, // Variable height.
+    yPos: 105, // Variable height.
     //yPosMobile: [ 100, 50 ], // Variable height mobile.
     multipleSpeed: 7,
     minSpeed: 0, //this was 8.5
     minGap: 150,
+    yOff: 7,
+    ySpeed: 0.3,
     collisionBoxes: [
       new CollisionBox(0, 7, 5, 27), //TODO: change this
       new CollisionBox(4, 0, 6, 34),
