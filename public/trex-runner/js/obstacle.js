@@ -187,9 +187,8 @@ Obstacle.types = [
     minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 7, 5, 27), //TODO: change this
-      new CollisionBox(4, 0, 6, 34),
-      new CollisionBox(10, 4, 7, 14)
+      new CollisionBox(0, 5, 13, 32),
+      new CollisionBox(19, 0, 12, 38)
     ]
   },
   {
