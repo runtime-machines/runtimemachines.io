@@ -8,7 +8,7 @@ Riddle.MIN_DEATHS = 2;
 Riddle.MAX_OBSTACLES = 1;
 Riddle.SHOW_OBSTACLES_LEFT = true;
 Riddle.RESET_OBSTACLES_LEFT_UPON_DEATH = false;
-Riddle.DEBUG_COLLIDER = true;
+Riddle.DEBUG_COLLIDER = false;
 Riddle.CONFETTI = false;
 Riddle.MODAL = false;
 
