@@ -4,7 +4,6 @@
 <div
 	class="relative w-full h-full overflow-hidden text-white z-25 bg-black font-mono text-2xl p-4 <lg:text-xl text-center"
 	id="serious-riddle">
-	<div id="close" class="mr-0 mt-0 text-right hidden">&#10006;</div>
 	<div id="title-screen" class="h-full w-full mt-8 z-51">
 		<div id="complete" class="text-3xl"></div>
 		<div id="continue-click" class="vanishing mt-1/4"></div>
@@ -111,12 +110,10 @@
 	];
 	// Code to display a question
 	const titleScreen = document.getElementById('title-screen');
-	const closeButton = document.getElementById('close');
 	const SRobject = new SeriousRiddle();
 	function startModalRiddle() {
-		if (titleScreen == null || closeButton == null) return;
+		if (titleScreen == null) return;
 		titleScreen.style.display = 'block';
-		closeButton.style.display = 'block';
 		let quiz: Quiz[] = getRandomTenQuiz();
 		SRobject.startRiddle(quiz, true);
 	}

@@ -60,6 +60,7 @@ const sides_id = getSides();
 	<div
 		class="hidden h-full transition-all linear duration-300 overflow-x-hidden max-h-full h-full"
 		id="riddle-riddles-hidden">
+		<div id="close" class="mr-0 mt-0 text-right hidden text-3xl text-white">&times;</div>
 		<div class="block h-full" id="riddle-serious-hidden">
 			<div class="h-full">
 				<SeriousRiddle />
@@ -437,6 +438,7 @@ const sides_id = getSides();
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		serious.style.display = 'block';
+		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
 		serious.classList.add('rounded-2xl');
 	}
@@ -446,6 +448,7 @@ const sides_id = getSides();
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		playful.style.display = 'block';
+		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
 		playful.classList.add('rounded-2xl');
 		window.dispatchEvent(new Event('startTrexFull'));
