@@ -14,6 +14,7 @@ export default defineConfig({
 				'gray-dark': '#343434',
 				'gray-light': '#444444',
 				orange: '#ff8855',
+				'blue-game': '#181930',
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
