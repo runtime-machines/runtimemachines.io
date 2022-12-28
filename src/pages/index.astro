@@ -202,12 +202,15 @@ const sides_id = getSides();
 	// The current position of mouse
 	let x = 0;
 
+	let diasbled = false;
+
 	// Width of left and right sides
 	let rightMargin: number | undefined = 0;
 
 	// Handle the mousedown event
 	// that's triggered when user drags the resizer
 	const mouseDownHandler = function () {
+		if (diasbled) return;
 		document.addEventListener('mousemove', mouseMoveHandler);
 		document.addEventListener('mouseup', mouseUpHandler);
 	};
@@ -228,6 +231,11 @@ const sides_id = getSides();
 		let containerWidth = resizers[0].parentElement?.getBoundingClientRect().width;
 		if (containerWidth == 0) return;
 		const newRightLeft = Math.max(1, Math.min(99, ((rightMargin + dx) * 100) / containerWidth));
+		if (newRightLeft == 1 || newRightLeft == 99) {
+			mouseUpHandler();
+			diasbled = true;
+			return;
+		}
 		rightSide.style.marginLeft = `${newRightLeft}%`;
 		for (let i = 0; i < resizers.length; i++) {
 			const element = resizers[i];
@@ -281,7 +289,6 @@ const sides_id = getSides();
 
 	// Handle finger UP
 	const touchEndHandler = function () {
-		document.getElementById('debugWindow').innerHTML += 'end';
 		if (resizers == null || rightSide == null || leftSide == null) {
 			//console.log('resizer null');
 			return;
