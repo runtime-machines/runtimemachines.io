@@ -231,7 +231,8 @@ Obstacle.types = [
     ySpeed: 0.3,
     collisionBoxes: [
       new CollisionBox(0, 7, 5, 17),
-      new CollisionBox(8, 0, 68, 10)
+      new CollisionBox(5, 0, 20, 10)
+      //new CollisionBox(8, 0, 68, 10) //full rtm collider
     ]
   }
 ];
