@@ -131,8 +131,7 @@ class SeriousRiddle {
 			this.correct++;
 			this.resultDiv.textContent = 'Correct Answer!';
 			if (this.isModal == true && this.qIndex == 9)
-				this.resultDiv.textContent =
-					'You have got ' + this.correct + ' out of 10 questions. Well done!';
+				this.resultDiv.textContent = 'You have got ' + this.correct + ' out of 10 questions. Well done!';
 		} else {
 			asnwerSelected.classList.add('glow-wrong');
 			this.resultDiv.textContent = '';
@@ -168,14 +167,21 @@ class SeriousRiddle {
 	}
 
 	endRiddle() {
-		if (localStorage.getItem('websiteState') != WebsiteState.Website) {
-			localStorage.setItem('websiteState', WebsiteState.Website);
+		if (this.isModal == false) {
+			if (localStorage.getItem('websiteState') != WebsiteState.Website) {
+				localStorage.setItem('websiteState', WebsiteState.Website);
+			}
+			if (this.quizContainer == null || this.continueButton == null) return;
+			this.quizContainer.style.display = 'none';
+			this.resetAllEffects();
+			window.dispatchEvent(new Event('stateChange'));
+		} else {
+			const riddles = document.getElementById('riddle-riddles-hidden');
+			if (riddles == null || this.quizContainer == null) return;
+			this.quizContainer.style.display = 'none';
+			this.resetAllEffects();
+			riddles.style.display = 'none';
 		}
-		console.log('index: ' + this.qIndex + ' modal: ' + this.isModal);
-		if (this.quizContainer == null || this.continueButton == null) return;
-		this.quizContainer.style.display = 'none';
-		this.resetAllEffects();
-		window.dispatchEvent(new Event('stateChange'));
 	}
 }
 
