@@ -65,6 +65,8 @@ class SeriousRiddle {
 		this.qIndex = 0;
 		this.quiz = q;
 		this.isModal = modal;
+		if (this.quizContainer == null) return;
+		this.quizContainer.style.display = 'none';
 		if (this.titleScreen == null || this.completeDiv == null || this.continueDiv == null) return;
 		this.typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 0);
 	}
