@@ -80,10 +80,10 @@
    */
   function drawCollisionBoxes(canvasCtx, tRexBox, obstacleBox) {
     canvasCtx.save();
-    canvasCtx.strokeStyle = '#f00';
+    canvasCtx.strokeStyle = COLLISION_BOX_TREX_COLOR;
     canvasCtx.strokeRect(tRexBox.x, tRexBox.y, tRexBox.width, tRexBox.height);
   
-    canvasCtx.strokeStyle = '#0f0';
+    canvasCtx.strokeStyle = COLLISION_BOX_OBSTACLE_COLOR;
     canvasCtx.strokeRect(obstacleBox.x, obstacleBox.y,
         obstacleBox.width, obstacleBox.height);
     canvasCtx.restore();
