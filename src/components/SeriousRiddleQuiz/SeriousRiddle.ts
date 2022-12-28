@@ -1,6 +1,6 @@
 import { Quiz } from './SeriousRiddleQuiz';
 
-import { WebsiteState } from '~/utils/utils';
+import { typeWriter, WebsiteState } from '~/utils/utils';
 
 class ElementWithIndex extends Element {
 	index: number | undefined;
@@ -68,7 +68,9 @@ class SeriousRiddle {
 		if (this.quizContainer == null) return;
 		this.quizContainer.style.display = 'none';
 		if (this.titleScreen == null || this.completeDiv == null || this.continueDiv == null) return;
-		this.typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 0);
+		typeWriter([this.completeDiv, this.continueDiv], [welcome, 'Click anywhere to continue'], 20, () => {
+			return this.qIndex == 0;
+		});
 	}
 
 	showFirst() {
@@ -107,30 +109,20 @@ class SeriousRiddle {
 	}
 
 	typeWriterQuiz(i: number) {
-		this.typeWriter(this.arrayHTML, this.quizContent, i);
-	}
-
-	typeWriter(arrayDiv: HTMLElement[], texts: string[], i: number) {
-		arrayDiv.forEach(function (element: HTMLElement) {
-			element.textContent = '';
+		typeWriter(this.arrayHTML, this.quizContent, 20, () => {
+			return this.qIndex == i;
 		});
-		let time = 20;
-
-		for (let index = 0; index < arrayDiv.length; index++) {
-			const div = arrayDiv[index];
-			for (let e = 0; e < texts[index].length; e++) {
-				const char = texts[index][e];
-				setTimeout(() => {
-					if (this.qIndex == i) div.innerHTML += char;
-				}, time);
-				time += 20;
-			}
-		}
 	}
 
-	showResults(event: { currentTarget: any }) {
-		const asnwerSelected = event.currentTarget;
-		const asnwerSelectedIndex = asnwerSelected.index;
+	showResults(event: Event) {
+		const asnwerSelected = event.currentTarget as HTMLElement;
+		let asnwerSelectedIndex;
+		if (asnwerSelected != null && 'index' in asnwerSelected) {
+			asnwerSelectedIndex = asnwerSelected.index;
+		} else {
+			console.log('current element index in show results is undefined!');
+			return;
+		}
 		// Add results effects
 		if (
 			this.resultDiv == null ||
