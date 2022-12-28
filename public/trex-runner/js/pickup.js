@@ -36,7 +36,7 @@ function Pickup(canvasCtx, type, spriteImgPos, dimensions,
  * Coefficient for calculating the maximum gap.
  * @const
  */
-  Pickup.MAX_TIMER = 2000;
+  Pickup.MAX_TIMER = 4000;
 
   Pickup.prototype = {
     /**

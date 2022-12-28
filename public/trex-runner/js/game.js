@@ -94,7 +94,7 @@
 		BG_CLOUD_SPEED: 0.2,
 		BOTTOM_PAD: 4,
 		CLEAR_TIME: 3000, //time after first obstacle will spawn
-		PICKUP_TIME: 3000, //time after first pickup will spwan
+		PICKUP_TIME: 12000, //time after first pickup will spwan
 		CLOUD_FREQUENCY: 0.5,
 		GAMEOVER_CLEAR_TIME: 750,
 		GAP_COEFFICIENT: 0.6,
@@ -142,27 +142,24 @@
 	 */
 	Runner.spriteDefinition = {
 		LDPI: {
-			CACTUS_LARGE: { x: 332, y: 2 },
-			CACTUS_SMALL: { x: 228, y: 2 },
 			CLOUD: { x: 86, y: 2 },
 			HORIZON: { x: 2, y: 54 },
-			PTERODACTYL: { x: 134, y: 2 },
-			RESTART: { x: 2, y: 2 },
-			SKIP: { x: 1054, y: 2 }, //to check
-			TEXT_SPRITE: { x: 484, y: 2 },
-			WIN_TEXT_SPRITE: { x: 0, y: 0 }, //to check // TODO
-			TREX: { x: 0, y: 15 }, //custom file
-			CONFETTI: { x: 1649, y: 3 }, //to check
-			COIN: { x: 1111, y: 4 }, //to check
-			GEM: { x: 1114, y: 26 }, //to check
-			COG: {x:613, y:45}  //to check
+			RESTART: { x: 1, y: 1 },
+			SKIP: { x: 1054, y: 2 },
+			TEXT_SPRITE: { x: 476, y: 1 },
+			WIN_TEXT_SPRITE: { x: 489, y: 27 },
+			TREX: { x: 0, y: 15 },
+			CONFETTI: { x: 1649, y: 3 },
+			COIN: { x: 1111, y: 4 },
+			GEM: { x: 1114, y: 26 },
+			DOUBLE_POTION: {x:8, y:20},
+			POTION: {x:65, y:19},
+			PC: {x:348, y:21}, // TODO: fix my sprite sequence
+			COG: {x:270, y:23}
 		},
 		HDPI: {
-			CACTUS_LARGE: { x: 652, y: 2 },
-			CACTUS_SMALL: { x: 446, y: 2 },
 			CLOUD: { x: 166, y: 2 },
 			HORIZON: { x: 2, y: 104 },
-			PTERODACTYL: { x: 260, y: 2 },
 			RESTART: { x: 2, y: 2 },
 			SKIP: { x: 2108, y: 4 }, //todo
 			TEXT_SPRITE: { x: 954, y: 2 },
@@ -170,8 +167,7 @@
 			CONFETTI: { x: 3298, y: 5 },
 			TREX: { x: 0, y: 30 }, //custom file
 			COIN: { x: 2224, y: 8 },
-			GEM: { x: 2222, y: 52 },
-			COG: { x: 1472, y: 20 },
+			GEM: { x: 2224, y: 40 },
 			DOUBLE_POTION: {x:17, y:40},
 			POTION: {x:131, y:38},
 			PC: {x:698, y:42},
@@ -284,24 +280,23 @@
 		 * definition.
 		 */
 		loadImages: function () {
+			var id = '';
 			if (IS_HIDPI) {
-				Runner.imageSprite = document.getElementById('hidpi-sprites');
 				this.spriteDef = Runner.spriteDefinition.HDPI;
-
-				//load main character sprites
-				Runner.obstacleSprites = document.getElementById('hidpi-obstacles');
-				Runner.imageSpriteTrex = document.getElementById('hidpi-trex');
-				//load background
-				Runner.background[0] = document.getElementById('hidpi-back');
-				Runner.background[1] = document.getElementById('hidpi-mid');
-				Runner.background[2] = document.getElementById('hidpi-front');
+				id = 'hidpi-';
 			} else {
-				Runner.imageSprite = document.getElementById('ldpi-sprites');
 				this.spriteDef = Runner.spriteDefinition.LDPI;
-
-				//load main character sprites
-				Runner.imageSpriteTrex = document.getElementById('ldpi-trex');
+				id = 'ldpi-';
 			}
+			//load main sprite sheet
+			Runner.imageSprite = document.getElementById(id.concat('sprites'));
+			//load main character sprites
+			Runner.obstacleSprites = document.getElementById(id.concat('obstacles'));
+			Runner.imageSpriteTrex = document.getElementById(id.concat('trex'));
+			//load background
+			Runner.background[0] = document.getElementById(id.concat('back'));
+			Runner.background[1] = document.getElementById(id.concat('mid'));
+			Runner.background[2] = document.getElementById(id.concat('front'));
 
 			this.init();
 		},
@@ -400,19 +395,20 @@
 			this.startListening();
 			this.update();
 
-			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this), {once: true});
+			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
 			if(Riddle.MODAL)
 				window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this), {once: true});
 		},
 
 		/**
-		 * Create button handler
+		 * Create button handler for restart and skip event
 		 */
 		createButtonHandler: function () {
 			//event listener for mouse click onto game over buttons
 			var handler_builder = function (canvas, runner, type) {
 				return function foo(evt) {
 					var mousePos = getEventPos(canvas, evt);
+					
 					if (isInside(mousePos, GameOverPanel.restartButton)) {
 						canvas.removeEventListener(type, foo, false);
 						runner.restart();
@@ -428,15 +424,13 @@
 				this.canvas.addEventListener(
 					Runner.events.TOUCHSTART,
 					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
-					false,
-					{once: true}
+					false
 				);
 			} else {
 				this.canvas.addEventListener(
 					Runner.events.CLICK,
 					handler_builder(this.canvas, this, Runner.events.CLICK),
-					false,
-					{once: true}
+					false
 				);
 			}
 		},
@@ -562,8 +556,8 @@
 
 			// Handle tabbing off the page. Pause the current game.
 			document.addEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
-			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this), {once: true});
-			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this), {once: true});
+			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
+			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
 		},
 
 		clearCanvas: function () {
@@ -694,16 +688,16 @@
 			document.addEventListener(Runner.events.KEYUP, this);
 
 			if (IS_MOBILE) {
-				// Mobile only touch devices.
 				this.touchController.addEventListener(Runner.events.TOUCHSTART, this);
 				this.touchController.addEventListener(Runner.events.TOUCHEND, this);
-				this.containerEl.addEventListener(Runner.events.TOUCHSTART, this);
+				document.getElementById("t").addEventListener(Runner.events.TOUCHSTART, this);
+				//this.containerEl.addEventListener(Runner.events.TOUCHSTART, this);
 			} else {
 				// Mouse.
 				document.addEventListener(Runner.events.MOUSEDOWN, this);
 				document.addEventListener(Runner.events.MOUSEUP, this);
 			}
-			window.addEventListener(Runner.events.GAMEPADCONNECTED, this, {once: true});
+			window.addEventListener(Runner.events.GAMEPADCONNECTED, this);
 			window.setInterval(this.pollGamepads.bind(this), 10);
 		},
 
@@ -916,9 +910,7 @@
 				this.gameOverPanel.draw();
 			}
 
-			if (Riddle.ON) {
-				this.createButtonHandler();
-			}
+			this.createButtonHandler();
 
 			// Reset the time clock.
 			this.time = getTimeStamp();
@@ -1176,6 +1168,8 @@ window.addEventListener('startTrexRiddle', startRiddle);
 function startRiddle(){
 	console.log("started trex-game riddle");
 	Riddle.ON = true;
+	Riddle.MODAL = false;
+	Riddle.USE_PICKUPS = false;
 	start();
 }
 
@@ -1183,6 +1177,7 @@ function startFull(){
 	console.log("started trex-game full");
 	Riddle.ON = false;
 	Riddle.MODAL = true;
+	Riddle.USE_PICKUPS = true;
 	start();
 }
 

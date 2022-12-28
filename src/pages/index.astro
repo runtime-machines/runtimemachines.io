@@ -66,7 +66,7 @@ const sides_id = getSides();
 				<SeriousRiddle />
 			</div>
 		</div>
-		<div class="hidden w-full h-full bg-gray-700 bg-opacity-90" id="riddle-playful-hidden">
+		<div class="hidden w-full h-full bg-blue-game bg-opacity-90" id="riddle-playful-hidden">
 			<TrexGame />
 		</div>
 	</div>
@@ -441,6 +441,7 @@ const sides_id = getSides();
 		serious.style.display = 'block';
 		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
+		serious.classList.add('rounded-2xl');
 	}
 
 	function startModalRunner() {
@@ -450,7 +451,8 @@ const sides_id = getSides();
 		playful.style.display = 'block';
 		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
-		playful.classList.add('rounded-2xl');
+		riddles.classList.add('<md:pb-60');
+		//playful.classList.add('rounded-2xl');
 		window.dispatchEvent(new Event('startTrexFull'));
 	}
 

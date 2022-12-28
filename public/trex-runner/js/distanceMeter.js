@@ -52,7 +52,7 @@
    */
   DistanceMeter.yPos = [0, 13, 27, 40, 53, 67, 80, 93, 107, 120];
 
-  DistanceMeter.ObstacleTextPos = [ 480, 40 ];
+  DistanceMeter.ObstacleTextPos = [ 479, 40 ];
   
   
   /**
@@ -115,12 +115,21 @@
 
       var textTargetWidth = DistanceMeter.dimensions.DEST_TEXT_WIDTH;
       var textTargetHeight = DistanceMeter.dimensions.DEST_TEXT_HEIGHT;
+
       var textTargetX = 10;
       var textTargetY = 11.5;
 
       if (IS_HIDPI) {
         textSourceY *= 2;
         textSourceX *= 2;
+      } else { //FIXME:
+        textSourceX = DistanceMeter.ObstacleTextPos[0];
+        textSourceY = DistanceMeter.ObstacleTextPos[1]-1.5;
+        textSourceWidth = DistanceMeter.dimensions.TEXT_WIDTH-5;
+        textSourceHeight = DistanceMeter.dimensions.TEXT_HEIGHT-6;
+        textTargetWidth = DistanceMeter.dimensions.DEST_TEXT_WIDTH*2;
+        textTargetHeight = DistanceMeter.dimensions.DEST_TEXT_HEIGHT+5;
+        textTargetY = 9.5;
       }
 
       this.canvasCtx.drawImage(Runner.imageSprite,

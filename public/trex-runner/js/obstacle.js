@@ -9,7 +9,7 @@
  */
  function Obstacle(canvasCtx, type, spriteImgPos, dimensions,
     gapCoefficient, speed) {
-
+      
   this.canvasCtx = canvasCtx;
   this.spritePos = spriteImgPos;
   this.typeConfig = type;
@@ -26,7 +26,7 @@
   this.speedOffset = 0;
 
   // For animated obstacles.
-  this.currentFrame = 0;
+  this.currentFrame = getRandomNum(0, this.typeConfig.numFrames - 1);
   this.timer = 0;
 
   this.init(speed);
@@ -231,7 +231,8 @@ Obstacle.types = [
     ySpeed: 0.3,
     collisionBoxes: [
       new CollisionBox(0, 7, 5, 17),
-      new CollisionBox(8, 0, 68, 10)
+      new CollisionBox(5, 0, 20, 10)
+      //new CollisionBox(8, 0, 68, 10) //full rtm collider
     ]
   }
 ];
