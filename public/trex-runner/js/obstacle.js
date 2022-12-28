@@ -19,6 +19,7 @@
   this.remove = false;
   this.xPos = 0;
   this.yPos = 0;
+  this.yDir = 1;
   this.width = 0;
   this.collisionBoxes = [];
   this.gap = 0;
@@ -98,6 +99,21 @@ Obstacle.prototype = {
       }
       this.xPos -= Math.floor((speed * FPS / 1000) * deltaTime);
 
+      if(this.typeConfig.yOff){
+
+        var increment = (this.typeConfig.ySpeed * FPS / 1000) * deltaTime;
+        //TODO IMPLEMET USING SIN FUNCTION
+        if(this.yPos <= this.typeConfig.yPos - this.typeConfig.yOff){
+          //go down
+          this.yDir = -1;
+        } else if(this.yPos >= this.typeConfig.yPos + this.typeConfig.yOff){
+          //go up
+          this.yDir = 1;
+        }
+        
+        this.yPos -= increment * this.yDir;
+      }
+
       // Update frame
       if (this.typeConfig.numFrames) {
         this.timer += deltaTime;
@@ -171,23 +187,21 @@ Obstacle.types = [
     minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 7, 5, 27), //TODO: change this
-      new CollisionBox(4, 0, 6, 34),
-      new CollisionBox(10, 4, 7, 14)
+      new CollisionBox(0, 5, 13, 32),
+      new CollisionBox(19, 0, 12, 38)
     ]
   },
   {
     type: 'POTION',
-    width: 40,
+    width: 32,
     height: 40,
     yPos: 104,
     multipleSpeed: 4,
     minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 7, 5, 27), //TODO: change this
-      new CollisionBox(4, 0, 6, 34),
-      new CollisionBox(10, 4, 7, 14)
+      new CollisionBox(0, 40, 30, -20),
+      new CollisionBox(11, 4, 7, 14)
     ]
   },
   {
@@ -199,27 +213,25 @@ Obstacle.types = [
     minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 7, 5, 27), //TODO: change this
-      new CollisionBox(4, 0, 6, 34),
-      new CollisionBox(10, 4, 7, 14)
+      new CollisionBox(0, 0, 37, 38)
     ],
     numFrames: 5,
-    frameRate: 1000/6//,
+    frameRate: 1000/8//,
     //speedOffset: 1
   },
   {
-    type: 'COG', //  this was petro //TODO: CHANGE THIS
+    type: 'COG',
     width: 78,
     height: 40,
-    yPos: 105, // Variable height.
-    //yPosMobile: [ 100, 50 ], // Variable height mobile.
+    yPos: 105,
     multipleSpeed: 7,
-    minSpeed: 0, //this was 8.5
+    minSpeed: 0,
     minGap: 150,
+    yOff: 7,
+    ySpeed: 0.3,
     collisionBoxes: [
-      new CollisionBox(0, 7, 5, 27), //TODO: change this
-      new CollisionBox(4, 0, 6, 34),
-      new CollisionBox(10, 4, 7, 14)
+      new CollisionBox(0, 7, 5, 17),
+      new CollisionBox(8, 0, 68, 10)
     ]
   }
 ];

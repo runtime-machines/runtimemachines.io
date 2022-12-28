@@ -372,7 +372,7 @@
 			);
 
 			this.canvasCtx = this.canvas.getContext('2d');
-			this.canvasCtx.fillStyle = '#f7f7f7';
+			this.canvasCtx.fillStyle = CANVAS_FILL;
 			this.canvasCtx.fill();
 			Runner.updateCanvasScaling(this.canvas);
 
