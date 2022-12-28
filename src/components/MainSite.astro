@@ -75,7 +75,8 @@ const { websiteAssets, id } = Astro.props;
 							Sign up for our newsletter to get updates, key insights, and become eligible for early-adopter benefits.
 						</p>
 						<form id={'email_form-' + id}>
-							<div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0 sm:w-2/3">
+							<div
+								class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:grid sm:space-y-0 sm:w-2/3 sm:grid-cols-[3fr_1fr]">
 								<div class="relative w-full">
 									<label for="email" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
 										>Email address</label
