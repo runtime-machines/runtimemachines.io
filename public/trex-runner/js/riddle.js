@@ -13,7 +13,7 @@ Riddle.CONFETTI = false;
 Riddle.MODAL = false;
 
 //debug
-localStorage.setItem('websiteState', 'playful');
+localStorage.setItem('websiteState', 'website');
 
 /**
  *
