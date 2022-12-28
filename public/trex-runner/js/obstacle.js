@@ -201,8 +201,7 @@ Obstacle.types = [
     minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 40, 30, -20), //TODO: change this
-      //new CollisionBox(4, 0, 6, 34),
+      new CollisionBox(0, 40, 30, -20),
       new CollisionBox(11, 4, 7, 14)
     ]
   },
@@ -215,9 +214,9 @@ Obstacle.types = [
     minGap: 100,
     minSpeed: 0,
     collisionBoxes: [
-      new CollisionBox(0, 7, 5, 27), //TODO: change this
-      new CollisionBox(4, 0, 6, 34),
-      new CollisionBox(10, 4, 7, 14)
+      new CollisionBox(0, 0, 37, 38), //TODO: change this
+      //new CollisionBox(4, 0, 6, 34),
+      //new CollisionBox(10, 4, 7, 14)
     ],
     numFrames: 5,
     frameRate: 1000/8//,
