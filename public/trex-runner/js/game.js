@@ -401,13 +401,14 @@
 		},
 
 		/**
-		 * Create button handler
+		 * Create button handler for restart and skip event
 		 */
 		createButtonHandler: function () {
 			//event listener for mouse click onto game over buttons
 			var handler_builder = function (canvas, runner, type) {
 				return function foo(evt) {
 					var mousePos = getEventPos(canvas, evt);
+					
 					if (isInside(mousePos, GameOverPanel.restartButton)) {
 						canvas.removeEventListener(type, foo, false);
 						runner.restart();
@@ -691,8 +692,8 @@
 			if (IS_MOBILE) {
 				this.touchController.addEventListener(Runner.events.TOUCHSTART, this);
 				this.touchController.addEventListener(Runner.events.TOUCHEND, this);
-				//this was this.containerEl.addEvent......
 				document.getElementById("t").addEventListener(Runner.events.TOUCHSTART, this);
+				//this.containerEl.addEventListener(Runner.events.TOUCHSTART, this);
 			} else {
 				// Mouse.
 				document.addEventListener(Runner.events.MOUSEDOWN, this);
@@ -911,9 +912,7 @@
 				this.gameOverPanel.draw();
 			}
 
-			if (Riddle.ON) {
-				this.createButtonHandler();
-			}
+			this.createButtonHandler();
 
 			// Reset the time clock.
 			this.time = getTimeStamp();
