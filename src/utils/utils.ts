@@ -4,3 +4,7 @@ export enum WebsiteState {
 	Serious = 'serious',
 	Website = 'website',
 }
+
+export function getSides() {
+	return ['left', 'right'];
+}

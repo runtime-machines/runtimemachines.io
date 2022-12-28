@@ -6,14 +6,15 @@ export default defineConfig({
 		container: false,
 	},
 	theme: {
-		colors: {
-			red: 'red',
-			green: 'green',
-			'gray-dark': '#343434',
-			'gray-light': '#444444',
-			orange: '#ff8855',
-		},
 		extend: {
+			colors: {
+				red: 'red-400',
+				'red-hover': 'red-800',
+				green: 'green',
+				'gray-dark': '#343434',
+				'gray-light': '#444444',
+				orange: '#ff8855',
+			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
 				badaboom: ['badaboom-pro', 'sans-serif'],

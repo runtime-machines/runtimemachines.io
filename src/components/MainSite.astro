@@ -14,9 +14,9 @@ const { websiteAssets, id } = Astro.props;
 
 <div class="w-full m-auto">
 	<div
-		class="middle hidden dark:block absolute animate-wigglemiddle <md:hidden left-[50%] h-full min-h-full cursor-ew-resize z-20">
+		class="middle hidden md:dark:block absolute animate-wigglemiddle left-[50%] h-full min-h-full cursor-ew-resize z-20">
 		<div
-			class="fixed transform -translate-x-2/4 w-10 h-10 border-1 bg-white border-[#FFAD8A] top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
+			class="fixed transform -translate-x-2/4 w-10 h-10 border-1 bg-white border-orange top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center">
 			<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
 		</div>
 	</div>
@@ -102,7 +102,7 @@ const { websiteAssets, id } = Astro.props;
 									<button
 										type="submit"
 										id={'email_form_submit-' + id}
-										class="bg-gray-light hover:bg-gray-dark <md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:focus:ring-4 font-badaboom"
+										class="bg-gray-light hover:bg-gray-dark dark:hover:bg-gray-light dark:bg-gray-dark <md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:focus:ring-4 font-badaboom"
 										>Subscribe</button
 									>
 								</div>
