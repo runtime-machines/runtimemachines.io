@@ -26,7 +26,7 @@
   this.speedOffset = 0;
 
   // For animated obstacles.
-  this.currentFrame = 0;
+  this.currentFrame = getRandomNum(0, this.typeConfig.numFrames - 1);
   this.timer = 0;
 
   this.init(speed);
