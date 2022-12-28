@@ -170,7 +170,7 @@
 			CONFETTI: { x: 3298, y: 5 },
 			TREX: { x: 0, y: 30 }, //custom file
 			COIN: { x: 2224, y: 8 },
-			GEM: { x: 2222, y: 52 },
+			GEM: { x: 2224, y: 40 },
 			COG: { x: 1472, y: 20 },
 			DOUBLE_POTION: {x:17, y:40},
 			POTION: {x:131, y:38},
