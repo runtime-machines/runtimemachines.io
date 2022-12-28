@@ -132,7 +132,7 @@ class SeriousRiddle {
 			this.resultDiv.textContent = 'Correct Answer!';
 			if (this.isModal == true && this.qIndex == 9)
 				this.resultDiv.textContent =
-					'Correct Answer! You have got ' + this.correct + ' out of 10 questions. Well done!';
+					'You have got ' + this.correct + ' out of 10 questions. Well done!';
 		} else {
 			asnwerSelected.classList.add('glow-wrong');
 			this.resultDiv.textContent = '';
