@@ -1176,6 +1176,8 @@ window.addEventListener('startTrexRiddle', startRiddle);
 function startRiddle(){
 	console.log("started trex-game riddle");
 	Riddle.ON = true;
+	Riddle.MODAL = false;
+	Riddle.USE_PICKUPS = false;
 	start();
 }
 
@@ -1183,6 +1185,7 @@ function startFull(){
 	console.log("started trex-game full");
 	Riddle.ON = false;
 	Riddle.MODAL = true;
+	Riddle.USE_PICKUPS = true;
 	start();
 }
 
