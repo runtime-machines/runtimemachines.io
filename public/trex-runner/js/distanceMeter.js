@@ -124,12 +124,12 @@
         textSourceX *= 2;
       } else { //FIXME:
         textSourceX = DistanceMeter.ObstacleTextPos[0];
-        textSourceY = DistanceMeter.ObstacleTextPos[1]-1.5;
+        textSourceY = DistanceMeter.ObstacleTextPos[1];
         textSourceWidth = DistanceMeter.dimensions.TEXT_WIDTH-5;
         textSourceHeight = DistanceMeter.dimensions.TEXT_HEIGHT-7;
         textTargetWidth = DistanceMeter.dimensions.DEST_TEXT_WIDTH*2;
         textTargetHeight = DistanceMeter.dimensions.DEST_TEXT_HEIGHT+5;
-        textTargetY = 9.5;
+        textTargetY = 8;
       }
 
       this.canvasCtx.drawImage(Runner.imageSprite,
