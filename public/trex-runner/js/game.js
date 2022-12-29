@@ -90,7 +90,7 @@
 	Runner.config = {
 		CONFETTI_DURATION: 4000, //2 seconds
 		DUCKING: false,
-		ACCELERATION: 0.001,
+		ACCELERATION: 0.002,
 		BG_CLOUD_SPEED: 0.2,
 		BOTTOM_PAD: 4,
 		CLEAR_TIME: 3000, //time after first obstacle will spawn
@@ -105,9 +105,10 @@
 		MAX_OBSTACLE_DUPLICATION: 2,
 		MAX_SPEED: 13,
 		MIN_JUMP_HEIGHT: 35,
-		MOBILE_SPEED_COEFFICIENT: 1.2, // msc = 1.2 -> width = 600
+		MOBILE_SPEED_COEFFICIENT: 1.2,
 		RESOURCE_TEMPLATE_ID: 'audio-resources',
 		SPEED: 6,
+		MIN_SPEED: 4.5,
 		SPEED_DROP_COEFFICIENT: 3,
 	};
 
@@ -298,7 +299,11 @@
 			Runner.background[1] = document.getElementById(id.concat('mid'));
 			Runner.background[2] = document.getElementById(id.concat('front'));
 
-			this.init();
+			if(!Runner.imageSprite){
+				sleep(500).then(() => { this.loadImages(); });
+			} else {
+				this.init();
+			}
 		},
 
 		/**
@@ -342,6 +347,8 @@
 			} else if (opt_speed) {
 				this.currentSpeed = opt_speed;
 			}
+
+			this.currentSpeed = (this.currentSpeed >= this.config.MIN_SPEED) ? this.currentSpeed : this.config.MIN_SPEED;
 		},
 
 		/**
@@ -767,10 +774,9 @@
 			//KEYCODE JUMP
 			if (
 				!this.crashed &&
-				(Runner.keycodes.JUMP[e.keyCode] ||
-					e.type == Runner.events.MOUSEDOWN ||
+				(	e.type == Runner.events.MOUSEDOWN ||
 					e.type == Runner.events.TOUCHSTART ||
-					e.type == Runner.events.GAMEPADCONNECTED)
+					e.type == Runner.events.GAMEPADCONNECTED) // || Runner.keycodes.JUMP[e.keyCode]
 			) {
 				if (!this.activated) {
 					this.loadSounds();
@@ -815,7 +821,7 @@
 		onKeyUp: function (e) {
 			var keyCode = String(e.keyCode);
 			var isjumpKey =
-				Runner.keycodes.JUMP[keyCode] || e.type == Runner.events.TOUCHEND || e.type == Runner.events.MOUSEUP;
+				 e.type == Runner.events.TOUCHEND || e.type == Runner.events.MOUSEUP; // || Runner.keycodes.JUMP[keyCode]
 
 			if (this.winPanel) {
 				return;

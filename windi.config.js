@@ -7,6 +7,9 @@ export default defineConfig({
 	},
 	theme: {
 		extend: {
+			screens: {
+				'mobile-landscape': { raw: '(max-height: 300px)' },
+			},
 			colors: {
 				red: 'red-400',
 				'red-hover': 'red-800',

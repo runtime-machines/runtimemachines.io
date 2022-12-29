@@ -42,9 +42,12 @@ const sides_id = getSides();
 ---
 
 <Root title="RunTime Machines">
-	<div id="riddle-selector-hidden" class="hidden h-full pt-15 pb-20 bg-black font-mono">
+	<div
+		id="riddle-selector-hidden"
+		class="hidden h-full pt-14 landscape:md:pt-14 pb-20 landscape:pt-8 bg-black font-mono">
 		<div id="titleSelection" class="mx-auto text-2xl text-white text-center"></div>
-		<div class="md:grid md:grid-cols-[1fr_1fr] md:auto-rows-auto md:h-full text-6xl mt-15 <md:mt-2/5">
+		<div
+			class="md:grid md:grid-cols-[1fr_1fr] md:auto-rows-auto md:h-full text-6xl landscape:md:mt-14 <md:mt-2/5 landscape:mt-4">
 			<div
 				id="serious-button"
 				class="cursor-pointer md:w-5/6 md:h-3/5 mx-auto glow items-center flex bg-black row-start-1 col-start-1 col-end-2 <md:pb-5 <md:border-b-2">
@@ -426,13 +429,16 @@ const sides_id = getSides();
 		'bg-opacity-70',
 		'bg-gray-800',
 		'animate',
-		'md:px-45',
+		'lg:px-45',
+		'md:px-25',
 		'md:pt-20',
 		'md:pb-20',
 		'z-50',
 		'px-10',
 		'pt-10',
-		'pb-15',
+		'pb-10',
+		'mobile-landscape:pb-0',
+		'mobile-landscape:pt-0',
 	];
 
 	window.addEventListener('think', startModalQuiz);
