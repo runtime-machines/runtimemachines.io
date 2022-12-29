@@ -456,13 +456,13 @@ const sides_id = getSides();
 		playful.style.display = 'block';
 		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
-		riddles.classList.add('<md:pb-60');
 		divcontainer.style.height = '100%';
 		playful.classList.add('rounded-2xl');
 		window.dispatchEvent(new Event('startTrexFull'));
 	}
 
-	window.onclick = function (event) {
+	function closeModalWindow(event: Event) {
+		//document.getElementById('debugWindow').innerHTML += 'closing';
 		if (divcontainer == null || riddles == null || serious == null || playful == null) return;
 		if (event.target == riddles || event.target == closeButton) {
 			riddles.style.display = 'none';
@@ -473,7 +473,11 @@ const sides_id = getSides();
 			divcontainer.style.height = document.getElementById('left')?.scrollHeight + 'px';
 			window.dispatchEvent(new Event('focusOffGameRiddleModal'));
 		}
-	};
+	}
+
+	window.onclick = closeModalWindow;
+
+	window.ontouchstart = closeModalWindow;
 </script>
 
 <script>
