@@ -177,15 +177,16 @@ const sides_id = getSides();
 					// This is a fix for safari, unfortunately overflow-x doesn't work so I need to
 					// overflow: hidden everything and then change the height of the parent div to fix
 					// the height otherwise it would be cut at 100vh
-					document.getElementById('overflow-block').style.height = document.getElementById('left').scrollHeight + 'px';
-					document.addEventListener('DOMContentLoaded', () => {
-						document.getElementById('overflow-block').style.height =
-							document.getElementById('left').scrollHeight + 'px';
-					});
-					setTimeout(function () {
-						document.getElementById('overflow-block').style.height =
-							document.getElementById('left').scrollHeight + 'px';
-					}, 310); // I know.
+					const container_div = document.getElementById('overflow-block');
+					if (container_div != null) {
+						container_div.style.height = document.getElementById('left')?.scrollHeight + 'px';
+						document.addEventListener('DOMContentLoaded', () => {
+							container_div.style.height = document.getElementById('left')?.scrollHeight + 'px';
+						});
+						setTimeout(function () {
+							container_div.style.height = document.getElementById('left')?.scrollHeight + 'px';
+						}, 310); // I know.
+					}
 				}
 				break;
 			default:
@@ -242,12 +243,12 @@ const sides_id = getSides();
 		}
 
 		let containerWidth = resizers[0].parentElement?.getBoundingClientRect().width;
-		if (containerWidth == 0) return;
+		if (containerWidth == 0 || containerWidth == null) return;
 		const newRightLeft = Math.max(1, Math.min(99, ((rightMargin + dx) * 100) / containerWidth));
 		rightSide.style.marginLeft = `${newRightLeft}%`;
 		for (let i = 0; i < resizers.length; i++) {
 			const element = resizers[i];
-			element.style.left = `${newRightLeft}%`;
+			(element as HTMLElement).style.left = `${newRightLeft}%`;
 		}
 		rightSideChild.style.left = `${-newRightLeft}%`;
 
@@ -263,7 +264,7 @@ const sides_id = getSides();
 
 		for (let i = 0; i < resizers.length; i++) {
 			const element = resizers[i];
-			element.style.removeProperty('cursor');
+			(element as HTMLElement).style.removeProperty('cursor');
 		}
 
 		document.body.style.removeProperty('cursor');
@@ -323,21 +324,21 @@ const sides_id = getSides();
 
 	const sides_id = getSides();
 
-	const emailSubmitHomepage = (event) => {
+	const emailSubmitHomepage = (event: any) => {
 		emailSubmit(event, 'homepage');
 	};
 	// TODO: use 'emailSubmitQuiz' when submitting the email after completing the quiz riddle
 	// const emailSubmitQuiz = event => {
 	// 	emailSubmit(event, "quiz")
 	// };
-	const emailSubmit = function (event, subscribed_via) {
+	const emailSubmit = function (event: { currentTarget: { face_id: any } }, subscribed_via: string) {
 		const id = event.currentTarget.face_id;
 		//console.log('sending email address');
 		var myHeaders = new Headers();
 		myHeaders.append('Content-Type', 'application/json');
 
 		var raw = JSON.stringify({
-			email: document.getElementById('email_form_text-' + id).value,
+			email: document.getElementById('email_form_text-' + id)?.value,
 			subscribed_via: subscribed_via,
 		});
 
@@ -353,6 +354,7 @@ const sides_id = getSides();
 				for (let e = 0; e < sides_id.length; e++) {
 					const id = sides_id[e];
 					const button = document.getElementById('email_form_submit-' + id);
+					if (button == null) return;
 					switch (result.message) {
 						case 'Member Exists':
 						case 'email subscribed':
@@ -387,6 +389,7 @@ const sides_id = getSides();
 		for (let e = 0; e < sides_id.length; e++) {
 			const id = sides_id[e];
 			const submitButton = document.getElementById('email_form_submit-' + id);
+			if (submitButton == null) return;
 			submitButton.face_id = id;
 			const form = document.getElementById('email_form-' + id);
 			submitButton?.addEventListener('click', emailSubmitHomepage);
@@ -415,6 +418,7 @@ const sides_id = getSides();
 	const riddles = document.getElementById('riddle-riddles-hidden');
 	const serious = document.getElementById('riddle-serious-hidden');
 	const playful = document.getElementById('riddle-playful-hidden');
+	const divcontainer = document.getElementById('overflow-block');
 	const closeButton = document.getElementById('close');
 	const classes = [
 		'absolute',
@@ -435,35 +439,38 @@ const sides_id = getSides();
 	window.addEventListener('play', startModalRunner);
 
 	function startModalQuiz() {
-		if (riddles == null || serious == null || closeButton == null) return;
+		if (divcontainer == null || riddles == null || serious == null || closeButton == null) return;
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		serious.style.display = 'block';
 		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
 		serious.classList.add('rounded-2xl');
+		divcontainer.style.height = '100%';
 	}
 
 	function startModalRunner() {
-		if (playful == null || riddles == null || closeButton == null) return;
+		if (divcontainer == null || playful == null || riddles == null || closeButton == null) return;
 		riddles.style.display = 'block';
 		riddles.style.maxHeight = '100%';
 		playful.style.display = 'block';
 		closeButton.style.display = 'block';
 		riddles.classList.add(...classes);
 		riddles.classList.add('<md:pb-60');
+		divcontainer.style.height = '100%';
 		//playful.classList.add('rounded-2xl');
 		window.dispatchEvent(new Event('startTrexFull'));
 	}
 
 	window.onclick = function (event) {
-		if (riddles == null || serious == null || playful == null) return;
+		if (divcontainer == null || riddles == null || serious == null || playful == null) return;
 		if (event.target == riddles || event.target == closeButton) {
 			riddles.style.display = 'none';
 			riddles.style.maxHeight = '0%';
 			serious.style.display = 'none';
 			playful.style.display = 'none';
 			riddles.classList.remove(...classes);
+			divcontainer.style.height = document.getElementById('left')?.scrollHeight + 'px';
 			window.dispatchEvent(new Event('focusOffGameRiddleModal'));
 		}
 	};
