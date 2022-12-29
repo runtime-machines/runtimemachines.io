@@ -14,9 +14,6 @@ import hbb from '../assets/trex-runner/assets/HIDPI/back.png';
 import hbm from '../assets/trex-runner/assets/HIDPI/middle.png';
 import hbf from '../assets/trex-runner/assets/HIDPI/front.png';
 
-//import css
-import '../assets/trex-runner/css/main.css';
-
 const audio = await Astro.glob('../assets/trex-runner/assets/audio/*.md');
 
 const fx_press = await audio.filter((post) => post.frontmatter.title == 'press')[0].frontmatter.audio;
