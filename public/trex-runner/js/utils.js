@@ -1,4 +1,14 @@
 /**
+ * 
+ * @param {number} time 
+ * @returns the program will wait milliseconds
+ */
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+
+/**
  * Get random number.
  * @param {number} min
  * @param {number} max

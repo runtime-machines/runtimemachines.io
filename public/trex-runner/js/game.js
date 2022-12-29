@@ -299,7 +299,13 @@
 			Runner.background[1] = document.getElementById(id.concat('mid'));
 			Runner.background[2] = document.getElementById(id.concat('front'));
 
-			this.init();
+			if(!Runner.imageSprite){
+				sleep(500).then(() => { this.loadImages(); });
+			} else {
+				this.init();
+			}
+
+			
 		},
 
 		/**
