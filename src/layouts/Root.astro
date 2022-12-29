@@ -12,11 +12,11 @@ const metatagDescription = 'The Era of Protocols is finishing, the Era of Infras
 ---
 
 <!DOCTYPE html>
-<html class="dark:bg-gray-900 bg-gray-700 w-full h-full overflow-x-hidden max-w-[100%]">
+<html class="dark:bg-gray-dark bg-gray-light w-full h-full max-w-[100%] relative">
 	<head>
-		<title>Page - {title}</title>
+		<title>{title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
+		<link rel="stylesheet" href="./src/assets/trex-runner/css/main.css" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -46,8 +46,8 @@ const metatagDescription = 'The Era of Protocols is finishing, the Era of Infras
 		<meta property="twitter:image" content="https://runtimemachines.io/metatag-image.jpg" />
 		<meta property="twitter:image:alt" content="RunTime Machines website" />
 	</head>
-	<body class="dark:bg-gray-900 bg-gray-700 h-full select-none">
-		<div class="h-full overflow-x-hidden relative">
+	<body class="dark:bg-gray-dark bg-gray-light h-full overflow-x-hidden select-none relative">
+		<div class="h-full relative overflow-hidden" id="overflow-block">
 			<slot />
 		</div>
 	</body>
