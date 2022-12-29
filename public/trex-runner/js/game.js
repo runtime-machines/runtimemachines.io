@@ -454,7 +454,6 @@
 		 * Debounce the resize event.
 		 */
 		debounceResize: function () {
-			alert("RESIZE");
 			if (!this.resizeTimerId_) {
 				this.resizeTimerId_ = setInterval(this.adjustDimensions.bind(this), 250);
 			}
@@ -464,6 +463,7 @@
 		 * Adjust game space dimensions on resize.
 		 */
 		adjustDimensions: function () {
+			alert()
 			clearInterval(this.resizeTimerId_);
 			this.resizeTimerId_ = null;
 
@@ -1097,6 +1097,7 @@
 				this.time = getTimeStamp();
 				this.playOutro();
 			} else if (!this.crashed) {
+				alert("START");
 				this.tRex.reset();
 				this.play();
 			}
