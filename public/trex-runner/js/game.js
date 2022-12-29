@@ -304,8 +304,6 @@
 			} else {
 				this.init();
 			}
-
-			
 		},
 
 		/**
@@ -776,10 +774,9 @@
 			//KEYCODE JUMP
 			if (
 				!this.crashed &&
-				(Runner.keycodes.JUMP[e.keyCode] ||
-					e.type == Runner.events.MOUSEDOWN ||
+				(	e.type == Runner.events.MOUSEDOWN ||
 					e.type == Runner.events.TOUCHSTART ||
-					e.type == Runner.events.GAMEPADCONNECTED)
+					e.type == Runner.events.GAMEPADCONNECTED) // || Runner.keycodes.JUMP[e.keyCode]
 			) {
 				if (!this.activated) {
 					this.loadSounds();
@@ -824,7 +821,7 @@
 		onKeyUp: function (e) {
 			var keyCode = String(e.keyCode);
 			var isjumpKey =
-				Runner.keycodes.JUMP[keyCode] || e.type == Runner.events.TOUCHEND || e.type == Runner.events.MOUSEUP;
+				 e.type == Runner.events.TOUCHEND || e.type == Runner.events.MOUSEUP; // || Runner.keycodes.JUMP[keyCode]
 
 			if (this.winPanel) {
 				return;
