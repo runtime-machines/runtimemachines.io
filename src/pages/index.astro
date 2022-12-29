@@ -14,7 +14,7 @@ import Linkedin_Image_White from '~/assets/images/Linkedin_White.svg';
 // import Linkedin_Image_Blue from '~/assets/images/Linkedin_Blue.svg';
 import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
-import TrexGame from '~/components/TrexGame.astro';
+import RtmRunnerGame from '~/components/RtmRunnerGame.astro';
 import { getSides } from '~/utils/utils';
 
 var websiteAssets: WebsiteAssets[] = [
@@ -70,7 +70,7 @@ const sides_id = getSides();
 			</div>
 		</div>
 		<div class="hidden w-full h-full bg-blue-game bg-opacity-90" id="riddle-playful-hidden">
-			<TrexGame />
+			<RtmRunnerGame />
 		</div>
 	</div>
 	<div id="debugWindow"></div>
@@ -142,7 +142,7 @@ const sides_id = getSides();
 					playful.style.display = 'block';
 					serious.style.display = 'none';
 					website.style.display = 'none';
-					window.dispatchEvent(new Event('startTrexRiddle'));
+					window.dispatchEvent(new Event('startRtmRunnerRiddle'));
 				}
 				break;
 			case WebsiteState.Selection:
@@ -464,7 +464,7 @@ const sides_id = getSides();
 		riddles.classList.add(...classes);
 		divcontainer.style.height = '100%';
 		playful.classList.add('rounded-2xl');
-		window.dispatchEvent(new Event('startTrexFull'));
+		window.dispatchEvent(new Event('startRtmRunnerFull'));
 	}
 
 	function closeModalWindow(event: Event) {

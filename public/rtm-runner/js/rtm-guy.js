@@ -1,10 +1,10 @@
 /**
- * T-rex game character.
+ * RTM-Guy game character.
  * @param {HTMLCanvas} canvas
  * @param {Object} spritePos Positioning within image sprite.
  * @constructor
  */
- function Trex(canvas, spritePos) {
+ function RtmGuy(canvas, spritePos) {
     this.canvas = canvas;
     this.canvasCtx = canvas.getContext('2d');
     this.spritePos = spritePos;
@@ -18,9 +18,9 @@
     this.animStartTime = 0;
     this.timer = 0;
     this.msPerFrame = 1000 / FPS;
-    this.config = Trex.config;
+    this.config = RtmGuy.config;
     // Current status.
-    this.status = Trex.status.WAITING;
+    this.status = RtmGuy.status.WAITING;
   
     this.jumping = false;
     this.ducking = false;
@@ -34,35 +34,35 @@
     //// dynamically set sprite positions
     /////////////////////////////////////////////
 
-    this.spriteWidth = Trex.config["WIDTH"];
+    this.spriteWidth = RtmGuy.config["WIDTH"];
     this.xoffset = 0;
     //update idle animation frames
     array = [];
     for (let i = 0+this.xoffset; i < 9; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['WAITING']["frames"] = [array, -5];
+    RtmGuy.animFrames['WAITING']["frames"] = [array, -5];
 
     //update running animation frames
     array = [];
     for (let i = 0+this.xoffset; i < 8; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['RUNNING']["frames"] = [array, 172];
+    RtmGuy.animFrames['RUNNING']["frames"] = [array, 172];
 
     //update jumping animation frames
     array = [];
     for (let i = 0+this.xoffset; i < 2; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['JUMPING']["frames"] = [array, 85];
+    RtmGuy.animFrames['JUMPING']["frames"] = [array, 85];
 
     //update crashed animation frames
     array = [];
     for (let i = 0+this.xoffset; i < 1; i++) {
       array.push(i*this.spriteWidth);
     }
-    Trex.animFrames['CRASHED']["frames"] = [array, 260];
+    RtmGuy.animFrames['CRASHED']["frames"] = [array, 260];
 
     ////////////////////////////////////////////////////////////////////
 
@@ -71,10 +71,10 @@
   
   
   /**
-   * T-rex player config.
+   * RTM-Guy player config.
    * @enum {number}
    */
-  Trex.config = {
+  RtmGuy.config = {
     DROP_VELOCITY: -5,
     GRAVITY: 0.6,
     HEIGHT: 80,
@@ -95,7 +95,7 @@
    * Used in collision detection.
    * @type {Array<CollisionBox>}
    */
-  Trex.collisionBoxes = {
+  RtmGuy.collisionBoxes = {
     DUCKING: [
       new CollisionBox(1, 18, 55, 25)
     ],
@@ -110,7 +110,7 @@
    * Animation states.
    * @enum {string}
    */
-  Trex.status = {
+  RtmGuy.status = {
     CRASHED: 'CRASHED',
     DUCKING: 'DUCKING',
     JUMPING: 'JUMPING',
@@ -122,7 +122,7 @@
    * Blinking coefficient.
    * @const
    */
-  Trex.BLINK_TIMING = 7000;
+  RtmGuy.BLINK_TIMING = 7000;
   
   
   /**
@@ -130,7 +130,7 @@
    * ***** deprecated *******
    * @enum {Object}
    */
-  Trex.animFrames = {
+  RtmGuy.animFrames = {
     WAITING: {
       frames: [], //setted in init
       msPerFrame: 1000 / 3
@@ -154,10 +154,10 @@
   };
   
   
-  Trex.prototype = {
+  RtmGuy.prototype = {
     /**
-     * T-rex player initaliser.
-     * Sets the t-rex to blink at random intervals.
+     * RTM-Guy player initaliser.
+     * Sets the RTM-Guy to blink at random intervals.
      */
     init: function() {
       this.groundYPos = Runner.defaultDimensions.HEIGHT - this.config.HEIGHT -
@@ -165,8 +165,8 @@
       this.yPos = this.groundYPos;
       this.minJumpHeight = this.groundYPos - this.config.MIN_JUMP_HEIGHT;
   
-      this.draw(Trex.animFrames[Trex.status.WAITING]["frames"][0], Trex.animFrames[Trex.status.WAITING]["frames"][1]);
-      this.update(0, Trex.status.WAITING);
+      this.draw(RtmGuy.animFrames[RtmGuy.status.WAITING]["frames"][0], RtmGuy.animFrames[RtmGuy.status.WAITING]["frames"][1]);
+      this.update(0, RtmGuy.status.WAITING);
     },
   
     /**
@@ -181,7 +181,7 @@
     /**
      * Set the animation status.
      * @param {!number} deltaTime
-     * @param {Trex.status} status Optional status to switch to.
+     * @param {RtmGuy.status} status Optional status to switch to.
      */
     update: function(deltaTime, opt_status) {
       this.timer += deltaTime;
@@ -190,17 +190,17 @@
       if (opt_status) {
         this.status = opt_status;
         this.currentFrame = 0;
-        this.msPerFrame = Trex.animFrames[opt_status].msPerFrame;
-        this.currentAnimFrames = Trex.animFrames[opt_status].frames;
+        this.msPerFrame = RtmGuy.animFrames[opt_status].msPerFrame;
+        this.currentAnimFrames = RtmGuy.animFrames[opt_status].frames;
       }
 
       /* this. will also clear the background
-      if(this.status == Trex.status.WAITING){
+      if(this.status == RtmGuy.status.WAITING){
         this.canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       }
       */
   
-      // Game intro animation, T-rex moves in from the left.
+      // Game intro animation, RTM-Guy moves in from the left.
       if (this.playingIntro && this.xPos < this.config.START_X_POS) {
         this.xPos += Math.round((this.config.START_X_POS /
             this.config.INTRO_DURATION) * deltaTime);
@@ -228,14 +228,14 @@
     },
   
     /**
-     * Draw the t-rex to a particular position.
+     * Draw the RTM-Guy to a particular position.
      * @param {number} x
      * @param {number} y
      */
     draw: function(x, y) {
       var sourceX = x;
       var sourceY = y;
-      var sourceWidth = this.ducking && this.status != Trex.status.CRASHED ?
+      var sourceWidth = this.ducking && this.status != RtmGuy.status.CRASHED ?
           this.config.WIDTH_DUCK : this.config.WIDTH;
       var sourceHeight = this.config.HEIGHT;
   
@@ -251,18 +251,18 @@
       sourceY += this.spritePos.y;
   
       // Ducking.
-      if (this.ducking && this.status != Trex.status.CRASHED) {
+      if (this.ducking && this.status != RtmGuy.status.CRASHED) {
         this.canvasCtx.drawImage(Runner.imageSprite, sourceX, sourceY,
             sourceWidth, sourceHeight,
             this.xPos, this.yPos,
             this.config.WIDTH_DUCK, this.config.HEIGHT);
       } else {
-        // Crashed whilst ducking. Trex is standing up so needs adjustment.
-        if (this.ducking && this.status == Trex.status.CRASHED) {
+        // Crashed whilst ducking. RtmGuy is standing up so needs adjustment.
+        if (this.ducking && this.status == RtmGuy.status.CRASHED) {
           this.xPos++;
         }
         // Standing / running
-        this.canvasCtx.drawImage(Runner.imageSpriteTrex, sourceX, sourceY,
+        this.canvasCtx.drawImage(Runner.imageSpriteRtmGuy, sourceX, sourceY,
             sourceWidth, sourceHeight,
             this.xPos, this.yPos,
             this.config.WIDTH, this.config.HEIGHT);
@@ -274,11 +274,11 @@
      * Sets a random time for the blink to happen.
     
     setBlinkDelay: function() {
-      this.blinkDelay = Math.ceil(Math.random() * Trex.BLINK_TIMING);
+      this.blinkDelay = Math.ceil(Math.random() * RtmGuy.BLINK_TIMING);
     },
   
     /**
-     * Make t-rex blink at random intervals.
+     * Make RTM-Guy blink at random intervals.
      * @param {number} time Current time in milliseconds.
     
     blink: function(time) {
@@ -302,7 +302,7 @@
      */
     startJump: function(speed) {
       if (!this.jumping) {
-        this.update(0, Trex.status.JUMPING);
+        this.update(0, RtmGuy.status.JUMPING);
         // Tweak the jump velocity based on the speed.
         this.jumpVelocity = this.config.INIITAL_JUMP_VELOCITY - (speed / 10);
         this.jumping = true;
@@ -327,11 +327,11 @@
      * @param {number} speed
      */
     updateJump: function(deltaTime, speed) {
-      //var msPerFrame = Trex.animFrames[this.status].msPerFrame;
+      //var msPerFrame = RtmGuy.animFrames[this.status].msPerFrame;
       var msPerFrame = 1000/60;
       var framesElapsed = deltaTime / msPerFrame;
   
-      // Speed drop makes Trex fall faster.
+      // Speed drop makes RtmGuy fall faster.
       if (this.speedDrop) {
         this.yPos += Math.round(this.jumpVelocity *
             this.config.SPEED_DROP_COEFFICIENT * framesElapsed);
@@ -372,24 +372,24 @@
      * @param {boolean} isDucking.
      */
     setDuck: function(isDucking) {
-      if (isDucking && this.status != Trex.status.DUCKING) {
-        this.update(0, Trex.status.DUCKING);
+      if (isDucking && this.status != RtmGuy.status.DUCKING) {
+        this.update(0, RtmGuy.status.DUCKING);
         this.ducking = true;
-      } else if (this.status == Trex.status.DUCKING) {
-        this.update(0, Trex.status.RUNNING);
+      } else if (this.status == RtmGuy.status.DUCKING) {
+        this.update(0, RtmGuy.status.RUNNING);
         this.ducking = false;
       }
     },
   
     /**
-     * Reset the t-rex to running at start of game.
+     * Reset the RTM-Guy to running at start of game.
      */
     reset: function() {
       this.yPos = this.groundYPos;
       this.jumpVelocity = 0;
       this.jumping = false;
       this.ducking = false;
-      this.update(0, Trex.status.RUNNING);
+      this.update(0, RtmGuy.status.RUNNING);
       this.midair = false;
       this.speedDrop = false;
       this.jumpCount = 0;

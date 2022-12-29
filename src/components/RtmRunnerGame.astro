@@ -1,0 +1,76 @@
+---
+//import ldpi sprites
+import ls from '../assets/rtm-runner/assets/LDPI/sprite.png';
+import lo from '../assets/rtm-runner/assets/LDPI/obstacles.png';
+import lt from '../assets/rtm-runner/assets/LDPI/rtm-guy.png';
+import lbb from '../assets/rtm-runner/assets/LDPI/back.png';
+import lbm from '../assets/rtm-runner/assets/LDPI/middle.png';
+import lbf from '../assets/rtm-runner/assets/LDPI/front.png';
+//import hidpi sprites
+import hs from '../assets/rtm-runner/assets/HIDPI/sprite.png';
+import ho from '../assets/rtm-runner/assets/HIDPI/obstacles.png';
+import ht from '../assets/rtm-runner/assets/HIDPI/rtm-guy.png';
+import hbb from '../assets/rtm-runner/assets/HIDPI/back.png';
+import hbm from '../assets/rtm-runner/assets/HIDPI/middle.png';
+import hbf from '../assets/rtm-runner/assets/HIDPI/front.png';
+
+import '../assets/rtm-runner/css/main.css';
+
+const audio = await Astro.glob('../assets/rtm-runner/assets/audio/*.md');
+
+const fx_press = await audio.filter((post) => post.frontmatter.title == 'press')[0].frontmatter.audio;
+
+const fx_hit = await audio.filter((post) => post.frontmatter.title == 'hit')[0].frontmatter.audio;
+
+const fx_coin = await audio.filter((post) => post.frontmatter.title == 'coin')[0].frontmatter.audio;
+
+const fx_gem = await audio.filter((post) => post.frontmatter.title == 'gem')[0].frontmatter.audio;
+
+const fx_reached = await audio.filter((post) => post.frontmatter.title == 'reached')[0].frontmatter.audio;
+---
+
+<div id="t" class="offline h-full w-full">
+	<div id="main-frame-error" class="interstitial-wrapper">
+		<div id="main-content"></div>
+	</div>
+	<div id="offline-resources">
+		<!-- LDPI SPIRTES -->
+		<img id="ldpi-sprites" src={ls} />
+		<img id="ldpi-rtm-guy" src={lt} />
+		<img id="ldpi-obstacles" src={lo} />
+		<img id="ldpi-back" src={lbb} />
+		<img id="ldpi-mid" src={lbm} />
+		<img id="ldpi-front" src={lbf} />
+		<!-- HIDPI SPIRTES  -->
+		<img id="hidpi-sprites" src={hs} />
+		<img id="hidpi-rtm-guy" src={ht} />
+		<img id="hidpi-obstacles" src={ho} />
+		<img id="hidpi-back" src={hbb} />
+		<img id="hidpi-mid" src={hbm} />
+		<img id="hidpi-front" src={hbf} />
+
+		<template id="audio-resources">
+			<audio id="offline-sound-press" src={fx_press}></audio>
+			<audio id="offline-sound-hit" src={fx_hit}></audio>
+			<audio id="offline-coin" src={fx_coin}></audio>
+			<audio id="offline-sound-reached" src={fx_reached}></audio>
+			<audio id="offline-gem" src={fx_gem}></audio>
+		</template>
+		<!--  -->
+	</div>
+</div>
+
+<script is:inline src="/rtm-runner/js/cfg.js"></script>
+<script is:inline src="/rtm-runner/js/riddle.js"></script>
+<script is:inline src="/rtm-runner/js/cloud.js"></script>
+<script is:inline src="/rtm-runner/js/horizon.js"></script>
+<script is:inline src="/rtm-runner/js/horizonline.js"></script>
+<script is:inline src="/rtm-runner/js/collision.js"></script>
+<script is:inline src="/rtm-runner/js/distanceMeter.js"></script>
+<script is:inline src="/rtm-runner/js/winpanel.js"></script>
+<script is:inline src="/rtm-runner/js/gameoverpanel.js"></script>
+<script is:inline src="/rtm-runner/js/pickup.js"></script>
+<script is:inline src="/rtm-runner/js/obstacle.js"></script>
+<script is:inline src="/rtm-runner/js/rtm-guy.js"></script>
+<script is:inline src="/rtm-runner/js/utils.js"></script>
+<script is:inline src="/rtm-runner/js/game.js"></script>
