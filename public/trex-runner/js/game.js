@@ -68,6 +68,9 @@
 		this.images = {};
 		this.imagesLoaded = 0;
 
+		//debug resize problem on mobile
+		this.alreadyPlay = false;
+
 		// if (this.isDisabled()) {
 		//   this.setupDisabledRunner();
 		// } else {
@@ -1090,14 +1093,14 @@
 		 */
 		onVisibilityChange: function (e) {
 			if (document.hidden || document.webkitHidden || e.type == 'blur') {
+				this.alreadyPlay = false;
 				this.stop();
 			} else if (this.playingOutro) {
-				//todo this is not the correct boolean
-				//use like this.win instead
 				this.time = getTimeStamp();
 				this.playOutro();
-			} else if (!this.crashed) {
+			} else if (!this.crashed && !this.alreadyPlay) {
 				alert("START");
+				this.alreadyPlay = true;
 				this.tRex.reset();
 				this.play();
 			}
