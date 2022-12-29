@@ -36,6 +36,8 @@
 		padding-top: 100px;
 		background: rgb(81, 169, 108);
 		background: linear-gradient(140deg, rgb(81, 169, 108) 0%, rgb(81, 169, 108) 36%, rgb(74, 116, 78) 100%);
+		margin-right: 5px;
+		margin-left: 5px;
 	}
 }
 
