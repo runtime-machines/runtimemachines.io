@@ -466,7 +466,6 @@
 		 * Adjust game space dimensions on resize.
 		 */
 		adjustDimensions: function () {
-			alert()
 			clearInterval(this.resizeTimerId_);
 			this.resizeTimerId_ = null;
 
@@ -1099,7 +1098,7 @@
 				this.time = getTimeStamp();
 				this.playOutro();
 			} else if (!this.crashed && !this.alreadyPlay) {
-				alert("START");
+				alert("START 2");
 				this.alreadyPlay = true;
 				this.tRex.reset();
 				this.play();
