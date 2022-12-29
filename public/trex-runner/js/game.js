@@ -454,6 +454,7 @@
 		 * Debounce the resize event.
 		 */
 		debounceResize: function () {
+			alert("RESIZE");
 			if (!this.resizeTimerId_) {
 				this.resizeTimerId_ = setInterval(this.adjustDimensions.bind(this), 250);
 			}
