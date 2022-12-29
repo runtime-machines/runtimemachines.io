@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 	/**
-	 * T-Rex runner.
+	 * RTM-Guy runner.
 	 * @param {string} outerContainerId Outer containing element id.
 	 * @param {Object} opt_config
 	 * @constructor
@@ -29,7 +29,7 @@
 		this.canvas = null;
 		this.canvasCtx = null;
 
-		this.tRex = null;
+		this.rtmGuy = null;
 
 		this.distanceMeter = null;
 		this.distanceRan = 0;
@@ -149,7 +149,7 @@
 			SKIP: { x: 1054, y: 2 },
 			TEXT_SPRITE: { x: 476, y: 1 },
 			WIN_TEXT_SPRITE: { x: 489, y: 27 },
-			TREX: { x: 0, y: 15 },
+			RTM_GUY: { x: 0, y: 15 },
 			CONFETTI: { x: 1649, y: 3 },
 			COIN: { x: 1111, y: 4 },
 			GEM: { x: 1114, y: 26 },
@@ -166,7 +166,7 @@
 			TEXT_SPRITE: { x: 954, y: 2 },
 			WIN_TEXT_SPRITE: { x: 977, y: 53 },
 			CONFETTI: { x: 3298, y: 5 },
-			TREX: { x: 0, y: 30 }, //custom file
+			RTM_GUY: { x: 0, y: 30 }, //custom file
 			COIN: { x: 2224, y: 8 },
 			GEM: { x: 2224, y: 40 },
 			DOUBLE_POTION: {x:17, y:40},
@@ -264,10 +264,10 @@
 					case 'GRAVITY':
 					case 'MIN_JUMP_HEIGHT':
 					case 'SPEED_DROP_COEFFICIENT':
-						this.tRex.config[setting] = value;
+						this.rtmGuy.config[setting] = value;
 						break;
 					case 'INITIAL_JUMP_VELOCITY':
-						this.tRex.setJumpVelocity(value);
+						this.rtmGuy.setJumpVelocity(value);
 						break;
 					case 'SPEED':
 						this.setSpeed(value);
@@ -293,7 +293,7 @@
 			Runner.imageSprite = document.getElementById(id.concat('sprites'));
 			//load main character sprites
 			Runner.obstacleSprites = document.getElementById(id.concat('obstacles'));
-			Runner.imageSpriteTrex = document.getElementById(id.concat('trex'));
+			Runner.imageSpriteRtmGuy = document.getElementById(id.concat('rtm-guy'));
 			//load background
 			Runner.background[0] = document.getElementById(id.concat('back'));
 			Runner.background[1] = document.getElementById(id.concat('mid'));
@@ -390,8 +390,8 @@
 				this.distanceMeter.setHighScore(this.highestScore);
 			}
 
-			// Draw t-rex
-			this.tRex = new Trex(this.canvas, this.spriteDef.TREX);
+			// Draw RTM-Guy
+			this.rtmGuy = new RtmGuy(this.canvas, this.spriteDef.RTM_GUY);
 
 			this.outerContainerEl.appendChild(this.containerEl);
 
@@ -481,7 +481,7 @@
 				this.distanceMeter.calcXPos(this.dimensions.WIDTH);
 				this.clearCanvas();
 				this.horizon.update(0, 0, true);
-				this.tRex.update(0);
+				this.rtmGuy.update(0);
 
 				// Outer container and distance meter.
 				if (this.activated || this.crashed || this.paused) {
@@ -490,7 +490,7 @@
 					this.distanceMeter.update(0, Math.ceil(this.distanceRan));
 					this.stop();
 				} else {
-					this.tRex.draw(0, 0);
+					this.rtmGuy.draw(0, 0);
 				}
 
 				// Game over panel.
@@ -513,7 +513,7 @@
 		playIntro: function () {
 			if (!this.started && !this.crashed) {
 				this.playingIntro = true;
-				this.tRex.playingIntro = true;
+				this.rtmGuy.playingIntro = true;
 
 				//this.containerEl.firstChild.setAttribute("style", STYLE_RUNNER);
 				
@@ -522,7 +522,7 @@
 				var keyframes =
 					'@-webkit-keyframes intro { ' +
 					'from { width:' +
-					Trex.config.WIDTH +
+					RtmGuy.config.WIDTH +
 					'px }' +
 					'to { width: ' +
 					this.dimensions.WIDTH +
@@ -555,9 +555,9 @@
 			this.runningTime = 0;
 			this.playingOutro = false;
 			this.playingIntro = false;
-			this.tRex.playingIntro = false;
+			this.rtmGuy.playingIntro = false;
 			this.fadingOut = false;
-			this.tRex.playingOutro = false;
+			this.rtmGuy.playingOutro = false;
 			this.containerEl.style.webkitAnimation = '';
 			this.playCount++;
 
@@ -584,15 +584,15 @@
 			this.clearCanvas();
 
 			if (this.activated) {
-				if (this.tRex.jumping) {
-					this.tRex.updateJump(deltaTime);
+				if (this.rtmGuy.jumping) {
+					this.rtmGuy.updateJump(deltaTime);
 				}
 
 				this.runningTime += deltaTime;
 				var hasObstacles = this.runningTime > this.config.CLEAR_TIME;
 
 				// First jump triggers the intro.
-				if (this.tRex.jumpCount == 1 && !this.playingIntro) {
+				if (this.rtmGuy.jumpCount == 1 && !this.playingIntro) {
 					this.playIntro();
 				}
 
@@ -614,12 +614,12 @@
 				if (Riddle.DEBUG_COLLIDER) {
 					var cctx = this.canvasCtx;
 				}
-				var collision = this.horizon.obstacles.length && checkForCollision(this.horizon.obstacles[0], this.tRex, cctx);
+				var collision = this.horizon.obstacles.length && checkForCollision(this.horizon.obstacles[0], this.rtmGuy, cctx);
 
 				//check for pickups collision
 				if (Riddle.USE_PICKUPS && this.horizon.hasPickups()) {
 					for (let i = 0; i < this.horizon.pickups.length; i++) {
-						var pick = checkForCollision(this.horizon.pickups[i], this.tRex);
+						var pick = checkForCollision(this.horizon.pickups[i], this.rtmGuy);
 						if (pick) {
 							pick[2].collect();
 							this.pickupScore += pick[3];
@@ -660,7 +660,7 @@
 			}
 
 			if (!this.crashed) {
-				this.tRex.update(deltaTime);
+				this.rtmGuy.update(deltaTime);
 				this.raq(this.update);
 			}
 		},
@@ -784,9 +784,9 @@
 					// errorPageController.trackEasterEgg();
 				}
 
-				if (!this.tRex.jumping && !this.tRex.ducking) {
+				if (!this.rtmGuy.jumping && !this.rtmGuy.ducking) {
 					this.playSound(this.soundFx.BUTTON_PRESS);
-					this.tRex.startJump(this.currentSpeed);
+					this.rtmGuy.startJump(this.currentSpeed);
 				}
 			}
 
@@ -803,12 +803,12 @@
 			if (Runner.config.DUCKING) {
 				if (this.activated && !this.crashed && Runner.keycodes.DUCK[e.keyCode]) {
 					e.preventDefault();
-					if (this.tRex.jumping) {
+					if (this.rtmGuy.jumping) {
 						// Speed drop, activated only when jump key is not pressed.
-						this.tRex.setSpeedDrop();
-					} else if (!this.tRex.jumping && !this.tRex.ducking) {
+						this.rtmGuy.setSpeedDrop();
+					} else if (!this.rtmGuy.jumping && !this.rtmGuy.ducking) {
 						// Duck.
-						this.tRex.setDuck(true);
+						this.rtmGuy.setDuck(true);
 					}
 				}
 			}
@@ -828,10 +828,10 @@
 			}
 
 			if (this.isRunning() && isjumpKey) {
-				this.tRex.endJump();
+				this.rtmGuy.endJump();
 			} else if (Runner.config.DUCKING && Runner.keycodes.DUCK[keyCode]) {
-				this.tRex.speedDrop = false;
-				this.tRex.setDuck(false);
+				this.rtmGuy.speedDrop = false;
+				this.rtmGuy.setDuck(false);
 			} else if (this.crashed) {
 				//todo
 				// Check that enough time has elapsed before allowing jump key to restart.
@@ -850,7 +850,7 @@
 				}
 			} else if (this.paused && isjumpKey) {
 				// Reset the jump state
-				this.tRex.reset();
+				this.rtmGuy.reset();
 				this.play();
 			}
 		},
@@ -898,7 +898,7 @@
 			if (!Riddle.DEBUG_COLLIDER) {
 				this.clearCanvas();
 				this.horizon.update(0, 0, true, true);
-				this.tRex.update(0, Trex.status.CRASHED);
+				this.rtmGuy.update(0, RtmGuy.status.CRASHED);
 			}
 
 			this.updateScore();
@@ -935,7 +935,6 @@
 		 * function called as event listener for modal focus off
 		 */
 		exitGame: function(){
-			console.log('modal: exit trex-game');
 			this.stop();
 			this.crashed = true;
 			this.cleanUp();
@@ -945,7 +944,6 @@
 		 * Function that is called after playOutro animation is finished.
 		 */
 		endGame: function () {
-			console.log('exit trex-game');
 			this.playingOutro = false;
 			
 			localStorage.setItem('websiteState', "website");
@@ -985,13 +983,13 @@
 			if (this.confettiAcc < Runner.config.CONFETTI_DURATION) {
 				this.clearCanvas();
 
-				if (this.tRex.jumping) {
-					this.tRex.updateJump(deltaTime);
+				if (this.rtmGuy.jumping) {
+					this.rtmGuy.updateJump(deltaTime);
 				}
 
 				this.horizon.update(0, 0, true);
-				//make the t-rex slowing going in the cente
-				this.tRex.update(deltaTime);
+				//make the RTM-Guy slowing going in the cente
+				this.rtmGuy.update(deltaTime);
 				this.winPanel.update(deltaTime);
 
 				if (!this.fadingOut && this.confettiAcc > Runner.config.CONFETTI_DURATION / 2) {
@@ -1013,7 +1011,7 @@
 
 			this.crashed = true;
 			this.playingOutro = true;
-			this.tRex.playingOutro = true;
+			this.rtmGuy.playingOutro = true;
 
 			// win panel.
 			if (!this.winPanel) {
@@ -1044,7 +1042,7 @@
 			if (!this.crashed) {
 				this.activated = true;
 				this.paused = false;
-				this.tRex.update(0, Trex.status.RUNNING);
+				this.rtmGuy.update(0, RtmGuy.status.RUNNING);
 				this.time = getTimeStamp();
 				this.update();
 			}
@@ -1066,7 +1064,7 @@
 				this.clearCanvas();
 				this.distanceMeter.reset(this.highestScore);
 				this.horizon.reset();
-				this.tRex.reset();
+				this.rtmGuy.reset();
 				this.playSound(this.soundFx.BUTTON_PRESS);
 
 				this.update();
@@ -1096,7 +1094,7 @@
 				this.time = getTimeStamp();
 				this.playOutro();
 			} else if (!this.crashed) {
-				this.tRex.reset();
+				this.rtmGuy.reset();
 				this.play();
 			}
 		},
@@ -1168,11 +1166,10 @@
 	};
 })();
 
-window.addEventListener('startTrexFull', startFull);
-window.addEventListener('startTrexRiddle', startRiddle);
+window.addEventListener('startRtmRunnerFull', startFull);
+window.addEventListener('startRtmRunnerRiddle', startRiddle);
 
 function startRiddle(){
-	console.log("started trex-game riddle");
 	Riddle.ON = true;
 	Riddle.MODAL = false;
 	Riddle.USE_PICKUPS = false;
@@ -1180,7 +1177,6 @@ function startRiddle(){
 }
 
 function startFull(){
-	console.log("started trex-game full");
 	Riddle.ON = false;
 	Riddle.MODAL = true;
 	Riddle.USE_PICKUPS = true;

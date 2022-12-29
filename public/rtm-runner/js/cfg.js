@@ -28,7 +28,7 @@
  'border-style: outset; border-width: 5px; border-color: rgba(151, 136, 246, 1); border-radius: 3px; padding: 0px;'
 
  /** @const */
- var COLLISION_BOX_TREX_COLOR = '#f00'
+ var COLLISION_BOX_RTM_GUY_COLOR = '#f00'
  
  /** @const */
  var COLLISION_BOX_OBSTACLE_COLOR = '#0f0' 

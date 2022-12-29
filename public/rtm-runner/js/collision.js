@@ -1,21 +1,21 @@
 /**
  * Check for a collision.
  * @param {!Obstacle} obstacle
- * @param {!Trex} tRex T-rex object.
+ * @param {!RtmGuy} rtmGuy RTM-Guy object.
  * @param {HTMLCanvasContext} opt_canvasCtx Optional canvas context for drawing
  *    collision boxes.
  * @return {Array<CollisionBox>}
  */
- function checkForCollision(obstacle, tRex, opt_canvasCtx) {
+ function checkForCollision(obstacle, rtmGuy, opt_canvasCtx) {
     var obstacleBoxXPos = Runner.defaultDimensions.WIDTH + obstacle.xPos;
   
     // Adjustments are made to the bounding box as there is a 1 pixel white
-    // border around the t-rex and obstacles.
-    var tRexBox = new CollisionBox(
-        tRex.xPos + 1,
-        tRex.yPos + 1,
-        tRex.config.WIDTH - 2,
-        tRex.config.HEIGHT - 2);
+    // border around the RTM-Guy and obstacles.
+    var rtmGuyBox = new CollisionBox(
+        rtmGuy.xPos + 1,
+        rtmGuy.yPos + 1,
+        rtmGuy.config.WIDTH - 2,
+        rtmGuy.config.HEIGHT - 2);
   
     var obstacleBox = new CollisionBox(
         obstacle.xPos + 1,
@@ -25,33 +25,33 @@
   
     // Debug outer box
     if (opt_canvasCtx) {
-      drawCollisionBoxes(opt_canvasCtx, tRexBox, obstacleBox);
+      drawCollisionBoxes(opt_canvasCtx, rtmGuyBox, obstacleBox);
     }
   
     // Simple outer bounds check.
-    if (boxCompare(tRexBox, obstacleBox)) {
+    if (boxCompare(rtmGuyBox, obstacleBox)) {
       var collisionBoxes = obstacle.collisionBoxes;
-      var tRexCollisionBoxes = tRex.ducking ?
-          Trex.collisionBoxes.DUCKING : Trex.collisionBoxes.RUNNING;
+      var rtmGuyCollisionBoxes = rtmGuy.ducking ?
+          RtmGuy.collisionBoxes.DUCKING : RtmGuy.collisionBoxes.RUNNING;
   
       // Detailed axis aligned box check.
-      for (var t = 0; t < tRexCollisionBoxes.length; t++) {
+      for (var t = 0; t < rtmGuyCollisionBoxes.length; t++) {
         for (var i = 0; i < collisionBoxes.length; i++) {
           // Adjust the box to actual positions.
-          var adjTrexBox =
-              createAdjustedCollisionBox(tRexCollisionBoxes[t], tRexBox);
+          var adjRtmGuyBox =
+              createAdjustedCollisionBox(rtmGuyCollisionBoxes[t], rtmGuyBox);
           var adjObstacleBox =
               createAdjustedCollisionBox(collisionBoxes[i], obstacleBox);
-          var crashed = boxCompare(adjTrexBox, adjObstacleBox);
+          var crashed = boxCompare(adjRtmGuyBox, adjObstacleBox);
   
           // Draw boxes for debug.
           if (opt_canvasCtx) {
-            drawCollisionBoxes(opt_canvasCtx, adjTrexBox, adjObstacleBox);
+            drawCollisionBoxes(opt_canvasCtx, adjRtmGuyBox, adjObstacleBox);
           }
   
           if (crashed) {
             var score = obstacle.typeConfig.score ? obstacle.typeConfig.score : 0;
-            return [adjTrexBox, adjObstacleBox, obstacle, score];
+            return [adjRtmGuyBox, adjObstacleBox, obstacle, score];
           }
         }
       }
@@ -78,10 +78,10 @@
   /**
    * Draw the collision boxes for debug.
    */
-  function drawCollisionBoxes(canvasCtx, tRexBox, obstacleBox) {
+  function drawCollisionBoxes(canvasCtx, rtmGuyBox, obstacleBox) {
     canvasCtx.save();
-    canvasCtx.strokeStyle = COLLISION_BOX_TREX_COLOR;
-    canvasCtx.strokeRect(tRexBox.x, tRexBox.y, tRexBox.width, tRexBox.height);
+    canvasCtx.strokeStyle = COLLISION_BOX_RTM_GUY_COLOR;
+    canvasCtx.strokeRect(rtmGuyBox.x, rtmGuyBox.y, rtmGuyBox.width, rtmGuyBox.height);
   
     canvasCtx.strokeStyle = COLLISION_BOX_OBSTACLE_COLOR;
     canvasCtx.strokeRect(obstacleBox.x, obstacleBox.y,
@@ -92,23 +92,23 @@
   
   /**
    * Compare two collision boxes for a collision.
-   * @param {CollisionBox} tRexBox
+   * @param {CollisionBox} rtmGuyBox
    * @param {CollisionBox} obstacleBox
    * @return {boolean} Whether the boxes intersected.
    */
-  function boxCompare(tRexBox, obstacleBox) {
+  function boxCompare(rtmGuyBox, obstacleBox) {
     var crashed = false;
-    var tRexBoxX = tRexBox.x;
-    var tRexBoxY = tRexBox.y;
+    var rtmGuyBoxX = rtmGuyBox.x;
+    var rtmGuyBoxY = rtmGuyBox.y;
   
     var obstacleBoxX = obstacleBox.x;
     var obstacleBoxY = obstacleBox.y;
   
     // Axis-Aligned Bounding Box method.
-    if (tRexBox.x < obstacleBoxX + obstacleBox.width &&
-        tRexBox.x + tRexBox.width > obstacleBoxX &&
-        tRexBox.y < obstacleBox.y + obstacleBox.height &&
-        tRexBox.height + tRexBox.y > obstacleBox.y) {
+    if (rtmGuyBox.x < obstacleBoxX + obstacleBox.width &&
+        rtmGuyBox.x + rtmGuyBox.width > obstacleBoxX &&
+        rtmGuyBox.y < obstacleBox.y + obstacleBox.height &&
+        rtmGuyBox.height + rtmGuyBox.y > obstacleBox.y) {
       crashed = true;
     }
   
