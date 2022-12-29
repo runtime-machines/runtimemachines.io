@@ -412,21 +412,6 @@
 		 */
 		createButtonHandler: function () {
 			//event listener for mouse click onto game over buttons
-			var handler_builder = function (canvas, runner, type) {
-				return function foo(evt) {
-					var mousePos = getEventPos(canvas, evt);
-					
-					if (isInside(mousePos, GameOverPanel.restartButton)) {
-						canvas.removeEventListener(type, foo, false);
-						runner.restart();
-					} else if (isInside(mousePos, GameOverPanel.skipButton)) {
-						canvas.removeEventListener(type, foo, false);
-						runner.fadeOut();
-					} else {
-					}
-				};
-			};
-
 			if (IS_MOBILE) {
 				this.canvas.addEventListener(
 					Runner.events.TOUCHSTART,
@@ -697,8 +682,14 @@
 			if (IS_MOBILE) {
 				this.touchController.addEventListener(Runner.events.TOUCHSTART, this);
 				this.touchController.addEventListener(Runner.events.TOUCHEND, this);
-				document.getElementById("t").addEventListener(Runner.events.TOUCHSTART, this);
-				//this.containerEl.addEventListener(Runner.events.TOUCHSTART, this);
+
+				if(Riddle.TOUCH_WHOLE_SCREEN) {
+					this.touchContainer = document.getElementById("t");
+				} else {
+					this.touchContainer = this.containerEl;
+				}
+
+				this.touchContainer.addEventListener(Runner.events.TOUCHSTART, this);
 			} else {
 				// Mouse.
 				document.addEventListener(Runner.events.MOUSEDOWN, this);
@@ -749,11 +740,47 @@
 			if (IS_MOBILE) {
 				this.touchController.removeEventListener(Runner.events.TOUCHSTART, this);
 				this.touchController.removeEventListener(Runner.events.TOUCHEND, this);
-				this.containerEl.removeEventListener(Runner.events.TOUCHSTART, this);
+				this.touchContainer.removeEventListener(Runner.events.TOUCHSTART, this);
+				this.canvas.removeEventListener(
+					Runner.events.TOUCHSTART,
+					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
+					false
+				);
 			} else {
 				document.removeEventListener(Runner.events.MOUSEDOWN, this);
 				document.removeEventListener(Runner.events.MOUSEUP, this);
+				this.canvas.removeEventListener(
+					Runner.events.CLICK,
+					handler_builder(this.canvas, this, Runner.events.CLICK),
+					false
+				);
 			}
+
+			window.removeEventListener(Runner.events.GAMEPADCONNECTED, this);
+			
+			/* TODO:
+			document.removeEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
+			window.removeEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
+			window.removeEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
+			
+			window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this), {once: true});
+
+			this.containerEl.removeEventListener(Runner.events.ANIM_END, this.startGame.bind(this));
+			this.containerEl.addEventListener(Runner.events.ANIM_END, this.endGame.bind(this));
+
+			window.removeEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
+
+			document.removeEventListener(
+				Runner.events.KEYDOWN,
+				function (e) {
+					if (Runner.keycodes.JUMP[e.keyCode]) {
+						this.containerEl.classList.add(Runner.classes.SNACKBAR_SHOW);
+						document.querySelector('.icon').classList.add('icon-disabled');
+					}
+				}.bind(this)
+			);
+			
+			*/
 		},
 
 		/**
@@ -776,7 +803,7 @@
 				!this.crashed &&
 				(	e.type == Runner.events.MOUSEDOWN ||
 					e.type == Runner.events.TOUCHSTART ||
-					e.type == Runner.events.GAMEPADCONNECTED) // || Runner.keycodes.JUMP[e.keyCode]
+					e.type == Runner.events.GAMEPADCONNECTED) || Runner.keycodes.JUMP[e.keyCode]
 			) {
 				if (!this.activated) {
 					this.loadSounds();
@@ -790,7 +817,7 @@
 				}
 			}
 
-			if (this.crashed && e.type == Runner.events.TOUCHSTART && e.currentTarget == this.containerEl) {
+			if (this.crashed && e.type == Runner.events.TOUCHSTART && e.currentTarget == this.touchContainer) {
 				if (Riddle.ON) {
 					// let button handler to handle it
 				} else {
@@ -821,7 +848,7 @@
 		onKeyUp: function (e) {
 			var keyCode = String(e.keyCode);
 			var isjumpKey =
-				 e.type == Runner.events.TOUCHEND || e.type == Runner.events.MOUSEUP; // || Runner.keycodes.JUMP[keyCode]
+				 e.type == Runner.events.TOUCHEND || e.type == Runner.events.MOUSEUP || Runner.keycodes.JUMP[keyCode]
 
 			if (this.winPanel) {
 				return;
@@ -929,6 +956,7 @@
 			if(this.touchController){
 				this.touchController.remove();
 			}
+			this.stopListening();
 		},
 
 		/**
