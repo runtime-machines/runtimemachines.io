@@ -90,7 +90,7 @@
 	Runner.config = {
 		CONFETTI_DURATION: 4000, //2 seconds
 		DUCKING: false,
-		ACCELERATION: 0.001,
+		ACCELERATION: 0.002,
 		BG_CLOUD_SPEED: 0.2,
 		BOTTOM_PAD: 4,
 		CLEAR_TIME: 3000, //time after first obstacle will spawn
@@ -105,9 +105,10 @@
 		MAX_OBSTACLE_DUPLICATION: 2,
 		MAX_SPEED: 13,
 		MIN_JUMP_HEIGHT: 35,
-		MOBILE_SPEED_COEFFICIENT: 1.2, // msc = 1.2 -> width = 600
+		MOBILE_SPEED_COEFFICIENT: 1.2,
 		RESOURCE_TEMPLATE_ID: 'audio-resources',
 		SPEED: 6,
+		MIN_SPEED: 4.5,
 		SPEED_DROP_COEFFICIENT: 3,
 	};
 
@@ -342,6 +343,8 @@
 			} else if (opt_speed) {
 				this.currentSpeed = opt_speed;
 			}
+
+			this.currentSpeed = (this.currentSpeed >= this.config.MIN_SPEED) ? this.currentSpeed : this.config.MIN_SPEED;
 		},
 
 		/**
