@@ -52,12 +52,12 @@ const dlt: Quiz[] = [
 		correctAnswer: 0,
 	},
 	{
-		question: 'What is the use case for ERC-20 token standard?',
+		question: 'What functionalities does ERC-20 token standard provide?',
 		answers: [
-			'Provides functionalities to transfer tokens, as well as approval of tokens',
-			'Provides functionalities for non-fungible tokens',
-			'Provides functionalities to transfer tokens on behalf of another address, contract or account',
-			'Provides functionalities to manage multiple tokens in the same contract',
+			'Transferral of tokens, as well as approval of tokens',
+			'Non-fungible tokens functionalities',
+			'Transferral of tokens on behalf of another address, contract or account',
+			'Management of multiple tokens in the same contract',
 		],
 		correctAnswer: 0,
 	},
@@ -97,10 +97,10 @@ const crypto: Quiz[] = [
 	{
 		question: 'Is "SNARK" an acronym?',
 		answers: [
-			"No: it's the surname of the inventor",
-			'Yes: Succinct Non-interactive ARgument of Knowledge',
-			"No: it's in a book of Lewis Carroll",
-			'Yes: Super NAtural tRansaction toolKit',
+			"No, it's the surname of the inventor",
+			'Yes, Succinct Non-interactive ARgument of Knowledge',
+			"No, it's in a book of Lewis Carroll",
+			'Yes, Super NAtural tRansaction toolKit',
 		],
 		correctAnswer: 1,
 	},
@@ -142,7 +142,7 @@ const data: Quiz[] = [
 		answers: [
 			'It is a powerful construct in SQL that helps simplify a query',
 			'It is a common way to define table via regular expression',
-			'It is an expression that runs on multiple tables sharing a common structure',
+			'It is an expression that runs on multiple tables',
 			'None of the previous',
 		],
 		correctAnswer: 0,
@@ -150,20 +150,20 @@ const data: Quiz[] = [
 	{
 		question: 'What is data analysis?',
 		answers: [
-			'Association of rules that provide information in the form of "if-then" statements',
+			'Association of rules in the form of "if-then" statements',
 			'An analysis of the bits that compose a bunch of data',
 			'Set of graphs and pivot table in a spreadsheet.',
-			'The science of examining raw data with the purpose of supporting decision-making',
+			'The science of examining raw data to support decision-making',
 		],
 		correctAnswer: 3,
 	},
 	{
 		question: 'What is the difference between SQL databases and NoSQL databases?',
 		answers: [
-			'The former is for relational data model, while the latter is for non relational data model',
-			'The former scales better vertically, while the latter scales better horizontally',
+			'SQL is for relational data model, NoSQL is for non relational data model',
+			'SQL scales better vertically, NoSQL scales better horizontally',
 			'All three are correct',
-			'The former is based on ACID constraints, while the latter is based on BASE constraints',
+			'SQL is based on ACID constraints, NoSQL is based on BASE constraints',
 		],
 		correctAnswer: 2,
 	},
