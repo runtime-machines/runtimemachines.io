@@ -18,7 +18,7 @@
      window.navigator.userAgent == 'UIWebViewForStaticFileContent';
  
  /** @const */
- var IS_MOBILE = window.navigator.userAgent.indexOf('Mobi') > -1 || IS_IOS;
+ var IS_MOBILE = window.navigator.userAgent.indexOf('Mobi') > -1 || IS_IOS || (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints > 2);
  
  /** @const */
  var IS_TOUCH_ENABLED = 'ontouchstart' in window;
