@@ -784,7 +784,7 @@
 		 * Process keydown.
 		 * @param {Event} e
 		 */
-		onKeyDown: function (e) {
+		onKeyDown: function (e) {		
 			// Prevent native page scrolling whilst tapping on mobile.
 			if (IS_MOBILE) {
 				e.preventDefault();
@@ -942,7 +942,8 @@
 				this.gameOverPanel.draw();
 			}
 
-			this.createButtonHandler();
+			if(Riddle.ON)
+				this.createButtonHandler();
 
 			// Reset the time clock.
 			this.time = getTimeStamp();
