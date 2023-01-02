@@ -417,13 +417,13 @@
 					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
 					false
 				);
-			} else {
-				this.canvas.addEventListener(
-					Runner.events.CLICK,
-					handler_builder(this.canvas, this, Runner.events.CLICK),
-					false
-				);
 			}
+
+			this.canvas.addEventListener(
+				Runner.events.CLICK,
+				handler_builder(this.canvas, this, Runner.events.CLICK),
+				false
+			);
 		},
 
 		/**
@@ -689,11 +689,11 @@
 				}
 
 				this.touchContainer.addEventListener(Runner.events.TOUCHSTART, this);
-			} else {
-				// Mouse.
-				document.addEventListener(Runner.events.MOUSEDOWN, this);
-				document.addEventListener(Runner.events.MOUSEUP, this);
 			}
+
+			document.addEventListener(Runner.events.MOUSEDOWN, this);
+			document.addEventListener(Runner.events.MOUSEUP, this);
+
 			window.addEventListener(Runner.events.GAMEPADCONNECTED, this);
 			window.setInterval(this.pollGamepads.bind(this), 10);
 		},
@@ -769,15 +769,15 @@
 					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
 					false
 				);
-			} else {
-				document.removeEventListener(Runner.events.MOUSEDOWN, this);
-				document.removeEventListener(Runner.events.MOUSEUP, this);
-				this.canvas.removeEventListener(
-					Runner.events.CLICK,
-					handler_builder(this.canvas, this, Runner.events.CLICK),
-					false
-				);
 			}
+
+			document.removeEventListener(Runner.events.MOUSEDOWN, this);
+			document.removeEventListener(Runner.events.MOUSEUP, this);
+			this.canvas.removeEventListener(
+				Runner.events.CLICK,
+				handler_builder(this.canvas, this, Runner.events.CLICK),
+				false
+			);
 		},
 
 		/**
