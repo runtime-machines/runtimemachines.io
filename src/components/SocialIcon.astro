@@ -3,9 +3,9 @@ export interface Props {
 	link: string | null | undefined;
 	image: string | null | undefined;
 }
-const { link, image } = Astro.props;
+const { link, image, desc } = Astro.props;
 ---
 
 <a href={link} target="_blank" class="w-10 m-auto">
-	<img src={image} alt="" />
+	<img src={image} alt={desc} />
 </a>

@@ -4,7 +4,7 @@ export interface Props {
 	text: string;
 	css_classes: string[];
 }
-const { image, text, css_classes } = Astro.props;
+const { image, text, css_classes, desc } = Astro.props;
 ---
 
 <div
@@ -17,6 +17,6 @@ const { image, text, css_classes } = Astro.props;
 		<span class="text-white m-auto font-extrabold text-3xl">{text}</span>
 	</div>
 	<div class="rounded w-full mb-0 self-end">
-		<img src={image} class="w-full rounded" alt="" />
+		<img src={image} class="w-full rounded" alt={desc} />
 	</div>
 </div>

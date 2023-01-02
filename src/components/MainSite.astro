@@ -17,13 +17,13 @@ const { websiteAssets, id } = Astro.props;
 		class="md:border-l-1 md:border-white middle hidden !md:block md:dark:block absolute animate-wigglemiddle left-[50%] h-full min-h-full cursor-ew-resize z-20">
 		<div
 			class="fixed transform -translate-x-2/4 w-10 h-10 border-1 bg-white border-orange top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center z-30">
-			<img src={Short_Logo} class="ml-1/2 pointer-events-none" />
+			<img src={Short_Logo} alt="RunTime Machines slider icon" class="ml-1/2 pointer-events-none" />
 		</div>
 	</div>
 	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto]">
 		<div class="grid">
 			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
-				<img src={websiteAssets.homepage.main_logo} />
+				<img src={websiteAssets.homepage.main_logo} alt={websiteAssets.homepage.main_desc} />
 			</div>
 		</div>
 		<div class="flex md:hidden">
@@ -50,11 +50,12 @@ const { websiteAssets, id } = Astro.props;
 		<div class="grid max-w-4xl m-auto pt-5">
 			<div
 				class="ml-auto mr-auto mb-auto grid md:grid-cols-[1fr_1fr] grid-cols-[1fr] grid-rows-[1fr_auto] gap-x-2 lg:gap-x-10 pb-10 font-badaboom">
-				<MainCard image={websiteAssets.homepage.left_section} text="We think" css_classes={[]} />
+				<MainCard image={websiteAssets.homepage.left_section} text="We think" css_classes={[]} desc={websiteAssets.homepage.left_desc} />
 				<MainCard
 					image={websiteAssets.homepage.right_section}
 					text="We build"
 					css_classes={['<md:dark:row-start-1 <md:row-start-2']}
+					desc={websiteAssets.homepage.right_desc}
 				/>
 				<div class="md:row-start-2 md:col-start-1 md:col-end-2 md:pb-0 pb-10">
 					<ButtonMainPage text={'Sharpen your skills'} idButton={'think'} />
@@ -111,7 +112,7 @@ const { websiteAssets, id } = Astro.props;
 							<div
 								class="mx-auto w-fit max-w-screen-sm text-sm text-left text-gray-400 newsletter-form-footer dark:text-gray-300">
 								We care about the protection of your data. <a
-									href="/privacy_cookie_policy.pdf"
+									href="/privacyCookiePolicy.pdf"
 									target="_blank"
 									class="font-medium text-white dark:text-orange hover:underline">Read our Privacy and Cookie Policy</a
 								>.
@@ -123,8 +124,8 @@ const { websiteAssets, id } = Astro.props;
 		</div>
 		<div class="flex pb-5">
 			<div class="w-30 flex m-auto">
-				<SocialIcon image={websiteAssets.homepage.linkedin_image} link="https://www.linkedin.com/company/91547632/" />
-				<SocialIcon image={websiteAssets.homepage.gh_image} link="https://github.com/runtime-machines" />
+				<SocialIcon image={websiteAssets.homepage.linkedin_image} link="https://www.linkedin.com/company/91547632/" desc={websiteAssets.homepage.linkedin_desc} />
+				<SocialIcon image={websiteAssets.homepage.gh_image} link="https://github.com/runtime-machines" desc={websiteAssets.homepage.gh_desc} />
 			</div>
 		</div>
 	</div>
