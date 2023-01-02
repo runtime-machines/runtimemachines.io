@@ -35,3 +35,19 @@
 
  /** @const */
 var CANVAS_FILL = '#f7f7f7'
+
+/** Button handler function for game over and riddle win panel */
+var handler_builder = function (canvas, runner, type) {
+    return function foo(evt) {
+        var mousePos = getEventPos(canvas, evt);
+        
+        if (isInside(mousePos, GameOverPanel.restartButton)) {
+            canvas.removeEventListener(type, foo, false);
+            runner.restart();
+        } else if (isInside(mousePos, GameOverPanel.skipButton)) {
+            canvas.removeEventListener(type, foo, false);
+            runner.fadeOut();
+        } else {
+        }
+    };
+};
