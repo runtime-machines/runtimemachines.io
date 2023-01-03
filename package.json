@@ -13,9 +13,7 @@
     "format": "prettier -w .",
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .js,.ts,.astro",
-    "subfont": "subfont -ir --no-fallbacks --silent --root dist",
-    "@astrojs/image": "^0.12.1",
-    "sharp": "^0.31.3"
+    "subfont": "subfont -ir --no-fallbacks --silent --root dist"
   },
   "devDependencies": {
     "@astrojs/mdx": "^0.13.0",
@@ -62,10 +60,12 @@
     ]
   },
   "dependencies": {
+    "@astrojs/image": "^0.12.1",
     "@astrojs/vercel": "^2.3.5",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "astro-imagetools": "^0.6.16",
     "axios": "^1.2.1",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "sharp": "^0.31.3"
   }
 }

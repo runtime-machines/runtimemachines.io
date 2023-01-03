@@ -32,7 +32,7 @@
 
 "@astrojs/image@^0.12.1":
   version "0.12.1"
-  resolved "https://registry.npmjs.org/@astrojs/image/-/image-0.12.1.tgz"
+  resolved "https://registry.yarnpkg.com/@astrojs/image/-/image-0.12.1.tgz#e16e06b0fd7cea56f0039b21da460cf9c0590075"
   integrity sha512-7pBUPCw7/FPwfEntx+mGjhdwpaWXNHwRVcTK71rpf+c2yb8iIesRS9r26U7lGozTzXUROh1y1ftA82ziuqYF6Q==
   dependencies:
     "@altano/tiny-async-pool" "^1.0.2"

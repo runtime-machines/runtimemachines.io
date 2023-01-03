@@ -14,32 +14,36 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://astro.build/config
 
 // https://astro.build/config
+
+// https://astro.build/config
 export default defineConfig({
-	// Astro uses this full URL to generate your sitemap and canonical URLs in your final build
-	site: SITE.origin,
-	base: SITE.basePathname,
-	output: 'server',
-	integrations: [
-		// astroImageTools,
-		sitemap({ customPages: ['https://runtimemachines.io', 'https://runtimemachines.com'] }),
-		image({
-			serviceEntryPoint: '@astrojs/image/sharp',
-			logLevel: 'debug',
-		}),
-		// mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
-		// partytown({
-		// 	config: {
-		// 		forward: ['dataLayer.push'],
-		// 	},
-		// }),
-	],
-	vite: {
-		plugins: [WindiCSS()],
-		resolve: {
-			alias: {
-				'~': path.resolve(__dirname, './src'),
-			},
-		},
-	},
-	adapter: vercel(),
+  // Astro uses this full URL to generate your sitemap and canonical URLs in your final build
+  site: SITE.origin,
+  base: SITE.basePathname,
+  output: 'server',
+  integrations: [
+  // astroImageTools,
+  sitemap({
+    customPages: ['https://runtimemachines.io', 'https://runtimemachines.com']
+  }), image({
+    serviceEntryPoint: '@astrojs/image/sharp',
+    logLevel: 'debug'
+  })
+  // mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
+  // partytown({
+  // 	config: {
+  // 		forward: ['dataLayer.push'],
+  // 	},
+  // }),
+  ],
+
+  vite: {
+    plugins: [WindiCSS()],
+    resolve: {
+      alias: {
+        '~': path.resolve(__dirname, './src')
+      }
+    }
+  },
+  adapter: vercel()
 });
