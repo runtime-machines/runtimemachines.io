@@ -2,7 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-// import image from '@astrojs/image';
+import image from '@astrojs/image';
 // import mdx from '@astrojs/mdx';
 // import partytown from '@astrojs/partytown';
 import WindiCSS from 'vite-plugin-windicss';
@@ -22,9 +22,10 @@ export default defineConfig({
 	integrations: [
 		// astroImageTools,
 		sitemap({ customPages: ['https://runtimemachines.io', 'https://runtimemachines.com'] }),
-		// image({
-		// 	serviceEntryPoint: '@astrojs/image/sharp',
-		// }),
+		image({
+			serviceEntryPoint: '@astrojs/image/sharp',
+			logLevel: 'debug',
+		}),
 		// mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
 		// partytown({
 		// 	config: {

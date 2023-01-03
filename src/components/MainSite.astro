@@ -1,4 +1,5 @@
 ---
+import { Image } from '@astrojs/image/components';
 import { WebsiteAssets } from './LandingPage.astro';
 import MainCard from './MainCard.astro';
 import SocialIcon from './SocialIcon.astro';
@@ -17,13 +18,19 @@ const { websiteAssets, id } = Astro.props;
 		class="md:border-l-1 md:border-white middle hidden !md:block md:dark:block absolute animate-wigglemiddle left-[50%] h-full min-h-full cursor-ew-resize z-20">
 		<div
 			class="fixed transform -translate-x-2/4 w-10 h-10 border-1 bg-white border-orange top-11/36 grid grid-cols-[1fr_1fr] rounded-1/2 items-center z-30">
-			<img src={Short_Logo} alt="RunTime Machines slider icon" class="ml-1/2 pointer-events-none" />
+			<Image
+				src={Short_Logo}
+				height={311}
+				width={667}
+				alt="RunTime Machines slider icon"
+				class="ml-1/2 pointer-events-none"
+			/>
 		</div>
 	</div>
 	<div class="grid grid-rows-[auto_auto] md:grid-rows-[auto_auto]">
 		<div class="grid">
 			<div class="m-auto pt-12 pb-5 sm:w-sm w-xs">
-				<img src={websiteAssets.homepage.main_logo} alt={websiteAssets.homepage.main_desc} />
+				<Image src={websiteAssets.homepage.main_logo} height={302} width={806} alt={websiteAssets.homepage.main_desc} />
 			</div>
 		</div>
 		<div class="flex md:hidden">

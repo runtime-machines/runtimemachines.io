@@ -1,9 +1,13 @@
 ---
+import { Image } from '@astrojs/image/components';
+
 export interface Props {
 	image: string | null | undefined;
+	desc: string;
 	text: string;
 	css_classes: string[];
 }
+
 const { image, text, css_classes, desc } = Astro.props;
 ---
 
@@ -17,6 +21,7 @@ const { image, text, css_classes, desc } = Astro.props;
 		<span class="text-white m-auto font-extrabold text-3xl">{text}</span>
 	</div>
 	<div class="rounded w-full mb-0 self-end">
-		<img src={image} class="w-full rounded" alt={desc} />
+		<Image src={image} alt={desc} />
+		<!-- <img src={image.src} class="w-full rounded" alt={desc} /> -->
 	</div>
 </div>
