@@ -75,6 +75,7 @@
 		// }
 
 		this.gamepadPreviousKeyDown = false;
+		
 	}
 	window['Runner'] = Runner;
 
@@ -221,6 +222,18 @@
 		GAMEPADCONNECTED: 'gamepadconnected',
 	};
 
+	Runner.eventsFunction = {
+		TOUCHBUTTONHANDLER: null,
+		MOUSEBUTTONHANDLER: null,
+		DEBOUNCERESIZE: null,
+		EXITGAME: null,
+		VISIBILITYCHANGE: null,
+		STARTGAME: null,
+		ENDGAME: null,
+
+
+	};
+
 	Runner.prototype = {
 		/**
 		 * Whether the easter egg has been disabled. CrOS enterprise enrolled devices.
@@ -228,27 +241,6 @@
 		 */
 		isDisabled: function () {
 			return loadTimeData && loadTimeData.valueExists('disabledEasterEgg');
-		},
-
-		/**
-		 * For disabled instances, set up a snackbar with the disabled message.
-		 */
-		setupDisabledRunner: function () {
-			this.containerEl = document.createElement('div');
-			this.containerEl.className = Runner.classes.SNACKBAR;
-			this.containerEl.textContent = loadTimeData.getValue('disabledEasterEgg');
-			this.outerContainerEl.appendChild(this.containerEl);
-
-			// Show notification when the activation key is pressed.
-			document.addEventListener(
-				Runner.events.KEYDOWN,
-				function (e) {
-					if (Runner.keycodes.JUMP[e.keyCode]) {
-						this.containerEl.classList.add(Runner.classes.SNACKBAR_SHOW);
-						document.querySelector('.icon').classList.add('icon-disabled');
-					}
-				}.bind(this)
-			);
 		},
 
 		/**
@@ -399,12 +391,31 @@
 				this.createTouchController();
 			}
 
+			this.createListenerFunctions();
 			this.startListening();
 			this.update();
 
-			window.addEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
+			window.addEventListener(Runner.events.RESIZE, Runner.eventsFunction.DEBOUNCERESIZE);
 			if(Riddle.MODAL)
-				window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this), {once: true});
+				window.addEventListener(Runner.events.MODAL, Runner.eventsFunction.EXITGAME);
+		},
+
+
+		/**
+		 * Destroy button handlers.
+		 */
+		removeButtonHandlers: function (){
+			this.canvas.removeEventListener(
+				Runner.events.TOUCHSTART,
+				Runner.eventsFunction.TOUCHBUTTONHANDLER,
+				false
+			);
+
+			this.canvas.removeEventListener(
+				Runner.events.CLICK,
+				Runner.eventsFunction.MOUSEBUTTONHANDLER,
+				false
+			);
 		},
 
 		/**
@@ -414,14 +425,14 @@
 			if (IS_MOBILE) {
 				this.canvas.addEventListener(
 					Runner.events.TOUCHSTART,
-					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
+					Runner.eventsFunction.TOUCHBUTTONHANDLER,
 					false
 				);
 			}
 
 			this.canvas.addEventListener(
 				Runner.events.CLICK,
-				handler_builder(this.canvas, this, Runner.events.CLICK),
+				Runner.eventsFunction.MOUSEBUTTONHANDLER,
 				false
 			);
 		},
@@ -514,7 +525,7 @@
 					'}';
 				document.styleSheets[0].insertRule(keyframes, 0);
 
-				this.containerEl.addEventListener(Runner.events.ANIM_END, this.startGame.bind(this));
+				this.containerEl.addEventListener(Runner.events.ANIM_END, Runner.eventsFunction.STARTGAME);
 
 				this.containerEl.style.webkitAnimation = 'intro .4s ease-out 1 both';
 				this.containerEl.style.width = this.dimensions.WIDTH + 'px';
@@ -546,9 +557,9 @@
 			this.playCount++;
 
 			// Handle tabbing off the page. Pause the current game.
-			document.addEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
-			window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
-			window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
+			document.addEventListener(Runner.events.VISIBILITY, Runner.eventsFunction.VISIBILITYCHANGE);
+			window.addEventListener(Runner.events.BLUR, Runner.eventsFunction.VISIBILITYCHANGE);
+			window.addEventListener(Runner.events.FOCUS, Runner.eventsFunction.VISIBILITYCHANGE);
 		},
 
 		clearCanvas: function () {
@@ -729,6 +740,24 @@
 			}
 		},
 
+		createListenerFunctions: function (){
+
+			Runner.eventsFunction.DEBOUNCERESIZE = this.debounceResize.bind(this);
+			Runner.eventsFunction.STARTGAME = this.startGame.bind(this); 
+			Runner.eventsFunction.VISIBILITYCHANGE = this.onVisibilityChange.bind(this);
+
+			if(Riddle.MODAL)
+			 	Runner.eventsFunction.EXITGAME = this.exitGame.bind(this);
+			else
+				Runner.eventsFunction.ENDGAME = this.endGame.bind(this);
+
+			if(IS_MOBILE){
+				Runner.eventsFunction.TOUCHBUTTONHANDLER = handler_builder(this.canvas, this);
+			}
+				
+			Runner.eventsFunction.MOUSEBUTTONHANDLER = handler_builder(this.canvas, this);	
+		},
+
 		/**
 		 * Remove all listeners.
 		 */
@@ -737,47 +766,27 @@
 			document.removeEventListener(Runner.events.KEYUP, this);
 			window.removeEventListener(Runner.events.GAMEPADCONNECTED, this);
 
-			/* TODO:
-			document.removeEventListener(Runner.events.VISIBILITY, this.onVisibilityChange.bind(this));
-			window.removeEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
-			window.removeEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this));
+			document.removeEventListener(Runner.events.VISIBILITY, Runner.eventsFunction.VISIBILITYCHANGE);
+			window.removeEventListener(Runner.events.BLUR, Runner.eventsFunction.VISIBILITYCHANGE);
+			window.removeEventListener(Runner.events.FOCUS, Runner.eventsFunction.VISIBILITYCHANGE);
 			
-			window.addEventListener(Runner.events.MODAL, this.exitGame.bind(this), {once: true});
+			window.removeEventListener(Runner.events.MODAL, Runner.eventsFunction.EXITGAME);
 
-			this.containerEl.removeEventListener(Runner.events.ANIM_END, this.startGame.bind(this));
-			this.containerEl.addEventListener(Runner.events.ANIM_END, this.endGame.bind(this));
+			this.containerEl.removeEventListener(Runner.events.ANIM_END, Runner.eventsFunction.STARTGAME);
+			this.containerEl.removeEventListener(Runner.events.ANIM_END, Runner.eventsFunction.ENDGAME);
 
-			window.removeEventListener(Runner.events.RESIZE, this.debounceResize.bind(this));
+			window.removeEventListener(Runner.events.RESIZE, Runner.eventsFunction.DEBOUNCERESIZE);
 
-			document.removeEventListener(
-				Runner.events.KEYDOWN,
-				function (e) {
-					if (Runner.keycodes.JUMP[e.keyCode]) {
-						this.containerEl.classList.add(Runner.classes.SNACKBAR_SHOW);
-						document.querySelector('.icon').classList.add('icon-disabled');
-					}
-				}.bind(this)
-			);
-			*/
-
-			if (IS_MOBILE) {
+			if(this.touchController){
 				this.touchController.removeEventListener(Runner.events.TOUCHSTART, this);
 				this.touchController.removeEventListener(Runner.events.TOUCHEND, this);
-				this.touchContainer.removeEventListener(Runner.events.TOUCHSTART, this);
-				this.canvas.removeEventListener(
-					Runner.events.TOUCHSTART,
-					handler_builder(this.canvas, this, Runner.events.TOUCHSTART),
-					false
-				);
+				this.touchContainer.removeEventListener(Runner.events.TOUCHSTART, this);	
 			}
-
+			
 			document.removeEventListener(Runner.events.MOUSEDOWN, this);
 			document.removeEventListener(Runner.events.MOUSEUP, this);
-			this.canvas.removeEventListener(
-				Runner.events.CLICK,
-				handler_builder(this.canvas, this, Runner.events.CLICK),
-				false
-			);
+
+			this.removeButtonHandlers();
 		},
 
 		/**
@@ -816,11 +825,15 @@
 			}
 
 			if (this.crashed && e.type == Runner.events.TOUCHSTART && e.currentTarget == this.touchContainer) {
+				//let button handlers manage it
+
+				/*
 				if (Riddle.ON) {
 					// let button handler to handle it
 				} else {
 					this.restart();
 				}
+				*/
 			}
 			// }
 
@@ -868,11 +881,14 @@
 					this.isLeftClickOnCanvas(e) ||
 					(deltaTime >= this.config.GAMEOVER_CLEAR_TIME && Runner.keycodes.JUMP[keyCode])
 				) {
+					//let button handlers manage it
+					/*
 					if (Riddle.ON) {
 						// let button handler to handle it
 					} else {
 						this.restart();
 					}
+					*/
 				}
 			} else if (this.paused && isjumpKey) {
 				// Reset the jump state
@@ -942,8 +958,9 @@
 				this.gameOverPanel.draw();
 			}
 
-			if(Riddle.ON)
-				this.createButtonHandler();
+			// TODO:
+			//add a delay to the creation of button handler to prevent spawning restart
+			this.createButtonHandler();
 
 			// Reset the time clock.
 			this.time = getTimeStamp();
@@ -986,7 +1003,7 @@
 
 			document.styleSheets[0].insertRule(t, 0);
 
-			this.containerEl.addEventListener(Runner.events.ANIM_END, this.endGame.bind(this));
+			this.containerEl.addEventListener(Runner.events.ANIM_END, Runner.eventsFunction.ENDGAME);
 
 			var time = this.config.CONFETTI_DURATION / 2 / 1000;
 
