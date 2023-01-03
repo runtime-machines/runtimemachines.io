@@ -1,8 +1,9 @@
 ---
 import { Image } from '@astrojs/image/components';
+import { ImageMetadata } from '@astrojs/image/dist/vite-plugin-astro-image';
 
 export interface Props {
-	image: string | null | undefined;
+	image: ImageMetadata;
 	desc: string;
 	text: string;
 	css_classes: string[];
@@ -22,6 +23,5 @@ const { image, text, css_classes, desc } = Astro.props;
 	</div>
 	<div class="rounded w-full mb-0 self-end">
 		<Image src={image} alt={desc} />
-		<!-- <img src={image.src} class="w-full rounded" alt={desc} /> -->
 	</div>
 </div>

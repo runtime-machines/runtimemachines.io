@@ -1,13 +1,14 @@
 ---
+import { ImageMetadata } from '@astrojs/image/dist/vite-plugin-astro-image';
 import MainSite from './MainSite.astro';
 
 export interface WebsiteAssets {
 	homepage: {
 		main_logo: string | null | undefined;
 		main_desc: string;
-		left_section: string | null | undefined;
+		left_section: ImageMetadata;
 		left_desc: string;
-		right_section: string | null | undefined;
+		right_section: ImageMetadata;
 		right_desc: string;
 		linkedin_image: string | null | undefined;
 		linkedin_desc: string;
