@@ -21,7 +21,7 @@ export default defineConfig({
 	output: 'server',
 	integrations: [
 		// astroImageTools,
-		sitemap(),
+		sitemap({ customPages: ['https://runtimemachines.io', 'https://runtimemachines.com'] }),
 		// image({
 		// 	serviceEntryPoint: '@astrojs/image/sharp',
 		// }),
