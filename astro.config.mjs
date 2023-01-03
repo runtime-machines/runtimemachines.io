@@ -22,7 +22,10 @@ export default defineConfig({
 	integrations: [
 		// astroImageTools,
 		sitemap({ customPages: ['https://runtimemachines.io', 'https://runtimemachines.com'] }),
-		image({}),
+		image({
+			serviceEntryPoint: '@astrojs/image/sharp',
+			logLevel: 'debug',
+		}),
 		// mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
 		// partytown({
 		// 	config: {
