@@ -1,9 +1,8 @@
 ---
 import { Image } from '@astrojs/image/components';
-import { ImageMetadata } from '@astrojs/image/dist/vite-plugin-astro-image';
 
 export interface Props {
-	image: ImageMetadata;
+	image: string;
 	desc: string;
 	text: string;
 	css_classes: string[];
@@ -22,6 +21,7 @@ const { image, text, css_classes, desc } = Astro.props;
 		<h1 class="text-white m-auto font-extrabold text-3xl">{text}</h1>
 	</div>
 	<div class="rounded w-full mb-0 self-end">
+		<!-- <img src={} alt="" /> -->
 		<Image src={image} alt={desc} />
 	</div>
 </div>
