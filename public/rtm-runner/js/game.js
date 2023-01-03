@@ -958,9 +958,7 @@
 				this.gameOverPanel.draw();
 			}
 
-			// TODO:
-			//add a delay to the creation of button handler to prevent spawning restart
-			this.createButtonHandler();
+			setTimeout(this.createButtonHandler.bind(this),Runner.config.GAMEOVER_CLEAR_TIME);
 
 			// Reset the time clock.
 			this.time = getTimeStamp();
