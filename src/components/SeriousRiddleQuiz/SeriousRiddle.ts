@@ -186,8 +186,12 @@ class SeriousRiddle {
 			if (riddles == null || this.quizContainer == null || serious == null) return;
 			this.quizContainer.style.display = 'none';
 			this.resetAllEffects();
-			riddles.style.display = 'none';
 			serious.style.display = 'none';
+			if (this.correct > 10) {
+				window.dispatchEvent(new Event('reward'));
+			} else {
+				riddles.style.display = 'none';
+			}
 		}
 	}
 }

@@ -15,6 +15,7 @@ import Linkedin_Image_White from '~/assets/images/Linkedin_White.svg';
 import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 import RtmRunnerGame from '~/components/RtmRunnerGame.astro';
+import ModalSubmit from '~/components/ModalSubmit.astro';
 import { getSides } from '~/utils/utils';
 
 var websiteAssets: WebsiteAssets[] = [
@@ -81,6 +82,9 @@ const sides_id = getSides();
 		</div>
 		<div class="hidden w-full h-full bg-blue-game bg-opacity-90" id="riddle-playful-hidden">
 			<RtmRunnerGame />
+		</div>
+		<div class="hidden h-full w-full" id="modal-submit">
+			<ModalSubmit id="modal" />
 		</div>
 	</div>
 	<div id="debugWindow"></div>
@@ -442,6 +446,7 @@ const sides_id = getSides();
 	const riddles = document.getElementById('riddle-riddles-hidden');
 	const serious = document.getElementById('riddle-serious-hidden');
 	const playful = document.getElementById('riddle-playful-hidden');
+	const modalSubmit = document.getElementById('modal-submit');
 	const divcontainer = document.getElementById('overflow-block');
 	const closeButton = document.getElementById('close');
 	const classes = [
@@ -464,6 +469,7 @@ const sides_id = getSides();
 
 	window.addEventListener('think', startModalQuiz);
 	window.addEventListener('play', startModalRunner);
+	window.addEventListener('reward', startModalReward);
 
 	function startModalQuiz() {
 		if (divcontainer == null || riddles == null || serious == null || closeButton == null) return;
@@ -488,14 +494,26 @@ const sides_id = getSides();
 		window.dispatchEvent(new Event('startRtmRunnerFull'));
 	}
 
+	function startModalReward() {
+		if (divcontainer == null || riddles == null || modalSubmit == null || closeButton == null) return;
+		riddles.style.display = 'block';
+		riddles.style.maxHeight = '100%';
+		modalSubmit.style.display = 'block';
+		closeButton.style.display = 'block';
+		riddles.classList.add(...classes);
+		modalSubmit.classList.add('rounded-2xl');
+		divcontainer.style.height = '100%';
+	}
+
 	function closeModalWindow(event: Event) {
 		//document.getElementById('debugWindow').innerHTML += 'closing';
-		if (divcontainer == null || riddles == null || serious == null || playful == null) return;
+		if (divcontainer == null || riddles == null || serious == null || playful == null || modalSubmit == null) return;
 		if (event.target == riddles || event.target == closeButton) {
 			riddles.style.display = 'none';
 			riddles.style.maxHeight = '0%';
 			serious.style.display = 'none';
 			playful.style.display = 'none';
+			modalSubmit.style.display = 'none';
 			riddles.classList.remove(...classes);
 			divcontainer.style.height = document.getElementById('left')?.scrollHeight + 'px';
 			window.dispatchEvent(new Event('focusOffGameRiddleModal'));
