@@ -182,11 +182,11 @@
 	 * @enum {string}
 	 */
 	Runner.sounds = {
-		BUTTON_PRESS: 'offline-sound-press',
+		// BUTTON_PRESS: 'offline-sound-press',
 		HIT: 'offline-sound-hit',
-		SCORE: 'offline-sound-reached',
-		COIN: 'offline-coin',
-		GEM: 'offline-gem',
+		// SCORE: 'offline-sound-reached',
+		// COIN: 'offline-coin',
+		// GEM: 'offline-gem',
 	};
 
 	/**
@@ -302,7 +302,7 @@
 		 * Load and decode base 64 encoded sounds.
 		 */
 		loadSounds: function () {
-			if (!IS_IOS) {
+			if (true) {
 				this.audioContext = new AudioContext();
 
 				var resourceTemplate = document.getElementById(this.config.RESOURCE_TEMPLATE_ID).content;
