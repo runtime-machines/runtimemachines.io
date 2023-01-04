@@ -76,6 +76,7 @@
 
 		this.gamepadPreviousKeyDown = false;
 		
+
 	}
 	window['Runner'] = Runner;
 
@@ -244,6 +245,7 @@
 		},
 
 		/**
+
 		 * Setting individual settings for debugging.
 		 * @param {string} setting
 		 * @param {*} value
@@ -390,7 +392,6 @@
 			if (IS_MOBILE) {
 				this.createTouchController();
 			}
-
 			this.createListenerFunctions();
 			this.startListening();
 			this.update();
