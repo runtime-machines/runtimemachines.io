@@ -14,6 +14,8 @@
     this.restartImgPos = restartImgPos;
     this.skipImgPos = skipImgPos;
     this.deaths = 0;
+    this.restartButton = {};
+    this.skipButton = {};
     this.draw();
   };
   
@@ -33,30 +35,6 @@
     SKIP_HEIGHT: 32
   };
 
-  /*
-  *
-  * restart button on the screen
-  * 
-  * x
-  * y
-  * width
-  * height
-  * 
-  */
-  GameOverPanel.restartButton = {}
-
-  /*
-  *
-  * skip button on the screen
-  * 
-  * x
-  * y
-  * width
-  * height
-  * 
-  */
-  GameOverPanel.skipButton = {}
-  
   GameOverPanel.prototype = {
     /**
      * Update the panel dimensions.
@@ -132,7 +110,8 @@
           restartTargetX, restartTargetY, dimensions.RESTART_WIDTH,
           dimensions.RESTART_HEIGHT);
 
-      GameOverPanel.restartButton = {x: restartTargetX, y: restartTargetY,  width: dimensions.RESTART_WIDTH, height: dimensions.RESTART_HEIGHT};
+      //world space button position - used by button handler to detect click
+      this.restartButton = {x: restartTargetX, y: restartTargetY,  width: dimensions.RESTART_WIDTH, height: dimensions.RESTART_HEIGHT};
 
       // skip button.
       if(Riddle.ON  && this.deaths > Riddle.MIN_DEATHS){
@@ -141,7 +120,9 @@
           restartSourceWidth, skipSourceHeight,
           skipTargetX, skipTargetY, dimensions.SKIP_WIDTH,
           dimensions.SKIP_HEIGHT);
-          GameOverPanel.skipButton = {x: skipTargetX, y: skipTargetY, width: dimensions.SKIP_WIDTH, height: dimensions.SKIP_HEIGHT};
+          
+          //world space button position - used by button handler to detect click
+          this.skipButton = {x: skipTargetX, y: skipTargetY, width: dimensions.SKIP_WIDTH, height: dimensions.SKIP_HEIGHT};
       }
     }
   };

@@ -18,7 +18,7 @@
      window.navigator.userAgent == 'UIWebViewForStaticFileContent';
  
  /** @const */
- var IS_MOBILE = window.navigator.userAgent.indexOf('Mobi') > -1 || IS_IOS;
+ var IS_MOBILE = window.navigator.userAgent.indexOf('Mobi') > -1 || IS_IOS || (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints > 2);
  
  /** @const */
  var IS_TOUCH_ENABLED = 'ontouchstart' in window;
@@ -35,3 +35,18 @@
 
  /** @const */
 var CANVAS_FILL = '#f7f7f7'
+
+/** Button handler function for game over and riddle win panel */
+var handler_builder = function (canvas, runner) {
+    return function foo(evt) {
+        var mousePos = getEventPos(canvas, evt);
+        
+        if (isInside(mousePos, runner.gameOverPanel.restartButton)) {
+            runner.removeButtonHandlers();
+            runner.restart();
+        } else if (isInside(mousePos, runner.gameOverPanel.skipButton)) {
+            runner.removeButtonHandlers();
+            runner.fadeOut();
+        }
+    };
+};
