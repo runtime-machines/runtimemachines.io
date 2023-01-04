@@ -182,11 +182,11 @@
 	 * @enum {string}
 	 */
 	Runner.sounds = {
-		// BUTTON_PRESS: 'offline-sound-press',
+		BUTTON_PRESS: 'offline-sound-press',
 		HIT: 'offline-sound-hit',
-		// SCORE: 'offline-sound-reached',
-		// COIN: 'offline-coin',
-		// GEM: 'offline-gem',
+		SCORE: 'offline-sound-reached',
+		COIN: 'offline-coin',
+		GEM: 'offline-gem',
 	};
 
 	/**
@@ -308,6 +308,7 @@
 				var resourceTemplate = document.getElementById(this.config.RESOURCE_TEMPLATE_ID).content;
 
 				for (var sound in Runner.sounds) {
+				/*
 					var soundSrc = resourceTemplate.getElementById(Runner.sounds[sound]).src;
 
 					soundSrc = soundSrc.substr(soundSrc.indexOf(',') + 1);
@@ -321,6 +322,8 @@
 							this.soundFx[index] = audioData;
 						}.bind(this, sound)
 					);
+				*/
+					this.soundFx[sound] = new Audio("test.mp3");
 				}
 			}
 		},
@@ -1149,10 +1152,13 @@
 		 */
 		playSound: function (soundBuffer) {
 			if (soundBuffer) {
+				/*
 				var sourceNode = this.audioContext.createBufferSource();
 				sourceNode.buffer = soundBuffer;
 				sourceNode.connect(this.audioContext.destination);
-				sourceNode.start(0);
+				sourceNode.start();
+				*/
+				soundBuffer.play();
 			}
 		},
 
