@@ -13,7 +13,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 
-// https://astro.build/config
 export default defineConfig({
 	// Astro uses this full URL to generate your sitemap and canonical URLs in your final build
 	site: SITE.origin,
@@ -21,9 +20,13 @@ export default defineConfig({
 	output: 'server',
 	integrations: [
 		// astroImageTools,
-		sitemap(),
+		sitemap({
+			customPages: ['https://runtimemachines.io', 'https://runtimemachines.com'],
+		}),
 		// image({
 		// 	serviceEntryPoint: '@astrojs/image/sharp',
+		// 	logLevel: 'debug',
+		// 	cacheDir: '.cache/image',
 		// }),
 		// mdx() /* Disable this integration if you don't use Google Analytics (or other external script). */,
 		// partytown({
@@ -32,6 +35,7 @@ export default defineConfig({
 		// 	},
 		// }),
 	],
+
 	vite: {
 		plugins: [WindiCSS()],
 		resolve: {

@@ -21,19 +21,29 @@ var websiteAssets: WebsiteAssets[] = [
 	{
 		homepage: {
 			main_logo: Logo_Main_Mono,
+			main_desc: 'RunTime Machines white logo',
 			left_section: LeftSide_Main_Mono,
+			left_desc: 'We Think: cryptology, blockchain, distributed systems.',
 			right_section: RightSide_Main_Mono,
+			right_desc: 'We Build: application and infrastructure, tokenised assets, consultancy.',
 			gh_image: Github_Image_White,
+			gh_desc: 'RunTime Machines Github',
 			linkedin_image: Linkedin_Image_White,
+			linkedin_desc: 'RunTime Machines Linkedin',
 		},
 	},
 	{
 		homepage: {
 			main_logo: Logo_Main_Light,
+			main_desc: 'RunTime Machines colored logo',
 			left_section: LeftSide_Main_Col,
+			left_desc: 'We Think: cryptology, blockchain, distributed systems.',
 			right_section: RightSide_Main_Col,
+			right_desc: 'We Build: application and infrastructure, tokenised assets, consultancy.',
 			gh_image: Github_Image_Yellow,
+			gh_desc: 'RunTime Machines Github',
 			linkedin_image: Linkedin_Image_Yellow,
+			linkedin_desc: 'RunTime Machines Linkedin',
 		},
 	},
 ];
@@ -41,7 +51,7 @@ var websiteAssets: WebsiteAssets[] = [
 const sides_id = getSides();
 ---
 
-<Root title="RunTime Machines">
+<Root title="RunTime Machines: Blockchain Engineering & Consulting">
 	<div
 		id="riddle-selector-hidden"
 		class="hidden h-full pt-14 landscape:md:pt-14 pb-20 landscape:pt-8 bg-black font-mono">
@@ -341,7 +351,7 @@ const sides_id = getSides();
 		myHeaders.append('Content-Type', 'application/json');
 
 		var raw = JSON.stringify({
-			email: document.getElementById('email_form_text-' + id)?.value,
+			email: (document.getElementById('email_form_text-' + id) as HTMLInputElement | null)?.value,
 			subscribed_via: subscribed_via,
 		});
 
@@ -356,7 +366,7 @@ const sides_id = getSides();
 			.then((result) => {
 				for (let e = 0; e < sides_id.length; e++) {
 					const id = sides_id[e];
-					const button = document.getElementById('email_form_submit-' + id);
+					const button = document.getElementById('email_form_submit-' + id) as HTMLButtonElement | null;
 					if (button == null) return;
 					switch (result.message) {
 						case 'Member Exists':
@@ -368,7 +378,6 @@ const sides_id = getSides();
 						case 'email invalid':
 							button.style.backgroundColor = colors.red[600];
 							button.innerHTML = 'Email Invalid';
-							button.invalid = true;
 							break;
 						default:
 							break;
@@ -381,36 +390,48 @@ const sides_id = getSides();
 				for (let e = 0; e < submitButton.length; e++) {
 					const button = submitButton[e];
 					button.innerHTML = 'Error';
-					button.style.backgroundColor = 'reds';
+					(button as HTMLElement).style.backgroundColor = 'reds';
 				}
 			});
 	};
-	function handleForm(event) {
+	function handleForm(event: Event) {
 		event.preventDefault();
+	}
+	class ExtHtmlElement extends HTMLElement {
+		face_id: string | undefined;
 	}
 	function startupActions() {
 		for (let e = 0; e < sides_id.length; e++) {
 			const id = sides_id[e];
-			const submitButton = document.getElementById('email_form_submit-' + id);
+			const submitButton = document.getElementById('email_form_submit-' + id) as ExtHtmlElement | null;
 			if (submitButton == null) return;
 			submitButton.face_id = id;
 			const form = document.getElementById('email_form-' + id);
 			submitButton?.addEventListener('click', emailSubmitHomepage);
 			form?.addEventListener('submit', handleForm);
-			const text_field = document.getElementById('email_form_text-' + id);
-			text_field?.addEventListener('keyup', emailBoxSyncronization);
+			const text_field = document.getElementById('email_form_text-' + id) as ExtHtmlElement | null;
+			if (text_field == null) {
+				console.error('text_field is null');
+				return;
+			}
+			text_field.addEventListener('keyup', emailBoxSyncronization);
+			text_field.addEventListener('change', emailBoxSyncronization);
 			text_field.face_id = id;
 		}
 	}
 
 	startupActions();
 
-	function emailBoxSyncronization(event) {
+	function emailBoxSyncronization(event: Event) {
 		for (let e = 0; e < sides_id.length; e++) {
-			const id = event.currentTarget.face_id;
+			const id = (event.currentTarget as ExtHtmlElement).face_id;
 			if (sides_id[e] != id) {
-				const text_field = document.getElementById('email_form_text-' + sides_id[e]);
-				text_field.value = event.currentTarget.value;
+				const text_field = document.getElementById('email_form_text-' + sides_id[e]) as HTMLInputElement | null;
+				if (text_field == null) {
+					console.error('text_field is null');
+					return;
+				}
+				text_field.value = (event.currentTarget as HTMLInputElement).value;
 			}
 		}
 	}
