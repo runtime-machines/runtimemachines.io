@@ -1129,9 +1129,8 @@
 		 */
 		playSound: function (sound) {
 			if (sound) {
+				console.dir(sound)
 				sound.play();
-				if(IS_SAFARI) // do not fucking remove this line of code otherwise audio will not work
-					console.log("SAFARI")
 			}
 		},
 
