@@ -1,5 +1,5 @@
 
-var AUDIO_PATH = "/public/rtm-runner/audio/mp3/"
+var AUDIO_PATH = "./public/rtm-runner/audio/mp3/"
 
 var IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
