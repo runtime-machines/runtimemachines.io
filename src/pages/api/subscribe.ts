@@ -31,7 +31,10 @@ export const get: APIRoute = () => {
 
 export const post: APIRoute = async ({ request }) => {
 	const headers = new Headers();
-	headers.set('Access-Control-Allow-Origin', '*');
+	headers.set(
+		'Access-Control-Allow-Origin',
+		'runtimemachines.io runtimemachines.com localhost runtimemachines-io.vercel.app'
+	);
 	if (request.headers.get('content-type')?.includes('application/json')) {
 		try {
 			const body = await request.json();

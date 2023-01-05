@@ -11,6 +11,7 @@ Riddle.RESET_OBSTACLES_LEFT_UPON_DEATH = false;
 Riddle.DEBUG_COLLIDER = false;
 Riddle.CONFETTI = false;
 Riddle.MODAL = false;
+Riddle.TOUCH_WHOLE_SCREEN = true;
 
 //debug
 //localStorage.setItem('websiteState', 'playful');
