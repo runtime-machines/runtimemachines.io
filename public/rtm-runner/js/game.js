@@ -61,9 +61,6 @@
 		this.audioBuffer = null;
 		this.soundFx = {};
 
-		// Global web audio context for playing sounds.
-		this.audioContext = null;
-
 		// Images.
 		this.images = {};
 		this.imagesLoaded = 0;
@@ -182,11 +179,11 @@
 	 * @enum {string}
 	 */
 	Runner.sounds = {
-		BUTTON_PRESS: 'offline-sound-press',
-		HIT: 'offline-sound-hit',
-		SCORE: 'offline-sound-reached',
-		COIN: 'offline-coin',
-		GEM: 'offline-gem',
+		BUTTON_PRESS: 'press.mp3',
+		HIT: 'hit.mp3',
+		SCORE: 'reached.mp3',
+		COIN: 'coin.mp3',
+		GEM: 'gem.mp3',
 	};
 
 	/**
@@ -302,29 +299,9 @@
 		 * Load and decode base 64 encoded sounds.
 		 */
 		loadSounds: function () {
-			if (true) {
-				this.audioContext = new AudioContext();
 
-				var resourceTemplate = document.getElementById(this.config.RESOURCE_TEMPLATE_ID).content;
-
-				for (var sound in Runner.sounds) {
-				/*
-					var soundSrc = resourceTemplate.getElementById(Runner.sounds[sound]).src;
-
-					soundSrc = soundSrc.substr(soundSrc.indexOf(',') + 1);
-
-					var buffer = decodeBase64ToArrayBuffer(soundSrc);
-
-					// Async, so no guarantee of order in array.
-					this.audioContext.decodeAudioData(
-						buffer,
-						function (index, audioData) {
-							this.soundFx[index] = audioData;
-						}.bind(this, sound)
-					);
-				*/
-					this.soundFx[sound] = new Audio("test.mp3");
-				}
+			for (var sound in Runner.sounds) {
+				this.soundFx[sound] = new Audio(AUDIO_PATH.concat(Runner.sounds[sound]));
 			}
 		},
 
@@ -1148,17 +1125,13 @@
 
 		/**
 		 * Play a sound.
-		 * @param {SoundBuffer} soundBuffer
+		 * @param 
 		 */
-		playSound: function (soundBuffer) {
-			if (soundBuffer) {
-				/*
-				var sourceNode = this.audioContext.createBufferSource();
-				sourceNode.buffer = soundBuffer;
-				sourceNode.connect(this.audioContext.destination);
-				sourceNode.start();
-				*/
-				soundBuffer.play();
+		playSound: function (sound) {
+			if (sound) {
+				sound.play();
+				if(IS_SAFARI) // do not fucking remove this line of code otherwise audio will not work
+					console.log("SAFARI")
 			}
 		},
 
