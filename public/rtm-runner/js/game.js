@@ -15,6 +15,9 @@
 		if (Runner.instance_) {
 			return Runner.instance_;
 		}
+
+		console.log(window.location.pathname.split('/'));
+
 		Runner.instance_ = this;
 
 		this.outerContainerEl = document.querySelector(outerContainerId);
