@@ -535,10 +535,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hookun/parse-animation-shorthand@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@hookun/parse-animation-shorthand/-/parse-animation-shorthand-0.1.4.tgz#1a5b888588d875a9006a0fb81050ce93bc2aa3dc"
-  integrity sha512-SL5XshO2hvsbgL1YoyTL95ayYLNBdZKXpla2UD7/Ehh2vDLDwYxHheGgJxW08hiVvLDfsWTXKWFd1Iw5xMQIXA==
+"@hookun/parse-animation-shorthand@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@hookun/parse-animation-shorthand/-/parse-animation-shorthand-0.1.5.tgz#08d7d5d0b132c047f9879ae3807651d8c0753247"
+  integrity sha512-/fnwYK9Tgllhtv2EpwZZVbwhCokAoGtfEz23mZtjHMHvih4YeiAeUuVpyjGrTGf6j6ymgrCxGwUiAkAfDsmUjw==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
@@ -7922,13 +7922,13 @@ stylehacks@^5.1.1:
     browserslist "^4.21.4"
     postcss-selector-parser "^6.0.4"
 
-subfont@^6.12.2:
-  version "6.12.2"
-  resolved "https://registry.yarnpkg.com/subfont/-/subfont-6.12.2.tgz#a07bc54c205ca26c6e85fb1af3033e0845b39beb"
-  integrity sha512-Mt6Dt/P1+XeoCZvvNdpK86dURSOzAlBRLoS0tzMZgDqUQ1LikZNrT2MyAwuexWUkdg+dGIE7Pgen4kcfYQ8xyg==
+subfont@^6.12.4:
+  version "6.12.4"
+  resolved "https://registry.yarnpkg.com/subfont/-/subfont-6.12.4.tgz#3d0b31a57ca3d9e7667e267f87d15298abe9f494"
+  integrity sha512-os7YMW0rh4UAyw+n66+dPKg7V4meyGU/LNqlM8gqkEm5W4oLn98tn4NoQgfc7NGN2JYggSH8B2+Ig1cw9oOgcA==
   dependencies:
     "@gustavnikolaj/async-main-wrap" "^3.0.1"
-    "@hookun/parse-animation-shorthand" "^0.1.4"
+    "@hookun/parse-animation-shorthand" "^0.1.5"
     assetgraph "^7.8.1"
     browserslist "^4.13.0"
     css-font-parser "^2.0.0"
