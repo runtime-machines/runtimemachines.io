@@ -16,8 +16,6 @@
 			return Runner.instance_;
 		}
 
-		console.log(window.location.pathname.split('/'));
-
 		Runner.instance_ = this;
 
 		this.outerContainerEl = document.querySelector(outerContainerId);
@@ -62,7 +60,10 @@
 
 		// Sound FX.
 		this.audioBuffer = null;
-		this.soundFx = {};
+		this.soundFx = {};		
+		this.myAudioCtx = window.AudioContext    // Default
+		|| window.webkitAudioContext            // Safari and old versions of Chrome
+		|| false;
 
 		// Images.
 		this.images = {};
@@ -182,11 +183,11 @@
 	 * @enum {string}
 	 */
 	Runner.sounds = {
-		BUTTON_PRESS: 'press.mp3',
-		HIT: 'hit.mp3',
-		SCORE: 'reached.mp3',
-		COIN: 'coin.mp3',
-		GEM: 'gem.mp3',
+		BUTTON_PRESS: AUDIO_PATH.concat('press.mp3'),
+		HIT: AUDIO_PATH.concat('hit.mp3'),
+		SCORE: AUDIO_PATH.concat('reached.mp3'),
+		COIN: AUDIO_PATH.concat('coin.mp3'),
+		GEM: AUDIO_PATH.concat('gem.mp3'),
 	};
 
 	/**
@@ -298,13 +299,27 @@
 			}
 		},
 
+		finishedLoading: function(sounds, bufferList){
+			for (var sound in sounds){
+				this.soundFx[sound] = bufferList[sound];
+			}
+		},
+
 		/**
 		 * Load and decode base 64 encoded sounds.
 		 */
 		loadSounds: function () {
+			if ( this.myAudioCtx ) {
+				this.audioContext = new this.myAudioCtx();
+				var bufferLoader = new BufferLoader(
+					this.audioContext,
+					Runner.sounds,
+					this.finishedLoading.bind(this, Runner.sounds)
+					);
+				bufferLoader.load();
 
-			for (var sound in Runner.sounds) {
-				this.soundFx[sound] = new Audio(AUDIO_PATH.concat(Runner.sounds[sound]));
+			} else {
+				alert("Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox");
 			}
 		},
 
@@ -1132,8 +1147,10 @@
 		 */
 		playSound: function (sound) {
 			if (sound) {
-				console.dir(sound)
-				sound.play();
+				var source = this.audioContext.createBufferSource(); // creates a sound source
+				source.buffer = sound;                    // tell the source which sound to play
+				source.connect(this.audioContext.destination);       // connect the source to the context's destination (the speakers
+				source.start(); 
 			}
 		},
 
