@@ -61,8 +61,8 @@
 		// Sound FX.
 		this.audioBuffer = null;
 		this.soundFx = {};		
-		this.myAudioCtx = window.AudioContext    // Default
-		|| window.webkitAudioContext            // Safari and old versions of Chrome
+		this.myAudioCtx = window.AudioContext
+		|| window.webkitAudioContext            
 		|| false;
 
 		// Images.
@@ -319,7 +319,7 @@
 				bufferLoader.load();
 
 			} else {
-				alert("Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox");
+				console.log("Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox");
 			}
 		},
 
@@ -1150,7 +1150,13 @@
 				var source = this.audioContext.createBufferSource(); // creates a sound source
 				source.buffer = sound;                    // tell the source which sound to play
 				source.connect(this.audioContext.destination);       // connect the source to the context's destination (the speakers
-				source.start(); 
+				
+				if(window.webkitAudioContext){
+					source.noteOn(0);
+				} else {
+					source.start(); 
+				}
+				
 			}
 		},
 
