@@ -1,0 +1,190 @@
+---
+export interface Props {
+	id: string | undefined;
+	prefix: string;
+}
+const { id, prefix } = Astro.props;
+---
+
+<form-box data-prefix={prefix} data-id={id}>
+	<section class="bg-gray-dark w-xs sm:w-sm md:w-full dark:bg-gray-light rounded-2xl mb-10 shadow-xl">
+		<div class="py-8 px-4 mx-auto max-w-screen-xl md:py-16 md:px-6">
+			<div class="mx-auto max-w-screen-md">
+				<h2
+					class="mb-4 text-3xl tracking-tight font-badaboom sm:text-4xl text-white <md:dark:text-white sm:text-center">
+					Don't miss updates & benefits
+				</h2>
+				<p
+					class="mx-auto mb-8 max-w-2xl font-light text-gray-400 md:mb-12 sm:text-xl dark:text-gray-400 text-justify sm:text-center">
+					Sign up for our newsletter to get updates, key insights, and become eligible for early-adopter benefits.
+				</p>
+				<form id={prefix + '-email_form-' + id}>
+					<div
+						class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:grid sm:space-y-0 sm:w-2/3 sm:grid-cols-[3fr_1fr]">
+						<div class="relative w-full">
+							<label for="email" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+								>Email address</label
+							>
+							<div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+								<svg
+									class="w-5 h-5 text-gray-500 dark:text-gray-400"
+									fill="currentColor"
+									viewBox="0 0 20 20"
+									xmlns="http://www.w3.org/2000/svg"
+									><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path
+										d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+								</svg>
+							</div>
+							<input
+								class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+								placeholder="Enter your email"
+								type="email"
+								id={prefix + '-email_form_text-' + id}
+								required=""
+							/>
+						</div>
+						<div>
+							<button
+								type="submit"
+								id={prefix + '-email_form_submit-' + id}
+								class="bg-gray-light hover:bg-gray-dark dark:hover:bg-gray-light dark:bg-gray-dark <md:dark:text-white py-3 px-5 w-full text-sm text-center text-white rounded-lg border cursor-pointer dark:border-primary-600 sm:rounded-none sm:rounded-r-lg dark:focus:ring-4 font-badaboom"
+								>Subscribe</button
+							>
+						</div>
+					</div>
+					<div
+						class="mx-auto w-fit max-w-screen-sm text-sm text-left text-gray-400 newsletter-form-footer dark:text-gray-300">
+						We care about the protection of your data. <a
+							href="/privacyCookiePolicy.pdf"
+							target="_blank"
+							class="font-medium text-white dark:text-orange hover:underline"
+							rel="noreferrer">Read our Privacy and Cookie Policy</a
+						>.
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</form-box>
+<script>
+	import { getSides } from '~/utils/utils';
+	import colors from 'windicss/colors';
+
+	const sides_id = getSides();
+
+	class FormBox extends HTMLElement {
+		constructor() {
+			super();
+
+			const prefix_element = this.dataset.prefix;
+			const id_element = this.dataset.id;
+
+			const emailSubmitHomepage = (event: any) => {
+				emailSubmit(event, 'homepage');
+			};
+
+			const emailSubmitQuiz = (event: any) => {
+				emailSubmit(event, 'quiz');
+			};
+
+			const emailSubmit = function (event: any, subscribed_via: string) {
+				console.log(subscribed_via);
+				const id = event.target.face_id;
+				//console.log('sending email address');
+				var myHeaders = new Headers();
+				myHeaders.append('Content-Type', 'application/json');
+
+				var raw = JSON.stringify({
+					email: (document.getElementById(prefix_element + '-email_form_text-' + id) as HTMLInputElement | null)?.value,
+					subscribed_via: subscribed_via,
+				});
+
+				var requestOptions = {
+					method: 'POST',
+					headers: myHeaders,
+					body: raw,
+				};
+
+				fetch('/api/subscribe', requestOptions)
+					.then((response) => response.json())
+					.then((result) => {
+						const button = document.getElementById(
+							prefix_element + '-email_form_submit-' + id
+						) as HTMLButtonElement | null;
+						if (button == null) return;
+						console.debug(result);
+						switch (result.message) {
+							case 'Member Exists':
+							case 'email subscribed':
+								button.innerHTML = 'Subscribed';
+								button.style.backgroundColor = colors.green[600];
+								button.disabled = true;
+								break;
+							case 'email invalid':
+								button.style.backgroundColor = colors.red[600];
+								button.innerHTML = 'Email Invalid';
+								break;
+							default:
+								break;
+						}
+					})
+					.catch((error) => {
+						console.error('error', error);
+						const submitButton = document.getElementsByClassName(prefix_element + '-email_form_submit-' + id);
+						for (let e = 0; e < submitButton.length; e++) {
+							const button = submitButton[e];
+							button.innerHTML = 'Error';
+							(button as HTMLElement).style.backgroundColor = 'reds';
+						}
+					});
+			};
+			class ExtHtmlElement extends HTMLElement {
+				face_id: string | undefined;
+			}
+			function handleForm(event: Event) {
+				event.preventDefault();
+			}
+			function startupActions() {
+				const id = id_element;
+				const prefix = prefix_element;
+				const submitButton = document.getElementById(prefix + '-email_form_submit-' + id) as ExtHtmlElement | null;
+				if (submitButton == null) return;
+				submitButton.face_id = id;
+				const form = document.getElementById(prefix + '-email_form-' + id);
+				if (prefix == 'main') {
+					submitButton?.addEventListener('click', emailSubmitHomepage);
+				} else {
+					submitButton?.addEventListener('click', emailSubmitQuiz);
+				}
+				form?.addEventListener('submit', handleForm);
+				const text_field = document.getElementById(prefix + '-email_form_text-' + id) as ExtHtmlElement | null;
+				if (text_field == null) {
+					console.error('text_field is null');
+					return;
+				}
+				text_field.addEventListener('keyup', emailBoxSyncronization);
+				text_field.addEventListener('change', emailBoxSyncronization);
+				text_field.face_id = id;
+			}
+
+			startupActions();
+
+			function emailBoxSyncronization(event: Event) {
+				for (let e = 0; e < sides_id.length; e++) {
+					const id = (event.currentTarget as ExtHtmlElement).face_id;
+					if (sides_id[e] != id) {
+						const text_field = document.getElementById(
+							prefix_element + '-email_form_text-' + sides_id[e]
+						) as HTMLInputElement | null;
+						if (text_field == null) {
+							return;
+						}
+						text_field.value = (event.currentTarget as HTMLInputElement).value;
+					}
+				}
+			}
+		}
+	}
+
+	customElements.define('form-box', FormBox);
+</script>

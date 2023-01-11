@@ -16,6 +16,7 @@ import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 import RtmRunnerGame from '~/components/RtmRunnerGame.astro';
 import { getSides } from '~/utils/utils';
+import SubscribeForm from '~/components/SubscribeForm.astro';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
@@ -81,6 +82,9 @@ const sides_id = getSides();
 		</div>
 		<div class="hidden w-full h-full bg-blue-game bg-opacity-90" id="riddle-playful-hidden">
 			<RtmRunnerGame />
+		</div>
+		<div class="hidden w-full h-full" id="riddle-form-hidden">
+			<SubscribeForm id={sides_id[0]} prefix="modal" />
 		</div>
 	</div>
 	<div id="debugWindow"></div>
@@ -331,117 +335,14 @@ const sides_id = getSides();
 
 <!-- COMPONENTS JAVASCRIPT -->
 <!-- EMAIL COMPONENT -->
-<script>
-	import { getSides } from '~/utils/utils';
-	import colors from 'windicss/colors';
-
-	const sides_id = getSides();
-
-	const emailSubmitHomepage = (event: any) => {
-		emailSubmit(event, 'homepage');
-	};
-	// TODO: use 'emailSubmitQuiz' when submitting the email after completing the quiz riddle
-	// const emailSubmitQuiz = event => {
-	// 	emailSubmit(event, "quiz")
-	// };
-	const emailSubmit = function (event: { currentTarget: { face_id: any } }, subscribed_via: string) {
-		const id = event.currentTarget.face_id;
-		//console.log('sending email address');
-		var myHeaders = new Headers();
-		myHeaders.append('Content-Type', 'application/json');
-
-		var raw = JSON.stringify({
-			email: (document.getElementById('email_form_text-' + id) as HTMLInputElement | null)?.value,
-			subscribed_via: subscribed_via,
-		});
-
-		var requestOptions = {
-			method: 'POST',
-			headers: myHeaders,
-			body: raw,
-		};
-
-		fetch('/api/subscribe', requestOptions)
-			.then((response) => response.json())
-			.then((result) => {
-				for (let e = 0; e < sides_id.length; e++) {
-					const id = sides_id[e];
-					const button = document.getElementById('email_form_submit-' + id) as HTMLButtonElement | null;
-					if (button == null) return;
-					switch (result.message) {
-						case 'Member Exists':
-						case 'email subscribed':
-							button.innerHTML = 'Subscribed';
-							button.style.backgroundColor = colors.green[600];
-							button.disabled = true;
-							break;
-						case 'email invalid':
-							button.style.backgroundColor = colors.red[600];
-							button.innerHTML = 'Email Invalid';
-							break;
-						default:
-							break;
-					}
-				}
-			})
-			.catch((error) => {
-				console.error('error', error);
-				const submitButton = document.getElementsByClassName('email_form_submit-' + id);
-				for (let e = 0; e < submitButton.length; e++) {
-					const button = submitButton[e];
-					button.innerHTML = 'Error';
-					(button as HTMLElement).style.backgroundColor = 'reds';
-				}
-			});
-	};
-	function handleForm(event: Event) {
-		event.preventDefault();
-	}
-	class ExtHtmlElement extends HTMLElement {
-		face_id: string | undefined;
-	}
-	function startupActions() {
-		for (let e = 0; e < sides_id.length; e++) {
-			const id = sides_id[e];
-			const submitButton = document.getElementById('email_form_submit-' + id) as ExtHtmlElement | null;
-			if (submitButton == null) return;
-			submitButton.face_id = id;
-			const form = document.getElementById('email_form-' + id);
-			submitButton?.addEventListener('click', emailSubmitHomepage);
-			form?.addEventListener('submit', handleForm);
-			const text_field = document.getElementById('email_form_text-' + id) as ExtHtmlElement | null;
-			if (text_field == null) {
-				console.error('text_field is null');
-				return;
-			}
-			text_field.addEventListener('keyup', emailBoxSyncronization);
-			text_field.addEventListener('change', emailBoxSyncronization);
-			text_field.face_id = id;
-		}
-	}
-
-	startupActions();
-
-	function emailBoxSyncronization(event: Event) {
-		for (let e = 0; e < sides_id.length; e++) {
-			const id = (event.currentTarget as ExtHtmlElement).face_id;
-			if (sides_id[e] != id) {
-				const text_field = document.getElementById('email_form_text-' + sides_id[e]) as HTMLInputElement | null;
-				if (text_field == null) {
-					console.error('text_field is null');
-					return;
-				}
-				text_field.value = (event.currentTarget as HTMLInputElement).value;
-			}
-		}
-	}
-</script>
+<script></script>
 
 <script>
 	// Play modal quiz
 	const riddles = document.getElementById('riddle-riddles-hidden');
 	const serious = document.getElementById('riddle-serious-hidden');
 	const playful = document.getElementById('riddle-playful-hidden');
+	const form = document.getElementById('riddle-form-hidden');
 	const divcontainer = document.getElementById('overflow-block');
 	const closeButton = document.getElementById('close');
 	const classes = [
@@ -502,8 +403,18 @@ const sides_id = getSides();
 		}
 	}
 
-	window.onclick = closeModalWindow;
+	function winModalGame() {
+		if (playful == null || serious == null || form == null) {
+			return;
+		}
+		playful.style.display = 'none';
+		serious.style.display = 'none';
+		form.style.display = 'block';
+	}
 
+	window.addEventListener('winModalGame', winModalGame);
+
+	window.onclick = closeModalWindow;
 	window.ontouchstart = closeModalWindow;
 </script>
 
