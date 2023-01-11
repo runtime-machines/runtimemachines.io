@@ -1,3 +1,9 @@
+
+var AUDIO_PATH = "/rtm-runner/audio/mp3/"
+
+var IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+
 /**
  * Default game width.
  * @const

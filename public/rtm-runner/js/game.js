@@ -15,6 +15,7 @@
 		if (Runner.instance_) {
 			return Runner.instance_;
 		}
+
 		Runner.instance_ = this;
 
 		this.outerContainerEl = document.querySelector(outerContainerId);
@@ -59,10 +60,10 @@
 
 		// Sound FX.
 		this.audioBuffer = null;
-		this.soundFx = {};
-
-		// Global web audio context for playing sounds.
-		this.audioContext = null;
+		this.soundFx = {};		
+		this.myAudioCtx = window.AudioContext
+		|| window.webkitAudioContext            
+		|| false;
 
 		// Images.
 		this.images = {};
@@ -183,11 +184,11 @@
 	 * @enum {string}
 	 */
 	Runner.sounds = {
-		BUTTON_PRESS: 'offline-sound-press',
-		HIT: 'offline-sound-hit',
-		SCORE: 'offline-sound-reached',
-		COIN: 'offline-coin',
-		GEM: 'offline-gem',
+		BUTTON_PRESS: AUDIO_PATH.concat('press.mp3'),
+		HIT: AUDIO_PATH.concat('hit.mp3'),
+		SCORE: AUDIO_PATH.concat('reached.mp3'),
+		COIN: AUDIO_PATH.concat('coin.mp3'),
+		GEM: AUDIO_PATH.concat('gem.mp3'),
 	};
 
 	/**
@@ -300,30 +301,27 @@
 			}
 		},
 
+		finishedLoading: function(sounds, bufferList){
+			for (var sound in sounds){
+				this.soundFx[sound] = bufferList[sound];
+			}
+		},
+
 		/**
 		 * Load and decode base 64 encoded sounds.
 		 */
 		loadSounds: function () {
-			if (!IS_IOS) {
-				this.audioContext = new AudioContext();
-
-				var resourceTemplate = document.getElementById(this.config.RESOURCE_TEMPLATE_ID).content;
-
-				for (var sound in Runner.sounds) {
-					var soundSrc = resourceTemplate.getElementById(Runner.sounds[sound]).src;
-
-					soundSrc = soundSrc.substr(soundSrc.indexOf(',') + 1);
-
-					var buffer = decodeBase64ToArrayBuffer(soundSrc);
-
-					// Async, so no guarantee of order in array.
-					this.audioContext.decodeAudioData(
-						buffer,
-						function (index, audioData) {
-							this.soundFx[index] = audioData;
-						}.bind(this, sound)
+			if ( this.myAudioCtx ) {
+				this.audioContext = new this.myAudioCtx();
+				var bufferLoader = new BufferLoader(
+					this.audioContext,
+					Runner.sounds,
+					this.finishedLoading.bind(this, Runner.sounds)
 					);
-				}
+				bufferLoader.load();
+
+			} else {
+				console.log("Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox");
 			}
 		},
 
@@ -1146,14 +1144,20 @@
 
 		/**
 		 * Play a sound.
-		 * @param {SoundBuffer} soundBuffer
+		 * @param 
 		 */
-		playSound: function (soundBuffer) {
-			if (soundBuffer) {
-				var sourceNode = this.audioContext.createBufferSource();
-				sourceNode.buffer = soundBuffer;
-				sourceNode.connect(this.audioContext.destination);
-				sourceNode.start(0);
+		playSound: function (sound) {
+			if (sound) {
+				var source = this.audioContext.createBufferSource(); // creates a sound source
+				source.buffer = sound;                    // tell the source which sound to play
+				source.connect(this.audioContext.destination);       // connect the source to the context's destination (the speakers
+				
+				if(window.webkitAudioContext){
+					source.noteOn(0);
+				} else {
+					source.start(); 
+				}
+				
 			}
 		},
 
