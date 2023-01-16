@@ -192,10 +192,10 @@
   resolved "https://registry.yarnpkg.com/@astrolib/analytics/-/analytics-0.2.4.tgz#0ba782cacf30af54e3f8d4c5aaaef0ce205bd35e"
   integrity sha512-V7UQuGXYPX25hihJUR6SLekyFi426ZRQEqWBgWNhQn7ZTIW1g3KPTxQvYhv7a/so1LD5QC8Ay7v1X2kPDFPydg==
 
-"@astrolib/seo@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@astrolib/seo/-/seo-0.2.1.tgz#48c4af599a2fca07308d013da39e176852f4eaeb"
-  integrity sha512-VVN8AMja8RDA9mteHBHYLsf0dmu3qU50G9Shg1Yax7DHbOqpixAjl+teJFBoDg5SUWc/j5k0Ir6ivXIC2ExXlg==
+"@astrolib/seo@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@astrolib/seo/-/seo-0.3.0.tgz#cc126b19db6aff1af088b738e5c89b9cdf327726"
+  integrity sha512-u0CBicM6nj0YIav76dA8ujaLnDwIWTnTkVJMk84jXsTOGR0/lA823WNf6kxSyWbds0kgegKnu1EuU9wIqkyWNg==
 
 "@astropub/codecs@0.4.4":
   version "0.4.4"
