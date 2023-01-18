@@ -1468,11 +1468,10 @@
     "@typescript-eslint/types" "5.48.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vercel/build-utils@5.7.3":
+"@vercel/build-utils@5.8.3":
   version "5.8.3"
-  resolved "https://registry.yarnpkg.com/@vercel/build-utils/-/build-utils-5.7.3.tgz#3fbe98f0d22686e1cbcd75cddea249657452436e"
-  integrity sha512-Q4Ei4oG+tx4OnENHqqRlfAks6Rp3U/viOTUITnWpLgoej2xQUnnfk16qvHYZeE1ZGpblPoeDwD8ZWsxOkt3wHA==
-
+  resolved "https://registry.yarnpkg.com/@vercel/build-utils/-/build-utils-5.8.3.tgz#6c4e005ed8be08db8bdf52f31167839c54e82438"
+  integrity sha512-t9IdZjTh65NnYvVMQfGIVXaYSBkSxuBSJHdrwy8FbSD0WB0OiRLg3sXJpKIl36M5E7IRsx29qgiw3qXEhoObtg==
 
 "@vercel/go@2.2.29":
   version "2.2.29"
@@ -1918,10 +1917,10 @@ astro-imagetools@^0.7.0:
   optionalDependencies:
     imagetools-core "3.0.2"
 
-astro@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-1.9.1.tgz#77b4786da633e1b9b579299db54c28eb6bb33de2"
-  integrity sha512-aQ6rvAP4w4VCgipVYA/zPmnkuTbFrMZ/+x/sAv2W1uJHWU2iQmrVRrrjUFJl+i1TuYYlHAuC2vKK7aRyXCjD4A==
+astro@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-1.9.2.tgz#8934dbc536653a82ddfa241a4b5a68869e428a87"
+  integrity sha512-L+Ma0eR0Aa6QZg7RF0lEs+106Ye1/zukvtq3KtsYIogAojltlwllwU9X5CwMBzFwA55NxpNp4gSRh5US/xb+8Q==
   dependencies:
     "@astrojs/compiler" "^0.31.0"
     "@astrojs/language-server" "^0.28.3"

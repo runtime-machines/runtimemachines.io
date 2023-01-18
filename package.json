@@ -28,7 +28,7 @@
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.48.1",
     "@windicss/plugin-scrollbar": "^1.2.3",
-    "astro": "^1.9.1",
+    "astro": "^1.9.2",
     "astro-icon": "^0.8.0",
     "eslint": "^8.31.0",
     "eslint-plugin-astro": "^0.21.0",
