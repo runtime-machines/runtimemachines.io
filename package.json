@@ -63,7 +63,7 @@
   "dependencies": {
     "@astrojs/vercel": "^2.4.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
-    "astro-imagetools": "^0.7.0",
+    "astro-imagetools": "^0.7.5",
     "axios": "^1.2.2",
     "dotenv": "^16.0.3"
   }
