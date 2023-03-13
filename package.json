@@ -26,7 +26,7 @@
     "@fontsource/inter": "^4.5.14",
     "@types/mailchimp__mailchimp_marketing": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.50.0",
+    "@typescript-eslint/parser": "^5.54.1",
     "@windicss/plugin-scrollbar": "^1.2.3",
     "astro": "^1.9.2",
     "astro-icon": "^0.8.0",
