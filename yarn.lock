@@ -158,12 +158,12 @@
     uvu "^0.5.0"
     vfile-message "^3.0.0"
 
-"@astrojs/partytown@^1.0.1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@astrojs/partytown/-/partytown-1.0.2.tgz#e31f44e366b070815c68c7ede9fe567b8c75316c"
-  integrity sha512-+pUjLxdp0SYqUO+X+FjFN95KxK7w4Rs5gIMQ7scKUWd2073D3/5hTlij9qNmX5Bk/tFHUfTivKIZ5p233Lpa9Q==
+"@astrojs/partytown@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@astrojs/partytown/-/partytown-1.2.0.tgz#736437b046e4fd6dec39993d9c5e235329f1af0f"
+  integrity sha512-AjrroKpBJR4rs0CLlmLqZ82Dfa3fFvN9mQZ3cfOXQYo85Rc/85R01MZiS1S1G5IzqWi2TDWIMH6R1cm12aGKDg==
   dependencies:
-    "@builder.io/partytown" "^0.7.1"
+    "@builder.io/partytown" "^0.7.4"
     mrmime "^1.0.0"
 
 "@astrojs/prism@^1.0.0":
@@ -1329,10 +1329,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@builder.io/partytown@^0.7.1":
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.7.4.tgz#7ac078bf288efc041ecec025679a58ca78ab4ab9"
-  integrity sha512-dcZBPNQiHbMhvDGmdWRFNe75Z/XYmeZ2bubYmC5BeQpF09ObbPcbSqIP2NaNOFonKlWLfsE6u1790o9ZmlfpIw==
+"@builder.io/partytown@^0.7.4":
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.7.6.tgz#697acea6b552167a4dd43ddd4827018aa42e0364"
+  integrity sha512-snXIGNiZpqjno3XYQN2lbBB+05hsQR/LSttbtIW1c0gmZ7Kh/DIo0YrxlDxCDulAMFPFM8J+4voLwvYepSj3sw==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
@@ -2948,6 +2948,14 @@
     "@typescript-eslint/types" "5.50.0"
     eslint-visitor-keys "^3.3.0"
 
+"@typescript-eslint/visitor-keys@5.59.0":
+  version "5.59.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.59.0.tgz#a59913f2bf0baeb61b5cfcb6135d3926c3854365"
+  integrity sha512-qZ3iXxQhanchCeaExlKPV3gDQFxMUmU35xfd5eCXB6+kUw1TUAbIy2n7QIrwz9s98DQLzNWyHp61fY0da4ZcbA==
+  dependencies:
+    "@typescript-eslint/types" "5.59.0"
+    eslint-visitor-keys "^3.3.0"
+
 "@vanilla-extract/babel-plugin-debug-ids@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@vanilla-extract/babel-plugin-debug-ids/-/babel-plugin-debug-ids-1.0.2.tgz#24674b4d09e98236c883d23aef6f37d1a326af28"
@@ -3026,19 +3034,6 @@
     esbuild "0.14.47"
     etag "1.8.1"
     fs-extra "11.1.0"
-
-"@typescript-eslint/visitor-keys@5.59.0":
-  version "5.59.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.59.0.tgz#a59913f2bf0baeb61b5cfcb6135d3926c3854365"
-  integrity sha512-qZ3iXxQhanchCeaExlKPV3gDQFxMUmU35xfd5eCXB6+kUw1TUAbIy2n7QIrwz9s98DQLzNWyHp61fY0da4ZcbA==
-  dependencies:
-    "@typescript-eslint/types" "5.59.0"
-    eslint-visitor-keys "^3.3.0"
-
-"@vercel/build-utils@5.9.0":
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/@vercel/build-utils/-/build-utils-5.9.0.tgz#54b91e5b369c852d4a0d1bcba98d4c352d290643"
-  integrity sha512-LJRhd/ritLGHH+YvZ+DC7AW3Jr87UZHFHz2h2ENULDZ8qAo5LJH+y+Cg11uxfXkhQKK2f/AZQJXyKVyu1BBwdQ==
 
 "@vercel/go@2.5.0":
   version "2.5.0"
