@@ -16,6 +16,7 @@ import Linkedin_Image_Yellow from '~/assets/images/Linkedin_Yellow.svg';
 import SeriousRiddle from '~/components/SeriousRiddle.astro';
 import RtmRunnerGame from '~/components/RtmRunnerGame.astro';
 import { getSides } from '~/utils/utils';
+import CookieBanner from '~/components/CookieBanner.astro';
 
 var websiteAssets: WebsiteAssets[] = [
 	{
@@ -99,6 +100,7 @@ const sides_id = getSides();
 		/>
 	</div>
 </Root>
+<CookieBanner />
 
 <!-- Riddle selector and website management -->
 <script>
