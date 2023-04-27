@@ -1,0 +1,40 @@
+---
+---
+
+<div class="fixed bottom-0 w-full sm:mb-5 sm:px-5 z-20 hidden" id="cookie-banner">
+	<div class="flex justify-center">
+		<div
+			class="p-2 flex justify-center items-center h-fit min-h-[80px] w-full lg:max-w-[50%] bg-white opacity-80 shadow-2xl rounded-lg">
+			<div class="px-2 py-1 w-full text-xs sm:text-sm">
+				<p class="font-bold">This Website uses cookies!</p><p>
+					We use only strictly necessary cookies. If you disable or refuse cookies, please note that some parts of our
+					Website may become inaccessible or not function properly. Read our <a
+						href="/privacyCookiePolicy.pdf"
+						target="_blank"
+						rel="noreferrer"
+						class="cursor-pointer underline">Privacy Policy</a
+					> for more information.
+				</p>
+			</div><button
+				class="border-1 border-black align-middle select-none font-sans transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none py-3 px-6 shadow-blue-500/20 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none normal-case text-center font-bold rounded-lg cursor-pointer shadow-none w-fit h-fit mr-2 md:text-base text-xs"
+				type="button"
+				id="cookie-accept"
+				><div class="flex items-center"><div class="flex justify-center w-full"><p>Accept</p></div></div></button
+			>
+		</div>
+	</div>
+</div>
+<script>
+	//show cookie banner if cookie consent is not set
+	if (document.cookie.indexOf('cookie_consent=true') === -1) {
+		document.getElementById('cookie-banner')?.classList.remove('hidden');
+	}
+
+	const cookieAccept = document.getElementById('cookie-accept');
+	cookieAccept?.addEventListener('click', () => {
+		let cookie_expiration_date = new Date();
+		cookie_expiration_date.setFullYear(cookie_expiration_date.getFullYear() + 1);
+		document.cookie = 'cookie_consent=true; expires=' + cookie_expiration_date.toUTCString() + '; path=/';
+		document.getElementById('cookie-banner')?.remove();
+	});
+</script>
