@@ -10399,10 +10399,10 @@ stylehacks@^5.1.1:
     browserslist "^4.21.4"
     postcss-selector-parser "^6.0.4"
 
-subfont@^6.12.4:
-  version "6.12.4"
-  resolved "https://registry.yarnpkg.com/subfont/-/subfont-6.12.4.tgz#3d0b31a57ca3d9e7667e267f87d15298abe9f494"
-  integrity sha512-os7YMW0rh4UAyw+n66+dPKg7V4meyGU/LNqlM8gqkEm5W4oLn98tn4NoQgfc7NGN2JYggSH8B2+Ig1cw9oOgcA==
+subfont@^6.12.5:
+  version "6.12.5"
+  resolved "https://registry.yarnpkg.com/subfont/-/subfont-6.12.5.tgz#d05422aedbb461ec11eb5a4f19549782cb852c13"
+  integrity sha512-Orz+jk//zqRbG8vViutGPlIWX4GxUKtdEV5pkncm6lXO/DiFZaYHPhX+w134nI09DTJ4Z2b+58sErTcn+zlFaQ==
   dependencies:
     "@gustavnikolaj/async-main-wrap" "^3.0.1"
     "@hookun/parse-animation-shorthand" "^0.1.5"
