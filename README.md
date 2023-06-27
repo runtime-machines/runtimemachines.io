@@ -1,42 +1,34 @@
-# RunTimeMachines.io
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[![GitHub issues](https://img.shields.io/github/issues/runtime-machines/runtimemachines.io.svg)](https://github.com/runtime-machines/runtimemachines.io/issues)
-[![GitHub last commit](https://img.shields.io/github/last-commit/runtime-machines/runtimemachines.io.svg)](https://github.com/runtime-machines/runtimemachines.io/commits/master)
-[![Build Status](https://github.com/runtime-machines/runtimemachines.io/actions/workflows/main.yml/badge.svg)](https://github.com/runtime-machines/runtimemachines.io/actions)
-[![codecov](https://codecov.io/github/runtime-machines/sql2vm/branch/main/graph/badge.svg?token=9LTKZEM0LR)](https://codecov.io/github/runtime-machines/sql2vm)
+## Getting Started
 
-## Description and scope of the project
+First, run the development server:
 
-Website source code.
-
-## Installation
-
-### Install
-
-```sh
-yarn
-```
-
-### Develop
-
-```sh
+```bash
+npm run dev
+# or
 yarn dev
+# or
+pnpm dev
 ```
 
-### Build
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```sh
-yarn build
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## License
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-This project license
+## Learn More
 
-## Contribution
+To learn more about Next.js, take a look at the following resources:
 
-Unless you explicitly state otherwise, any contribution intentionally submitted
-for inclusion in the work by you, as defined in the license, shall be
-licensed as above, without any additional terms or conditions.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
