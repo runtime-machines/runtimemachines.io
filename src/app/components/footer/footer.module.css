@@ -1,0 +1,25 @@
+.footer {
+	padding: 30px 60px;
+}
+
+.logoContainer {
+	width: 160px;
+}
+
+.logo {
+	width: 100%;
+	height: 100%;
+}
+
+.email {
+	color: var(--rtm-orange);
+}
+
+.footerLinks {
+	display: flex;
+	flex-direction: column;
+}
+
+.link {
+	font-size: 1.2rem;
+}

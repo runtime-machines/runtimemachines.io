@@ -1,0 +1,77 @@
+'use client';
+
+import Link from 'next/link';
+import styles from './footer.module.css';
+import { Typography, Stack, Box, IconButton } from '@mui/material';
+import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+import Image from 'next/image';
+import '../../globals.css';
+
+const Footer = () => {
+	return (
+		<Box component="footer" display="flex" justifyContent="space-between" alignItems="center" className={styles.footer}>
+			<Box display="flex" flexDirection="column">
+				<Link className={styles.logoContainer} href="/">
+					<Image src="/RTM_Logo.svg" alt="RTM Logo" width={100} height={100} className={styles.logo} />
+				</Link>
+				<Box marginTop={6}>
+					<Typography variant="body1">
+						Address:
+						<br /> Zahlerweg 5, 63000 Zug, Switzerland
+					</Typography>
+				</Box>
+				<Box marginY={6}>
+					<Typography variant="body1">
+						Contact:
+						<br /> 1800 123 4567
+						<br /> <span className={styles.email}>info@runtimemachines.io</span>
+					</Typography>
+				</Box>
+				<Box display="flex">
+					<IconButton href="https://www.facebook.com/">
+						<Facebook style={{ color: '#fff' }} />
+					</IconButton>
+					<IconButton href="https://twitter.com/">
+						<Twitter style={{ color: '#fff' }} />
+					</IconButton>
+					<IconButton href="https://www.instagram.com/">
+						<Instagram style={{ color: '#fff' }} />
+					</IconButton>
+					<IconButton href="https://www.linkedin.com/">
+						<LinkedIn style={{ color: '#fff' }} />
+					</IconButton>
+				</Box>
+			</Box>
+			<Box display="flex">
+				<Box className={styles.footerLinks}>
+					<Stack direction="column" spacing={3} paddingX={4}>
+						<Link href="/what-we-think" className={styles.link}>
+							What we think
+						</Link>
+						<Link href="/what-we-build" className={styles.link}>
+							What we build
+						</Link>
+						<Link href="/about-us" className={styles.link}>
+							About us
+						</Link>
+						<Link href="/blog" className={styles.link}>
+							Blog
+						</Link>
+					</Stack>
+				</Box>
+				<Box className={styles.footerLinks}>
+					<Stack direction="column" spacing={3} paddingLeft={4}>
+						<Link href="/" className={styles.link}>
+							Link 6
+						</Link>
+						<Link href="/" className={styles.link}>
+							Link 7
+						</Link>
+					</Stack>
+				</Box>
+			</Box>
+		</Box>
+	);
+};
+
+export default Footer;

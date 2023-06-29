@@ -1,0 +1,19 @@
+.callToActionBTN {
+	background-color: #5e6eff;
+	padding: 16px 32px;
+	border-radius: 4px;
+	font-size: 1.5rem;
+	font-weight: 900;
+	text-transform: none;
+	width: fit-content;
+}
+
+.callToActionBTN:hover {
+	background-color: #4d5dff;
+}
+
+.iconBtn {
+	margin: 0 8px;
+	width: 1.5rem;
+	height: 1.5rem;
+}

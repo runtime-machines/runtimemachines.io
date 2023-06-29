@@ -1,95 +1,157 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+
+import Image from 'next/image';
+import { CallToActionBTN } from './components/buttons/CallToActionBTN';
+import styles from './page.module.css';
+import './globals.css';
+import { Typography, Stack, Box } from '@mui/material';
+import { ChevronRight } from '@mui/icons-material';
+import Carousel from './components/carousel/Carousel';
+import TestimonialCard from './components/carousel/TestimonialCard';
+import { blogData, testimonialData } from '../../mockedData';
+import BlogCard from './components/BlogCard';
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	return (
+		<main className={styles.main}>
+			<Stack className={styles.heroSection} spacing={5}>
+				<h1 className={styles.heroTitle}>Lorem Ipsum dolot sit amet</h1>
+				<p className={styles.heroSubtitle}>
+					Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet
+					odio mattis.
+				</p>
+				<CallToActionBTN text="Get in touch" />
+			</Stack>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+			<section className={styles.partners}>
+				<p className={styles.partnersSubtitle}>Trusted by tech teams, developers, and marketeers worldwide.</p>
+				<Stack direction="row" spacing={2} className={styles.partnersLogos}>
+					<Image src="/webflow.svg" alt="webflow" width={100} height={100} className={styles.logo} />
+					<Image src="/relume.svg" alt="relume" width={100} height={100} className={styles.logo} />
+					<Image src="/webflow.svg" alt="webflow" width={100} height={100} className={styles.logo} />
+					<Image src="/relume.svg" alt="relume" width={100} height={100} className={styles.logo} />
+					<Image src="/webflow.svg" alt="webflow" width={100} height={100} className={styles.logo} />
+					<Image src="/relume.svg" alt="relume" width={100} height={100} className={styles.logo} />
+				</Stack>
+			</section>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+			<section className={styles.weThinkWeBuild}>
+				<Image
+					src="/backgroundSVGs/Vector_3.svg"
+					alt="webflow"
+					width={0}
+					height={0}
+					sizes="100vw"
+					className={styles.vectorBGtop}
+				/>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+				<Image
+					src="/backgroundSVGs/Vector_4.svg"
+					alt="webflow"
+					width={0}
+					height={0}
+					sizes="100vw"
+					className={styles.vectorBGbottom}
+				/>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+				<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
+					<Box display="flex" alignItems="center" className={styles.card}>
+						<Image src="/lab021.png" alt="img" width={80} height={120} className={styles.img} />
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+						<Stack display="flex" flexDirection="column" className={styles.cardText} paddingX={10} spacing={8}>
+							<Box>
+								<h2 className={styles.cardTitle}>What we think</h2>
+
+								<Typography variant="body1" className={styles.cardSubtitle}>
+									Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
+									aliquet odio mattis.
+								</Typography>
+							</Box>
+
+							<CallToActionBTN text="Learn more" Icon={ChevronRight} />
+						</Stack>
+					</Box>
+
+					<Box display="flex" alignItems="center" className={styles.card}>
+						<Stack display="flex" flexDirection="column" className={styles.cardText} paddingX={10} spacing={8}>
+							<Box>
+								<h2 className={styles.cardTitle}>What we think</h2>
+
+								<Typography variant="body1" className={styles.cardSubtitle}>
+									Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
+									aliquet odio mattis.
+								</Typography>
+							</Box>
+
+							<CallToActionBTN text="Learn more" Icon={ChevronRight} />
+						</Stack>
+						<Image src="/tablesketchcolour2 1.png" alt="img" width={80} height={120} className={styles.img} />
+					</Box>
+				</Stack>
+			</section>
+
+			<section className={styles.us}>
+				<div className={`${styles.avatarContainer} ${styles.avatarLeft}`}>AVATAR 1</div>
+				<div className={`${styles.avatarContainer} ${styles.avatarRight}`}>AVATAR 2</div>
+				<Stack
+					display="flex"
+					flexDirection="column"
+					justifyContent="center"
+					alignItems="center"
+					spacing={6}
+					maxWidth={928}>
+					<Box>
+						<h2 className={styles.cardTitle}>The hive mind behind RunTime Machines</h2>
+						<Typography variant="body1" className={styles.cardSubtitle}>
+							Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
+							aliquet odio mattis.
+						</Typography>
+					</Box>
+					<CallToActionBTN text="More about us" Icon={ChevronRight} />
+				</Stack>
+			</section>
+
+			<section className={styles.testimonials}>
+				<Stack direction="column" justifyContent="center" alignItems="center" minHeight={700} spacing={6}>
+					<Box maxWidth={928}>
+						<h2 className={styles.cardTitle}>Don’t take our word for it</h2>
+						<Typography variant="body1" className={styles.cardSubtitle}>
+							Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
+							aliquet odio mattis.
+						</Typography>
+					</Box>
+
+					<Carousel
+						items={testimonialData.map((testimonial, index) => (
+							<TestimonialCard
+								key={index}
+								review={testimonial.review}
+								avatarImg={testimonial.avatarImg}
+								name={testimonial.name}
+								position={testimonial.position}
+								company={testimonial.company}
+							/>
+						))}
+					/>
+
+					<CallToActionBTN text="Check our latest projects" Icon={ChevronRight} />
+				</Stack>
+			</section>
+
+			<section className={styles.blog}>
+				<Stack direction="column" alignItems="center" minHeight={700} spacing={6}>
+					<Box maxWidth={928}>
+						<h2 className={styles.cardTitle}>Latest from out blog</h2>
+					</Box>
+					<Box display="flex" gap={4}>
+						{blogData.map((article, index) => (
+							<BlogCard image={article.image} title={article.title} body={article.body} tag={article.tag} key={index} />
+						))}
+					</Box>
+
+					<CallToActionBTN text="Read more" Icon={ChevronRight} />
+				</Stack>
+			</section>
+		</main>
+	);
 }
