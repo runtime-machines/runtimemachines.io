@@ -121,18 +121,20 @@ export default function Home() {
 						</Typography>
 					</Box>
 
-					<Carousel
-						items={testimonialData.map((testimonial, index) => (
-							<TestimonialCard
-								key={index}
-								review={testimonial.review}
-								avatarImg={testimonial.avatarImg}
-								name={testimonial.name}
-								position={testimonial.position}
-								company={testimonial.company}
-							/>
-						))}
-					/>
+					<Box className={styles.carouselContainer}>
+						<Carousel
+							items={testimonialData.map((testimonial, index) => (
+								<TestimonialCard
+									key={index}
+									review={testimonial.review}
+									avatarImg={testimonial.avatarImg}
+									name={testimonial.name}
+									position={testimonial.position}
+									company={testimonial.company}
+								/>
+							))}
+						/>
+					</Box>
 
 					<CallToActionBTN text="Check our latest projects" Icon={ChevronRight} />
 				</Stack>
@@ -140,10 +142,10 @@ export default function Home() {
 
 			<section className={styles.blog}>
 				<Stack direction="column" alignItems="center" minHeight={700} spacing={6}>
-					<Box maxWidth={928}>
-						<h2 className={styles.cardTitle}>Latest from out blog</h2>
+					<Box textAlign="center">
+						<h2 className={styles.cardTitle}>Latest from our blog</h2>
 					</Box>
-					<Box display="flex" gap={4}>
+					<Box display="flex" justifyContent="center" gap={4} padding="0 60px">
 						{blogData.map((article, index) => (
 							<BlogCard image={article.image} title={article.title} body={article.body} tag={article.tag} key={index} />
 						))}

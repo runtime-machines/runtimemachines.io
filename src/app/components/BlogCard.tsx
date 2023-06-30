@@ -1,4 +1,3 @@
-import '../globals.css';
 import { Card, CardMedia, CardContent, Chip, Typography } from '@mui/material';
 import styles from './blogCard.module.css';
 

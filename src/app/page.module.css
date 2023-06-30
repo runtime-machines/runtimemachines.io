@@ -50,7 +50,7 @@
 }
 
 .card {
-	padding: 30px 60px;
+	padding: var(--section-padding);
 }
 
 .cardImg {
@@ -109,6 +109,7 @@
 .us {
 	position: relative;
 	padding-top: 10rem;
+	padding-bottom: 8rem;
 	margin: 6rem;
 	width: 100%;
 	display: flex;
@@ -136,6 +137,11 @@
 .testimonials {
 	padding: 10rem 0;
 	width: 100%;
+}
+
+.carouselContainer {
+	width: 100%;
+	padding: var(--section-padding);
 }
 
 .blog {

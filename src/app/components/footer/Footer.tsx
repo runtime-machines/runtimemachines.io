@@ -5,7 +5,6 @@ import styles from './footer.module.css';
 import { Typography, Stack, Box, IconButton } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 import Image from 'next/image';
-import '../../globals.css';
 
 const Footer = () => {
 	return (

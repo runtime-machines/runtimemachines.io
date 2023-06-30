@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Box } from '@mui/material';
 import { East, West } from '@mui/icons-material';
 import styles from './carousel.module.css';
 import '../../globals.css';
@@ -58,8 +59,8 @@ const Carousel = ({ items }: TProps) => {
 	const currentItems = items.slice(startIndex, endIndex);
 
 	return (
-		<div className={styles.carousel}>
-			<div className={styles.imageContainer}>{currentItems.map((item, index) => item)}</div>
+		<Box className={styles.carousel}>
+			<div className={styles.itemsContainer}>{currentItems.map((item) => item)}</div>
 			<div className={styles.dots}>
 				<Dots n={totalBlocks} currentBlock={currentBlock} handleClick={handleDotClick} />
 			</div>
@@ -71,7 +72,7 @@ const Carousel = ({ items }: TProps) => {
 					<East className={styles.arrow} />
 				</div>
 			</div>
-		</div>
+		</Box>
 	);
 };
 
