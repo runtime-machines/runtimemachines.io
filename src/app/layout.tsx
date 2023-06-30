@@ -8,6 +8,8 @@ import Footer from './components/footer/Footer';
 
 import createEmotionCache from './utils/createEmotionCache';
 import { CacheProvider } from '@emotion/react';
+import { HubspotProvider } from 'next-hubspot';
+// TEST: import HubspotForm from './components/HubspotForm';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -24,15 +26,30 @@ const poppins = Poppins({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<CacheProvider value={clientSideEmotionCache}>
-			<html lang="en">
-				<body className={poppins.className}>
-					<Image src="/backgroundSVGs/Ellipse_1.svg" alt="Next.js Logo" width={100} height={100} className="ellipse1" />
-					<Image src="/backgroundSVGs/Ellipse_2.svg" alt="Next.js Logo" width={100} height={100} className="ellipse2" />
-					<Header />
-					{children}
-					<Footer />
-				</body>
-			</html>
+			<HubspotProvider>
+				<html lang="en">
+					<body className={poppins.className}>
+						<Image
+							src="/backgroundSVGs/Ellipse_1.svg"
+							alt="Next.js Logo"
+							width={100}
+							height={100}
+							className="ellipse1"
+						/>
+						<Image
+							src="/backgroundSVGs/Ellipse_2.svg"
+							alt="Next.js Logo"
+							width={100}
+							height={100}
+							className="ellipse2"
+						/>
+						<Header />
+						{children}
+						<Footer />
+						{/* TEST: <HubspotForm /> */}
+					</body>
+				</html>
+			</HubspotProvider>
 		</CacheProvider>
 	);
 }
