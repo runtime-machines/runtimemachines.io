@@ -40,7 +40,7 @@
     "prettier-plugin-astro": "^0.8.0",
     "reading-time": "^1.5.0",
     "subfont": "^6.12.4",
-    "typescript": "^5.0.4",
+    "typescript": "^5.1.6",
     "vercel": "^28.20.0",
     "vite-plugin-windicss": "^1.8.8",
     "windicss": "^3.5.6",
