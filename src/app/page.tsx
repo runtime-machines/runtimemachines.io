@@ -10,10 +10,12 @@ import Carousel from './components/carousel/Carousel';
 import TestimonialCard from './components/carousel/TestimonialCard';
 import { blogData, testimonialData } from '../../mockedData';
 import BlogCard from './components/BlogCard';
+import CurvesSection from './components/backgrounds/CurvesSection';
 
 export default function Home() {
 	return (
 		<main className={styles.main}>
+			<CurvesSection />
 			<Stack className={styles.heroSection} spacing={5}>
 				<h1 className={styles.heroTitle}>Lorem Ipsum dolot sit amet</h1>
 				<p className={styles.heroSubtitle}>
@@ -36,7 +38,7 @@ export default function Home() {
 			</section>
 
 			<section className={styles.weThinkWeBuild}>
-				<Image
+				{/* 	<Image
 					src="/backgroundSVGs/Vector_3.svg"
 					alt="webflow"
 					width={0}
@@ -52,14 +54,14 @@ export default function Home() {
 					height={0}
 					sizes="100vw"
 					className={styles.vectorBGbottom}
-				/>
+				/> */}
 
 				<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
-					<Box display="flex" alignItems="center" className={styles.card}>
+					<Box display="flex" alignItems="center" gap={20} className={styles.card}>
 						<Image src="/lab021.png" alt="img" width={80} height={120} className={styles.img} />
 
-						<Stack display="flex" flexDirection="column" className={styles.cardText} paddingX={10} spacing={8}>
-							<Box>
+						<Stack display="flex" flexDirection="column" spacing={8}>
+							<Box maxWidth={880} className={styles.cardText}>
 								<h2 className={styles.cardTitle}>What we think</h2>
 
 								<Typography variant="body1" className={styles.cardSubtitle}>
@@ -72,9 +74,9 @@ export default function Home() {
 						</Stack>
 					</Box>
 
-					<Box display="flex" alignItems="center" className={styles.card}>
-						<Stack display="flex" flexDirection="column" className={styles.cardText} paddingX={10} spacing={8}>
-							<Box>
+					<Box display="flex" alignItems="center" gap={20} className={styles.card}>
+						<Stack display="flex" flexDirection="column" spacing={8}>
+							<Box maxWidth={880} className={styles.cardText} alignItems="space-between">
 								<h2 className={styles.cardTitle}>What we think</h2>
 
 								<Typography variant="body1" className={styles.cardSubtitle}>
