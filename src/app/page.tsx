@@ -58,7 +58,9 @@ export default function Home() {
 
 				<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
 					<Box display="flex" alignItems="center" gap={20} className={styles.card}>
-						<Image src="/lab021.png" alt="img" width={80} height={120} className={styles.img} />
+						<Box className={styles.imgContainer}>
+							<Image src="/lab021.png" alt="img" fill />
+						</Box>
 
 						<Stack display="flex" flexDirection="column" spacing={8}>
 							<Box maxWidth={880} className={styles.cardText}>
@@ -87,7 +89,9 @@ export default function Home() {
 
 							<CallToActionBTN text="Learn more" Icon={ChevronRight} />
 						</Stack>
-						<Image src="/tablesketchcolour2 1.png" alt="img" width={80} height={120} className={styles.img} />
+						<Box className={styles.imgContainer}>
+							<Image src="/tablesketchcolour2 1.png" alt="img" fill />
+						</Box>
 					</Box>
 				</Stack>
 			</section>
