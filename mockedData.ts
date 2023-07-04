@@ -75,30 +75,156 @@ export const testimonialData = [
 
 export const blogData = [
 	{
-		image: {
-			src: '/blog1.png',
-			alt: 'blog1',
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
 		},
-		title: 'Dmystifying Blockchain: A Comprehensive Guide to Understanding the Technology Behind Cryptocurrencies',
-		body: 'Nostalgic YikYaking Instagram Employee. Consumer Social underground crypto newsletter.',
-		tag: 'PRESS RELEASE',
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
 	},
 	{
-		image: {
-			src: '/blog1.png',
-			alt: 'blog1',
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
 		},
-		title: 'Dmystifying Blockchain: A Comprehensive Guide to Understanding the Technology Behind Cryptocurrencies',
-		body: 'Nostalgic YikYaking Instagram Employee. Consumer Social underground crypto newsletter.',
-		tag: 'PRESS RELEASE',
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
 	},
 	{
-		image: {
-			src: '/blog1.png',
-			alt: 'blog1',
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
 		},
-		title: 'Dmystifying Blockchain: A Comprehensive Guide to Understanding the Technology Behind Cryptocurrencies',
-		body: 'Nostalgic YikYaking Instagram Employee. Consumer Social underground crypto newsletter.',
-		tag: 'PRESS RELEASE',
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
+	},
+	{
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+		},
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
+	},
+	{
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+		},
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
+	},
+	{
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+		},
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
+	},
+	{
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+		},
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
+	},
+	{
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+		},
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
+	},
+	{
+		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
+		excerpt: 'A crowded space',
+		coverImage: '/assets/blog/wowen/cover_1.webp',
+		date: '2023-05-22T00:00:00.000Z',
+		author: {
+			name: 'Emanuele Ragnoli',
+			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+		},
+
+		onImage: {
+			url: '/assets/blog/wowen/cover_1.webp',
+		},
+
+		slug: 'wowen_1',
+		tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi'],
 	},
 ];

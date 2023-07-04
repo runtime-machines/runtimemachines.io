@@ -1,9 +1,29 @@
+.linkContainer {
+	width: 100%;
+	flex-basis: calc(100% / 3 - 20px);
+	min-width: 330px;
+}
+
 .card {
+	height: 450px;
+	width: 100%;
+	flex-basis: calc(100% / 3);
+	min-width: 330px;
+	background-color: inherit;
+	color: #ffffff;
+	text-align: left;
+	border: none;
+	box-shadow: none;
+	padding: 10px 0;
+}
+
+.mainCard {
+	display: flex;
 	height: 450px;
 	width: 100%;
 	/* max-width: 400px; */
 	min-width: 330px;
-	background-color: #292929;
+	background-color: inherit;
 	color: #ffffff;
 	text-align: left;
 	border: none;
@@ -13,11 +33,19 @@
 
 .content {
 	padding: 10px 0;
+	/* max-width: 450px; */
+}
+
+.mainImage {
+	border: 2px solid #ffffff;
+	height: 400px;
+	width: 100%;
+	margin: 0 10px;
 }
 
 .imageContainer {
+	position: relative;
 	height: 200px;
-
 	background-color: #ffffff;
 }
 
@@ -32,4 +60,8 @@
 .title {
 	font-weight: 700;
 	font-size: 1.2rem;
+}
+
+.readTime {
+	margin: 0 8px;
 }

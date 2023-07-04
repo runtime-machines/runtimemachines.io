@@ -1,0 +1,7 @@
+.main {
+	padding: 6rem 0;
+}
+
+.content {
+	padding: var(--section-padding);
+}

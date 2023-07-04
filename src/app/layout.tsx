@@ -6,7 +6,7 @@ import { Poppins } from 'next/font/google';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 
-import createEmotionCache from './utils/createEmotionCache';
+import createEmotionCache from '../utils/createEmotionCache';
 import { CacheProvider } from '@emotion/react';
 import { HubspotProvider } from 'next-hubspot';
 // TEST: import HubspotForm from './components/HubspotForm';

@@ -41,6 +41,22 @@ a {
 	border: 2px solid greenyellow;
 }
 
+.textBox {
+	max-width: 880px;
+	text-align: left;
+}
+
+.boxTitle {
+	font-weight: 900;
+	font-size: 4rem;
+	line-height: 77px;
+}
+
+.boxSubtitle {
+	font-size: 1.4rem;
+	padding: 10px 0;
+}
+
 .ellipse1 {
 	position: absolute;
 	top: -10%;
