@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import styles from './footer.module.css';
-import { Typography, Stack, Box, IconButton, Divider } from '@mui/material';
+import { Typography, Stack, Box, IconButton, Divider, useMediaQuery } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 import Image from 'next/image';
 
 const Footer = () => {
+	const matches = useMediaQuery('(max-width: 1100px)');
+
 	return (
 		<Stack direction="column" spacing={6} className={styles.footer}>
 			<Box component="footer" display="flex" justifyContent="space-between" alignItems="center">
@@ -59,29 +61,19 @@ const Footer = () => {
 							</Link>
 						</Stack>
 					</Box>
-					<Box className={styles.footerLinks}>
-						<Stack direction="column" spacing={3} paddingLeft={4}>
-							<Link href="/" className={styles.link}>
-								Link 6
-							</Link>
-							<Link href="/" className={styles.link}>
-								Link 7
-							</Link>
-						</Stack>
-					</Box>
 				</Box>
 			</Box>
 			<Box>
 				<Divider className={styles.divider} />
-				<Box display="flex" justifyContent="space-between">
+				<Box display="flex" justifyContent="space-between" className={styles.bottom}>
 					<Typography variant="body1" className={styles.copyRight}>
 						© 2023 Runtime Machines. All rights reserved.
 					</Typography>
-					<Stack display="flex" direction="row" spacing={3}>
-						<Link href="/" className={`${styles.link} ${styles.underline}`}>
+					<Stack display="flex" direction="row" className={styles.bottomLinks}>
+						<Link href="/" className={`${styles.link} ${styles.underline} ${styles.left}`}>
 							Privacy policy
 						</Link>
-						<Link href="/" className={`${styles.link} ${styles.underline}`}>
+						<Link href="/" className={`${styles.link} ${styles.underline} ${styles.right}`}>
 							Terms of service
 						</Link>
 					</Stack>

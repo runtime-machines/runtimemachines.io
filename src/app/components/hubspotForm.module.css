@@ -1,0 +1,20 @@
+.formWrapper form .hs-form-field {
+	border: 2px solid greenyellow;
+}
+
+.formWrapper input {
+	background-color: var(--body-background);
+	border: none;
+	padding: 10px;
+}
+
+.formWrapper textarea {
+	background-color: var(--body-background);
+	border: none;
+	padding: 10px;
+	resize: none;
+}
+
+.formWrapper .actions {
+	background-color: var(--background-btn);
+}

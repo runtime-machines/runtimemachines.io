@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { East, West } from '@mui/icons-material';
 import styles from './carousel.module.css';
 import '../../globals.css';
@@ -33,9 +33,10 @@ const Dots = ({ n, currentBlock, handleClick }: TDotsProps) => {
 };
 
 const Carousel = ({ items }: TProps) => {
+	const matches = useMediaQuery('(max-width: 1100px)');
 	const [currentBlock, setCurrentBlock] = useState(1);
 
-	const itemsPerPage = 3;
+	const itemsPerPage = matches ? 1 : 3;
 	const totalBlocks = Math.ceil(items.length / itemsPerPage);
 
 	const incrementBlock = () => {

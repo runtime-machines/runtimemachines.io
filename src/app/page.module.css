@@ -9,7 +9,7 @@
 }
 
 .heroSection {
-	padding: 4rem 0;
+	padding: 4rem 0.8rem;
 	max-width: 800px;
 	min-height: 826px;
 	text-align: center;
@@ -17,12 +17,22 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	@media (max-width: 1100px) {
+		padding: var(--mobile-section-padding);
+		min-height: 626px;
+	}
 }
 
 .heroTitle {
 	font-size: 6rem;
 	font-weight: 900;
 	line-height: 115px;
+
+	@media (max-width: 1100px) {
+		font-size: var(--mobile-title);
+		line-height: 57px;
+	}
 }
 
 .heroSubtitle {
@@ -32,7 +42,43 @@
 }
 
 .partners {
-	padding: 7rem 0;
+	padding: 7rem 0.8rem;
+
+	@media (max-width: 1100px) {
+		padding: var(--mobile-section-padding);
+		margin-top: 3rem;
+	}
+}
+
+.partnersLogos {
+	padding: 1rem 0;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	align-items: center;
+
+	.logo {
+		position: relative;
+		width: 148px;
+		height: 48px;
+	}
+
+	@media (max-width: 1100px) {
+		padding: 1rem 0;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+
+		.logo {
+			width: fit-content;
+			flex-basis: calc(100% / 2 - 10px);
+		}
+	}
 }
 
 .partnerSubtitle {
@@ -122,34 +168,29 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
-}
 
-.avatarContainer {
-	position: absolute;
-	width: 300px;
-	height: 300px;
-	border: 2px solid red;
-	border-radius: 50%;
-}
-
-.avatarLeft {
-	left: -30px;
-	top: 35%;
-}
-
-.avatarRight {
-	right: -30px;
-	top: 35%;
+	@media (max-width: 1100px) {
+		padding: 4rem 0;
+		margin: 4rem;
+	}
 }
 
 .testimonials {
 	padding: 10rem 0;
 	width: 100%;
+
+	@media (max-width: 1100px) {
+		padding: 4rem 0;
+	}
 }
 
 .carouselContainer {
 	width: 100%;
 	padding: var(--section-padding);
+
+	@media (max-width: 1100px) {
+		padding: 20px;
+	}
 }
 
 .blog {

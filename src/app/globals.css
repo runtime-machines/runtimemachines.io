@@ -5,7 +5,12 @@
 	--font-poppins: 'Poppins', sans-serif;
 	--rtm-orange: #ff8855;
 	--rtm-orange-opaque: #ff88552d;
+	--body-background: #343434;
 	--dark-background: #292929;
+	--mobile-title: 3rem;
+	--mobile-section-padding: 2rem 0.8rem;
+	--background-btn: #5e6eff;
+	--background-btn-hover: #4d5dff;
 }
 
 * {
@@ -22,7 +27,7 @@ body {
 
 body {
 	color: #ffffff;
-	background: #343434;
+	background: var(--body-background);
 }
 
 a {
@@ -43,18 +48,25 @@ a {
 
 .textBox {
 	max-width: 880px;
-	text-align: left;
+
+	/* text-align: left; */
 }
 
 .boxTitle {
+	padding: 0 5px;
 	font-weight: 900;
 	font-size: 4rem;
 	line-height: 77px;
+
+	@media (max-width: 1100px) {
+		font-size: var(--mobile-title);
+		line-height: 57px;
+	}
 }
 
 .boxSubtitle {
 	font-size: 1.4rem;
-	padding: 10px 0;
+	padding: 10px 5px;
 }
 
 .ellipse1 {

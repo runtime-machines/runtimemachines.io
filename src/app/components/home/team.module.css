@@ -1,0 +1,17 @@
+.avatarContainer {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	border: 2px solid red;
+	border-radius: 50%;
+}
+
+.avatarLeft {
+	left: -30px;
+	top: 35%;
+}
+
+.avatarRight {
+	right: -30px;
+	top: 35%;
+}

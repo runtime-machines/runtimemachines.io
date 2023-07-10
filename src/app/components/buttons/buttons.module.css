@@ -1,5 +1,5 @@
 .callToActionBTN {
-	background-color: #5e6eff;
+	background-color: var(--background-btn);
 	padding: 16px 32px;
 	border-radius: 4px;
 	font-size: 1.5rem;
@@ -9,7 +9,7 @@
 }
 
 .callToActionBTN:hover {
-	background-color: #4d5dff;
+	background-color: var(--background-btn-hover);
 }
 
 .iconBtn {

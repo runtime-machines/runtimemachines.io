@@ -1,12 +1,22 @@
 .header {
+	width: 100%;
 	padding: var(--section-padding);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	@media (max-width: 1100px) {
+		padding: 20px 10px;
+	}
 }
 
 .logoContainer {
 	width: 160px;
+
+	@media (max-width: 500px) {
+		width: 90px;
+		height: 40px;
+	}
 }
 
 .logo {
@@ -19,4 +29,23 @@
 
 .link:hover {
 	text-decoration: underline;
+}
+
+.buttonLink {
+	padding: 8px 16px;
+	border-radius: 8px;
+	font-size: 18px;
+	font-weight: 700;
+	background-color: var(--background-btn);
+}
+
+.buttonLink:hover {
+	background-color: var(--background-btn-hover);
+}
+
+.mobileMenu {
+	padding: 20px;
+	text-align: center;
+	background-color: var(--dark-background);
+	color: #ffffff;
 }

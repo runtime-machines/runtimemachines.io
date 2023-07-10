@@ -8,10 +8,6 @@ import { blogData } from '../../../mockedData';
 
 import { CallToActionBTN } from '../components/buttons/CallToActionBTN';
 
-const mainTitle =
-	'Dmystifying Blockchain: A Comprehensive Guide to Understanding the Technology Behind Cryptocurrencies';
-const body = 'Nostalgic YikYaking Instagram Employee. Consumer Social underground crypto newsletter.';
-
 const page = () => {
 	return (
 		<main className={styles.main}>
