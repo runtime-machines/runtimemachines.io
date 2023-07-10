@@ -19,7 +19,7 @@ const ContactUs = () => {
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						</Typography>
 					</Stack>
-					<Stack direction="column" spacing={1}>
+					<Stack direction="column" /* spacing={1} */>
 						<Typography variant="body1" className={styles.infoBox}>
 							<span className={styles.iconContainer}>
 								<Mail className={styles.icon} />
@@ -30,13 +30,13 @@ const ContactUs = () => {
 							<span className={styles.iconContainer}>
 								<Phone className={styles.icon} />
 							</span>
-							info@runtimemachines.io
+							1800 123 4567
 						</Typography>
 						<Typography variant="body1" className={styles.infoBox}>
 							<span className={styles.iconContainer}>
 								<Place className={styles.icon} />
 							</span>
-							info@runtimemachines.io
+							Zählerweg 5, 6300 Zug, Switzerland
 						</Typography>
 					</Stack>
 				</Box>
