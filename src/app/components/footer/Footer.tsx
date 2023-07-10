@@ -46,7 +46,7 @@ const Footer = () => {
 				</Box>
 				<Box display="flex">
 					<Box className={styles.footerLinks}>
-						<Stack direction="column" spacing={3} paddingX={4}>
+						<Stack direction="column" spacing={3} /* paddingX={4} */>
 							<Link href="/what-we-think" className={styles.link}>
 								What we think
 							</Link>

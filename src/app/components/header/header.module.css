@@ -44,8 +44,12 @@
 }
 
 .mobileMenu {
-	padding: 20px;
+	padding: 30px;
+	width: 100vw;
+
 	text-align: center;
 	background-color: var(--dark-background);
 	color: #ffffff;
+	/* border: 2px solid red; */
+	overflow: hidden;
 }

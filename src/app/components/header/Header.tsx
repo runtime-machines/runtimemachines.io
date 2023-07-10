@@ -28,19 +28,21 @@ const Header = () => {
 
 	return (
 		<header className={styles.header}>
-			<SwipeableDrawer anchor="top" open={isOpen} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
+			<SwipeableDrawer
+				disableScrollLock={true}
+				anchor="top"
+				open={isOpen}
+				onClose={toggleDrawer(false)}
+				onOpen={toggleDrawer(true)}>
 				<Stack direction="column" spacing={3} className={styles.mobileMenu}>
-					<Link href="/what-we-think" className={styles.link} onClick={() => setIsOpen(false)}>
-						What we think
+					<Link href="/" className={styles.link}>
+						Home
 					</Link>
-					<Link href="/what-we-build" className={styles.link} onClick={() => setIsOpen(false)}>
-						What we build
+					<Link href="/about-us" className={styles.link}>
+						Team
 					</Link>
-					<Link href="/about-us" className={styles.link} onClick={() => setIsOpen(false)}>
-						About us
-					</Link>
-					<Link href="/blog" className={styles.link}>
-						Blog
+					<Link href="/contact-us" className={styles.buttonLink}>
+						Get in touch
 					</Link>
 				</Stack>
 			</SwipeableDrawer>
