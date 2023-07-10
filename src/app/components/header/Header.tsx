@@ -35,13 +35,13 @@ const Header = () => {
 				onClose={toggleDrawer(false)}
 				onOpen={toggleDrawer(true)}>
 				<Stack direction="column" spacing={3} className={styles.mobileMenu}>
-					<Link href="/" className={styles.link}>
+					<Link href="/" className={styles.link} onClick={() => setIsOpen(false)}>
 						Home
 					</Link>
-					<Link href="/about-us" className={styles.link}>
+					<Link href="/about-us" className={styles.link} onClick={() => setIsOpen(false)}>
 						Team
 					</Link>
-					<Link href="/contact-us" className={styles.buttonLink}>
+					<Link href="/contact-us" className={styles.buttonLink} onClick={() => setIsOpen(false)}>
 						Get in touch
 					</Link>
 				</Stack>

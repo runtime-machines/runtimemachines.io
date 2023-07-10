@@ -43,7 +43,6 @@ a {
 	display: flex;
 	flex-direction: column;
 	min-height: 400px;
-	border: 2px solid greenyellow;
 }
 
 .textBox {
@@ -57,11 +56,6 @@ a {
 	font-weight: 900;
 	font-size: 4rem;
 	line-height: 77px;
-
-	@media (max-width: 1100px) {
-		font-size: var(--mobile-title);
-		line-height: 57px;
-	}
 }
 
 .boxSubtitle {
@@ -85,4 +79,11 @@ a {
 	width: 50%;
 	height: 50%;
 	z-index: -1;
+}
+
+@media only screen and (max-width: 1100px) {
+	.boxTitle {
+		font-size: var(--mobile-title);
+		line-height: 57px;
+	}
 }

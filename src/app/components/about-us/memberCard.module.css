@@ -37,3 +37,9 @@
 	font-size: 1rem;
 	font-weight: 400;
 }
+
+@media only screen and (max-width: 1100px) {
+	.card {
+		width: 170px;
+	}
+}
