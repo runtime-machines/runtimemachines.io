@@ -272,7 +272,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/acchille_lambrughi.png',
+			src: '/avatars/achille_lambrughi.png',
 			alt: 'Achille Lambrughi',
 		},
 		name: 'Achille Lambrughi',
