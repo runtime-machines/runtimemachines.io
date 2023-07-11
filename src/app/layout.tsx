@@ -30,14 +30,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<html lang="en">
 					<body className={poppins.className}>
 						<Image
-							src="/backgroundSVGs/Ellipse_1.svg"
+							src="/assets/backgroundSVGs/Ellipse_1.svg"
 							alt="Next.js Logo"
 							width={100}
 							height={100}
 							className="ellipse1"
 						/>
 						<Image
-							src="/backgroundSVGs/Ellipse_2.svg"
+							src="/assets/backgroundSVGs/Ellipse_2.svg"
 							alt="Next.js Logo"
 							width={100}
 							height={100}

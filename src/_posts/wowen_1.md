@@ -1,25 +1,23 @@
 ---
 title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization'
 excerpt: 'A crowded space'
-coverImage: '/assets/blog/wowen/cover_1.webp'
+coverImage: '/assets/blog/covers/wowen_1.webp'
 date: '2023-05-22T00:00:00.000Z'
 author:
   name: Emanuele Ragnoli
-  picture: '/assets/blog/authors/EmanueleRagnoli.png'
+  picture: '/assets/avatars/emanuele_ragnoli.png'
 ogImage:
-  url: '/assets/blog/wowen/cover_1.webp'
+  url: '/assets/blog/covers/wowen_1.webp'
 tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi']
 ---
 
-# Wowen, Consensus Modularity in Blockchains for Reliability and Optimization
-
-# A crowded space
+## A crowded space
 
 There are a lot of blockchains out there. Some say more than 1000. Some state that the majority of those 1000 are dormant and bear no transaction activities. I have never tried to find some robust data sources to corroborate that. But heuristically, for whoever has been in Crypto, Web3, or in the Blockchain space since the Bitcoin White Paper, it is true that this space has seen a phenomenal number of projects, technologies and creative efforts.
 
 Indeed, over the past decade blockchains have released tokens and campaigns to attract users, developers, and projects, often leading to chain maximalism. While some blockchains have succeeded, others have failed, leaving valuable technological contributions inaccessible.
 
-# Enters modularity
+## Enters modularity
 
 There is a new kid on the block. The rise of modular blockchains marks a significant shift in the blockchain landscape, a new paradigm that can bring enhanced flexibility, scalability, and adaptability. In contrast to monolithic blockchains, modular blockchains separate the primary functions (Data Availability, Consensus, Settlement, and Execution), paving the way for more efficient and customizable systems.
 
@@ -29,7 +27,7 @@ Following the software engineering trajectory, modularity made its way into the 
 
 We, at RunTime Machines, decided to implement modularity to tackle first the consensus primary function. Why? Because consensus is at the core of blockchain. A consensus protocol dictates almost everything. Scalability, security, transactions costs, as far as adversarial exploitations in coopetition settings.
 
-# Wowen
+## Wowen
 
 It takes time to create. It takes humility, hard work, and intelligence to create something new. It takes creativity and a sparkle of craziness to forget what you knew to solve long standing problems.
 
