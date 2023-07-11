@@ -1,5 +1,5 @@
-.formWrapper form .hs-form-field {
-	border: 2px solid greenyellow;
+/* .hs-form-field {
+	border: 2px solid greenyellow !important;
 }
 
 .formWrapper input {
@@ -16,5 +16,5 @@
 }
 
 .formWrapper .actions {
-	background-color: var(--background-btn);
-}
+	background-color: var(--background-btn) !important;
+} */

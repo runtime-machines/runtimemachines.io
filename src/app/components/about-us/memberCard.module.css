@@ -18,6 +18,9 @@
 }
 
 .avatar {
+	position: relative;
+	border-radius: 50%;
+	overflow: hidden;
 	margin: 20px;
 	width: 140px;
 	height: 140px;

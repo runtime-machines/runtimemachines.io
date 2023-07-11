@@ -232,154 +232,154 @@ export const blogData = [
 export const TeamMembers = [
 	{
 		img: {
-			src: 'image1.jpg',
-			alt: 'Image 1',
+			src: '/avatars/emanuele_ragnoli.png',
+			alt: 'Emanuele Ragnoli',
 		},
-		name: 'John Doe',
+		name: 'Emanuele Ragnoli',
+		role: 'co-CEO, CTO',
+	},
+	{
+		img: {
+			src: '/avatars/roberto_ripamonti.png',
+			alt: 'Roberto Ripamonti',
+		},
+		name: 'Roberto Ripamonti',
+		role: 'Lead Software Engineer',
+	},
+	{
+		img: {
+			src: '/avatars/gokhan_sagirlar.png',
+			alt: 'Gokhan Sagirlar',
+		},
+		name: 'Gokhan Sagirlar',
+		role: 'Technical Leadear',
+	},
+	{
+		img: {
+			src: '/avatars/simone_bottoni.png',
+			alt: 'Simone Bottoni',
+		},
+		name: 'Simone Bottoni',
+		role: 'Technical Leadear',
+	},
+	{
+		img: {
+			src: '/avatars/alberto_trombetta.png',
+			alt: 'Alberto Trombetta',
+		},
+		name: 'Alberto Trombetta',
+		role: 'Scientific Advisor',
+	},
+	{
+		img: {
+			src: '/avatars/acchille_lambrughi.png',
+			alt: 'Achille Lambrughi',
+		},
+		name: 'Achille Lambrughi',
+		role: 'Blockchain Engineer',
+	},
+	{
+		img: {
+			src: '/avatars/erika_reale.png',
+			alt: 'Erika Reale',
+		},
+		name: 'Erika Reale',
+		role: 'Applied Cryptographer',
+	},
+	{
+		img: {
+			src: '/avatars/christian_rondanini.png',
+			alt: 'Christian Rondanini',
+		},
+		name: 'Christian Rondanini',
+		role: 'Technical Leadear',
+	},
+	{
+		img: {
+			src: '/avatars/gianluca_stefanoni.png',
+			alt: 'Gianluca Stefanoni',
+		},
+		name: 'Gianluca Stefanoni',
+		role: 'Frontend Developer',
+	},
+	{
+		img: {
+			src: '/avatars/nadia_fabrizio.png',
+			alt: 'Nadia Fabrizio',
+		},
+		name: 'Nadia Fabrizio',
+		role: 'co-CEO, COO',
+	},
+	{
+		img: {
+			src: '/avatars/arsenii_ronzhyn.png',
+			alt: 'Arsenii Ronzhyn',
+		},
+		name: 'Arsenii Ronzhyn',
+		role: 'Blockchain Engineer',
+	},
+	{
+		img: {
+			src: '/avatars/mirko_trapani.png',
+			alt: 'Mirko Trapani',
+		},
+		name: 'Mirko Trapani',
+		role: 'Applied Cryptographer',
+	},
+	{
+		img: {
+			src: '/avatars/elia_maggioni.png',
+			alt: 'Elia Maggioni',
+		},
+		name: 'Elia Maggioni',
+		role: 'DevOps Engineer',
+	},
+	{
+		img: {
+			src: '/avatars/paolo_bonomi.png',
+			alt: 'Paolo Bonomi',
+		},
+		name: 'Paolo Bonomi',
 		role: 'Software Engineer',
 	},
 	{
 		img: {
-			src: 'image2.jpg',
-			alt: 'Image 2',
+			src: '/avatars/shyam_duraswaimi.png',
+			alt: 'Shyam Duraswaimi',
 		},
-		name: 'Jane Smith',
-		role: 'Product Manager',
+		name: 'Shyam Duraswaimi',
+		role: 'Chief Stategist',
 	},
 	{
 		img: {
-			src: 'image3.jpg',
-			alt: 'Image 3',
+			src: '/avatars/albert_clemins.png',
+			alt: 'Albert Clemins',
 		},
-		name: 'Bob Johnson',
-		role: 'Marketing Specialist',
+		name: 'Albert Clemins',
+		role: 'Business Developer Intern',
 	},
 	{
 		img: {
-			src: 'image4.jpg',
-			alt: 'Image 4',
+			src: '/avatars/benedek_orban.png',
+			alt: 'Benedek Orban',
 		},
-		name: 'Alice Brown',
-		role: 'Graphic Designer',
+		name: 'Benedek Orban',
+		role: 'Head of Business Dev & Partnerships',
 	},
 	{
 		img: {
-			src: 'image5.jpg',
-			alt: 'Image 5',
+			src: '/avatars/roberto_ripamonti.png',
+			alt: 'Davide Bellucci',
 		},
-		name: 'David Lee',
-		role: 'Data Analyst',
+		name: 'Davide Bellucci',
+		role: 'Frontend Developer',
 	},
 	{
 		img: {
-			src: 'image6.jpg',
-			alt: 'Image 6',
+			src: '/avatars/geert_schute.png',
+			alt: 'Geert Schute',
 		},
-		name: 'Samantha Wu',
-		role: 'UX Designer',
-	},
-	{
-		img: {
-			src: 'image7.jpg',
-			alt: 'Image 7',
-		},
-		name: 'Michael Chen',
-		role: 'Front-end Developer',
-	},
-	{
-		img: {
-			src: 'image8.jpg',
-			alt: 'Image 8',
-		},
-		name: 'Emily Davis',
-		role: 'Content Writer',
-	},
-	{
-		img: {
-			src: 'image9.jpg',
-			alt: 'Image 9',
-		},
-		name: 'Chris Brown',
-		role: 'Back-end Developer',
-	},
-	{
-		img: {
-			src: 'image10.jpg',
-			alt: 'Image 10',
-		},
-		name: 'Megan Kim',
-		role: 'UI Designer',
-	},
-	{
-		img: {
-			src: 'image11.jpg',
-			alt: 'Image 11',
-		},
-		name: 'Alex Lee',
-		role: 'Full-stack Developer',
-	},
-	{
-		img: {
-			src: 'image12.jpg',
-			alt: 'Image 12',
-		},
-		name: 'Sophia Huang',
-		role: 'Project Manager',
-	},
-	{
-		img: {
-			src: 'image13.jpg',
-			alt: 'Image 13',
-		},
-		name: 'Jason Chen',
-		role: 'Business Analyst',
-	},
-	{
-		img: {
-			src: 'image14.jpg',
-			alt: 'Image 14',
-		},
-		name: 'Karen Wang',
-		role: 'SEO Specialist',
-	},
-	{
-		img: {
-			src: 'image15.jpg',
-			alt: 'Image 15',
-		},
-		name: 'Ryan Kim',
-		role: 'Sales Manager',
-	},
-	{
-		img: {
-			src: 'image16.jpg',
-			alt: 'Image 16',
-		},
-		name: 'Grace Park',
-		role: 'HR Manager',
-	},
-	{
-		img: {
-			src: 'image17.jpg',
-			alt: 'Image 17',
-		},
-		name: 'Kevin Chen',
-		role: 'IT Support',
-	},
-	{
-		img: {
-			src: 'image18.jpg',
-			alt: 'Image 18',
-		},
-		name: 'Linda Lee',
-		role: 'Customer Service',
-	},
-	{
-		img: {
-			src: 'image19.jpg',
-			alt: 'Image 19',
-		},
-		name: 'Eric Kim',
-		role: 'Account Manager',
+		name: 'Geert Schute',
+		role: 'Business Advisor',
 	},
 ];

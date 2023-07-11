@@ -1,5 +1,6 @@
 import { Avatar, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import styles from './memberCard.module.css';
+import Image from 'next/image';
 
 type TProps = {
 	image: {
@@ -13,7 +14,9 @@ type TProps = {
 const MemberCard = ({ image, name, role }: TProps) => {
 	return (
 		<Card className={styles.card}>
-			<Avatar src={image.src} alt={image.alt} className={styles.avatar} />
+			<div className={styles.avatar}>
+				<Image src={image.src} alt={image.alt} fill />
+			</div>
 			<CardContent className={styles.content}>
 				<Typography gutterBottom variant="h5" component="div" className={styles.name}>
 					{name}
