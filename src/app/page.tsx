@@ -13,9 +13,11 @@ import BlogCard from './components/BlogCard';
 import CurvesSection from './components/backgrounds/CurvesSection';
 import WeThinkWeBuild from './components/home/WeThinkWeBuild';
 import Team from './components/home/Team';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
 	const postMetadata = blogData; //getPostMetadata();
+	const router = useRouter();
 	const matches = useMediaQuery('(max-width: 1100px)');
 
 	return (
@@ -27,7 +29,7 @@ export default function Home() {
 					Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet
 					odio mattis.
 				</p>
-				<CallToActionBTN text="Get in touch" />
+				<CallToActionBTN text="Get in touch" clickHandler={() => router.push('/contact-us')} />
 			</Stack>
 
 			<section className={styles.partners}>
@@ -88,7 +90,7 @@ export default function Home() {
 			</section>
 
 			<section className={styles.testimonials}>
-				<Stack direction="column" justifyContent="center" alignItems="center" minHeight={700} spacing={6}>
+				<Stack direction="column" justifyContent="center" alignItems="center" minHeight={700} spacing={4}>
 					<Box maxWidth={928}>
 						<h2 className="boxTitle">Don’t take our word for it</h2>
 						<Typography variant="body1" className="boxSubtitle">
@@ -135,7 +137,7 @@ export default function Home() {
 							))}
 						</Box>
 
-						<CallToActionBTN text="Read more" Icon={ChevronRight} />
+						<CallToActionBTN text="Read more" Icon={ChevronRight} clickHandler={() => router.push('/blog')} />
 					</Stack>
 				</section>
 			) : null}
