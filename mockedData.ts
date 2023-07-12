@@ -368,7 +368,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/assets/avatars/roberto_ripamonti.png',
+			src: '/assets/avatars/davide_bellucci.png',
 			alt: 'Davide Bellucci',
 		},
 		name: 'Davide Bellucci',
