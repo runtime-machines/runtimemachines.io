@@ -252,7 +252,7 @@ export const TeamMembers = [
 			alt: 'Gokhan Sagirlar',
 		},
 		name: 'Gokhan Sagirlar',
-		role: 'Technical Leadear',
+		role: 'Technical Leader',
 	},
 	{
 		img: {
@@ -260,7 +260,7 @@ export const TeamMembers = [
 			alt: 'Simone Bottoni',
 		},
 		name: 'Simone Bottoni',
-		role: 'Technical Leadear',
+		role: 'Technical Leader',
 	},
 	{
 		img: {
@@ -292,7 +292,7 @@ export const TeamMembers = [
 			alt: 'Christian Rondanini',
 		},
 		name: 'Christian Rondanini',
-		role: 'Technical Leadear',
+		role: 'Technical Leader',
 	},
 	{
 		img: {
