@@ -15,11 +15,11 @@
 	height: 100%;
 }
 
-.link {
-}
+/* .link {
+} */
 
 .link:hover {
-	text-decoration: underline;
+	text-decoration: underline !important;
 }
 
 .buttonLink {
@@ -34,6 +34,11 @@
 	background-color: var(--background-btn-hover);
 }
 
+.drawer {
+	display: flex;
+	justify-content: center;
+}
+
 .mobileMenu {
 	padding: 30px;
 	width: 100vw;
@@ -41,7 +46,7 @@
 	text-align: center;
 	background-color: var(--dark-background);
 	color: #ffffff;
-	/* border: 2px solid red; */
+
 	overflow: hidden;
 }
 

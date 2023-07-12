@@ -6,13 +6,10 @@ import styles from './header.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMediaQuery, IconButton, Stack, SwipeableDrawer } from '@mui/material';
 import { useState } from 'react';
-import { CallToActionBTN } from '../buttons/CallToActionBTN';
 
 const Header = () => {
 	const matches = useMediaQuery('(max-width: 1130px)');
 	const [isOpen, setIsOpen] = useState(false);
-
-	console.log(matches);
 
 	const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
 		if (
@@ -29,17 +26,26 @@ const Header = () => {
 	return (
 		<header className={styles.header}>
 			<SwipeableDrawer
+				className={styles.drawer}
 				disableScrollLock={true}
 				anchor="top"
 				open={isOpen}
 				onClose={toggleDrawer(false)}
-				onOpen={toggleDrawer(true)}>
+				onOpen={toggleDrawer(true)}
+				sx={{
+					'&.MuiPaper-root-MuiDrawer-paper': {
+						border: '2px solid red',
+					},
+				}}>
 				<Stack direction="column" spacing={3} className={styles.mobileMenu}>
 					<Link href="/" className={styles.link} onClick={() => setIsOpen(false)}>
 						Home
 					</Link>
 					<Link href="/about-us" className={styles.link} onClick={() => setIsOpen(false)}>
-						Team
+						The team
+					</Link>
+					<Link href="/blog" className={styles.link} onClick={() => setIsOpen(false)}>
+						Blog
 					</Link>
 					<Link href="/contact-us" className={styles.buttonLink} onClick={() => setIsOpen(false)}>
 						Get in touch
@@ -69,7 +75,10 @@ const Header = () => {
 						Home
 					</Link>
 					<Link href="/about-us" className={styles.link}>
-						Team
+						The team
+					</Link>
+					<Link href="/blog" className={styles.link}>
+						Blog
 					</Link>
 					<Link href="/contact-us" className={styles.buttonLink}>
 						Get in touch

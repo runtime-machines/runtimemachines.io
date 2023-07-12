@@ -7,7 +7,13 @@ const getPostContent = (slug: string) => {
 	const fileContent = fs.readFileSync(file, 'utf8');
 	const matterResult = matter(fileContent);
 
-	return matterResult.content;
+	return {
+		content: matterResult.content,
+		title: matterResult.data.title,
+		coverImage: matterResult.data.coverImage,
+		tags: matterResult.data.tags,
+		readTime: matterResult.data.readTime,
+	};
 };
 
 export default getPostContent;

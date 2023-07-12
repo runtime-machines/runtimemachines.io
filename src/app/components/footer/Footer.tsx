@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import styles from './footer.module.css';
 import { Typography, Stack, Box, IconButton, Divider, useMediaQuery } from '@mui/material';
-import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+import { Twitter, LinkedIn, GitHub } from '@mui/icons-material';
 import Image from 'next/image';
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
 	return (
 		<Stack direction="column" spacing={6} className={styles.footer}>
 			<Box component="footer" display="flex" justifyContent="space-between" alignItems="center">
-				<Box display="flex" flexDirection="column">
+				<Box display="flex" flexDirection="column" className={styles.footerLeft}>
 					<Link className={styles.logoContainer} href="/">
 						<Image src="/RTM_Logo.svg" alt="RTM Logo" width={100} height={100} className={styles.logo} />
 					</Link>
@@ -30,15 +30,13 @@ const Footer = () => {
 						</Typography>
 					</Box>
 					<Box display="flex">
-						<IconButton href="https://www.facebook.com/">
-							<Facebook style={{ color: '#fff' }} />
-						</IconButton>
 						<IconButton href="https://twitter.com/">
 							<Twitter style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://www.instagram.com/">
-							<Instagram style={{ color: '#fff' }} />
+						<IconButton href="https://github.com/">
+							<GitHub style={{ color: '#fff' }} />
 						</IconButton>
+
 						<IconButton href="https://www.linkedin.com/">
 							<LinkedIn style={{ color: '#fff' }} />
 						</IconButton>
@@ -47,17 +45,17 @@ const Footer = () => {
 				<Box display="flex">
 					<Box className={styles.footerLinks}>
 						<Stack direction="column" spacing={3} /* paddingX={4} */>
-							<Link href="/what-we-think" className={styles.link}>
-								What we think
-							</Link>
-							<Link href="/what-we-build" className={styles.link}>
-								What we build
+							<Link href="/" className={styles.link}>
+								Home
 							</Link>
 							<Link href="/about-us" className={styles.link}>
-								About us
+								The team
 							</Link>
 							<Link href="/blog" className={styles.link}>
 								Blog
+							</Link>
+							<Link href="/contact-us" className={styles.link}>
+								Contact us
 							</Link>
 						</Stack>
 					</Box>

@@ -1,6 +1,7 @@
 import { Box, Card, CardMedia, CardContent, Chip, Typography } from '@mui/material';
 import styles from './blogCard.module.css';
 import Link from 'next/link';
+import Tag from './blog/Tag';
 
 type TProps = {
 	slug: string;
@@ -24,11 +25,11 @@ const BlogCard = ({ image, title, body, tag, readTime, isMain, slug }: TProps) =
 						<CardMedia image={image.src} title={image.alt} className={styles.mainImage} />
 						<CardContent className={styles.content}>
 							<Box>
-								<Chip label={'#' + tag} className={styles.chip} />
+								<Tag tag={tag} />
 								{readTime ? <span className={styles.readTime}>{readTime} min read</span> : null}
 							</Box>
 
-							<Typography gutterBottom variant="h5" component="div" className={styles.title}>
+							<Typography gutterBottom variant="h5" component="div" className={styles.mainTitle}>
 								{title}
 							</Typography>
 							<Typography variant="body2" className={styles.body}>
@@ -43,7 +44,7 @@ const BlogCard = ({ image, title, body, tag, readTime, isMain, slug }: TProps) =
 						<CardMedia image={image.src} title={image.alt} className={styles.imageContainer} />
 						<CardContent className={styles.content}>
 							<Box>
-								<Chip label={'#' + tag} className={styles.chip} />
+								<Tag tag={tag} />
 								{readTime ? <span className={styles.readTime}>{readTime} min read</span> : null}
 							</Box>
 

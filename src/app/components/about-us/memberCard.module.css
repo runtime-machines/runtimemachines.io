@@ -11,10 +11,11 @@
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	cursor: pointer;
+}
 
-	@media (max-width: 1100px) {
-		width: 170px;
-	}
+.card:hover {
+	box-shadow: 0px 4px 64px 0px #000000e5;
 }
 
 .avatar {
@@ -24,11 +25,6 @@
 	margin: 20px;
 	width: 140px;
 	height: 140px;
-
-	@media (max-width: 1100px) {
-		width: 120px;
-		height: 120px;
-	}
 }
 
 .name {
@@ -44,5 +40,10 @@
 @media only screen and (max-width: 1100px) {
 	.card {
 		width: 170px;
+	}
+
+	.avatar {
+		width: 120px;
+		height: 120px;
 	}
 }
