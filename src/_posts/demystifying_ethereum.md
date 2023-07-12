@@ -1,13 +1,13 @@
 ---
-title: 'Demystifying Ethereum: Nodes vs. Clients'
-excerpt: 'Baby Shower'
-coverImage: '/assets/blog/rtm/balloons.jpg'
-date: '2023-07-105T00:00:00.000Z'
+title: '🔍 Demystifying Ethereum: Nodes vs. Clients'
+excerpt: 'A clear understanding'
+coverImage: '/assets/blog/covers/demystifying_ethereum.png'
+date: '2023-07-10T00:00:00.000Z'
 author:
   name: Christian Rondanini
   picture: '/assets/avatars/christian_rondanini.png'
 ogImage:
-  url: '/assets/blog/rtm/balloons.jpg'
+  url: '/assets/blog/covers/demystifying_ethereum.png'
 tags: ['Technical Blog', 'Blockchain', 'Ethereum']
 ---
 

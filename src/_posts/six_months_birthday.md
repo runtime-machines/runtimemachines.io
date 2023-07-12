@@ -1,6 +1,6 @@
 ---
 title: 'Happy Six Months Birthday!'
-excerpt: 'Baby Shower'
+excerpt: 'Baby shower'
 coverImage: '/assets/blog/covers/six_months_birthday.jpg'
 date: '2023-07-11T00:00:00.000Z'
 author:

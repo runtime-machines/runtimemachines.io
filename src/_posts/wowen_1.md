@@ -8,7 +8,7 @@ author:
   picture: '/assets/avatars/emanuele_ragnoli.png'
 ogImage:
   url: '/assets/blog/covers/wowen_1.webp'
-tags: ['Blockchain', 'Blockchain Technology', 'Blockchain Development', 'Ethereum', 'Defi']
+tags: ['Press Release', 'Blockchain', 'Wowen']
 ---
 
 ## A crowded space
