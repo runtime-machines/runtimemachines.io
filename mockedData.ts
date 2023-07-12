@@ -352,10 +352,10 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/assets/avatars/albert_celmins.png',
-			alt: 'Albert Clemins',
+			src: '/assets/avatars/alberts_celmins.png',
+			alt: 'Alberts Celmins',
 		},
-		name: 'Albert Clemins',
+		name: 'Alberts Celmins',
 		role: 'Business Developer Intern',
 	},
 	{
