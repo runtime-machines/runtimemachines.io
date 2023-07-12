@@ -352,7 +352,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/assets/avatars/albert_clemins.png',
+			src: '/assets/avatars/albert_celmins.png',
 			alt: 'Albert Clemins',
 		},
 		name: 'Albert Clemins',
