@@ -344,10 +344,10 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/assets/avatars/shyam_duraswaimi.png',
-			alt: 'Shyam Duraswaimi',
+			src: '/assets/avatars/shyam_duraiswami.png',
+			alt: 'Shyam Duraiswami',
 		},
-		name: 'Shyam Duraswaimi',
+		name: 'Shyam Duraiswami',
 		role: 'Chief Stategist',
 	},
 	{
