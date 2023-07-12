@@ -77,15 +77,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -94,15 +94,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -111,15 +111,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -128,15 +128,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -145,15 +145,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -162,15 +162,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -179,15 +179,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -196,15 +196,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -213,15 +213,15 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/wowen/cover_1.webp',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
-			picture: '/assets/blog/authors/EmanueleRagnoli.png',
+			picture: '/assets/avatars/emanuele_ragnoli.png',
 		},
 
 		onImage: {
-			url: '/assets/blog/wowen/cover_1.webp',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -232,7 +232,7 @@ export const blogData = [
 export const TeamMembers = [
 	{
 		img: {
-			src: '/avatars/emanuele_ragnoli.png',
+			src: '/assets/avatars/emanuele_ragnoli.png',
 			alt: 'Emanuele Ragnoli',
 		},
 		name: 'Emanuele Ragnoli',
@@ -240,7 +240,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/roberto_ripamonti.png',
+			src: '/assets/avatars/roberto_ripamonti.png',
 			alt: 'Roberto Ripamonti',
 		},
 		name: 'Roberto Ripamonti',
@@ -248,7 +248,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/gokhan_sagirlar.png',
+			src: '/assets/avatars/gokhan_sagirlar.png',
 			alt: 'Gokhan Sagirlar',
 		},
 		name: 'Gokhan Sagirlar',
@@ -256,7 +256,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/simone_bottoni.png',
+			src: '/assets/avatars/simone_bottoni.png',
 			alt: 'Simone Bottoni',
 		},
 		name: 'Simone Bottoni',
@@ -264,7 +264,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/alberto_trombetta.png',
+			src: '/assets/avatars/alberto_trombetta.png',
 			alt: 'Alberto Trombetta',
 		},
 		name: 'Alberto Trombetta',
@@ -272,7 +272,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/acchille_lambrughi.png',
+			src: '/assets/avatars/achille_lambrughi.png',
 			alt: 'Achille Lambrughi',
 		},
 		name: 'Achille Lambrughi',
@@ -280,7 +280,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/erika_reale.png',
+			src: '/assets/avatars/erika_reale.png',
 			alt: 'Erika Reale',
 		},
 		name: 'Erika Reale',
@@ -288,7 +288,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/christian_rondanini.png',
+			src: '/assets/avatars/christian_rondanini.png',
 			alt: 'Christian Rondanini',
 		},
 		name: 'Christian Rondanini',
@@ -296,7 +296,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/gianluca_stefanoni.png',
+			src: '/assets/avatars/gianluca_stefanoni.png',
 			alt: 'Gianluca Stefanoni',
 		},
 		name: 'Gianluca Stefanoni',
@@ -304,7 +304,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/nadia_fabrizio.png',
+			src: '/assets/avatars/nadia_fabrizio.png',
 			alt: 'Nadia Fabrizio',
 		},
 		name: 'Nadia Fabrizio',
@@ -312,7 +312,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/arsenii_ronzhyn.png',
+			src: '/assets/avatars/arsenii_ronzhyn.png',
 			alt: 'Arsenii Ronzhyn',
 		},
 		name: 'Arsenii Ronzhyn',
@@ -320,7 +320,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/mirko_trapani.png',
+			src: '/assets/avatars/mirko_trapani.png',
 			alt: 'Mirko Trapani',
 		},
 		name: 'Mirko Trapani',
@@ -328,7 +328,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/elia_maggioni.png',
+			src: '/assets/avatars/elia_maggioni.png',
 			alt: 'Elia Maggioni',
 		},
 		name: 'Elia Maggioni',
@@ -336,7 +336,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/paolo_bonomi.png',
+			src: '/assets/avatars/paolo_bonomi.png',
 			alt: 'Paolo Bonomi',
 		},
 		name: 'Paolo Bonomi',
@@ -344,7 +344,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/shyam_duraswaimi.png',
+			src: '/assets/avatars/shyam_duraswaimi.png',
 			alt: 'Shyam Duraswaimi',
 		},
 		name: 'Shyam Duraswaimi',
@@ -352,7 +352,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/albert_clemins.png',
+			src: '/assets/avatars/albert_clemins.png',
 			alt: 'Albert Clemins',
 		},
 		name: 'Albert Clemins',
@@ -360,7 +360,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/benedek_orban.png',
+			src: '/assets/avatars/benedek_orban.png',
 			alt: 'Benedek Orban',
 		},
 		name: 'Benedek Orban',
@@ -368,7 +368,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/roberto_ripamonti.png',
+			src: '/assets/avatars/roberto_ripamonti.png',
 			alt: 'Davide Bellucci',
 		},
 		name: 'Davide Bellucci',
@@ -376,7 +376,7 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/avatars/geert_schute.png',
+			src: '/assets/avatars/geert_schute.png',
 			alt: 'Geert Schute',
 		},
 		name: 'Geert Schute',

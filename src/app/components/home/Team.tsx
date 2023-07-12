@@ -2,15 +2,22 @@ import { Box, Stack, Typography, useMediaQuery } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import styles from './team.module.css';
 import { CallToActionBTN } from '../buttons/CallToActionBTN';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Team = () => {
 	const matches = useMediaQuery('(max-width: 1470px)');
+	const router = useRouter();
 	return (
 		<>
 			{!matches ? (
 				<>
-					<div className={`${styles.avatarContainer} ${styles.avatarLeft}`}>AVATAR 1</div>
-					<div className={`${styles.avatarContainer} ${styles.avatarRight}`}>AVATAR 2</div>
+					<div className={`${styles.avatarContainer} ${styles.avatarLeft}`}>
+						<Image src="/avatars/shyam_duraswaimi.png" alt="avatar1" fill />
+					</div>
+					<div className={`${styles.avatarContainer} ${styles.avatarRight}`}>
+						<Image src="/avatars/nadia_fabrizio.png" alt="avatar1" fill />
+					</div>
 				</>
 			) : null}
 
@@ -28,7 +35,7 @@ const Team = () => {
 						odio mattis.
 					</Typography>
 				</Box>
-				<CallToActionBTN text="More about us" Icon={ChevronRight} />
+				<CallToActionBTN text="More about us" Icon={ChevronRight} clickHandler={() => router.push('/about-us')} />
 			</Stack>
 		</>
 	);

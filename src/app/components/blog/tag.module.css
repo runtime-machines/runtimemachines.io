@@ -1,0 +1,7 @@
+.tag {
+	background-color: var(--rtm-orange-opaque);
+	color: var(--rtm-orange);
+	font-weight: 500;
+	border-radius: 4px;
+	margin: 8px 0;
+}

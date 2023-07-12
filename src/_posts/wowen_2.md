@@ -1,18 +1,14 @@
 ---
 title: 'Introducing Wowen: The world’s first modular blockchain built on delegated consensus'
 excerpt: 'An overview'
-coverImage: '/assets/blog/wowen/cover_2.webp'
+coverImage: '/assets/blog/covers/wowen_2.webp'
 date: '2023-05-25T00:00:00.000Z'
 author:
   name: Blockchain Babe
   picture: '/assets/blog/authors/BlockchainBabe.jpeg'
 ogImage:
-  url: '/assets/blog/wowen/cover_2.webp'
+  url: '/assets/blog/covers/wowen_2.webp'
 ---
-
-# Introducing Wowen: The world’s first modular blockchain built on delegated consensus
-
-![](https://miro.medium.com/v2/resize:fit:700/0*m43LvCZa7sTQL3cF.png)
 
 **An Overview**
 
@@ -24,7 +20,7 @@ Through their novel public modular blockchain, Wowen addresses the inherent limi
 
 Developed by RunTime Machines (RTM), a software engineering company based in Switzerland, the roadmap has a timeline of Q3 2023 for Beta Testnet, with the Mainnet Launch in Q4 2023.
 
-# Robust critical infrastructure operations with dynamic consensus access
+## Robust critical infrastructure operations with dynamic consensus access
 
 The Wowen Delegated Consensus mechanism separates the Consensus layer from the Data availability layer, providing consensus modularity. Wowen delegates the Consensus layer, empowering users to transact on the blockchain with the consensus mechanism of their choice for each transaction.
 
@@ -51,7 +47,7 @@ Users can interact with the Wowen Network via Wowen node(s), using Web3- compati
 
 Transactions are executed on the Wowen nodes, where Wowen dApps can be developed using Solidity and Vyper as well as any other EVM compatible language. This approach leverages the existing infrastructure of the Ethereum ecosystem and provides a seamless experience for developers and users.
 
-# Wowen for endless possibilities
+## Wowen for endless possibilities
 
 A robust and uninterruptible infrastructure operation, consistent user experience and protection for project revenues are all made possible through Wowen’s autonomous intelligent switching of blockchains consensus.
 
@@ -68,7 +64,7 @@ Wowen has the potential to serve and impact such industries as:
 - DeFi.
 - Web3 communities.
 
-# Getting Started with Wowen
+## Getting Started with Wowen
 
 Reach out to the Wowen team in the following ways:
 

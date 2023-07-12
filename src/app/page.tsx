@@ -66,7 +66,7 @@ export default function Home() {
 						spacing={8}>
 						<WeThinkWeBuild
 							type="left"
-							img={{ src: '/lab021.png', alt: 'img' }}
+							img={{ src: '/assets/illustrations/we_think.png', alt: 'img' }}
 							key={1}
 							title="What we think"
 							subtitle="Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
@@ -75,7 +75,7 @@ export default function Home() {
 
 						<WeThinkWeBuild
 							type="right"
-							img={{ src: '/tablesketchcolour2 1.png', alt: 'img' }}
+							img={{ src: '/assets/illustrations/we_build.png', alt: 'img' }}
 							key={1}
 							title="What we build"
 							subtitle="Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
@@ -114,7 +114,11 @@ export default function Home() {
 						/>
 					</Box>
 
-					<CallToActionBTN text="Let's have a chat" Icon={ChevronRight} />
+					<CallToActionBTN
+						text="Let's have a chat"
+						Icon={ChevronRight}
+						clickHandler={() => router.push('/contact-us')}
+					/>
 				</Stack>
 			</section>
 

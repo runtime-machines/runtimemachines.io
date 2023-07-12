@@ -7,7 +7,7 @@ const CurvesSection = () => {
 		<div className={styles.block}>
 			<div className={styles.SVGsContainer}>
 				<Image
-					src="/backgroundSVGs/Vector_3.svg"
+					src="/assets/backgroundSVGs/Vector_3.svg"
 					alt="webflow"
 					width={0}
 					height={0}
@@ -15,7 +15,7 @@ const CurvesSection = () => {
 					className={`${styles.base} ${styles.waveTop}`}
 				/>
 				<Image
-					src="/backgroundSVGs/Rectangle.svg"
+					src="/assets/backgroundSVGs/Rectangle.svg"
 					alt="webflow"
 					width={0}
 					height={0}
@@ -24,7 +24,7 @@ const CurvesSection = () => {
 				/>
 
 				<Image
-					src="/backgroundSVGs/Vector_4.svg"
+					src="/assets/backgroundSVGs/Vector_4.svg"
 					alt="webflow"
 					width={0}
 					height={0}
