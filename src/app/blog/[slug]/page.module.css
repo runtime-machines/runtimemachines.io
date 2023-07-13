@@ -3,7 +3,7 @@
 }
 
 .container {
-	padding: 0 6rem;
+	padding: 0 12rem;
 }
 
 .content {
@@ -12,8 +12,13 @@
 
 .content p {
 	width: 100%;
-	margin: 15px 0;
-	margin-bottom: 25px;
+	margin-top: 15px;
+}
+
+.content h2 {
+	width: 100%;
+	margin-bottom: 15px;
+	margin-top: 30px;
 }
 
 .content p img {
@@ -22,9 +27,17 @@
 }
 
 .content p img {
-	width: max-content;
+	width: inherit;
 	max-width: 100%;
 	margin: 30px auto;
+}
+
+.content p img[src*='#width-50'] {
+	width: 50%;
+}
+
+.content p img[src*='#max-width-fit'] {
+	max-width: fit-content;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -37,5 +50,9 @@
 	}
 	.content {
 		padding: var(--mobile-section-padding);
+	}
+
+	.content p img[src*='#width-50'] {
+		width: inherit;
 	}
 }

@@ -27,11 +27,11 @@ Are you searching for a programming language that combines performance, safety, 
 
 Last but not least, as demonstrated in [Energy efficiency across programming languages: how do energy, time, and memory relate?](https://dl.acm.org/doi/10.1145/3136014.3136031) RustLang is in the top three languages for energy efficiency!
 
-![Normalized energy consumption.](/assets/blog/visuals/rustlang_1_energy.png)
+![Normalized energy consumption.](/assets/blog/visuals/rustlang_1_energy.png#max-width-fit)
 
 These are the main reasons for the huge excitement around Rust, demonstrated also by the survey conducted by Stack Overflow, where Rust position itself among the more desired and (actually the most) admired programming languages.
 
-[](https://survey.stackoverflow.co/2023/#section-admired-and-desired-programming-scripting-and-markup-languages)
+[](https://survey.stackoverflow.co/2023/#section-admired-and-desired-programming-scripting-and-markup-languages#max-width-fit)
 
 ![Stack Overflow survey.](/assets/blog/visuals/rustlang_1_survey.png)
 
