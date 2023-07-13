@@ -255,7 +255,7 @@ export const TeamMembers = [
 			alt: 'Gokhan Sagirlar',
 		},
 		name: 'Gokhan Sagirlar',
-		role: 'Technical Leadear',
+		role: 'Technical Leader',
 	},
 	{
 		img: {
@@ -357,19 +357,19 @@ export const TeamMembers = [
 	},
 	{
 		img: {
-			src: '/assets/avatars/shyam_duraswaimi.png',
-			alt: 'Shyam Duraswaimi',
+			src: '/assets/avatars/shyam_duraiswami.png',
+			alt: 'Shyam Duraiswami',
 		},
-		name: 'Shyam Duraswaimi',
+		name: 'Shyam Duraiswami',
 		role: 'Chief Stategist',
 		LinkedIn: 'https://www.linkedin.com/in/shyam-durai/',
 	},
 	{
 		img: {
-			src: '/assets/avatars/albert_clemins.png',
-			alt: 'Albert Clemins',
+			src: '/assets/avatars/alberts_celmins.png',
+			alt: 'Alberts Celmins',
 		},
-		name: 'Albert Clemins',
+		name: 'Alberts Celmins',
 		role: 'Business Developer Intern',
 		LinkedIn: 'https://www.linkedin.com/in/alberts-celmins/',
 	},
