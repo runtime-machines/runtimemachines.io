@@ -6,7 +6,7 @@ type TProps = {
 };
 
 const Tag = ({ tag }: TProps) => {
-	return <Chip label={'#' + tag} className={styles.tag} />;
+	return <Chip label={'#' + tag.toUpperCase()} className={styles.tag} />;
 };
 
 export default Tag;
