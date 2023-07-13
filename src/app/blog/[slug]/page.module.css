@@ -15,6 +15,10 @@
 	margin-top: 15px;
 }
 
+.content a {
+	color: var(--rtm-orange);
+}
+
 .content h2 {
 	width: 100%;
 	margin-bottom: 15px;
