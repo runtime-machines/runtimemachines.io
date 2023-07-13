@@ -22,7 +22,7 @@ const ArticleHeader = ({ title, coverImage, tags, readTime }: TProps) => {
 	const currentUrl = getURL(pathName);
 
 	const linkedin = linkedinLink(currentUrl, title);
-	const twitter = twitterLink(currentUrl, { title });
+	const twitter = twitterLink(currentUrl, { title, via: 'RunTimeMachines', hashtags: tags });
 
 	return (
 		<Stack display="flex" direction="column" spacing={3} className={styles.container}>
