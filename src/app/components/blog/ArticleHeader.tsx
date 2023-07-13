@@ -7,6 +7,8 @@ import { Box, IconButton, Stack } from '@mui/material';
 import { LinkedIn, Twitter, GitHub } from '@mui/icons-material';
 import Tag from './Tag';
 import getURL from '@/utils/getUrl';
+import linkedinLink from '@/utils/linkedinLink';
+import twitterLink from '@/utils/twitterLink';
 
 type TProps = {
 	title: string;
@@ -18,6 +20,9 @@ type TProps = {
 const ArticleHeader = ({ title, coverImage, tags, readTime }: TProps) => {
 	const pathName = usePathname();
 	const currentUrl = getURL(pathName);
+
+	const linkedin = linkedinLink(currentUrl, title);
+	const twitter = twitterLink(currentUrl, { title });
 
 	return (
 		<Stack display="flex" direction="column" spacing={3} className={styles.container}>
@@ -39,14 +44,10 @@ const ArticleHeader = ({ title, coverImage, tags, readTime }: TProps) => {
 						<span className={styles.readTime}>{'5 min read'}</span>
 					</Box>
 					<Box display="flex">
-						<IconButton href={`https://twitter.com/intent/tweet?text=${currentUrl}`}>
+						<IconButton href={twitter} target="_blank">
 							<Twitter style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://github.com/runtime-machines">
-							<GitHub style={{ color: '#fff' }} />
-						</IconButton>
-
-						<IconButton href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}>
+						<IconButton href={linkedin} target="_blank">
 							<LinkedIn style={{ color: '#fff' }} />
 						</IconButton>
 					</Box>
