@@ -46,7 +46,7 @@ const ArticleHeader = ({ title, coverImage, tags, readTime }: TProps) => {
 					</Box>
 				</Box>
 				<Box className={styles.coverImage}>
-					<Image src={coverImage} alt={title} fill />
+					<Image src={coverImage} alt={title} fill className={styles.coverImage}/>
 				</Box>
 			</Box>
 		</Stack>
