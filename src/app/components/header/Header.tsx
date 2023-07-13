@@ -39,7 +39,10 @@ const Header = () => {
 					},
 					'& .MuiDrawer-paperAnchorTop': {
 						marginTop: '4rem',
-						borderWidth: '2px, 0px, 2px, 0px',
+						borderTop: '2px',
+						borderBottom: '2px',
+						borderRight: '0px',
+						borderLeft: '0px',
 						borderStyle: 'solid',
 						borderColor: ' #000000',
 					},

@@ -32,9 +32,9 @@ const Footer = () => {
 						</Typography>
 					</Box>
 					<Box display="flex">
-						{/* <IconButton href="https://twitter.com/">
+						<IconButton href="https://twitter.com/RunTimeMachines">
 							<Twitter style={{ color: '#fff' }} />
-						</IconButton> */}
+						</IconButton>
 						<IconButton href="https://github.com/runtime-machines">
 							<GitHub style={{ color: '#fff' }} />
 						</IconButton>
