@@ -9,6 +9,7 @@ author:
 ogImage:
   url: '/assets/blog/covers/six_months_birthday.jpg'
 tags: ['Press Release', 'Celebrate']
+readTime: '2 min read'
 ---
 
 Once upon a time, on the 1st December 2022 RunTime Machines was born.

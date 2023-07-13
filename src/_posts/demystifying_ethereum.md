@@ -9,6 +9,7 @@ author:
 ogImage:
   url: '/assets/blog/covers/demystifying_ethereum.png'
 tags: ['Technical Blog', 'Blockchain', 'Ethereum']
+readTime: '5 min read'
 ---
 
 Ever found yourself scratching your head over the difference between nodes and clients in Ethereum?

@@ -9,6 +9,7 @@ author:
 ogImage:
   url: '/assets/blog/covers/rustlang_1.png'
 tags: ['Technical Blog', 'Coding', 'RustLang']
+readTime: '3 min read'
 ---
 
 Are you searching for a programming language that combines performance, safety, and concurrency? Look no further! 🚀 Today, I want to share my excitement about Rust, a language that has been steadily gaining popularity among developers and is revolutionizing the way we build reliable and efficient software. 🌐

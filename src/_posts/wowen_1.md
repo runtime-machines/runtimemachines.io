@@ -9,6 +9,7 @@ author:
 ogImage:
   url: '/assets/blog/covers/wowen_1.jpg'
 tags: ['Press Release', 'Blockchain', 'Wowen']
+readTime: '4 min read'
 ---
 
 ## A crowded space

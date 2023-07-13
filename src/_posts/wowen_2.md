@@ -9,6 +9,7 @@ author:
 ogImage:
   url: '/assets/blog/covers/wowen_2.webp'
 tags: ['Press Release', 'Blockchain', 'Wowen']
+readTime: '3 min read'
 ---
 
 **An Overview**
