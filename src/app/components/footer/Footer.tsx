@@ -25,14 +25,16 @@ const Footer = () => {
 					<Box marginY={6}>
 						<Typography variant="body1">
 							Contact:
-							<br /> 1800 123 4567
-							<br /> <span className={styles.email}>info@runtimemachines.io</span>
+							<br />{' '}
+							<a href="mailto:info@runtimemachines.io" className={styles.email}>
+								info@runtimemachines.io
+							</a>
 						</Typography>
 					</Box>
 					<Box display="flex">
-						<IconButton href="https://twitter.com/">
+						{/* <IconButton href="https://twitter.com/">
 							<Twitter style={{ color: '#fff' }} />
-						</IconButton>
+						</IconButton> */}
 						<IconButton href="https://github.com/runtime-machines">
 							<GitHub style={{ color: '#fff' }} />
 						</IconButton>
@@ -68,12 +70,15 @@ const Footer = () => {
 						© 2023 Runtime Machines. All rights reserved.
 					</Typography>
 					<Stack display="flex" direction="row" className={styles.bottomLinks}>
-						<Link href="/" className={`${styles.link} ${styles.underline} ${styles.left}`}>
+						<Link
+							href="/assets/docs/privacy_policy.pdf"
+							target="_blank"
+							className={`${styles.link} ${styles.underline} ${styles.left}`}>
 							Privacy policy
 						</Link>
-						<Link href="/" className={`${styles.link} ${styles.underline} ${styles.right}`}>
+						{/* <Link href="/" className={`${styles.link} ${styles.underline} ${styles.right}`}>
 							Terms of service
-						</Link>
+						</Link> */}
 					</Stack>
 				</Box>
 			</Box>
