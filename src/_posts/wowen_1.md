@@ -1,13 +1,13 @@
 ---
 title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization'
 excerpt: 'A crowded space'
-coverImage: '/assets/blog/covers/wowen_1.webp'
+coverImage: '/assets/blog/covers/wowen_1.jpg'
 date: '2023-05-22T00:00:00.000Z'
 author:
   name: Emanuele Ragnoli
   picture: '/assets/avatars/emanuele_ragnoli.png'
 ogImage:
-  url: '/assets/blog/covers/wowen_1.webp'
+  url: '/assets/blog/covers/wowen_1.jpg'
 tags: ['Press Release', 'Blockchain', 'Wowen']
 ---
 
@@ -33,7 +33,7 @@ It takes time to create. It takes humility, hard work, and intelligence to creat
 
 For about ten years few of us have had the “obsession” of consensus protocols. In our different or common pasts, we tinkered with POW, implemented SCRYPT with GPUs, played with game theory strategies for POS attacks, built p2p consensus-based marketplaces, sheltered in secure old reliables like PBFT and RAFT, coded consensus algorithms as a plug-ins, invented and implemented HybridIOT, engineered the first monolithic Consensus as a Service.
 
-![](https://miro.medium.com/v2/resize:fit:700/0*MkRV0DMFb58kxdE2.png)
+![Wowen team.](/assets/blog/visuals/wowen_1_team.jpg)
 
 Six months ago, we set up to achieve a new goal:
 
@@ -43,7 +43,7 @@ Six months later Wowen is born. Wowen Network is a novel public modular blockcha
 
 Wowen separates the Consensus layer from the Data availability layer, and provides consensus modularity. The latter is achieved with the concept of distributed consensus functions, the Wowen Consensus Wrappers (WCWs). WCWs create an intelligent and dynamic system of ensemble algorithms that delegates the consensus to public blockchains. By “_standing on the sholder [sic] of giants_” Wowen interacts with the public ecosystems to achieve transactions verifiability. Developers or end users can select the specific chain from which they want to obtain consensus for their transactions. This flexibility enables them to choose different chains according to the requirements of each smart contract use case. In basic terms: Wowen enables the inclusion of transactions with different consensus mechanisms in the same block, which unlocks unseen customization and efficiency.
 
-![](https://miro.medium.com/v2/resize:fit:700/0*BtU5mSPpLZbD7aSS.png)
+![Wowen overview.](/assets/blog/covers/wowen_1.jpg)
 
 Modularity is achieved mostly in two ways in this iteration of Wowen. Firstly, WCWs and their intelligent orchestration are small independent lightweight interchangeable algorithms cooperating and competing in a soon to come Wowen Consensus Marketplace. Secondly, the public blockchains become consensus systems that interact with the Wowen network.
 

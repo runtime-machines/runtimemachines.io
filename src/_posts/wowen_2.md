@@ -29,7 +29,7 @@ In an innovative move, Wowen overcomes the limitations of the monolithic blockch
 
 One of the unique features is the flexible consensus choice on a ‘per transaction’ basis. Both developers and end users have the ability to select the specific chain from which they want to obtain consensus for their transactions.
 
-![](https://miro.medium.com/v2/resize:fit:700/0*Es0-8FVpImONNuau.png)
+![Wowen stack.](/assets/blog/visuals/wowen_2_stack.jpg)
 
 This flexibility enables users to choose one of multiple chains (Ethereum, Binance, Avalanche, Polygon and Hedera Hashgraph) according to the requirements of each smart contract use case.
 
