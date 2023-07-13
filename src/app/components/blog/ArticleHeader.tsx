@@ -36,11 +36,11 @@ const ArticleHeader = ({ title, coverImage, tags, readTime }: TProps) => {
 						<IconButton href="https://twitter.com/">
 							<Twitter style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://github.com/">
+						<IconButton href="https://github.com/runtime-machines">
 							<GitHub style={{ color: '#fff' }} />
 						</IconButton>
 
-						<IconButton href="https://www.linkedin.com/">
+						<IconButton href="https://www.linkedin.com/company/runtime-machines">
 							<LinkedIn style={{ color: '#fff' }} />
 						</IconButton>
 					</Box>
