@@ -13,10 +13,10 @@ const Team = () => {
 			{!matches ? (
 				<>
 					<div className={`${styles.avatarContainer} ${styles.avatarLeft}`}>
-						<Image src="/avatars/shyam_duraswaimi.png" alt="avatar1" fill />
+						<Image src="/assets/avatars/shyam_duraswaimi.png" alt="avatar1" fill />
 					</div>
 					<div className={`${styles.avatarContainer} ${styles.avatarRight}`}>
-						<Image src="/avatars/nadia_fabrizio.png" alt="avatar1" fill />
+						<Image src="/assets/avatars/nadia_fabrizio.png" alt="avatar1" fill />
 					</div>
 				</>
 			) : null}

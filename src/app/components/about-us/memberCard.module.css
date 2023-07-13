@@ -12,6 +12,7 @@
 	align-items: center;
 	text-align: center;
 	cursor: pointer;
+	height: 320px;
 }
 
 .card:hover {

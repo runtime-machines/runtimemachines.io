@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './header.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { useMediaQuery, IconButton, Stack, SwipeableDrawer } from '@mui/material';
 import { useState } from 'react';
 
@@ -33,8 +34,14 @@ const Header = () => {
 				onClose={toggleDrawer(false)}
 				onOpen={toggleDrawer(true)}
 				sx={{
-					'&.MuiPaper-root-MuiDrawer-paper': {
-						border: '2px solid red',
+					'& .MuiModal-backdrop': {
+						backgroundColor: 'rgba(0, 0, 0, 0)',
+					},
+					'& .MuiDrawer-paperAnchorTop': {
+						marginTop: '4rem',
+						borderWidth: '2px, 0px, 2px, 0px',
+						borderStyle: 'solid',
+						borderColor: ' #000000',
 					},
 				}}>
 				<Stack direction="column" spacing={3} className={styles.mobileMenu}>
@@ -57,18 +64,33 @@ const Header = () => {
 			</Link>
 
 			{matches ? (
-				<IconButton
-					color="inherit"
-					aria-label="open drawer"
-					onClick={() => setIsOpen(true)}
-					edge="start"
-					/* sx={{
-						marginRight: 5,
-						...(isOpen && { display: 'none' }),
-					}} */
-				>
-					<MenuIcon />
-				</IconButton>
+				isOpen ? (
+					<IconButton
+						color="inherit"
+						aria-label="close drawer"
+						onClick={() => setIsOpen(false)}
+						edge="start"
+						/* sx={{
+							marginRight: 5,
+							...(isOpen && { display: 'none' }),
+						}} */
+					>
+						<CloseIcon />
+					</IconButton>
+				) : (
+					<IconButton
+						color="inherit"
+						aria-label="open drawer"
+						onClick={() => setIsOpen(true)}
+						edge="start"
+						/* sx={{
+							marginRight: 5,
+							...(isOpen && { display: 'none' }),
+						}} */
+					>
+						<MenuIcon />
+					</IconButton>
+				)
 			) : (
 				<Stack direction="row" spacing={6} alignItems="center">
 					<Link href="/" className={styles.link}>

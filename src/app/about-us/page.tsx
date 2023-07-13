@@ -18,7 +18,7 @@ const page = () => {
 
 			<Box className={styles.cardsContainer}>
 				{TeamMembers.map((member, index) => (
-					<MemberCard key={index} image={member.img} name={member.name} role={member.role} />
+					<MemberCard key={index} image={member.img} name={member.name} role={member.role} linkedIn={member.LinkedIn} />
 				))}
 			</Box>
 		</main>

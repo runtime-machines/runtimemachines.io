@@ -1,3 +1,4 @@
+import { LinkedIn } from '@mui/icons-material';
 export const testimonialData = [
 	{
 		review:
@@ -237,6 +238,7 @@ export const TeamMembers = [
 		},
 		name: 'Emanuele Ragnoli',
 		role: 'co-CEO, CTO',
+		LinkedIn: 'https://www.linkedin.com/in/emanuele-ragnoli-a33b57/',
 	},
 	{
 		img: {
@@ -245,6 +247,7 @@ export const TeamMembers = [
 		},
 		name: 'Roberto Ripamonti',
 		role: 'Lead Software Engineer',
+		LinkedIn: 'https://www.linkedin.com/in/roberto-ripamonti/',
 	},
 	{
 		img: {
@@ -261,6 +264,7 @@ export const TeamMembers = [
 		},
 		name: 'Simone Bottoni',
 		role: 'Technical Leadear',
+		LinkedIn: 'https://www.linkedin.com/in/simone-bottoni/',
 	},
 	{
 		img: {
@@ -269,6 +273,7 @@ export const TeamMembers = [
 		},
 		name: 'Alberto Trombetta',
 		role: 'Scientific Advisor',
+		LinkedIn: 'https://www.linkedin.com/in/albertotrombetta/',
 	},
 	{
 		img: {
@@ -277,6 +282,7 @@ export const TeamMembers = [
 		},
 		name: 'Achille Lambrughi',
 		role: 'Blockchain Engineer',
+		LinkedIn: 'https://www.linkedin.com/in/achillelamb/',
 	},
 	{
 		img: {
@@ -285,6 +291,7 @@ export const TeamMembers = [
 		},
 		name: 'Erika Reale',
 		role: 'Applied Cryptographer',
+		LinkedIn: 'https://www.linkedin.com/in/erikareale/',
 	},
 	{
 		img: {
@@ -293,6 +300,7 @@ export const TeamMembers = [
 		},
 		name: 'Christian Rondanini',
 		role: 'Technical Leadear',
+		LinkedIn: 'https://www.linkedin.com/in/christianrondanini/',
 	},
 	{
 		img: {
@@ -301,6 +309,7 @@ export const TeamMembers = [
 		},
 		name: 'Gianluca Stefanoni',
 		role: 'Frontend Developer',
+		LinkedIn: 'https://www.linkedin.com/in/gianluca-stefanoni-7818a9168/',
 	},
 	{
 		img: {
@@ -309,6 +318,7 @@ export const TeamMembers = [
 		},
 		name: 'Nadia Fabrizio',
 		role: 'co-CEO, COO',
+		LinkedIn: 'https://www.linkedin.com/in/nadiafabrizio/',
 	},
 	{
 		img: {
@@ -317,6 +327,7 @@ export const TeamMembers = [
 		},
 		name: 'Arsenii Ronzhyn',
 		role: 'Blockchain Engineer',
+		LinkedIn: 'https://www.linkedin.com/in/arsenii-ronzhyn/',
 	},
 	{
 		img: {
@@ -333,6 +344,7 @@ export const TeamMembers = [
 		},
 		name: 'Elia Maggioni',
 		role: 'DevOps Engineer',
+		LinkedIn: 'https://www.linkedin.com/in/elia-maggioni-0093a51b6/',
 	},
 	{
 		img: {
@@ -341,6 +353,7 @@ export const TeamMembers = [
 		},
 		name: 'Paolo Bonomi',
 		role: 'Software Engineer',
+		LinkedIn: 'https://www.linkedin.com/in/pbonomi/',
 	},
 	{
 		img: {
@@ -349,6 +362,7 @@ export const TeamMembers = [
 		},
 		name: 'Shyam Duraswaimi',
 		role: 'Chief Stategist',
+		LinkedIn: 'https://www.linkedin.com/in/shyam-durai/',
 	},
 	{
 		img: {
@@ -357,6 +371,7 @@ export const TeamMembers = [
 		},
 		name: 'Albert Clemins',
 		role: 'Business Developer Intern',
+		LinkedIn: 'https://www.linkedin.com/in/alberts-celmins/',
 	},
 	{
 		img: {
@@ -365,14 +380,16 @@ export const TeamMembers = [
 		},
 		name: 'Benedek Orban',
 		role: 'Head of Business Dev & Partnerships',
+		LinkedIn: 'https://www.linkedin.com/in/benedekorban/',
 	},
 	{
 		img: {
-			src: '/assets/avatars/roberto_ripamonti.png',
+			src: '/assets/avatars/davide_bellucci.png',
 			alt: 'Davide Bellucci',
 		},
 		name: 'Davide Bellucci',
 		role: 'Frontend Developer',
+		LinkedIn: 'https://www.linkedin.com/in/davide-bellucci-72b884264/',
 	},
 	{
 		img: {
@@ -381,5 +398,6 @@ export const TeamMembers = [
 		},
 		name: 'Geert Schute',
 		role: 'Business Advisor',
+		LinkedIn: 'https://www.linkedin.com/in/geert-schute-/',
 	},
 ];
