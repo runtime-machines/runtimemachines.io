@@ -8,7 +8,7 @@ author:
   picture: '/assets/avatars/emanuele_ragnoli.png'
 ogImage:
   url: '/assets/blog/covers/wowen_1.jpg'
-tags: ['Press Release', 'Blockchain', 'Wowen']
+tags: ['PressRelease', 'Blockchain', 'Wowen']
 readTime: '4 min read'
 ---
 

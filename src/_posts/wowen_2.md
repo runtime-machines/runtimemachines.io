@@ -8,7 +8,7 @@ author:
   picture: '/assets/blog/authors/BlockchainBabe.jpeg'
 ogImage:
   url: '/assets/blog/covers/wowen_2.webp'
-tags: ['Press Release', 'Blockchain', 'Wowen']
+tags: ['PressRelease', 'Blockchain', 'Wowen']
 readTime: '3 min read'
 ---
 

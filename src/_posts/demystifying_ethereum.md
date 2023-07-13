@@ -8,7 +8,7 @@ author:
   picture: '/assets/avatars/christian_rondanini.png'
 ogImage:
   url: '/assets/blog/covers/demystifying_ethereum.png'
-tags: ['Technical Blog', 'Blockchain', 'Ethereum']
+tags: ['TechnicalBlog', 'Blockchain', 'Ethereum']
 readTime: '5 min read'
 ---
 

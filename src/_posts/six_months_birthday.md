@@ -8,7 +8,7 @@ author:
   picture: '/assets/avatars/emanuele_ragnoli.png'
 ogImage:
   url: '/assets/blog/covers/six_months_birthday.jpg'
-tags: ['Press Release', 'Celebrate']
+tags: ['PressRelease', 'Celebrate', 'Team']
 readTime: '2 min read'
 ---
 

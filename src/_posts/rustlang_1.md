@@ -8,7 +8,7 @@ author:
   picture: '/assets/avatars/roberto_ripamonti.png'
 ogImage:
   url: '/assets/blog/covers/rustlang_1.png'
-tags: ['Technical Blog', 'Coding', 'RustLang']
+tags: ['TechnicalBlog', 'Coding', 'RustLang']
 readTime: '3 min read'
 ---
 
