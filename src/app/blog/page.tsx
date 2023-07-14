@@ -1,14 +1,15 @@
-'use client';
-
-import { Box, Stack } from '@mui/material';
+import { Box, Stack } from '../components/mui/Components';
 import CurvesSection from '../components/backgrounds/CurvesSection';
 import styles from './page.module.css';
-import BlogCard from '../components/BlogCard';
-import { blogData } from '../../../mockedData';
+import BlogCard from '../components/blog/BlogCard';
 
 import { CallToActionBTN } from '../components/buttons/CallToActionBTN';
+import getPostMetadata from '@/lib/getPostMetadata';
+import { BTNTest } from '../components/buttons/BTNTest';
+import Posts from '../components/blog/Posts';
 
 const page = () => {
+	const posts = getPostMetadata();
 	return (
 		<main className={styles.main}>
 			<CurvesSection />
@@ -16,31 +17,17 @@ const page = () => {
 				<h1 className={styles.pageTitle}>News from our blog</h1>
 				<Box className={styles.blogCardsContainer} width="100%">
 					<BlogCard
-						slug={blogData[0].slug}
+						slug={posts[0].slug}
 						readTime="5"
-						body={blogData[0].excerpt}
-						tag={blogData[0].tags[0]}
-						title={blogData[0].title}
+						body={posts[0].excerpt}
+						tag={posts[0].tags[0]}
+						title={posts[0].title}
 						key={1}
-						image={{ src: blogData[0].coverImage, alt: blogData[0].title }}
+						image={{ src: posts[0].coverImage, alt: posts[0].title }}
 						isMain
 					/>
 				</Box>
-				<Box display="flex" gap="20px" flexWrap="wrap" justifyContent="center">
-					{blogData.map((article, index) => (
-						<BlogCard
-							image={{ src: article.coverImage, alt: article.title }}
-							title={article.title}
-							body={article.excerpt}
-							tag={article.tags[0]}
-							key={index}
-							slug={article.slug}
-							readTime="4"
-						/>
-					))}
-				</Box>
-
-				<CallToActionBTN text="Load more" />
+				<Posts posts={posts} />
 			</Stack>
 		</main>
 	);

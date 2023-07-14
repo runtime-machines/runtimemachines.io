@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import styles from './articleHeader.module.css';
 import { Box, IconButton, Stack } from '@mui/material';
-import { LinkedIn, Twitter, GitHub } from '@mui/icons-material';
+import { LinkedIn, Twitter } from '@mui/icons-material';
 import Tag from './Tag';
 import getURL from '@/utils/getUrl';
 import linkedinLink from '@/utils/linkedinLink';
@@ -41,7 +41,7 @@ const ArticleHeader = ({ title, coverImage, tags, readTime }: TProps) => {
 							<Tag tag={tags[1]} />
 							<Tag tag={tags[2]} />
 						</Stack>
-						<span className={styles.readTime}>{'5 min read'}</span>
+						<span className={styles.readTime}>{readTime}</span>
 					</Box>
 					<Box display="flex">
 						<IconButton href={twitter} target="_blank">

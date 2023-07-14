@@ -18,8 +18,8 @@ const Footer = () => {
 					</Link>
 					<Box marginTop={6}>
 						<Typography variant="body1">
-							Address:
-							<br /> Zahlerweg 5, 63000 Zug, Switzerland
+							Offices:
+							<br /> Baarerstrasse 52, 6300 Zug, Switzerland <br /> Crocicchio Cortogna 6, 6900 Lugano, Switzerland
 						</Typography>
 					</Box>
 					<Box marginY={6}>

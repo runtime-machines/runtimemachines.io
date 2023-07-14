@@ -1,4 +1,6 @@
-import { Box, Stack, Typography, useMediaQuery } from '@mui/material';
+'use client';
+
+import { Box, Stack, Typography, useMediaQuery } from '../mui/Components';
 import { ChevronRight } from '@mui/icons-material';
 import styles from './team.module.css';
 import { CallToActionBTN } from '../buttons/CallToActionBTN';
@@ -8,6 +10,10 @@ import Image from 'next/image';
 const Team = () => {
 	const matches = useMediaQuery('(max-width: 1470px)');
 	const router = useRouter();
+
+	const clickHandler = () => {
+		router.push('/about-us');
+	};
 	return (
 		<>
 			{!matches ? (
@@ -35,7 +41,7 @@ const Team = () => {
 						odio mattis.
 					</Typography>
 				</Box>
-				<CallToActionBTN text="More about us" Icon={ChevronRight} clickHandler={() => router.push('/about-us')} />
+				<CallToActionBTN text="More about us" Icon={ChevronRight} path="/about-us" />
 			</Stack>
 		</>
 	);

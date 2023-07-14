@@ -1,0 +1,34 @@
+.heroSection {
+	padding: 4rem 0.8rem;
+	max-width: 800px;
+	min-height: 826px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.heroTitle {
+	font-size: 6rem;
+	font-weight: 900;
+	line-height: 115px;
+}
+
+.heroSubtitle {
+	padding: 10px 0;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+@media only screen and (max-width: 1100px) {
+	.heroSection {
+		padding: var(--mobile-section-padding);
+		min-height: 626px;
+	}
+
+	.heroTitle {
+		font-size: var(--mobile-title);
+		line-height: 57px;
+	}
+}

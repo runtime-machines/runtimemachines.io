@@ -7,6 +7,7 @@ export interface PostMetadata {
 	excerpt: string;
 	coverImage: string;
 	date: string;
+	tags: string[];
 	author: {
 		name: string;
 		picture: string;

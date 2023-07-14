@@ -8,127 +8,14 @@
 	text-align: center;
 }
 
-.heroSection {
-	padding: 4rem 0.8rem;
-	max-width: 800px;
-	min-height: 826px;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.heroTitle {
-	font-size: 6rem;
-	font-weight: 900;
-	line-height: 115px;
-}
-
-.heroSubtitle {
-	padding: 10px 0;
-	font-size: 1.5rem;
-	font-weight: 400;
-}
-
 .partners {
 	padding: 7rem 0.8rem;
 }
 
-.partnersLogos {
-	padding: 1rem 0;
-
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	align-items: center;
-}
-
-.logo {
-	position: relative;
-	width: 148px;
-	height: 48px;
-}
-
-.partnerSubtitle {
-	font-weight: 600;
-	margin-bottom: 2rem;
-}
-
 .weThinkWeBuild {
 	padding: 4rem 0;
-	/* border: 2px solid red; */
 	position: relative;
 	width: 100%;
-
-	/* background-color: #292929; */
-}
-
-.card {
-	padding: var(--section-padding);
-}
-
-.cardImg {
-	position: relative;
-}
-
-.imgContainer {
-	position: relative;
-	width: 100%;
-	height: 596px;
-	min-width: 310px;
-	max-width: 463px;
-}
-
-.img {
-	width: 100%;
-	height: auto;
-	min-width: 310px;
-	max-width: 463px;
-}
-
-.cardText {
-	text-align: left;
-}
-
-.cardTitle {
-	font-weight: 900;
-	font-size: 4rem;
-	line-height: 77px;
-}
-
-.cardSubtitle {
-	font-size: 1.4rem;
-	padding: 10px 0;
-}
-
-.vectorBGtop {
-	position: absolute;
-	width: 100%;
-	height: 50px;
-	top: -50px;
-	left: 0;
-	object-fit: cover;
-	overflow: visible;
-	z-index: -1;
-}
-
-.vectorBGbottom {
-	position: absolute;
-	width: 100%;
-	height: 50px;
-	bottom: 50px;
-	left: 0;
-	object-fit: cover;
-	overflow: visible;
-	z-index: -1;
-}
-
-.rectangleBG {
-	z-index: 9;
-	border: 2px solid greenyellow;
 }
 
 .us {
@@ -146,11 +33,6 @@
 	width: 100%;
 }
 
-.carouselContainer {
-	width: 100%;
-	padding: var(--section-padding);
-}
-
 .blog {
 	padding: 6rem 0;
 	width: 100%;
@@ -160,31 +42,9 @@
 /* MEDIA QUERY */
 
 @media only screen and (max-width: 1100px) {
-	.partnersLogos {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.heroSection {
-		padding: var(--mobile-section-padding);
-		min-height: 626px;
-	}
-
-	.heroTitle {
-		font-size: var(--mobile-title);
-		line-height: 57px;
-	}
-
 	.partners {
 		padding: var(--mobile-section-padding);
 		margin-top: 3rem;
-	}
-
-	.logo {
-		width: fit-content;
-		flex-basis: calc(100% / 2 - 10px);
 	}
 
 	.us {
@@ -194,9 +54,5 @@
 
 	.testimonials {
 		padding: 4rem 0;
-	}
-
-	.carouselContainer {
-		padding: 20px;
 	}
 }

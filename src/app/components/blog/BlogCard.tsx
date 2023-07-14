@@ -1,7 +1,9 @@
+'use client';
+
 import { Box, Card, CardMedia, CardContent, Chip, Typography } from '@mui/material';
 import styles from './blogCard.module.css';
 import Link from 'next/link';
-import Tag from './blog/Tag';
+import Tag from './Tag';
 
 type TProps = {
 	slug: string;

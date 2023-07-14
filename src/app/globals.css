@@ -63,16 +63,16 @@ a {
 	padding: 10px 5px;
 }
 
-.ellipse1 {
+.ellipse1-continaer {
 	position: absolute;
-	top: -10%;
-	right: -8%;
-	width: 80%;
-	height: 80%;
+	top: -20%;
+	right: 0;
+	width: 65%;
+	height: 100%;
 	z-index: -1;
 }
 
-.ellipse2 {
+.ellipse2-continaer {
 	position: absolute;
 	top: 40%;
 	left: -20%;

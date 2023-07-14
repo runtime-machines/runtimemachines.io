@@ -1,4 +1,6 @@
-import { Box, Stack, Typography, useMediaQuery } from '@mui/material';
+'use client';
+
+import { Box, Stack, Typography, useMediaQuery } from '../mui/Components';
 import Image from 'next/image';
 import styles from './weThinkWeBuild.module.css';
 import { CallToActionBTN } from '../buttons/CallToActionBTN';
@@ -80,4 +82,30 @@ const WeThinkWeBuild = ({ type, title, subtitle, img }: TProps) => {
 	);
 };
 
-export default WeThinkWeBuild;
+const WeThinkWeBuildSection = () => {
+	return (
+		<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
+			<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
+				<WeThinkWeBuild
+					type="left"
+					img={{ src: '/assets/illustrations/we_think.png', alt: 'img' }}
+					key={1}
+					title="What we think"
+					subtitle="Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
+									aliquet odio mattis."
+				/>
+
+				<WeThinkWeBuild
+					type="right"
+					img={{ src: '/assets/illustrations/we_build.png', alt: 'img' }}
+					key={2}
+					title="What we build"
+					subtitle="Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
+									aliquet odio mattis."
+				/>
+			</Stack>
+		</Stack>
+	);
+};
+
+export default WeThinkWeBuildSection;

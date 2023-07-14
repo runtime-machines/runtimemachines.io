@@ -1,0 +1,40 @@
+.cookieBanner {
+	padding: 8px;
+	display: flex;
+	opacity: 0.9;
+	min-height: 80px;
+	position: fixed;
+	top: 78vh;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: fit-content;
+	max-width: 967px;
+	border-radius: 8px;
+	background-color: #e5e7eb;
+	color: black;
+	z-index: 9;
+}
+
+.link {
+	text-decoration: underline;
+}
+
+.title {
+	font-size: 14px;
+}
+
+.text {
+	font-size: 12px;
+}
+
+.button {
+	font-size: 12px;
+	border-color: black;
+	color: black;
+	font-weight: 900;
+	text-transform: none;
+	width: fit-content;
+	max-height: 42px;
+}

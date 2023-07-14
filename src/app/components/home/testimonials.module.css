@@ -1,0 +1,10 @@
+.carouselContainer {
+	width: 100%;
+	padding: var(--section-padding);
+}
+
+@media only screen and (max-width: 1100px) {
+	.carouselContainer {
+		padding: 20px;
+	}
+}

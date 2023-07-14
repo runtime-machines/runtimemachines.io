@@ -2,7 +2,7 @@
 
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import styles from './relatedArticles.module.css';
-import BlogCard from '../BlogCard';
+import BlogCard from './BlogCard';
 
 type TProps = {
 	relatedArticles: any[];

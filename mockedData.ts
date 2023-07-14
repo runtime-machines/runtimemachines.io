@@ -1,3 +1,4 @@
+import getPostMetadata from '@/lib/getPostMetadata';
 import { LinkedIn } from '@mui/icons-material';
 export const testimonialData = [
 	{
