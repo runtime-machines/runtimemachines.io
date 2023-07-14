@@ -10,6 +10,7 @@ ogImage:
   url: '/assets/blog/covers/wowen_1.jpg'
 tags: ['PressRelease', 'Blockchain', 'Wowen']
 readTime: '4 min read'
+suggestedReadings: ['wowen_2', 'demystifying_ethereum', 'six_months_birthday']
 ---
 
 ## A crowded space

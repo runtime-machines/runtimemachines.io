@@ -10,6 +10,7 @@ ogImage:
   url: '/assets/blog/covers/wowen_2.webp'
 tags: ['PressRelease', 'Blockchain', 'Wowen']
 readTime: '3 min read'
+suggestedReadings: ['wowen_1', 'demystifying_ethereum', 'six_months_birthday']
 ---
 
 **An Overview**

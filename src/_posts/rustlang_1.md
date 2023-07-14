@@ -10,6 +10,7 @@ ogImage:
   url: '/assets/blog/covers/rustlang_1.png'
 tags: ['TechnicalBlog', 'Coding', 'RustLang']
 readTime: '3 min read'
+suggestedReadings: ['demystifying_ethereum']
 ---
 
 Are you searching for a programming language that combines performance, safety, and concurrency? Look no further! 🚀 Today, I want to share my excitement about Rust, a language that has been steadily gaining popularity among developers and is revolutionizing the way we build reliable and efficient software. 🌐
@@ -42,11 +43,11 @@ Embracing Rust opens doors to a world where reliable, performant, and concurrent
 
 The easiest way to install Rust is through _rustup_, the official toolchain multiplexer, enabling the management of Rust toolchain, by making available various tools such as _rustc_ (the compiler), _cargo_ (the package manager), and _rustup_ itself. To get _rustup_, open the terminal and type:
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
 not on Unix? checkout the official [website](https://www.rust-lang.org/tools/install) to discover the recommended procedure. If after installation,
 
-rustc --version
+`rustc --version`
 
 fails, it means that you may need to configure the _PATH_ environment variable.
 
