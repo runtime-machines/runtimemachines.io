@@ -14,9 +14,11 @@ const CookieBanner = () => {
 	};
 
 	const cookieAccepted =
-		document.cookie.split(';').some((cookie) => {
-			return cookie.trim().startsWith('cookies_accepted=');
-		}) || accepted;
+		(typeof document !== 'undefined' &&
+			document.cookie.split(';').some((cookie) => {
+				return cookie.trim().startsWith('cookies_accepted=');
+			})) ||
+		accepted;
 
 	if (!cookieAccepted) {
 		return (
