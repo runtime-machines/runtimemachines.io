@@ -25,6 +25,7 @@ const Footer = () => {
 					<Box marginY={6}>
 						<Typography variant="body1">
 							Contact:
+							<br /> +41 76 569 zero-zero one-seven
 							<br />{' '}
 							<a href="mailto:info@runtimemachines.io" className={styles.email}>
 								info@runtimemachines.io

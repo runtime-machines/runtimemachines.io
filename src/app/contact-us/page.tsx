@@ -16,7 +16,8 @@ const ContactUs = () => {
 					<Stack direction="column" spacing={2} marginBottom="50px">
 						<h1 className={styles.pageTitle}>Contact us</h1>
 						<Typography variant="body1" className={styles.pageSubtitle}>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							If you are interested in any of our solutions or would like to get more information on our services,
+							kindly complete the form, and we will reach out to you promptly.
 						</Typography>
 					</Stack>
 					<Stack direction="column" /* spacing={1} */>
@@ -24,19 +25,25 @@ const ContactUs = () => {
 							<span className={styles.iconContainer}>
 								<Mail className={styles.icon} />
 							</span>
-							info@runtimemachines.io
+							<a href="mailto:info@runtimemachines.io">info@runtimemachines.io</a>
 						</Typography>
 						<Typography variant="body1" className={styles.infoBox}>
 							<span className={styles.iconContainer}>
 								<Phone className={styles.icon} />
 							</span>
-							1800 123 4567
+							+41 76 569 zero-zero one-seven
 						</Typography>
 						<Typography variant="body1" className={styles.infoBox}>
 							<span className={styles.iconContainer}>
 								<Place className={styles.icon} />
 							</span>
-							Zählerweg 5, 6300 Zug, Switzerland
+							Baarerstrasse 52, 6300 Zug, Switzerland
+						</Typography>
+						<Typography variant="body1" className={styles.infoBox}>
+							<span className={styles.iconContainer}>
+								<Place className={styles.icon} />
+							</span>
+							Crocicchio Cortogna 6, 6900 Lugano, Switzerland
 						</Typography>
 					</Stack>
 				</Box>
