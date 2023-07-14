@@ -1,16 +1,19 @@
 'use client';
 
-import { Box, Stack } from '../mui/Components';
+import { Box, Stack, useMediaQuery } from '../mui/Components';
 import { CallToActionBTN } from '../buttons/CallToActionBTN';
 import { ChevronRight } from '@mui/icons-material';
 import BlogCard from '../blog/BlogCard';
 import { blogData } from '../../../../mockedData';
+import { use } from 'react';
 
 type TProps = {
 	posts: any[];
 };
 
 const PostsPreview = ({ posts }: TProps) => {
+	const matches = useMediaQuery('(max-width: 1100px)');
+	const sliceEnd = matches ? 1 : 3;
 	const clickHandler = () => {
 		console.log('clicked');
 	};
@@ -20,7 +23,7 @@ const PostsPreview = ({ posts }: TProps) => {
 				<h2 className="boxTitle">Latest from our blog</h2>
 			</Box>
 			<Box display="flex" justifyContent="center" gap={4} padding="0 60px">
-				{posts.slice(0, 3).map((article, index) => (
+				{posts.slice(0, sliceEnd).map((article, index) => (
 					<BlogCard
 						image={{ src: article.coverImage, alt: article.title }}
 						title={article.title}

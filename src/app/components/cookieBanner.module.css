@@ -1,10 +1,10 @@
 .cookieBanner {
-	padding: 8px;
+	padding: 12px;
 	display: flex;
 	opacity: 0.9;
 	min-height: 80px;
 	position: fixed;
-	top: 78vh;
+	top: 80vh;
 	left: 0;
 	right: 0;
 	margin-left: auto;
@@ -37,4 +37,11 @@
 	text-transform: none;
 	width: fit-content;
 	max-height: 42px;
+}
+
+@media only screen and (max-width: 1020px) {
+	.cookieBanner {
+		margin: 0 15px;
+		top: 74vh;
+	}
 }

@@ -61,7 +61,7 @@ const WeThinkWeBuild = ({ type, title, subtitle, img }: TProps) => {
 					</Box>
 				</Stack>
 			) : (
-				<Box display="flex" alignItems="center" gap={20} className={styles.card}>
+				<Box display="flex" alignItems="center" justifyContent="space-between" gap={20} className={styles.card}>
 					<Stack display="flex" flexDirection="column" spacing={8}>
 						<Box className="textBox" alignItems="space-between" textAlign="left">
 							<h2 className="boxTitle">{title}</h2>

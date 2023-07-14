@@ -18,6 +18,7 @@
 }
 
 .card {
+	justify-content: space-between;
 	padding: var(--section-padding);
 }
 

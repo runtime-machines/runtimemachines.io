@@ -34,7 +34,7 @@ const Posts = ({ posts }: TProps) => {
 				))}
 			</Box>
 
-			<BTNTest text="Load more" clickHandler={clickHandler} />
+			{loadCount < posts.length && <BTNTest text="Load more" clickHandler={clickHandler} />}
 		</>
 	);
 };

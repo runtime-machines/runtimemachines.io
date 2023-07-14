@@ -16,9 +16,10 @@ type TProps = {
 	tag: string;
 	readTime?: string;
 	isMain?: boolean;
+	width?: number | string;
 };
 
-const BlogCard = ({ image, title, body, tag, readTime, isMain, slug }: TProps) => {
+const BlogCard = ({ image, title, body, tag, readTime, isMain, slug, width }: TProps) => {
 	return (
 		<>
 			{isMain ? (
@@ -41,7 +42,10 @@ const BlogCard = ({ image, title, body, tag, readTime, isMain, slug }: TProps) =
 					</Card>
 				</Link>
 			) : (
-				<Link href={`/blog/${slug}`} className={styles.linkContainer}>
+				<Link
+					href={`/blog/${slug}`}
+					className={styles.linkContainer}
+					style={{ maxWidth: `${width ? width : 'calc(100% / 3 - 20px)'}` }}>
 					<Card className={styles.card}>
 						<CardMedia image={image.src} title={image.alt} className={styles.imageContainer} />
 						<CardContent className={styles.content}>

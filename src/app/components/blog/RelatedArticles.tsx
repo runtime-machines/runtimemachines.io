@@ -23,7 +23,8 @@ const RelatedArticles = ({ relatedArticles }: TProps) => {
 							tag={article.tags[0]}
 							key={index}
 							slug={article.slug}
-							readTime="4"
+							readTime={article.readTime}
+							width={'calc(100% / 2 - 20px)'}
 						/>
 					))}
 				</Box>
