@@ -47,7 +47,7 @@ const BlogCard = ({ image, title, body, tag, readTime, isMain, slug }: TProps) =
 						<CardContent className={styles.content}>
 							<Box>
 								<Tag tag={tag} />
-								{readTime ? <span className={styles.readTime}>{readTime}</span> : null}
+								{readTime ? <span className={styles.readTime}>{readTime} </span> : null}
 							</Box>
 
 							<Typography gutterBottom variant="h5" component="div" className={styles.title}>
