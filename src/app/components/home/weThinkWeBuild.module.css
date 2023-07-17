@@ -27,4 +27,9 @@
 		width: 343px;
 		height: 436px;
 	}
+
+	.card {
+		justify-content: space-between;
+		padding: var(--mobile-section-padding);
+	}
 }

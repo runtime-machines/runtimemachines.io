@@ -84,37 +84,35 @@ const WeThinkWeBuild = ({ type, title, subtitle, img }: TProps) => {
 
 const WeThinkWeBuildSection = () => {
 	return (
-		<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
-			<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
-				<WeThinkWeBuild
-					type="left"
-					img={{ src: '/assets/illustrations/we_think.png', alt: 'img' }}
-					key={1}
-					title="What we think"
-					subtitle={
-						<p>
-							Pioneering newest fields of Blockchain Technology and Advanced Cryptography.
-							<br />
-							We test, verify, and develop YOUR IDEAS.
-						</p>
-					}
-				/>
+		<Stack direction="column" className={styles.cardsContainer} minHeight={700} spacing={8}>
+			<WeThinkWeBuild
+				type="left"
+				img={{ src: '/assets/illustrations/we_think.png', alt: 'img' }}
+				key={1}
+				title="What we think"
+				subtitle={
+					<p>
+						Pioneering newest fields of Blockchain Technology and Advanced Cryptography.
+						<br />
+						We test, verify, and develop YOUR IDEAS.
+					</p>
+				}
+			/>
 
-				<WeThinkWeBuild
-					type="right"
-					img={{ src: '/assets/illustrations/we_build.png', alt: 'img' }}
-					key={2}
-					title="What we build"
-					subtitle={
-						<p>
-							We build blockchain Protocols, ZK-tech, dApps, Infrastructure, DEXs, Tokenisation platforms, Dev Toolings,
-							and Web3 UX / UI design.
-							<br /> <br /> We are best at:
-							<br /> Prototypes | MVPs | Full-Cycle Product Development
-						</p>
-					}
-				/>
-			</Stack>
+			<WeThinkWeBuild
+				type="right"
+				img={{ src: '/assets/illustrations/we_build.png', alt: 'img' }}
+				key={2}
+				title="What we build"
+				subtitle={
+					<p>
+						We build blockchain Protocols, ZK-tech, dApps, Infrastructure, DEXs, Tokenisation platforms, Dev Toolings,
+						and Web3 UX / UI design.
+						<br /> <br /> We are best at:
+						<br /> Prototypes | MVPs | Full-Cycle Product Development
+					</p>
+				}
+			/>
 		</Stack>
 	);
 };
