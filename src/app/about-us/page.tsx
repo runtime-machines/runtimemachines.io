@@ -2,10 +2,12 @@
 
 import { Box, Stack } from '@mui/material';
 import styles from './page.module.css';
-import { TeamMembers } from '../../../mockedData';
+import { TeamMembers, randomTeamMembers } from '../../lib/teamMembers';
 import MemberCard from '../components/about-us/MemberCard';
 
 const page = () => {
+	//TODO: call randomTeamMembers()
+	const teamMembers = TeamMembers;
 	return (
 		<main className={styles.main}>
 			<Stack spacing={5} className="textBox" textAlign="center">
@@ -18,8 +20,8 @@ const page = () => {
 			</Stack>
 
 			<Box className={styles.cardsContainer}>
-				{TeamMembers.map((member, index) => (
-					<MemberCard key={index} image={member.img} name={member.name} role={member.role} linkedIn={member.LinkedIn} />
+				{teamMembers.map((member, index) => (
+					<MemberCard key={index} img={member.img} name={member.name} role={member.role} linkedin={member.linkedin} />
 				))}
 			</Box>
 		</main>
