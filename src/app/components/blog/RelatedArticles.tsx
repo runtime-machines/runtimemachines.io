@@ -9,13 +9,12 @@ type TProps = {
 };
 
 const RelatedArticles = ({ relatedArticles }: TProps) => {
-	const width = relatedArticles.length > 2 ? 'calc(100% / 3 - 20px)' : 'calc(100% / 2 - 20px)';
 	return (
 		<Box className={styles.container}>
 			<Divider className={styles.divider} />
 			<Stack>
 				<h3 className={styles.title}>Related articles</h3>
-				<Box display="flex" gap="20px" flexWrap="wrap" justifyContent="center">
+				<Box display="flex" gap="20px" flexWrap="wrap" justifyContent="flex-start">
 					{relatedArticles.map((article, index) => (
 						<BlogCard
 							image={{ src: article.coverImage, alt: article.title }}
@@ -25,7 +24,6 @@ const RelatedArticles = ({ relatedArticles }: TProps) => {
 							key={index}
 							slug={article.slug}
 							readTime={article.readTime}
-							width={width}
 						/>
 					))}
 				</Box>

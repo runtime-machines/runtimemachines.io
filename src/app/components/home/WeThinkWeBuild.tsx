@@ -91,8 +91,13 @@ const WeThinkWeBuildSection = () => {
 					img={{ src: '/assets/illustrations/we_think.png', alt: 'img' }}
 					key={1}
 					title="What we think"
-					subtitle="Pioneering newest fields of Blockchain Technology and Advanced Cryptography.
-					We test, verify, and develop YOUR IDEAS."
+					subtitle={
+						<p>
+							Pioneering newest fields of Blockchain Technology and Advanced Cryptography.
+							<br />
+							We test, verify, and develop YOUR IDEAS.
+						</p>
+					}
 				/>
 
 				<WeThinkWeBuild

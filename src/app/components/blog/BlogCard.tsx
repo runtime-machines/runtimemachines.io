@@ -16,10 +16,9 @@ type TProps = {
 	tag: string;
 	readTime?: string;
 	isMain?: boolean;
-	width?: number | string;
 };
 
-const BlogCard = ({ image, title, body, tag, readTime, isMain, slug, width }: TProps) => {
+const BlogCard = ({ image, title, body, tag, readTime, isMain, slug }: TProps) => {
 	return (
 		<>
 			{isMain ? (
@@ -29,7 +28,7 @@ const BlogCard = ({ image, title, body, tag, readTime, isMain, slug, width }: TP
 						<CardContent className={styles.content}>
 							<Box>
 								<Tag tag={tag} />
-								{readTime ? <span className={styles.readTime}>{readTime} min read</span> : null}
+								{readTime ? <span className={styles.readTime}>{readTime}</span> : null}
 							</Box>
 
 							<Typography gutterBottom variant="h5" component="div" className={styles.mainTitle}>
@@ -42,16 +41,13 @@ const BlogCard = ({ image, title, body, tag, readTime, isMain, slug, width }: TP
 					</Card>
 				</Link>
 			) : (
-				<Link
-					href={`/blog/${slug}`}
-					className={styles.linkContainer}
-					style={{ maxWidth: `${width ? width : 'calc(100% / 3 - 20px)'}` }}>
+				<Link href={`/blog/${slug}`} className={styles.linkContainer} style={{ maxWidth: `'calc(100% / 3 - 20px)'}` }}>
 					<Card className={styles.card}>
 						<CardMedia image={image.src} title={image.alt} className={styles.imageContainer} />
 						<CardContent className={styles.content}>
 							<Box>
 								<Tag tag={tag} />
-								{readTime ? <span className={styles.readTime}>{readTime} min read</span> : null}
+								{readTime ? <span className={styles.readTime}>{readTime}</span> : null}
 							</Box>
 
 							<Typography gutterBottom variant="h5" component="div" className={styles.title}>

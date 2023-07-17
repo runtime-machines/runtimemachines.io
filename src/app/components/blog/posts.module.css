@@ -1,0 +1,10 @@
+.postsContainer {
+	display: flex;
+	justify-content: flex-start;
+}
+
+@media only screen and (max-width: 720px) {
+	.postsContainer {
+		justify-content: center;
+	}
+}

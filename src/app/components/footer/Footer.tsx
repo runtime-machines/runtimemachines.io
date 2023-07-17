@@ -11,7 +11,8 @@ const Footer = () => {
 
 	return (
 		<Stack direction="column" spacing={6} className={styles.footer}>
-			<Box component="footer" display="flex" justifyContent="space-between" alignItems="center">
+			<Divider className={styles.divider} />
+			<Box component="footer" display="flex" justifyContent="space-between">
 				<Box display="flex" flexDirection="column" className={styles.footerLeft}>
 					<Link className={styles.logoContainer} href="/">
 						<Image src="/RTM_Logo.svg" alt="RTM Logo" width={100} height={100} className={styles.logo} />
@@ -36,12 +37,11 @@ const Footer = () => {
 						<IconButton href="https://twitter.com/RunTimeMachines">
 							<Twitter style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://github.com/runtime-machines">
-							<GitHub style={{ color: '#fff' }} />
-						</IconButton>
-
 						<IconButton href="https://www.linkedin.com/company/runtime-machines">
 							<LinkedIn style={{ color: '#fff' }} />
+						</IconButton>
+						<IconButton href="https://github.com/runtime-machines">
+							<GitHub style={{ color: '#fff' }} />
 						</IconButton>
 					</Box>
 				</Box>

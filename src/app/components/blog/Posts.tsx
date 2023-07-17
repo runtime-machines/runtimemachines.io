@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import styles from './posts.module.css';
 import { PostMetadata } from '../../../../types';
 import BlogCard from './BlogCard';
 import { BTNTest } from '../buttons/BTNTest';
@@ -19,7 +20,7 @@ const Posts = ({ posts }: TProps) => {
 
 	return (
 		<>
-			<Box display="flex" gap="20px" flexWrap="wrap" justifyContent="center">
+			<Box display="flex" gap="20px" flexWrap="wrap" className={styles.postsContainer}>
 				{posts.slice(1, loadCount).map((article, index) => (
 					<BlogCard
 						isMain={false}

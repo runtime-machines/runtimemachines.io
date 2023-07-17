@@ -15,5 +15,6 @@ export interface PostMetadata {
 	ogImage: {
 		url: string;
 	};
+	readTime: string;
 	slug: string;
 }

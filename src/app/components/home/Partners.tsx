@@ -48,7 +48,7 @@ const Partners = () => {
 			<Stack gap="10px" className={styles.partnersLogos}>
 				{PartnersLogos.map((logo, i) => (
 					<div key={i} className={styles.logo}>
-						<Image src={logo.src} alt={logo.alt} width={230} height={100} />
+						<Image src={logo.src} alt={logo.alt} fill />
 					</div>
 				))}
 			</Stack>

@@ -31,6 +31,7 @@ const getRelatedPostsMetadata = (relatedPosts: string[]): PostMetadata[] => {
 			ogImage: {
 				url: matterResult.data.ogImage.url,
 			},
+			readTime: matterResult.data.readTime,
 			slug: file.replace('.md', ''),
 		};
 	});

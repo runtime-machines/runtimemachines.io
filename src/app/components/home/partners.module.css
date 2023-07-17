@@ -13,13 +13,13 @@
 	justify-content: space-between;
 	justify-content: center;
 	align-items: center;
-	gap: 22px;
+	gap: 20px;
 }
 
 .logo {
-	/* position: relative;
+	position: relative;
 	width: 148px;
-	height: 120px; */
+	height: 120px;
 }
 
 .partnerSubtitle {

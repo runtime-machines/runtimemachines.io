@@ -14,10 +14,12 @@
 
 .avatarLeft {
 	left: -30px;
-	top: 35%;
+	top: 75%;
+	transform: rotate(-15deg);
 }
 
 .avatarRight {
 	right: -30px;
-	top: 35%;
+	top: 75%;
+	transform: rotate(15deg);
 }

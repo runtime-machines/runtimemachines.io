@@ -18,7 +18,7 @@ const page = () => {
 				<Box className={styles.blogCardsContainer} width="100%">
 					<BlogCard
 						slug={posts[0].slug}
-						readTime="5"
+						readTime={posts[0].readTime}
 						body={posts[0].excerpt}
 						tag={posts[0].tags[0]}
 						title={posts[0].title}
