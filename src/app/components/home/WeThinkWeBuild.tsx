@@ -28,7 +28,7 @@ const WeThinkWeBuild = ({ type, title, subtitle, img }: TProps) => {
 						</Box>
 
 						<Stack display="flex" flexDirection="column" spacing={8} alignItems="center">
-							<Box className="textBox">
+							<Box className="textBox" suppressHydrationWarning={true}>
 								<h2 className="boxTitle">{title}</h2>
 
 								<Typography variant="body1" className="boxSubtitle">
@@ -41,17 +41,23 @@ const WeThinkWeBuild = ({ type, title, subtitle, img }: TProps) => {
 					</Box>
 				</Stack>
 			) : type === 'left' ? (
-				<Stack direction="column" justifyContent="center" className={styles.cardsContainer} minHeight={700} spacing={8}>
+				<Stack
+					direction="column"
+					justifyContent="center"
+					className={styles.cardsContainer}
+					minHeight={700}
+					spacing={8}
+					suppressHydrationWarning={true}>
 					<Box display="flex" alignItems="center" gap={20} className={styles.card}>
 						<Box className={styles.imgContainer}>
 							<Image src={img.src} alt={img.alt} fill />
 						</Box>
 
 						<Stack display="flex" flexDirection="column" spacing={8}>
-							<Box className="textBox" textAlign="left">
+							<Box className="textBox" textAlign="left" suppressHydrationWarning={true}>
 								<h2 className="boxTitle">{title}</h2>
 
-								<Typography variant="body1" className="boxSubtitle">
+								<Typography variant="body1" className="boxSubtitle" component="div">
 									{subtitle}
 								</Typography>
 							</Box>
@@ -66,7 +72,7 @@ const WeThinkWeBuild = ({ type, title, subtitle, img }: TProps) => {
 						<Box className="textBox" alignItems="space-between" textAlign="left">
 							<h2 className="boxTitle">{title}</h2>
 
-							<Typography variant="body1" className="boxSubtitle">
+							<Typography variant="body1" className="boxSubtitle" component="div">
 								{subtitle}
 							</Typography>
 						</Box>

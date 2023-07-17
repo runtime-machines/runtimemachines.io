@@ -4,10 +4,21 @@ import { Box, Stack } from '@mui/material';
 import styles from './page.module.css';
 import { TeamMembers } from '../../lib/teamMembers';
 import MemberCard from '../components/about-us/MemberCard';
+import { useEffect, useState } from 'react';
 
 const page = () => {
 	//TODO: call randomTeamMembers()
-	const teamMembers = TeamMembers.sort(() => Math.random() - 0.5);
+
+	const [members, setMembers] = useState(TeamMembers);
+
+	useEffect(() => {
+		const randomTeamMembers = () => {
+			const teamMembers = TeamMembers.sort(() => Math.random() - 0.5);
+			setMembers(teamMembers);
+		};
+		randomTeamMembers();
+	}, []);
+
 	return (
 		<main className={styles.main}>
 			<Stack spacing={5} className="textBox" textAlign="center">
@@ -20,7 +31,7 @@ const page = () => {
 			</Stack>
 
 			<Box className={styles.cardsContainer}>
-				{teamMembers.map((member, index) => (
+				{members.map((member, index) => (
 					<MemberCard key={index} img={member.img} name={member.name} role={member.role} linkedin={member.linkedin} />
 				))}
 			</Box>
