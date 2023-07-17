@@ -7,8 +7,6 @@ import MemberCard from '../components/about-us/MemberCard';
 import { useEffect, useState } from 'react';
 
 const Page = () => {
-	//TODO: call randomTeamMembers()
-
 	const [members, setMembers] = useState(TeamMembers);
 
 	useEffect(() => {
