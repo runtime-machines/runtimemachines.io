@@ -3,9 +3,10 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import styles from './relatedArticles.module.css';
 import BlogCard from './BlogCard';
+import { PostMetadata } from '../../../../types';
 
 type TProps = {
-	relatedArticles: any[];
+	relatedArticles: PostMetadata[];
 };
 
 const RelatedArticles = ({ relatedArticles }: TProps) => {

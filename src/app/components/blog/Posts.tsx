@@ -30,7 +30,7 @@ const Posts = ({ posts }: TProps) => {
 						tag={article.tags[0]}
 						key={index}
 						slug={article.slug}
-						readTime="4"
+						readTime={article.readTime}
 					/>
 				))}
 			</Box>
