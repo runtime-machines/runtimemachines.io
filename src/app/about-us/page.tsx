@@ -11,7 +11,7 @@ const page = () => {
 	return (
 		<main className={styles.main}>
 			<Stack spacing={5} className="textBox" textAlign="center">
-				<h1 className="boxTitle">The Team</h1>
+				<h1 className="boxTitle">The team</h1>
 				<p className="boxSubtitle">
 					A hive mind of leading computer scientists, Mathematicians, Cryptologists (5 PhDs), Software engineers, Smart
 					Contract engineers for all major blockchain programming languages, and Web3/DLT experts, located in

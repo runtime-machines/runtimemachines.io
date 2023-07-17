@@ -14,6 +14,7 @@
 	text-align: center;
 	cursor: pointer;
 	height: 320px;
+	border-radius: 8px;
 }
 
 .card:hover {

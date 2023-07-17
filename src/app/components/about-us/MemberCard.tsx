@@ -8,7 +8,7 @@ import { TeamMemberProps } from '../../../lib/teamMembers';
 const MemberCard = ({ img, name, role, linkedin }: TeamMemberProps) => {
 	const inner = (
 		<Card className={styles.card}>
-			<LinkedIn className={styles.icon} />
+			{linkedin && <LinkedIn className={styles.icon} />}
 			<div className={styles.avatar}>
 				<Image src={img.src} alt={img.alt} fill />
 			</div>
