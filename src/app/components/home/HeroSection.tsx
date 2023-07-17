@@ -11,10 +11,10 @@ const HeroSection = ({}: TProps) => {
 
 	return (
 		<Stack className={styles.heroSection} spacing={5}>
-			<h1 className={styles.heroTitle}>Lorem Ipsum dolot sit amet</h1>
+			<h1 className={styles.heroTitle}>The Swiss blockchain firm</h1>
 			<p className={styles.heroSubtitle}>
-				Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet
-				odio mattis.
+				Blockchain Consulting | Development | Cryptography Engineering | Infrastructure | Research | Web3 Zero-Knowledge
+				| Verifiable Analytics
 			</p>
 			<CallToActionBTN text="Get in touch" path="/contact-us" />
 		</Stack>

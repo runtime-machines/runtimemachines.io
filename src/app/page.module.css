@@ -20,8 +20,8 @@
 
 .us {
 	position: relative;
-	padding-top: 10rem;
-	padding-bottom: 8rem;
+	padding-top: 8rem;
+	padding-bottom: 7rem;
 	margin: 6rem;
 	width: 100%;
 	display: flex;
@@ -29,7 +29,7 @@
 }
 
 .testimonials {
-	padding: 10rem 0;
+	padding: 7rem 0;
 	width: 100%;
 }
 
@@ -49,10 +49,10 @@
 
 	.us {
 		padding: 4rem 0;
-		margin: 4rem;
+		margin: 2rem;
 	}
 
 	.testimonials {
-		padding: 4rem 0;
+		padding: 3rem 0;
 	}
 }

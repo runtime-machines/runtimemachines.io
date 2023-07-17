@@ -9,6 +9,7 @@ type TProps = {
 };
 
 const RelatedArticles = ({ relatedArticles }: TProps) => {
+	const width = relatedArticles.length > 2 ? 'calc(100% / 3 - 20px)' : 'calc(100% / 2 - 20px)';
 	return (
 		<Box className={styles.container}>
 			<Divider className={styles.divider} />
@@ -24,7 +25,7 @@ const RelatedArticles = ({ relatedArticles }: TProps) => {
 							key={index}
 							slug={article.slug}
 							readTime={article.readTime}
-							width={'calc(100% / 2 - 20px)'}
+							width={width}
 						/>
 					))}
 				</Box>

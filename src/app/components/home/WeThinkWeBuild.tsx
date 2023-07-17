@@ -9,7 +9,7 @@ import { ChevronRight } from '@mui/icons-material';
 type TProps = {
 	type: 'left' | 'right';
 	title: string;
-	subtitle: string;
+	subtitle: string | JSX.Element;
 	img: {
 		src: string;
 		alt: string;
@@ -91,8 +91,8 @@ const WeThinkWeBuildSection = () => {
 					img={{ src: '/assets/illustrations/we_think.png', alt: 'img' }}
 					key={1}
 					title="What we think"
-					subtitle="Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
-									aliquet odio mattis."
+					subtitle="Pioneering newest fields of Blockchain Technology and Advanced Cryptography.
+					We test, verify, and develop YOUR IDEAS."
 				/>
 
 				<WeThinkWeBuild
@@ -100,8 +100,14 @@ const WeThinkWeBuildSection = () => {
 					img={{ src: '/assets/illustrations/we_build.png', alt: 'img' }}
 					key={2}
 					title="What we build"
-					subtitle="Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac
-									aliquet odio mattis."
+					subtitle={
+						<p>
+							We build blockchain Protocols, ZK-tech, dApps, Infrastructure, DEXs, Tokenisation platforms, Dev Toolings,
+							and Web3 UX / UI design.
+							<br /> <br /> We are best at:
+							<br /> Prototypes | MVPs | Full-Cycle Product Development
+						</p>
+					}
 				/>
 			</Stack>
 		</Stack>

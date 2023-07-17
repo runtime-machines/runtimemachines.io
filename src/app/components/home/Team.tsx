@@ -37,8 +37,7 @@ const Team = () => {
 				<Box>
 					<h2 className="boxTitle">The hive mind behind RunTime Machines</h2>
 					<Typography variant="body1" className="boxSubtitle">
-						Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet
-						odio mattis.
+						A highly educated team of researchers and developers for disruptive technologies.
 					</Typography>
 				</Box>
 				<CallToActionBTN text="More about us" Icon={ChevronRight} path="/about-us" />

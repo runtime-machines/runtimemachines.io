@@ -7,6 +7,7 @@ import getPostMetadata from '@/lib/getPostMetadata';
 import ArticleHeader from '@/app/components/blog/ArticleHeader';
 import RelatedArticles from '@/app/components/blog/RelatedArticles';
 import { blogData } from '../../../../mockedData';
+import getRelatedPostsMetadata from '@/lib/getRelatedPostsMetadata';
 
 export const generateStaticParams = async () => {
 	const posts = getPostMetadata();
@@ -23,7 +24,8 @@ const page = async ({
 		slug: string;
 	};
 }) => {
-	const { content, title, coverImage, tags, readTime } = getPostContent(params.slug);
+	const { content, title, coverImage, tags, readTime, suggestedReadings } = getPostContent(params.slug);
+	const relatedPosts = getRelatedPostsMetadata(suggestedReadings);
 
 	return (
 		<main className={styles.main}>
@@ -36,7 +38,7 @@ const page = async ({
 					<MarkDown>{content}</MarkDown>
 				</article>
 
-				<RelatedArticles relatedArticles={blogData.slice(0, 2)} />
+				<RelatedArticles relatedArticles={relatedPosts} />
 			</div>
 		</main>
 	);

@@ -3,20 +3,23 @@
 }
 
 .partnersLogos {
-	padding: 1rem 0;
+	padding: 2rem 0;
 
 	width: 100%;
+	max-width: 1100px;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	align-items: center;
+	gap: 22px;
 }
 
 .logo {
-	position: relative;
+	/* position: relative;
 	width: 148px;
-	height: 48px;
+	height: 120px; */
 }
 
 .partnerSubtitle {
@@ -25,20 +28,13 @@
 }
 
 @media only screen and (max-width: 1100px) {
-	.partnersLogos {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-	}
-
 	.partners {
 		padding: var(--mobile-section-padding);
 		margin-top: 3rem;
 	}
 
-	.logo {
+	/* 	.logo {
 		width: fit-content;
 		flex-basis: calc(100% / 2 - 10px);
-	}
+	} */
 }

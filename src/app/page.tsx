@@ -11,7 +11,7 @@ import Partners from './components/home/Partners';
 import HeroSection from './components/home/HeroSection';
 
 export default function Home() {
-	const posts = getPostMetadata();
+	/* const posts = getPostMetadata(); */
 
 	return (
 		<main className={styles.main}>
@@ -34,9 +34,9 @@ export default function Home() {
 				<Testimonials />
 			</section>
 
-			<section className={styles.blog}>
+			{/* 	<section className={styles.blog}>
 				<PostsPreview posts={posts} />
-			</section>
+			</section> */}
 		</main>
 	);
 }

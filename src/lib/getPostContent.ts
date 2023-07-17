@@ -13,6 +13,7 @@ const getPostContent = (slug: string) => {
 		coverImage: matterResult.data.coverImage,
 		tags: matterResult.data.tags,
 		readTime: matterResult.data.readTime,
+		suggestedReadings: matterResult.data.suggestedReadings,
 	};
 };
 

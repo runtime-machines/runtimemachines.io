@@ -19,10 +19,10 @@ const Testimonials = () => {
 	return (
 		<Stack direction="column" justifyContent="center" alignItems="center" minHeight={700} spacing={4}>
 			<Box maxWidth={928}>
-				<h2 className="boxTitle">Don’t take our word for it</h2>
+				<h2 className="boxTitle">What people say</h2>
 				<Typography variant="body1" className="boxSubtitle">
-					Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet
-					odio mattis.
+					Our expertise lies in assisting corporate clients, institutions, and startups in the development of secure,
+					trusted, and decentralized products through advanced cryptography and blockchain technology.
 				</Typography>
 			</Box>
 

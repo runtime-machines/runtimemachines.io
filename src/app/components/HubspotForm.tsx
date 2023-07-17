@@ -6,9 +6,13 @@ import { useEffect, useState } from 'react';
 const HubspotForm = () => {
 	const [isLoaded, setIsLoading] = useState(false);
 	useEffect(() => {
-		setTimeout(() => {
+		const timeoutID = setTimeout(() => {
 			setIsLoading(true);
 		}, 500);
+
+		return () => {
+			clearTimeout(timeoutID);
+		};
 	}, []);
 	//TODO: add CSS styling
 	// ref: https://legacydocs.hubspot.com/docs/methods/forms/advanced_form_options
