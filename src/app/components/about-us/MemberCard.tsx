@@ -2,12 +2,13 @@ import { Card, CardContent, Typography } from '@mui/material';
 import styles from './memberCard.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { LinkedIn } from '@mui/icons-material';
 import { TeamMemberProps } from '../../../lib/teamMembers';
 
 const MemberCard = ({ img, name, role, linkedin }: TeamMemberProps) => {
 	const inner = (
 		<Card className={styles.card}>
+			<LinkedIn className={styles.icon} />
 			<div className={styles.avatar}>
 				<Image src={img.src} alt={img.alt} fill />
 			</div>

@@ -16,7 +16,7 @@ const HeroSection = ({}: TProps) => {
 				Blockchain Consulting | Development | Cryptography Engineering | Infrastructure | Research | Web3 Zero-Knowledge
 				| Verifiable Analytics
 			</p>
-			<CallToActionBTN text="Get in touch" path="/contact-us" />
+			<CallToActionBTN text="Let's talk" path="/contact-us" />
 		</Stack>
 	);
 };
