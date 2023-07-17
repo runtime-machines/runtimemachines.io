@@ -1,0 +1,76 @@
+.linkContainer {
+	/* width: 100%; */
+	flex-grow: 1;
+	flex-basis: calc(100% / 3 - 20px);
+	max-width: calc(100% / 3);
+	min-width: 330px;
+}
+
+.card {
+	height: fit-content;
+	/* width: 100%; */
+	/* max-width: calc(100% / 3 - 20px); */
+	flex-basis: calc(100% / 3);
+
+	min-width: 330px;
+	background-color: inherit;
+	color: #ffffff;
+	text-align: left;
+	border: none;
+	box-shadow: none;
+	padding: 10px 0;
+}
+
+.mainCard {
+	display: flex;
+	height: 450px;
+	width: 100%;
+	/* max-width: 400px; */
+	min-width: 330px;
+	background-color: inherit;
+	color: #ffffff;
+	text-align: left;
+	border: none;
+	box-shadow: none;
+	padding: 10px 0;
+}
+
+.content {
+	padding: 10px 0;
+	/* max-width: 450px; */
+}
+
+.mainImage {
+	height: 400px;
+	width: 100%;
+	margin: 0 10px;
+	border-radius: 10px;
+}
+
+.imageContainer {
+	position: relative;
+	height: 200px;
+	background-color: #ffffff;
+	border-radius: 10px;
+}
+
+.mainTitle {
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+
+.title {
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+
+.readTime {
+	margin: 0 8px;
+}
+
+@media only screen and (max-width: 1100px) {
+	.mainCard {
+		flex-direction: column;
+		/* align-items: center; */
+	}
+}

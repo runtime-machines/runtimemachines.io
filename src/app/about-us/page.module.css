@@ -1,0 +1,25 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6rem 1rem;
+	min-height: 100vh;
+}
+
+.cardsContainer {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	max-width: 1200px;
+	gap: 20px;
+}
+
+@media only screen and (max-width: 1100px) {
+	.cardsContainer {
+		max-width: 900px;
+		gap: 10px;
+	}
+}

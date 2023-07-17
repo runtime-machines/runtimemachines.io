@@ -1,0 +1,38 @@
+.partners {
+	padding: 3rem 0.8rem;
+}
+
+.partnersLogos {
+	padding: 2rem 0;
+
+	width: 100%;
+	max-width: 1000px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+
+.logo {
+	position: relative;
+}
+
+.partnerSubtitle {
+	font-weight: 600;
+	margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 1100px) {
+	.partners {
+		padding: var(--mobile-section-padding);
+		margin-top: 3rem;
+	}
+
+	/* 	.logo {
+		width: fit-content;
+		flex-basis: calc(100% / 2 - 10px);
+	} */
+}

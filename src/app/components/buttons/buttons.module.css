@@ -1,0 +1,25 @@
+.callToActionBTN {
+	background-color: var(--background-btn);
+	padding: 16px 32px;
+	border-radius: 4px;
+	font-size: 1.5rem;
+	font-weight: 900;
+	text-transform: none;
+	width: fit-content;
+}
+
+.callToActionBTN:hover {
+	background-color: var(--background-btn-hover);
+}
+
+.iconBtn {
+	margin: 0 8px;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+@media only screen and (max-width: 720px) {
+	.callToActionBTN {
+		padding: 12px 18px;
+	}
+}

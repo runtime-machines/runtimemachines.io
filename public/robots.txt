@@ -1,3 +1,4 @@
 User-agent: *
 Disallow:
 Sitemap: https://runtimemachines.io/sitemap.xml
+Sitemap: https://runtimemachines.com/sitemap.xml

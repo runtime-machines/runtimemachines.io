@@ -1,0 +1,25 @@
+.avatarContainer {
+	position: absolute;
+	width: 280px;
+	height: 280px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.avatar {
+	/* position: relative;
+	width: 100%;
+	height: 100%; */
+}
+
+.avatarLeft {
+	left: -30px;
+	top: 75%;
+	transform: rotate(-15deg);
+}
+
+.avatarRight {
+	right: -30px;
+	top: 75%;
+	transform: rotate(15deg);
+}

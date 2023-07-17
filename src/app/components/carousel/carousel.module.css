@@ -1,0 +1,100 @@
+.carousel {
+	position: relative;
+	width: 100%;
+	height: 380px;
+}
+
+.arrows {
+	position: absolute;
+	bottom: 0px;
+	transform: translateY(-50%);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.arrowContainer {
+	display: grid;
+	place-content: center;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	background-color: #292929;
+}
+
+.arrow {
+	color: #ffffff;
+	cursor: pointer;
+	height: 24px;
+	width: 24px;
+}
+
+.arrowContainer:hover {
+	transform: scale(1.1);
+}
+
+.itemsContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	max-height: 300px;
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+
+	transition: transform 0.5s ease;
+}
+
+.item {
+	border: 4px solid #292929;
+	border-radius: 8px;
+	width: 100%;
+}
+
+/* .card {
+	flex-shrink: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}
+
+.carousel-image.active {
+	opacity: 1;
+} */
+
+.dots {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+}
+
+.dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: var(--rtm-orange-opaque);
+	margin: 0 5px;
+	cursor: pointer;
+	transition: background-color 0.5s ease;
+}
+
+.dot:hover {
+	transform: scale(1.5);
+}
+
+.dot.active {
+	background-color: var(--rtm-orange);
+	width: 10px;
+	height: 10px;
+	transform: scale(1);
+}
