@@ -30,9 +30,7 @@ export default function Home() {
 				<Team />
 			</section>
 
-			<section className={styles.testimonials}>
-				<Testimonials />
-			</section>
+			<section className={styles.testimonials}>{/* <Testimonials /> */}</section>
 
 			{/* 	<section className={styles.blog}>
 				<PostsPreview posts={posts} />
