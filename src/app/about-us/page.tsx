@@ -6,7 +6,7 @@ import { TeamMembers } from '../../lib/teamMembers';
 import MemberCard from '../components/about-us/MemberCard';
 import { useEffect, useState } from 'react';
 
-const page = () => {
+const Page = () => {
 	//TODO: call randomTeamMembers()
 
 	const [members, setMembers] = useState(TeamMembers);
@@ -39,4 +39,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;
