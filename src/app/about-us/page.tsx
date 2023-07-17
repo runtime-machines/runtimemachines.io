@@ -2,12 +2,12 @@
 
 import { Box, Stack } from '@mui/material';
 import styles from './page.module.css';
-import { TeamMembers, randomTeamMembers } from '../../lib/teamMembers';
+import { TeamMembers } from '../../lib/teamMembers';
 import MemberCard from '../components/about-us/MemberCard';
 
 const page = () => {
 	//TODO: call randomTeamMembers()
-	const teamMembers = TeamMembers;
+	const teamMembers = TeamMembers.sort(() => Math.random() - 0.5);
 	return (
 		<main className={styles.main}>
 			<Stack spacing={5} className="textBox" textAlign="center">

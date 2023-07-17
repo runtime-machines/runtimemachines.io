@@ -14,7 +14,7 @@ const RelatedArticles = ({ relatedArticles }: TProps) => {
 			<Divider className={styles.divider} />
 			<Stack>
 				<h3 className={styles.title}>Related articles</h3>
-				<Box display="flex" gap="20px" flexWrap="wrap" justifyContent="flex-start">
+				<Box display="flex" gap="20px" flexWrap="wrap" className={styles.cardsContainer}>
 					{relatedArticles.map((article, index) => (
 						<BlogCard
 							image={{ src: article.coverImage, alt: article.title }}
