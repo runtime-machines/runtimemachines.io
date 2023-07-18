@@ -54,12 +54,12 @@ const PartnersLogos = [
 		mobileHeight: 36,
 	},
 	{
-		src: '/assets/partners/1674129111794-2-removebg-preview.png',
+		src: '/assets/partners/agire.png',
 		alt: 'Agire Foundation',
 		width: 136,
-		height: 88,
+		height: 48,
 		mobileWidth: 102,
-		mobileHeight: 66,
+		mobileHeight: 36,
 	},
 
 	{
@@ -89,15 +89,13 @@ const Partners = () => {
 			<p className={styles.partnersSubtitle}>Trusted by tech teams, developers, and marketeers worldwide.</p>
 			<Stack className={styles.partnersLogos}>
 				{PartnersLogos.map((logo, i) => (
-					<div
+					<Image
 						key={i}
-						className={styles.logo}
-						style={{
-							width: matches ? logo.mobileWidth : logo.width,
-							height: matches ? logo.mobileHeight : logo.height,
-						}}>
-						<Image src={logo.src} alt={logo.alt} fill />
-					</div>
+						src={logo.src}
+						alt={logo.alt}
+						width={matches ? logo.mobileWidth : logo.width}
+						height={matches ? logo.mobileHeight : logo.height}
+					/>
 				))}
 			</Stack>
 		</>

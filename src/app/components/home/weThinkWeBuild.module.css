@@ -10,9 +10,9 @@
 .imgContainer {
 	position: relative;
 	width: 100%;
-	height: 596px;
+	height: 560px;
 	min-width: 310px;
-	max-width: 463px;
+	max-width: 440px;
 	border-radius: 36px;
 	overflow: hidden;
 }
