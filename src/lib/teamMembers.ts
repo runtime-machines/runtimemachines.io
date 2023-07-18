@@ -38,7 +38,7 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Simone Bottoni',
 		},
 		name: 'Simone Bottoni',
-		role: 'Technical Leadear',
+		role: 'Senior Software Engineer & Applied Cryptographer',
 		linkedin: 'https://www.linkedin.com/in/simone-bottoni/',
 	},
 	{
@@ -47,7 +47,7 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Alberto Trombetta',
 		},
 		name: 'Alberto Trombetta',
-		role: 'Scientific Advisor',
+		role: 'Principal Scientist',
 		linkedin: 'https://www.linkedin.com/in/albertotrombetta/',
 	},
 	{
@@ -56,7 +56,7 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Achille Lambrughi',
 		},
 		name: 'Achille Lambrughi',
-		role: 'Blockchain Engineer',
+		role: 'Software Engineer & Blockchain Engineer',
 		linkedin: 'https://www.linkedin.com/in/achillelamb/',
 	},
 	{
@@ -65,7 +65,7 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Erika Reale',
 		},
 		name: 'Erika Reale',
-		role: 'Applied Cryptographer',
+		role: 'Software Engineer & Applied Cryptographer',
 		linkedin: 'https://www.linkedin.com/in/erikareale/',
 	},
 	{
@@ -74,7 +74,7 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Christian Rondanini',
 		},
 		name: 'Christian Rondanini',
-		role: 'Technical Leadear',
+		role: 'Technical Leader',
 		linkedin: 'https://www.linkedin.com/in/christianrondanini/',
 	},
 	{
@@ -101,7 +101,7 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Arsenii Ronzhyn',
 		},
 		name: 'Arsenii Ronzhyn',
-		role: 'Blockchain Engineer',
+		role: 'Software Engineer & Blockchain Engineer',
 		linkedin: 'https://www.linkedin.com/in/arsenii-ronzhyn/',
 	},
 	{
@@ -110,7 +110,7 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Mirko Trapani',
 		},
 		name: 'Mirko Trapani',
-		role: 'Applied Cryptographer',
+		role: 'Software Engineer & Applied Cryptographer',
 	},
 	{
 		img: {
