@@ -4,7 +4,8 @@
 
 .container {
 	width: 100%;
-	max-width: 1200px;
+	/* fit 3 related blog posts */
+	max-width: 1230px;
 	margin: 0 auto;
 }
 
