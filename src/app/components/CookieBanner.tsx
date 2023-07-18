@@ -24,7 +24,7 @@ const CookieBanner = () => {
 		d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days in milliseconds
 		const expires = 'expires=' + d.toUTCString();
 
-		document.cookie = 'cookies_accepted=true; ' + expires;
+		document.cookie = 'cookies_accepted=true; path=/"; ' + expires;
 		setAccepted(true);
 	};
 
