@@ -1,13 +1,13 @@
 ---
 title: '🔓 Unleashing robustness and efficiency: RustLang'
 excerpt: 'Introducing RustLang'
-coverImage: '/assets/blog/covers/rustlang_1.png'
+coverImage: '/assets/blog/covers/rustlang_1.webp'
 date: '2023-07-13T00:00:00.000Z'
 author:
   name: Roberto Ripamonti
   picture: '/assets/avatars/roberto_ripamonti.png'
 ogImage:
-  url: '/assets/blog/covers/rustlang_1.png'
+  url: '/assets/blog/covers/rustlang_1.webp'
 tags: ['TechnicalBlog', 'Coding', 'RustLang']
 readTime: '3 min read'
 suggestedReadings: ['demystifying_ethereum']

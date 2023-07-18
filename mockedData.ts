@@ -79,7 +79,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -87,7 +87,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -96,7 +96,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -104,7 +104,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -113,7 +113,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -121,7 +121,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -130,7 +130,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -138,7 +138,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -147,7 +147,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -155,7 +155,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -164,7 +164,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -172,7 +172,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -181,7 +181,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -189,7 +189,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -198,7 +198,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -206,7 +206,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
@@ -215,7 +215,7 @@ export const blogData = [
 	{
 		title: 'Wowen, Consensus Modularity in Blockchains for Reliability and Optimization',
 		excerpt: 'A crowded space',
-		coverImage: '/assets/blog/covers/wowen_1.jpg',
+		coverImage: '/assets/blog/covers/wowen_1.webp',
 		date: '2023-05-22T00:00:00.000Z',
 		author: {
 			name: 'Emanuele Ragnoli',
@@ -223,7 +223,7 @@ export const blogData = [
 		},
 
 		onImage: {
-			url: '/assets/blog/covers/wowen_1.jpg',
+			url: '/assets/blog/covers/wowen_1.webp',
 		},
 
 		slug: 'wowen_1',
