@@ -1,19 +1,20 @@
 .partners {
-	padding: 3rem 0.8rem;
+	/* padding: 3rem 0.8rem; */
 }
 
 .partnersLogos {
 	padding: 2rem 0;
 
 	width: 100%;
-	max-width: 1000px;
+	max-width: 1200px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	justify-content: center;
 	align-items: center;
-	gap: 30px;
+	gap: 64px;
+	row-gap: 30px;
 }
 
 .logo {

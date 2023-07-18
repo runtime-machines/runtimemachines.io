@@ -3,11 +3,15 @@
 }
 
 .container {
-	padding: 0 12rem;
+	width: 100%;
+	/* fit 3 related blog posts */
+	max-width: 1230px;
+	margin: 0 auto;
 }
 
 .content {
 	padding: var(--section-padding);
+	width: 100%;
 }
 
 .content p {

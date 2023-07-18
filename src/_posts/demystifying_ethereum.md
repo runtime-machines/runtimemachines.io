@@ -1,13 +1,13 @@
 ---
 title: '🔍 Demystifying Ethereum: Nodes vs. Clients'
 excerpt: 'A clear understanding'
-coverImage: '/assets/blog/covers/demystifying_ethereum.png'
+coverImage: '/assets/blog/covers/demystifying_ethereum.webp'
 date: '2023-07-10T00:00:00.000Z'
 author:
   name: Christian Rondanini
   picture: '/assets/avatars/christian_rondanini.png'
 ogImage:
-  url: '/assets/blog/covers/demystifying_ethereum.png'
+  url: '/assets/blog/covers/demystifying_ethereum.webp'
 tags: ['TechnicalBlog', 'Blockchain', 'Ethereum']
 readTime: '5 min read'
 suggestedReadings: ['wowen_1', 'wowen_2', 'rustlang_1']

@@ -22,7 +22,7 @@ const HubspotForm = () => {
 		target: '#hubspot-form-wrapper',
 	});
 
-	const showSkeleton = !loaded && !isLoaded;
+	const showSkeleton = !loaded || !isLoaded;
 
 	return (
 		<>

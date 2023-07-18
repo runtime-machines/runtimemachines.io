@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardContent, Typography } from '@mui/material';
 import styles from './memberCard.module.css';
 import Image from 'next/image';
