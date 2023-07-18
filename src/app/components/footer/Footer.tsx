@@ -34,13 +34,13 @@ const Footer = () => {
 						</Typography>
 					</Box>
 					<Box display="flex">
-						<IconButton href="https://twitter.com/RunTimeMachines">
+						<IconButton href="https://twitter.com/RunTimeMachines" aria-label="twitter">
 							<Twitter style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://www.linkedin.com/company/runtime-machines">
+						<IconButton href="https://www.linkedin.com/company/runtime-machines" aria-label="linkedin">
 							<LinkedIn style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://github.com/runtime-machines">
+						<IconButton href="https://github.com/runtime-machines" aria-label="github">
 							<GitHub style={{ color: '#fff' }} />
 						</IconButton>
 					</Box>

@@ -57,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 							fill
 							className="ellipse1"
 							sizes="(max-width: 768px) 700px, (max-width: 1200px) 900px, 900px"
+							loading="eager"
 						/>
 					</div>
 
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 							alt="bg svg"
 							fill
 							sizes="(max-width: 768px) 700px, (max-width: 1200px) 900px, 900px"
+							loading="eager"
 						/>
 					</div>
 					<Header />
