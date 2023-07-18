@@ -1,6 +1,6 @@
 .card {
 	position: relative;
-	flex-basis: calc(100% / 2) -10px;
+	flex-basis: calc(100% / 2 -10px);
 	width: 280px;
 	background-color: var(--dark-background);
 	color: #ffffff;
@@ -14,7 +14,6 @@
 	text-align: center;
 	cursor: pointer;
 	height: 320px;
-	border-radius: 8px;
 }
 
 .card:hover {
@@ -64,4 +63,16 @@
 		width: 120px;
 		height: 120px;
 	}
+}
+
+@media only screen and (max-width: 400px) {
+	.card {
+		width: 155px;
+		padding: 25px 0;
+	}
+
+	/* .avatar {
+		width: 110px;
+		height: 110px;
+	} */
 }
