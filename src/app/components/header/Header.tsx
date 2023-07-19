@@ -38,7 +38,7 @@ const Header = () => {
 						backgroundColor: 'rgba(0, 0, 0, 0)',
 					},
 					'& .MuiDrawer-paperAnchorTop': {
-						marginTop: '4rem',
+						top: '4rem',
 						borderTop: '2px',
 						borderBottom: '2px',
 						borderRight: '0px',

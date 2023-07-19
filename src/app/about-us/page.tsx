@@ -30,7 +30,14 @@ const Page = () => {
 
 			<Box className={styles.cardsContainer}>
 				{members.map((member, index) => (
-					<MemberCard key={index} img={member.img} name={member.name} role={member.role} linkedin={member.linkedin} />
+					<MemberCard
+						key={index}
+						img={member.img}
+						name={member.name}
+						role={member.role}
+						subRule={member.subRule}
+						linkedin={member.linkedin}
+					/>
 				))}
 			</Box>
 		</main>
