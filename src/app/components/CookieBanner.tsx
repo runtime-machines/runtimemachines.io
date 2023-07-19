@@ -1,30 +1,27 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { setCookie, getCookie } from 'cookies-next';
 import styles from './cookieBanner.module.css';
-import { Box, Button, Stack, dividerClasses } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import Link from 'next/link';
 
 const CookieBanner = () => {
-	const [accepted, setAccepted] = useState(false);
+	const [accepted, setAccepted] = useState(true);
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
-		const value =
-			document.cookie.split(';').some((cookie) => {
-				return cookie.trim().startsWith('cookies_accepted=');
-			}) || false;
+		const consentIsTue = getCookie('cookies_accepted') === true;
 
-		setAccepted(value);
+		setAccepted(consentIsTue);
 		setIsLoaded(true);
 	}, []);
 
 	const handleAccept = () => {
 		const d = new Date();
 		d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days in milliseconds
-		const expires = 'expires=' + d.toUTCString();
 
-		document.cookie = 'cookies_accepted=true; path=/"; ' + expires;
+		setCookie('cookies_accepted', 'true', { expires: d });
 		setAccepted(true);
 	};
 

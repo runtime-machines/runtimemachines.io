@@ -31,7 +31,7 @@ const WeThinkWeBuild = ({ type, title, subtitle, img }: TProps) => {
 							<Box className="textBox" suppressHydrationWarning={true}>
 								<h2 className="boxTitle">{title}</h2>
 
-								<Typography variant="body1" className="boxSubtitle">
+								<Typography variant="body1" className="boxSubtitle" component="div">
 									{subtitle}
 								</Typography>
 							</Box>
@@ -93,7 +93,10 @@ const WeThinkWeBuildSection = () => {
 		<Stack direction="column" className={styles.cardsContainer} minHeight={700} spacing={8}>
 			<WeThinkWeBuild
 				type="left"
-				img={{ src: '/assets/illustrations/we_think.png', alt: 'Strategic blockchain consulting firm offering analysis, strategy development, and implementation services.' }}
+				img={{
+					src: '/assets/illustrations/we_think.png',
+					alt: 'Strategic blockchain consulting firm offering analysis, strategy development, and implementation services.',
+				}}
 				key={1}
 				title="What we think"
 				subtitle={
@@ -107,7 +110,10 @@ const WeThinkWeBuildSection = () => {
 
 			<WeThinkWeBuild
 				type="right"
-				img={{ src: '/assets/illustrations/we_build.png', alt: 'Blockchain development company offering coding, testing, and deploying blockchain solutions.' }}
+				img={{
+					src: '/assets/illustrations/we_build.png',
+					alt: 'Blockchain development company offering coding, testing, and deploying blockchain solutions.',
+				}}
 				key={2}
 				title="What we build"
 				subtitle={
