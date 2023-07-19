@@ -22,6 +22,7 @@
 html,
 body {
 	max-width: 100vw;
+
 	overflow-x: hidden;
 }
 
@@ -33,6 +34,11 @@ body {
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+.contentWrapper {
+	position: relative;
+	overflow: hidden;
 }
 
 .sectionContainer {
@@ -95,6 +101,14 @@ a {
 	padding: 10px 0;
 }
 
+.hs_error_rollup {
+	display: none;
+}
+
+.hs-error-msg {
+	color: red;
+}
+
 .input input {
 	padding: 0 10px;
 	width: 100%;
@@ -128,8 +142,9 @@ a {
 	border: none;
 }
 
-.input ul li::marker {
-	color: #343434;
+.input a {
+	text-decoration: underline;
+	color: #ff8855;
 }
 
 .hs-consent {

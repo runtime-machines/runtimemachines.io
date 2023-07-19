@@ -2,6 +2,7 @@ export interface TeamMemberProps {
 	img: { src: string; alt: string };
 	name: string;
 	role: string;
+	subRule?: string;
 	linkedin?: string;
 }
 
@@ -12,7 +13,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Emanuele Ragnoli',
 		},
 		name: 'Emanuele Ragnoli',
-		role: 'co-CEO, CTO',
+		role: 'co-CEO',
+		subRule: 'CTO',
 		linkedin: 'https://www.linkedin.com/in/emanuele-ragnoli-a33b57/',
 	},
 	{
@@ -38,7 +40,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Simone Bottoni',
 		},
 		name: 'Simone Bottoni',
-		role: 'Senior Software Engineer & Applied Cryptographer',
+		role: 'Senior Software Engineer',
+		subRule: 'Applied Cryptographer',
 		linkedin: 'https://www.linkedin.com/in/simone-bottoni/',
 	},
 	{
@@ -56,7 +59,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Achille Lambrughi',
 		},
 		name: 'Achille Lambrughi',
-		role: 'Software Engineer & Blockchain Engineer',
+		role: 'Software Engineer',
+		subRule: 'Blockchain Engineer',
 		linkedin: 'https://www.linkedin.com/in/achillelamb/',
 	},
 	{
@@ -65,7 +69,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Erika Reale',
 		},
 		name: 'Erika Reale',
-		role: 'Software Engineer & Applied Cryptographer',
+		role: 'Software Engineer',
+		subRule: 'Applied Cryptographer',
 		linkedin: 'https://www.linkedin.com/in/erikareale/',
 	},
 	{
@@ -92,7 +97,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Nadia Fabrizio',
 		},
 		name: 'Nadia Fabrizio',
-		role: 'co-CEO, COO',
+		role: 'co-CEO',
+		subRule: 'COO',
 		linkedin: 'https://www.linkedin.com/in/nadiafabrizio/',
 	},
 	{
@@ -101,7 +107,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Arsenii Ronzhyn',
 		},
 		name: 'Arsenii Ronzhyn',
-		role: 'Software Engineer & Blockchain Engineer',
+		role: 'Software Engineer',
+		subRule: 'Blockchain Engineer',
 		linkedin: 'https://www.linkedin.com/in/arsenii-ronzhyn/',
 	},
 	{
@@ -110,7 +117,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Mirko Trapani',
 		},
 		name: 'Mirko Trapani',
-		role: 'Software Engineer & Applied Cryptographer',
+		role: 'Software Engineer',
+		subRule: 'Applied Cryptographer',
 	},
 	{
 		img: {
@@ -154,7 +162,8 @@ export const TeamMembers: TeamMemberProps[] = [
 			alt: 'Benedek Orban',
 		},
 		name: 'Benedek Orban',
-		role: 'Head of Business Dev & Partnerships',
+		role: 'Head of Business Development',
+		subRule: 'Partnership & Investor Relations',
 		linkedin: 'https://www.linkedin.com/in/benedekorban/',
 	},
 	{

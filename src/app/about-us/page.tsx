@@ -2,12 +2,12 @@
 
 import { Box, Stack } from '@mui/material';
 import styles from './page.module.css';
-import { TeamMembers } from '../../lib/teamMembers';
+import { TeamMemberProps, TeamMembers } from '../../lib/teamMembers';
 import MemberCard from '../components/about-us/MemberCard';
 import { useEffect, useState } from 'react';
 
 const Page = () => {
-	const [members, setMembers] = useState(TeamMembers);
+	const [members, setMembers] = useState<TeamMemberProps[]>([]);
 
 	useEffect(() => {
 		const randomTeamMembers = () => {
@@ -30,7 +30,14 @@ const Page = () => {
 
 			<Box className={styles.cardsContainer}>
 				{members.map((member, index) => (
-					<MemberCard key={index} img={member.img} name={member.name} role={member.role} linkedin={member.linkedin} />
+					<MemberCard
+						key={index}
+						img={member.img}
+						name={member.name}
+						role={member.role}
+						subRule={member.subRule}
+						linkedin={member.linkedin}
+					/>
 				))}
 			</Box>
 		</main>
