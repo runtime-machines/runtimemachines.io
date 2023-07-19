@@ -147,10 +147,6 @@ a {
 	color: #ff8855;
 }
 
-.input ul li::marker {
-	color: #343434;
-}
-
 .hs-consent {
 	display: flex;
 	flex-direction: column;

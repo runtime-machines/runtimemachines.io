@@ -7,6 +7,14 @@
 	/* min-height: 100vh; */
 }
 
+.main ul {
+	list-style: none;
+}
+
+.main ul li::marker {
+	color: #343434;
+}
+
 .sectionContainer {
 	padding: var(--section-padding);
 	display: flex;
