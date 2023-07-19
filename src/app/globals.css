@@ -106,7 +106,7 @@ a {
 }
 
 .hs-error-msg {
-	color: #ff8855;
+	color: red;
 }
 
 .input input {
@@ -144,6 +144,7 @@ a {
 
 .input a {
 	text-decoration: underline;
+	color: #ff8855;
 }
 
 .input ul li::marker {
