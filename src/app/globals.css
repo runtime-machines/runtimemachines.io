@@ -101,6 +101,14 @@ a {
 	padding: 10px 0;
 }
 
+.hs_error_rollup {
+	display: none;
+}
+
+.hs-error-msg {
+	color: #ff8855;
+}
+
 .input input {
 	padding: 0 10px;
 	width: 100%;
@@ -132,6 +140,10 @@ a {
 	font-size: 1.2rem;
 	resize: none;
 	border: none;
+}
+
+.input a {
+	text-decoration: underline;
 }
 
 .input ul li::marker {

@@ -6,7 +6,11 @@ import { Box, Button, Stack, dividerClasses } from '@mui/material';
 import Link from 'next/link';
 
 const CookieBanner = () => {
-	const [accepted, setAccepted] = useState(false);
+	const [accepted, setAccepted] = useState(
+		document.cookie.split(';').some((cookie) => {
+			return cookie.trim().startsWith('cookies_accepted=');
+		}) ?? false
+	);
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
