@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 const Team = () => {
-	const matches = useMediaQuery('(max-width: 1470px)');
+	const matches = useMediaQuery('(max-width: 1180px)');
 	const router = useRouter();
 
 	const clickHandler = () => {
