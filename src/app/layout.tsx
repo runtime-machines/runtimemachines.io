@@ -70,10 +70,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 							loading="eager"
 						/>
 					</div>
-					<Header />
-					{children}
-					<Footer />
-					<CookieBanner />
+					<div className="contentWrapper">
+						<Header />
+						{children}
+						<Footer />
+						<CookieBanner />
+					</div>
 				</body>
 			</html>
 		</Providers>
