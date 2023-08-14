@@ -21,7 +21,7 @@
     "eslint-config-next": "13.4.7",
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.2.1",
-    "next": "13.4.7",
+    "next": "13.4.13",
     "next-hubspot": "^1.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
