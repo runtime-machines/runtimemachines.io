@@ -15,7 +15,7 @@ const HeroSection = ({}: TProps) => {
 				<br />
 				The main shareholder and the employees of Runtime Machines have chosen to pursue new opportunities separately
 				and pursue new ventures. We are immensely grateful for your support and collaboration in our journey to innovate
-				in blockchain technology and cryptography. For any pending matters, please contact us by 10th September at
+				in blockchain technology and cryptography. For any pending matters, please contact us by 7th September at
 				info@runtimemachines.io. Thank you for being part of our story. We are excited to see what the future holds for
 				all of us.
 				<br />
