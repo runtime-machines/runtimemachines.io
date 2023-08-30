@@ -21,10 +21,12 @@
 	.endingSection {
 		padding: var(--mobile-section-padding);
 		min-height: 626px;
+		width: 100%;
 	}
 
 	.endingTitle {
 		text-align: left;
-		font-size: var(--mobile-title);
+		width: 100%;
+		font-size: 1.5rem;
 	}
 }

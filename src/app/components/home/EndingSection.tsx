@@ -3,7 +3,7 @@ import styles from './endingSection.module.css';
 
 type TProps = {};
 
-const HeroSection = ({}: TProps) => {
+const EndingSection = ({}: TProps) => {
 	const clickHandler = () => {
 		console.log('clicked');
 	};
@@ -28,4 +28,4 @@ const HeroSection = ({}: TProps) => {
 	);
 };
 
-export default HeroSection;
+export default EndingSection;
