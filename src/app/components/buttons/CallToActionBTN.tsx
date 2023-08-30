@@ -18,7 +18,7 @@ export const CallToActionBTN = ({ text, Icon, classNameProp, path }: TProps) => 
 		path && router.push(path);
 	};
 	return (
-		<Button variant="contained" className={styles.callToActionBTN + ' ' + classNameProp} onClick={clickHandler}>
+		<Button variant="contained" className={styles.callToActionBTN + ' ' + classNameProp} onClick={clickHandler} disabled>
 			<span>{text}</span>
 			{Icon && <Icon className={styles.iconBtn} />}
 		</Button>

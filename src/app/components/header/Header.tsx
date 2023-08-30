@@ -51,13 +51,13 @@ const Header = () => {
 					<Link href="/" className={styles.link} onClick={() => setIsOpen(false)}>
 						Home
 					</Link>
-					<Link href="/about-us" className={styles.link} onClick={() => setIsOpen(false)}>
+					<Link href="/" className={styles.link} onClick={() => setIsOpen(false)}>
 						The team
 					</Link>
-					<Link href="/blog" className={styles.link} onClick={() => setIsOpen(false)}>
+					<Link href="/" className={styles.link} onClick={() => setIsOpen(false)}>
 						Blog
 					</Link>
-					<Link href="/contact-us" className={styles.buttonLink} onClick={() => setIsOpen(false)}>
+					<Link href="/" className={styles.buttonLink} onClick={() => setIsOpen(false)}>
 						Get in touch
 					</Link>
 				</Stack>
@@ -99,13 +99,13 @@ const Header = () => {
 					<Link href="/" className={styles.link}>
 						Home
 					</Link>
-					<Link href="/about-us" className={styles.link}>
+					<Link href="/" className={styles.link}>
 						The team
 					</Link>
-					<Link href="/blog" className={styles.link}>
+					<Link href="/" className={styles.link}>
 						Blog
 					</Link>
-					<Link href="/contact-us" className={styles.buttonLink}>
+					<Link href="/" className={styles.buttonLink}>
 						Get in touch
 					</Link>
 				</Stack>

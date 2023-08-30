@@ -27,20 +27,17 @@ const Footer = () => {
 						<Typography variant="body1">
 							Contact:
 							<br /> +41 76 569 zero-zero one-seven
-							<br />{' '}
-							<a href="mailto:info@runtimemachines.io" className={styles.email}>
-								info@runtimemachines.io
-							</a>
+							<br /> info@runtimemachines.io
 						</Typography>
 					</Box>
 					<Box display="flex">
-						<IconButton href="https://twitter.com/RunTimeMachines" aria-label="twitter">
+						<IconButton href="/" aria-label="twitter">
 							<Twitter style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://www.linkedin.com/company/runtime-machines" aria-label="linkedin">
+						<IconButton href="/" aria-label="linkedin">
 							<LinkedIn style={{ color: '#fff' }} />
 						</IconButton>
-						<IconButton href="https://github.com/runtime-machines" aria-label="github">
+						<IconButton href="/" aria-label="github">
 							<GitHub style={{ color: '#fff' }} />
 						</IconButton>
 					</Box>
@@ -51,13 +48,13 @@ const Footer = () => {
 							<Link href="/" className={styles.link}>
 								Home
 							</Link>
-							<Link href="/about-us" className={styles.link}>
+							<Link href="/" className={styles.link}>
 								The team
 							</Link>
-							<Link href="/blog" className={styles.link}>
+							<Link href="/" className={styles.link}>
 								Blog
 							</Link>
-							<Link href="/contact-us" className={styles.link}>
+							<Link href="/" className={styles.link}>
 								Contact us
 							</Link>
 						</Stack>

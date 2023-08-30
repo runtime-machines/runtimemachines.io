@@ -9,6 +9,7 @@ import Testimonials from './components/home/Testimonials';
 import WeThinkWeBuildSection from './components/home/WeThinkWeBuild';
 import Partners from './components/home/Partners';
 import HeroSection from './components/home/HeroSection';
+import EndingSection from './components/home/EndingSection';
 
 export default function Home() {
 	/* const posts = getPostMetadata(); */
@@ -16,6 +17,7 @@ export default function Home() {
 	return (
 		<main className={styles.main}>
 			<CurvesSection />
+			<EndingSection />
 			<HeroSection />
 
 			<section className={styles.partners}>

@@ -40,7 +40,7 @@ const Team = () => {
 						A highly educated team of researchers and developers for disruptive technologies.
 					</Typography>
 				</Box>
-				<CallToActionBTN text="More about us" Icon={ChevronRight} path="/about-us" />
+				<CallToActionBTN text="More about us" Icon={ChevronRight} path="/" />
 			</Stack>
 		</>
 	);
